@@ -1,0 +1,13 @@
+TODO
+----
+1. Create the models from the existing CSV onto the DB.
+
+2. Ability to search for your own name -> profile
+
+3. Edit your own profile on the page 
+
+4. Admin Panel to efficiently manage the users
+
+5. Deployment onto the Heroku Server
+
+6. A script to automate the adding of the alumni in the DB
