@@ -1,0 +1,62 @@
+{% extends "Alumni/base.html" %}
+
+{% block content %}
+    {% load staticfiles %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/home/" class="navbar-brand"> AKPsi - Omega Psi: Alumni Portal </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/logout/"> Logout </a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div>
+        <h1> hasdashdhj </h1>
+    </div>
+    <div class="well"> 
+        <form action="/search" method="post">
+            {% csrf_token %}
+            <input name="search" placeholder="Search name">
+            <input type="submit" value="Search" class="btn">
+        </form>
+    </div>
+    <div class="jumbotron">
+        <h3 class="form-signin-heading"> Alumni </h3> 
+        {% csrf_token %}
+        {% if errors %}
+            {% for error in errors %}
+                <p> {{ error }} </p>
+            {% endfor %}
+        {% endif %}
+        {% if alumni %}
+            {% for alumn in alumni %}
+                <div class="well">
+                    <p> {{ alumn.first_name }} </p> 
+                    <p> {{ alumn.last_name }} </p> 
+                    <p> {{ alumn.employer }} </p> 
+                    <p> {{ alumn.current_city }} </p> 
+                    <p> {{ alumn.email }} </p> 
+                    <p> {{ alumn.phone }} </p> 
+                    <p> {{ alumn.major }} </p> 
+                    <p> {{ alumn.graduation_class }} </p> 
+                    <p> {{ alumn.hometown }} </p> 
+                    <p> {{ alumn.pledge_class }} </p> 
+                    <a href="/profile/{{ alumn.first_name }}{{ alumnn.last_name }}">
+                        {{ alumn.first_name }} {{ alumn.last_name }}
+                    </a>
+                    </p>            
+               </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -31,6 +31,10 @@ urlpatterns = patterns('',
     url(regex = r'^update$',
         view = 'Alumni.views.save_10',
         name = 'testSave'),
+    
+    url(regex = r'^search$',
+        view = 'Alumni.views.search',
+        name = 'search'),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^logout', 'Alumni.views.logout_user'),

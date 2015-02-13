@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from forms import SignInForm, SignUpForm
 from util.get_data import get_first
 from models import Alumni
+from django.db.models import Q
 
 # Function to signin user #
 def signin(request):
@@ -72,6 +73,7 @@ def logout_user(request):
     form = SignUpForm(request.GET)
     return render(request, 'Alumni/signin.html', {'form' : form})
 
+@login_required
 def save_10(request):
     brothers = get_first()
     first_name = ''
@@ -109,5 +111,19 @@ def save_10(request):
         alumni.save()
     return redirect('/home/')
 
-def profile(request):
+def profile(request, username):
     return render(request, 'Alumni/home.html')
+
+@login_required
+def search(request):
+    context = {}
+    print request.method
+    if request.method == 'GET':
+        return render(request, 'Alumni/search.html')
+    
+    if request.method == 'POST':
+        filtered_alumni = Alumni.objects.filter(Q(first_name__icontains = request.POST['search']) | Q(last_name__icontains = request.POST['search'])) 
+        context['alumni'] = filtered_alumni
+        print filtered_alumni
+        return render(request, 'Alumni/search.html', context)
+    print "OOO"
