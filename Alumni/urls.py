@@ -20,22 +20,32 @@ urlpatterns = patterns('',
         view  = 'Alumni.views.signup',
         name  = 'signup',),
     
-    url(regex = r'home',
+    # Home Page #
+    url(regex = r'^home',
         view = 'Alumni.views.home',
         name = 'home',),
-
-    url(regex = r'^profile/(?P<first_name>\w+)(?P<last_name>\w+)/$',
+    
+    # Profile Page #
+    url(regex = r'^profile/(?P<first_name><last_name>\w+)/$',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
+    # Update the DB #
     url(regex = r'^update$',
         view = 'Alumni.views.save_10',
         name = 'testSave'),
     
+    # Search Page #
     url(regex = r'^search$',
         view = 'Alumni.views.search',
         name = 'search'),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^logout', 'Alumni.views.logout_user'),
+    # Log out Page #
+    url(regex = r'^logout', 
+        view = 'Alumni.views.logout_user',
+        name = 'Logout',),
+    
+    # Admin Page #
+    url(regex = r'^admin/', 
+        view = include(admin.site.urls)),
 )

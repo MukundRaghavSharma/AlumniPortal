@@ -27,7 +27,7 @@
             <input type="submit" text="Post">
     </div>
     <div class="jumbotron">
-        <h3 class="form-signin-heading"> Alumni </h3> 
+        <h3 class="form-signin-heading"> Alumni Information </h3> 
         {% csrf_token %}
         {% if errors %}
             {% for error in errors %}
@@ -36,23 +36,22 @@
         {% endif %}
         {% if alumni %}
             {% for alumn in alumni %}
-                <div class="well">
-                    <p> {{ alumn.first_name }} </p> 
-                    <p> {{ alumn.last_name }} </p> 
-                    <p> {{ alumn.employer }} </p> 
-                    <p> {{ alumn.current_city }} </p> 
-                    <p> {{ alumn.email }} </p> 
-                    <p> {{ alumn.phone }} </p> 
-                    <p> {{ alumn.major }} </p> 
-                    <p> {{ alumn.graduation_class }} </p> 
-                    <p> {{ alumn.hometown }} </p> 
-                    <p> {{ alumn.pledge_class }} </p> 
-                    <a href="/profile/{{ alumn.first_name }}{{ alumnn.last_name }}">
-                        {{ alumn.first_name }} {{ alumn.last_name }}
-                    </a>
+                    <div class="well">
+                        <p> Name: {{ alumn.first_name }} {{ alumn.last_name }} </p>
+                        <p> Employer: {{ alumn.employer }} </p>
+                        <p> Current City: {{ alumn.current_city }} </p>
+                        <p> Email: {{ alumn.email }} </p>
+                        <p> Phone: {{ alumn.phone }} </p>
+                        <p> Major: {{ alumn.major }} </p>
+                        <p> Graduation Class: {{ alumn.graduation_class }} </p>
+                        <p> Hometown: {{ alumn.hometown }} </p>
+                        <p> Pledge Class: {{ alumn.pledge_class }} </p>
+                        <a href="/profile/{{ alumn.primary_key }}">
+                            {{ alumn.first_name }} {{ alumn.last_name }}
+                        </a>
                     </p>            
                </div>
             {% endfor %}
-        {% endif %}
+        {% endif %}}
     </div>
 {% endblock %}

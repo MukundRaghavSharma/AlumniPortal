@@ -1,12 +1,12 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from forms import SignInForm, SignUpForm
-from util.get_data import get_first
 from models import Alumni
-from django.db.models import Q
+from util.get_data import get_first
 
 # Function to signin user #
 def signin(request):
@@ -76,18 +76,7 @@ def logout_user(request):
 @login_required
 def save_10(request):
     brothers = get_first()
-    first_name = ''
-    last_name = ''
-    employer = ''
-    current_city = ''
-    email = ''
-    phone = ''
-    major = ''
-    graduation_class = ''
-    hometown = ''
-    pledge_class = ''
-
-    for brother in brothers[0]:
+    for brother in brothers:
         first_name = str(brother[0])
         last_name = str(brother[1])
         employer = str(brother[2])
@@ -95,9 +84,9 @@ def save_10(request):
         email = str(brother[4])
         phone = str(brother[5])
         major = str(brother[6])
-        graduation_class = str(brother[6])
-        hometown = str(brother[7])
-        pledge_class = str(brother[8])
+        graduation_class = str(brother[7])
+        hometown = str(brother[8])
+        pledge_class = str(brother[9])
         
         alumni = Alumni(first_name = first_name,
                 last_name  = last_name,
@@ -112,7 +101,11 @@ def save_10(request):
         alumni.save()
     return redirect('/home/')
 
+@login_required
 def profile(request, username):
+    
+
+
     return render(request, 'Alumni/home.html')
 
 @login_required
@@ -131,9 +124,9 @@ def search(request):
         if request.POST['search_company'] != '':
             filtered_alumni = Alumni.objects.filter(Q(employer__icontains = request.POST['search_company']))
             context['alumni'] += filtered_alumni
-        
+        ''' 
         if request.POST['search_pledge_class'] != '':
             filtered_alumni = Alumni.objects.filter(Q(pledge_class__icontains = request.POST['search_pledge_class']))
             context['alumni'] += filtered_alumni
-        
+        ''' 
         return render(request, 'Alumni/search.html', context)

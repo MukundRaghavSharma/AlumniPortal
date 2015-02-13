@@ -21,4 +21,10 @@ def get_first(max_count = 10):
             brothers.append(row)
             count += 1
         read_file.close()
-        return (brothers, count)
+        return brothers
+
+if __name__ == '__main__':
+    for brother in get_first():
+        for i in xrange(0, len(brother)):
+            print i, ' ', brother[i]
+        print '***********'
