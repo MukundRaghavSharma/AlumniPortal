@@ -42,11 +42,15 @@ def signup(request):
         login(request, authenticated_user)
         return redirect('/home/')
 
-
+@login_required
 def home(request):
     return render(request, 'Alumni/home.html')
 
-
+@login_required
+def logout_user(request):
+    logout(request)
+    return render(request, 'Alumni/signin.html')
+        
 '''
 # Function to import the CSV file's contents # 
 # and get the information to the user #

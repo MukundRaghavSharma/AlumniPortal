@@ -2,8 +2,15 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 urlpatterns = patterns('',
-
+    
+    # Sign-Up #
     url(regex = r'^$',
+        view  = 'django.contrib.auth.views.login',
+        name  = 'signin',
+        kwargs = {'template_name' : 'Alumni/signin.html'}),
+
+    # Sign-Up #
+    url(regex = r'^signin',
         view  = 'django.contrib.auth.views.login',
         name  = 'signin',
         kwargs = {'template_name' : 'Alumni/signin.html'}),
@@ -17,6 +24,5 @@ urlpatterns = patterns('',
         name = 'home',),
 
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^signin$', 'Alumni.views.signin'),
-    #url(r'^signout$', 'Alumni.views.signout'),
+    url(r'^logout', 'Alumni.views.logout_user'),
 )
