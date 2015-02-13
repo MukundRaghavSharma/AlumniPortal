@@ -117,13 +117,22 @@ def profile(request, username):
 @login_required
 def search(request):
     context = {}
-    print request.method
+    context['alumni'] = []
     if request.method == 'GET':
         return render(request, 'Alumni/search.html')
     
     if request.method == 'POST':
-        filtered_alumni = Alumni.objects.filter(Q(first_name__icontains = request.POST['search']) | Q(last_name__icontains = request.POST['search'])) 
-        context['alumni'] = filtered_alumni
-        print filtered_alumni
+        
+        if request.POST['search_name'] != '':
+            filtered_alumni = Alumni.objects.filter(Q(first_name__icontains = request.POST['search_name']) | Q(last_name__icontains = request.POST['search_name'])) 
+            context['alumni'] += filtered_alumni
+        
+        if request.POST['search_company'] != '':
+            filtered_alumni = Alumni.objects.filter(Q(employer__icontains = request.POST['search_company']))
+            context['alumni'] += filtered_alumni
+        
+        if request.POST['search_pledge_class'] != '':
+            filtered_alumni = Alumni.objects.filter(Q(pledge_class__icontains = request.POST['search_pledge_class']))
+            context['alumni'] += filtered_alumni
+        
         return render(request, 'Alumni/search.html', context)
-    print "OOO"
