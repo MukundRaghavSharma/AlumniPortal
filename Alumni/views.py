@@ -86,15 +86,15 @@ def save_10(request):
     pledge_class = ''
 
     for brother in brothers:
-        first_name = brother[0]
-        last_name = brother[1]
-        employer = brother[2]
-        current_city = brother[3]
-        email = brother[4]
-        phone = brother[5]
-        graduation_class = brother[6]
-        family = brother[7]
-        pledge_class = brother[8]
+        first_name = str(brother[0])
+        last_name = str(brother[1])
+        employer = str(brother[2])
+        current_city = str(brother[3])
+        email = str(brother[4])
+        phone = str(brother[5])
+        graduation_class = str(brother[6])
+        hometown = str(brother[7])
+        pledge_class = str(brother[8])
         
         alumni = Alumni(first_name = first_name,
                 last_name  = last_name,
@@ -104,6 +104,7 @@ def save_10(request):
                 phone = phone,
                 major = major,
                 graduation_class = graduation_class,
+                hometown = hometown,
                 pledge_class = pledge_class)
         alumni.save()
     return redirect('/home/')
