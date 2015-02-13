@@ -4,10 +4,23 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from forms import SignInForm
+
 # Function to signin user #
 def signin(request):
-    return render(request, 'Alumni/signin.html')
+    context = {}
+    form = SignInForm(request.GET)
+    if request.method == 'GET':
+        return render(request, 'Alumni/signin.html', {'form' : form})
 
+    if request.method == 'POST':
+        if form.is_valid():
+            authenticated_user = authenticate(username = request.POST['username'],
+                                              password = request.POST['password'])
+            login(request, authenticated_user)
+            return redirect('/home/')
+
+# Function to signup user #
 def signup(request):
     
     # GET Request #
@@ -25,8 +38,6 @@ def signup(request):
         # Check if the passwords match #
         if request.POST['password1'] != request.POST['password2']:
             errors.append('Passwords do not match')    
-
-
         if len(errors) > 0:
             return render(request, 'Alumni/signup.html', context)
 
@@ -42,10 +53,12 @@ def signup(request):
         login(request, authenticated_user)
         return redirect('/home/')
 
+# Function to displays the home screen #
 @login_required
 def home(request):
     return render(request, 'Alumni/home.html')
 
+# Function that logs out the user #
 @login_required
 def logout_user(request):
     logout(request)
