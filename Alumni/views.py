@@ -94,6 +94,7 @@ def save_10(request):
         current_city = str(brother[3])
         email = str(brother[4])
         phone = str(brother[5])
+        major = str(brother[6])
         graduation_class = str(brother[6])
         hometown = str(brother[7])
         pledge_class = str(brother[8])
