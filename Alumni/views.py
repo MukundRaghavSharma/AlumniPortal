@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from forms import SignInForm, SignUpForm
+from util.get_data import get_first
+from models import Alumni
 
 # Function to signin user #
 def signin(request):
@@ -27,9 +29,11 @@ def signup(request):
         form = SignUpForm(request.GET)
         return render(request, 'Alumni/signup.html', {'form' : form})
            
+    # POST Request #
     if request.method == 'POST':
         errors = []
         context = {}
+        form = SignUpForm(request.POST)
 
         # Check for the username in the DB #
         if len(User.objects.filter(username = request.POST['username'])) > 0:
@@ -41,40 +45,65 @@ def signup(request):
         if len(errors) > 0:
             return render(request, 'Alumni/signup.html', context)
 
-        # No errors i.e. Create User #
-        user = User.objects.create_user(username = request.POST['username'],
-                                        email = request.POST['email'],
-                                        password = request.POST['password1'],
-                                        first_name = request.POST['firstname'],
-                                        last_name = request.POST['lastname'])
-        user.save()
-        authenticated_user = authenticate(username = request.POST['username'],
-                                          password = request.POST['password1'])
-        login(request, authenticated_user)
-        return redirect('/home/')
+        if form.is_valid():
+            # No errors i.e. Create User #
+            user = User.objects.create_user(username = request.POST['username'],
+                                            email = request.POST['email'],
+                                            password = request.POST['password1'],
+                                            first_name = request.POST['first_name'],
+                                            last_name = request.POST['last_name'])
+            user.save()
+            authenticated_user = authenticate(username = request.POST['username'],
+                                              password = request.POST['password1'])
+            login(request, authenticated_user)
+            return redirect('/home/')
 
 # Function to displays the home screen #
 @login_required
 def home(request):
-    return render(request, 'Alumni/home.html')
+    context = {}
+    context['alumni'] = Alumni.objects.all() 
+    return render(request, 'Alumni/home.html', context)
 
 # Function that logs out the user #
 @login_required
 def logout_user(request):
     logout(request)
-    return render(request, 'Alumni/signin.html')
+    form = SignUpForm(request.GET)
+    return render(request, 'Alumni/signin.html', {'form' : form})
+
+def save_10():
+    brothers = get_first()
+    first_name = ''
+    last_name = ''
+    employer = ''
+    current_city = ''
+    email = ''
+    phone = ''
+    major = ''
+    graduation_class = ''
+    hometown = ''
+    pledge_class = ''
+
+    for brother in brothers:
+        first_name = brother[0]
+        last_name = brother[1]
+        employer = brother[2]
+        current_city = brother[3]
+        email = brother[4]
+        phone = brother[5]
+        graduation_class = brother[6]
+        family = brother[7]
+        pledge_class = brother[8]
         
-'''
-# Function to import the CSV file's contents # 
-# and get the information to the user #
-def get_data():
-    pass
-
-# Logging out the user #
-def signout(request):
-    pass
-
-# Function to parse the CSV file and save the information to the DB #
-def __save_information__():
-    pass
-'''
+        alumni = Alumni(first_name = first_name,
+                last_name  = last_name,
+                employer = employer,
+                current_city = current_city,
+                email = email,
+                phone = phone,
+                major = major,
+                graduation_class = graduation_class,
+                family = family,
+                pledge_class = pledge_class)
+        alumni.save()

@@ -21,25 +21,29 @@
       </div>
     </nav>
     <div class="well">
-        <form action="/post" method="post">
+        <form action="." method="post">
             <input type="text" name="post" placeholder="Enter your post here:">
             <input type="submit" text="Post">
     </div>
     <div class="jumbotron">
-        <h3 class="form-signin-heading"> Posts </h3> 
+        <h3 class="form-signin-heading"> Alumni </h3> 
         {% csrf_token %}
         {% if errors %}
             {% for error in errors %}
                 <p> {{ error }} </p>
             {% endfor %}
         {% endif %}
-        {% if posts %}
-            {% for post in posts %}
+        {% if alumni %}
+            {% for alumn in alumni %}
                 <div class="well">
-                    <p> {{ post.post_content }} </p>            
-                        <a href="/profile/{{ post.user }}">
-                            <p> {{ post.user }} </p>
-                        {{ post.timestamp }}  
+                    <p> {{ alum.first_name }} </p> 
+                    <p> {{ alum.last_name }} </p> 
+                    <p> {{ alum.employer }} </p> 
+                    <p> {{ alum.current_city }} </p> 
+                    <p> {{ alum.email }} </p> 
+                    <p> {{ alum.graduation_year }} </p> 
+                    <p> {{ alum.pledge_class }} </p> 
+                    <a href="/profile/{{ alum.first_name }}{{ alumn.last_name }}">
                         </a>
                     </p>            
                </div>

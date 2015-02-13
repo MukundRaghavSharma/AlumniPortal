@@ -25,17 +25,25 @@
         <h4 class="form-signin-heading"> First Name: "{{ user.first_name }}" </h1>
         <h4 class="form-signin-heading"> Last Name: "{{ user.last_name }}" </h1>
         <h4 class="form-signin-heading"> Email: "{{ user.email }}" </h1>
-        <div class="well" id="post_gallery">
+        <div class="jumbotron" id="post_gallery">
             {% csrf_token %}
             {% if errors %}
                 {% for error in errors %}
                     <p> {{ error }} </p>
                 {% endfor %}
             {% endif %}
-            {% if posts %}
-                {% for post in posts %}
-                    <p> {{ post.post_content }} </p> 
-                    <p> {{ post.timestamp }} </p> 
+            {% if alumni %}
+                {% for alumn in alumni %}
+                <div class="well">
+                    <p> {{ alumn.first_name }} </p> 
+                    <p> {{ alumn.last_name }} </p> 
+                    <p> {{ alumn.employer }} </p> 
+                    <p> {{ alumn.current_city }} </p> 
+                    <p> {{ alumn.email }} </p> 
+                    <p> {{ alumn.graduation year }} </p> 
+                    <p> {{ alumn.hometown }} </p> 
+                    <p> {{ alumn.pledge_class }}</p> 
+                </div>
                 {% endfor %}
             {% endif %}
         </div>
