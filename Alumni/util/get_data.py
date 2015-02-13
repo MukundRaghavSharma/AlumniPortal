@@ -1,8 +1,11 @@
 import csv
+import os.path
+
+BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
 
 def get_first(max_count = 10):
         brothers = []
-        read_file = open('static/AlumniInformationUpgraded.csv', 'Ur')
+        read_file = open(os.path.join(BASE, 'static/AlumniInformationUpgraded.csv', ), 'Ur')
         csv_file = csv.reader(read_file, delimiter=',')
         count = 0 
         for row in csv_file:

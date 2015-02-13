@@ -72,7 +72,7 @@ def logout_user(request):
     form = SignUpForm(request.GET)
     return render(request, 'Alumni/signin.html', {'form' : form})
 
-def save_10():
+def save_10(request):
     brothers = get_first()
     first_name = ''
     last_name = ''
@@ -104,6 +104,9 @@ def save_10():
                 phone = phone,
                 major = major,
                 graduation_class = graduation_class,
-                family = family,
                 pledge_class = pledge_class)
         alumni.save()
+    return redirect('/home/')
+
+def profile(request):
+    return render(request, 'Alumni/home.html')

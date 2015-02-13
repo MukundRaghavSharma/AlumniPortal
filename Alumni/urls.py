@@ -23,6 +23,10 @@ urlpatterns = patterns('',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
+    url(regex = r'^update$',
+        view = 'Alumni.views.save_10',
+        name = 'testSave'),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^logout', 'Alumni.views.logout_user'),
 )
