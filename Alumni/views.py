@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
-from forms import SignInForm
+from forms import SignInForm, SignUpForm
 
 # Function to signin user #
 def signin(request):
@@ -25,7 +24,8 @@ def signup(request):
     
     # GET Request #
     if request.method == 'GET':
-        return render(request, 'Alumni/signup.html')
+        form = SignUpForm(request.GET)
+        return render(request, 'Alumni/signup.html', {'form' : form})
            
     if request.method == 'POST':
         errors = []
