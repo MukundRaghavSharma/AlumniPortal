@@ -8,8 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -53,6 +52,9 @@ ROOT_URLCONF = 'AlumniInfo.urls'
 
 WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
 
+LOGIN_URL = '/signin/'
+
+LOGIN_REDIRECT_URL = '/home/'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -76,7 +78,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
