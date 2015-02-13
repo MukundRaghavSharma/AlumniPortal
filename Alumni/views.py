@@ -87,7 +87,7 @@ def save_10(request):
     hometown = ''
     pledge_class = ''
 
-    for brother in brothers:
+    for brother in brothers[0]:
         first_name = str(brother[0])
         last_name = str(brother[1])
         employer = str(brother[2])
