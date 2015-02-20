@@ -8,7 +8,7 @@ from forms import SignInForm, SignUpForm
 from models import Alumni
 from util.get_data import get_first
 
-def signin1(request):
+def signin_1(request):
     return render(request, 'Alumni/signin_1.html')
 
 # Function to signin user #
