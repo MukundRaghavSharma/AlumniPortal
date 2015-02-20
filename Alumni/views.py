@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate, logout
+from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -20,6 +21,7 @@ def signin(request):
     return render(request, 'Alumni/signin.html', context)
 
 # Function to signup user #
+@transaction.atomic
 def signup(request):
     
     # GET Request #
@@ -73,6 +75,7 @@ def logout_user(request):
     return render(request, 'Alumni/signin.html', {'form' : form})
 
 @login_required
+@transaction.atomic
 def save_10(request):
     brothers = get_first()
     for brother in brothers:
@@ -113,6 +116,7 @@ def profile(request, id):
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
 
+'''
 @login_required
 def search(request):
     context = {}
@@ -130,3 +134,4 @@ def search(request):
             filtered_alumni = Alumni.objects.filter(Q(employer__icontains = request.POST['search_company']))
             context['alumni'] += filtered_alumni
         return render(request, 'Alumni/search.html', context)
+'''
