@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 
 class Alumni(models.Model):
     user = models.OneToOneField(User)
-    first_name = models.CharField(null = True, max_length = 100)
-    last_name = models.CharField(null = True, max_length = 100)
     employer = models.CharField(null = True, max_length = 100)
     position = models.CharField(null = True, max_length = 100)
     current_city = models.CharField(null = True, max_length = 50)
@@ -22,7 +20,8 @@ class Alumni(models.Model):
 
     def __unicode__(self):
         return self.first_name + " " +  self.last_name
-
+'''
 class AlumniRelationship(models.Model):
     big = models.OneToOneField(Alumni)
     little = models.OneToManyField(Alumni)
+'''
