@@ -33,11 +33,16 @@
                     <p> {{ error }} </p>
                 {% endfor %}
             {% endif %}
-            <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}">
+            <div class="row">
+                <div class="span4">
+                    <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}" class="img-circle">
+                </div>
+                <div class="span2">
+                    <h2 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h2>
+                </div>
+            </div>
             {% if alumni %}
                 <div class="well">
-                    <p> First Name: {{ alumni.user.first_name }} </p> 
-                    <p> Last Name: {{ alumni.user.last_name }} </p> 
                     <p> Employer: {{ alumni.employer }} </p> 
                     <p> Current City: {{ alumni.current_city }} </p> 
                     <p> Email: {{ alumni.user.email }} </p> 

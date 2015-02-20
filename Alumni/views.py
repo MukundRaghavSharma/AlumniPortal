@@ -9,7 +9,8 @@ from models import Alumni
 from util.get_data import get_first
 
 def signin_1(request):
-    return render(request, 'Alumni/signin_1.html')
+    if request.method == 'GET':
+        return render(request, 'Alumni/signin_1.html')
 
 # Function to signin user #
 def signin(request):
@@ -50,6 +51,8 @@ def signup(request):
                                             first_name = request.POST['first_name'],
                                             last_name = request.POST['last_name'])
             user.save()
+            alumni = Alumni(user = user,)
+            alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
             login(request, authenticated_user)
@@ -126,9 +129,4 @@ def search(request):
         if request.POST['search_company'] != '':
             filtered_alumni = Alumni.objects.filter(Q(employer__icontains = request.POST['search_company']))
             context['alumni'] += filtered_alumni
-        ''' 
-        if request.POST['search_pledge_class'] != '':
-            filtered_alumni = Alumni.objects.filter(Q(pledge_class__icontains = request.POST['search_pledge_class']))
-            context['alumni'] += filtered_alumni
-        ''' 
         return render(request, 'Alumni/search.html', context)

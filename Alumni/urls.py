@@ -44,7 +44,7 @@ urlpatterns = patterns('',
         view = include(admin.site.urls)),
 
     # Signin Page 1#
-    url(regex = r'^signin1$', 
+    url(regex = r'^$', 
         view = 'Alumni.views.signin_1',
         name = 'signin_1',),
 )
