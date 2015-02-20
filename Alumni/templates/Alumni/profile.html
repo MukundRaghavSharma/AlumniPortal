@@ -22,9 +22,6 @@
       </div>
     </nav>
     <div class="jumbotron">
-        <h4 class="form-signin-heading"> First Name: "{{ user.first_name }}" </h1>
-        <h4 class="form-signin-heading"> Last Name: "{{ user.last_name }}" </h1>
-        <h4 class="form-signin-heading"> Email: "{{ user.email }}" </h1>
         <div class="jumbotron" id="post_gallery">
             {% csrf_token %}
             {% if errors %}
@@ -32,19 +29,18 @@
                     <p> {{ error }} </p>
                 {% endfor %}
             {% endif %}
+            <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}">
             {% if alumni %}
-                {% for alumn in alumni %}
                 <div class="well">
-                    <p> First Name {{ alumn.first_name }} </p> 
-                    <p> Last Name {{ alumn.last_name }} </p> 
-                    <p> Employer {{ alumn.employer }} </p> 
-                    <p> Current City {{ alumn.current_city }} </p> 
-                    <p> Email {{ alumn.email }} </p> 
-                    <p> Graduation Year {{ alumn.graduation year }} </p> 
-                    <p> Hometown {{ alumn.hometown }} </p> 
-                    <p> Pledge Class {{ alumn.pledge_class }}</p> 
+                    <p> First Name: {{ alumni.user.first_name }} </p> 
+                    <p> Last Name: {{ alumni.user.last_name }} </p> 
+                    <p> Employer: {{ alumni.employer }} </p> 
+                    <p> Current City: {{ alumni.current_city }} </p> 
+                    <p> Email: {{ alumni.user.email }} </p> 
+                    <p> Graduation Year: {{ alumni.graduation_year }} </p> 
+                    <p> Hometown: {{ alumni.hometown }} </p> 
+                    <p> Pledge Class: {{ alumni.pledge_class }}</p> 
                 </div>
-                {% endfor %}
             {% endif %}
         </div>
     </div>

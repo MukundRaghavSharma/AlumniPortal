@@ -46,8 +46,8 @@
                         <p> Graduation Class: {{ alumn.graduation_class }} </p>
                         <p> Hometown: {{ alumn.hometown }} </p>
                         <p> Pledge Class: {{ alumn.pledge_class }} </p>
-                        <a href="/profile/{{ alumn.first_name }}.{{ alumn.last_name }}">
-                            {{ alumn.first_name }} {{ alumn.last_name }}
+                        <a href="/profile/{{ alumn.user.id }}">
+                            {{ alumn.user.first_name }} {{ alumn.user.last_name }}
                         </a>
                     </p>            
                </div>

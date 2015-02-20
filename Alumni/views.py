@@ -99,14 +99,12 @@ def save_10(request):
     return redirect('/home/')
 
 @login_required
-def profile(request, username):
+def profile(request, id):
     if request.method == 'GET':
         context = {}
-        username = username.split('.')
-        first_name = username[0]
-        last_name = username[1]
-        context['alumni'] = Alumni.objects.filter(first_name = first_name,
-                                                  last_name = last_name)
+        user = User.objects.get(id = id)
+        context['alumni'] = Alumni.objects.get(user =  user)
+        context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
 
 @login_required

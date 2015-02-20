@@ -26,7 +26,7 @@ urlpatterns = patterns('',
         name = 'home',),
     
     # Profile Page #
-    url(regex = r'^profile/?(P<first_name>\w+)\.(P<last_name>\w+)',
+    url(regex = r'^profile/(?P<id>\d+)/$',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
