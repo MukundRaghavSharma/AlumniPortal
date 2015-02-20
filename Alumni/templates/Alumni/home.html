@@ -37,16 +37,16 @@
         {% if alumni %}
             {% for alumn in alumni %}
                     <div class="well">
-                        <p> Name: {{ alumn.first_name }} {{ alumn.last_name }} </p>
+                        <p> Name: {{ alumn.user.first_name }} {{ alumn.user.last_name }} </p>
                         <p> Employer: {{ alumn.employer }} </p>
                         <p> Current City: {{ alumn.current_city }} </p>
-                        <p> Email: {{ alumn.email }} </p>
+                        <p> Email: {{ alumn.user.email }} </p>
                         <p> Phone: {{ alumn.phone }} </p>
                         <p> Major: {{ alumn.major }} </p>
                         <p> Graduation Class: {{ alumn.graduation_class }} </p>
                         <p> Hometown: {{ alumn.hometown }} </p>
                         <p> Pledge Class: {{ alumn.pledge_class }} </p>
-                        <a href="/profile/{{ alumn.primary_key }}">
+                        <a href="/profile/{{ alumn.first_name }}.{{ alumn.last_name }}">
                             {{ alumn.first_name }} {{ alumn.last_name }}
                         </a>
                     </p>            

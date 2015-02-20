@@ -26,7 +26,7 @@ urlpatterns = patterns('',
         name = 'home',),
     
     # Profile Page #
-    url(regex = r'^profile/(?P<first_name><last_name>\w+)/$',
+    url(regex = r'^profile/?(P<first_name>\w+)\.(P<last_name>\w+)',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     url(regex = r'^logout', 
         view = 'Alumni.views.logout_user',
         name = 'Logout',),
-    
+
     # Admin Page #
     url(regex = r'^admin/', 
         view = include(admin.site.urls)),

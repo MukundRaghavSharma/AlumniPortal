@@ -11,16 +11,9 @@ from util.get_data import get_first
 # Function to signin user #
 def signin(request):
     context = {}
-    form = SignInForm(request.GET)
-    if request.method == 'GET':
-        return render(request, 'Alumni/signin.html', {'form' : form})
-
-    if request.method == 'POST':
-        if form.is_valid():
-            authenticated_user = authenticate(username = request.POST['username'],
-                                              password = request.POST['password'])
-            login(request, authenticated_user)
-            return redirect('/home/')
+    form = SignInForm(request.method)
+    context['form'] = form
+    return render(request, 'Alumni/signin.html', context)
 
 # Function to signup user #
 def signup(request):
@@ -88,25 +81,33 @@ def save_10(request):
         hometown = str(brother[8])
         pledge_class = str(brother[9])
         
-        alumni = Alumni(first_name = first_name,
-                last_name  = last_name,
-                employer = employer,
-                current_city = current_city,
-                email = email,
-                phone = phone,
-                major = major,
-                graduation_class = graduation_class,
-                hometown = hometown,
-                pledge_class = pledge_class)
+        username = first_name + last_name
+        user = User(username = username,
+                    first_name = first_name,
+                    last_name = last_name,
+                    email = email)
+        user.save()
+        alumni = Alumni(user = user,
+                        employer = employer,
+                        current_city = current_city,
+                        phone = phone,
+                        major = major,
+                        graduation_class = graduation_class,
+                        hometown = hometown,
+                        pledge_class = pledge_class)
         alumni.save()
     return redirect('/home/')
 
 @login_required
 def profile(request, username):
-    
-
-
-    return render(request, 'Alumni/home.html')
+    if request.method == 'GET':
+        context = {}
+        username = username.split('.')
+        first_name = username[0]
+        last_name = username[1]
+        context['alumni'] = Alumni.objects.filter(first_name = first_name,
+                                                  last_name = last_name)
+        return render(request, 'Alumni/profile.html', context)
 
 @login_required
 def search(request):

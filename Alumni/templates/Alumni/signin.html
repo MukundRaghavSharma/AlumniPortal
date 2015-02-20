@@ -22,9 +22,9 @@
             <h2 class="form-signin-heading">
                 Sign in 
             </h4>
-            <form class="form-signin" method="post">
+            <form class="form-signin" method="post" action="{% url 'signin' %}">
                {% csrf_token %}
-               {{ form.as_table }}
+               {{ form }}
                 <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block padded">
                 <input type="hidden" name="next" value="/home/"/>
                 <a href="/signup/" class="rememberme">
