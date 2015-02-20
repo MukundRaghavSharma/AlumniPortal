@@ -22,3 +22,7 @@ class Alumni(models.Model):
 
     def __unicode__(self):
         return self.first_name + " " +  self.last_name
+
+class AlumniRelationship(models.Model):
+    big = models.OneToOneField(Alumni)
+    little = models.OneToManyField(Alumni)
