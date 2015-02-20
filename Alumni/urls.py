@@ -3,11 +3,10 @@ from django.contrib import admin
 
 urlpatterns = patterns('',
     
-    # Sign-In #
+    # Sign-In-1 #
     url(regex = r'^$',
-        view  = 'django.contrib.auth.views.login',
-        name  = 'signin',
-        kwargs = {'template_name' : 'Alumni/signin.html'}),
+        view  = 'signin1',
+        name  = 'signin1',),
 
     # Sign-In #
     url(regex = r'^signin',

@@ -1,0 +1,9 @@
+.navbar-collapse {
+    background-color: #223355;
+    font-family: 'Gill Sans';
+    font-color: white;
+}
+
+a:hover {
+    background-color: #223355;
+}
