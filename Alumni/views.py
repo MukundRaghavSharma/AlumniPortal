@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from forms import SignInForm, SignUpForm
+import uuid
 from models import Alumni
 from util.get_data import get_first
 
@@ -89,7 +90,8 @@ def update(request):
         hometown = str(brother[8])
         pledge_class = str(brother[9])
         
-        user = User(username = count,
+        username = uuid.uuid4()
+        user = User(username = username,
                     first_name = first_name,
                     last_name = last_name,
                     email = email)
