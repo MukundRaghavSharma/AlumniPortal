@@ -3,7 +3,6 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from forms import SignInForm, SignUpForm
 from models import Alumni
@@ -116,7 +115,7 @@ def profile(request, id):
 
         # Id not found! #
         if len(check_user) == 0:
-            return HttpResponse('<h1>No Page Here</h1>') 
+            four_oh_four(request)
         
         user = User.objects.get(id = id)
         context['alumni'] = Alumni.objects.get(user = user)
@@ -125,17 +124,25 @@ def profile(request, id):
 
 @login_required
 def class_view(request, classname):
-    print str(classname)
     context = {}
     classname = classname[0].upper() + classname[1:]
     query = classname + ' Class'
     class_filter = Alumni.objects.filter(pledge_class = query)
+    
+    if len(class_filter) < 1:
+        four_oh_four(request)
+
+
     context['alumni'] = class_filter
     return render(request, 'Alumni/class.html', context)
 
 @login_required
 def family_view(request, family):
     pass
+
+@login_required
+def four_oh_four(request):
+    return render(request, 'Alumni/404.html')
 
 '''
 @login_required
