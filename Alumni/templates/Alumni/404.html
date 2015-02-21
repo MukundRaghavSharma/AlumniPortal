@@ -23,23 +23,6 @@
     <div>
         <h1> hasdashdhj </h1>
     </div>
-    <div class="well"> 
-        <form action="/search" method="post">
-            {% csrf_token %}
-            <span>
-                <input name="search_name" placeholder="Search name">
-                <input type="submit" value="Search" class="btn">
-            </span>
-            <span>
-                <input name="search_company" placeholder="Search by Company">
-                <input type="submit" value="Search" class="btn">
-            </span>
-            <span>
-                <input name="search_pledge_class" placeholder="Search by Pledge Class">
-                <input type="submit" value="Search" class="btn">
-            </span>
-        </form>
-    </div>
     <div class="jumbotron">
         <h3 class="form-signin-heading"> Alumni </h3> 
         {% csrf_token %}
