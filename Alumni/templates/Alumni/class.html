@@ -1,0 +1,56 @@
+{% extends "Alumni/base.html" %}
+
+{% block content %}
+    {% load staticfiles %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav nav-style">
+            <li><a class="hov" ref="/search"> Search </a></li>
+            <li><a href="/home/"> Home </a></li>
+            <li><a href="/"> Gallery </a></li>
+            <li><a href="/"> Family Trees </a></li>
+            <li><a href="/"> Donations </a></li>
+            <li><a href="/logout/"> Logout </a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="jumbotron">
+        <div class="jumbotron" id="post_gallery">
+            {% csrf_token %}
+            {% if errors %}
+                {% for error in errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="span4">
+                    <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}" class="img-circle">
+                </div>
+                <div class="span2">
+                    <h2 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h2>
+                </div>
+            </div>
+            {% if alumni %}
+                <div class="well">
+                    <p> Employer: {{ alumni.employer }} </p> 
+                    <p> Current City: {{ alumni.current_city }} </p> 
+                    <p> Email: {{ alumni.user.email }} </p> 
+                    <p> Graduation Year: {{ alumni.graduation_year }} </p> 
+                    <p> Hometown: {{ alumni.hometown }} </p> 
+                    <p> Pledge Class: {{ alumni.pledge_class }}</p> 
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
