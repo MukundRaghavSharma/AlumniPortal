@@ -13,21 +13,21 @@
 
 # # Packages #
 # ############
- *.7z
- *.dmg
- *.gz
- *.iso
- *.jar
- *.rar
- *.tar
- *.zip
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 *.txt
 
 #  # Logs and databases #
 #  ######################
-  *.log
-  db.sqlite3
-  *.sqlite3
+*.log
+db.sqlite3
+*.sqlite3
 
 # OS generated files #
 ######################
