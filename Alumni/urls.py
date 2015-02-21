@@ -28,7 +28,6 @@ urlpatterns = patterns('',
     url(regex = r'^update$',
         view = 'Alumni.views.update',
         name = 'testSave'),
-    
 
     # Log out Page #
     url(regex = r'^logout', 
@@ -48,7 +47,6 @@ urlpatterns = patterns('',
     url(regex = r'^class/(?P<classname>\w+)/$', 
         view = 'Alumni.views.class_view',
         name = 'class_view',),
-
     
     # 404 Page #
     url(regex = r'^404$',
@@ -56,9 +54,3 @@ urlpatterns = patterns('',
         name = '404',),
 
 )
-'''
-# Search Page #
-# url(regex = r'^search$',
-#    view = 'Alumni.views.search',
-#    name = 'search'),
-'''

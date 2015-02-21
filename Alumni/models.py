@@ -27,7 +27,7 @@ class Alumni(models.Model):
     updated_at = models.DateTimeField(null = True, auto_now_add = True)
 
     def __unicode__(self):
-        return self.first_name + " " +  self.last_name
+        return self.user.first_name + " " +  self.user.last_name
 
     def save(self, *args, **kwargs):
             try:
