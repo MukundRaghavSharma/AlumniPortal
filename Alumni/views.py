@@ -48,6 +48,7 @@ def signup(request):
         if form.is_valid():
             # No errors i.e. Create User #
             user = User.objects.create_user(password = request.POST['password1'],
+                                            username = request.POST['username'],
                                             first_name = request.POST['first_name'],
                                             last_name = request.POST['last_name'])
             user.save()
@@ -74,7 +75,8 @@ def logout_user(request):
 
 @login_required
 @transaction.atomic
-def save_10(request):
+def update(request):
+    count = 0
     brothers = get_first()
     for brother in brothers:
         first_name = str(brother[0])
@@ -88,8 +90,7 @@ def save_10(request):
         hometown = str(brother[8])
         pledge_class = str(brother[9])
         
-        username = first_name + last_name
-        user = User(username = username,
+        user = User(username = count,
                     first_name = first_name,
                     last_name = last_name,
                     email = email)
@@ -109,9 +110,10 @@ def save_10(request):
 def profile(request, id):
     if request.method == 'GET':
         context = {}
-        user = User.objects.get(id = id)
-        if user == None:
-            return HttpResponseNotFound('<h1>No Page Here</h1>') 
+        user = User.objects.filter(id = id)
+        if len(user) == 0:
+            print 'j'
+            return HttpResponse('<h1>No Page Here</h1>') 
         context['alumni'] = Alumni.objects.get(user =  user)
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
@@ -135,6 +137,7 @@ def search(request):
     context['alumni'] = []
     if request.method == 'GET':
         return render(request, 'Alumni/search.html')
+
     
     if request.method == 'POST':
         

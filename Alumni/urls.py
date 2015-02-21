@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
     # Update the DB #
     url(regex = r'^update$',
-        view = 'Alumni.views.save_10',
+        view = 'Alumni.views.update',
         name = 'testSave'),
     
 
