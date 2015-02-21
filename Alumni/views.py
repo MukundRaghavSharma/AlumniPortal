@@ -102,7 +102,9 @@ def update(request):
                         major = major,
                         graduation_class = graduation_class,
                         hometown = hometown,
-                        pledge_class = pledge_class)
+                        pledge_class = pledge_class,
+                        #picture =  
+                        )
         alumni.save()
     return redirect('/home/')
 
@@ -123,11 +125,13 @@ def profile(request, id):
 
 @login_required
 def class_view(request, classname):
+    print str(classname)
     context = {}
     classname = classname[0].upper() + classname[1:]
     query = classname + ' Class'
-    class_filter = Alumni.objects.filter(pledge_class = classname)
-    return render(request, 'Alumni/classview.html', context)
+    class_filter = Alumni.objects.filter(pledge_class = query)
+    context['alumni'] = class_filter
+    return render(request, 'Alumni/class.html', context)
 
 @login_required
 def family_view(request, family):

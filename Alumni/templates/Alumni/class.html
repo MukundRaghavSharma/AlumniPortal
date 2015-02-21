@@ -33,23 +33,19 @@
                     <p> {{ error }} </p>
                 {% endfor %}
             {% endif %}
-            <div class="row">
-                <div class="span4">
-                    <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}" class="img-circle">
-                </div>
-                <div class="span2">
-                    <h2 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h2>
-                </div>
-            </div>
             {% if alumni %}
+            {% for alumn in alumni %}
                 <div class="well">
-                    <p> Employer: {{ alumni.employer }} </p> 
-                    <p> Current City: {{ alumni.current_city }} </p> 
-                    <p> Email: {{ alumni.user.email }} </p> 
-                    <p> Graduation Year: {{ alumni.graduation_year }} </p> 
-                    <p> Hometown: {{ alumni.hometown }} </p> 
-                    <p> Pledge Class: {{ alumni.pledge_class }}</p> 
+                    <p> First Name: {{ alumn.user.first_name}} </p> 
+                    <p> Last Name: {{ alumn.user.last_name}} </p> 
+                    <p> Employer: {{ alumn.employer }} </p> 
+                    <p> Current City: {{ alumn.current_city }} </p> 
+                    <p> Email: {{ alumn.user.email }} </p> 
+                    <p> Graduation Year: {{ alumn.graduation_year }} </p> 
+                    <p> Hometown: {{ alumn.hometown }} </p> 
+                    <p> Pledge Class: {{ alumn.pledge_class }}</p> 
                 </div>
+            {% endfor %}
             {% endif %}
         </div>
     </div>

@@ -43,6 +43,11 @@ urlpatterns = patterns('',
     url(regex = r'^$', 
         view = 'Alumni.views.signin_1',
         name = 'signin_1',),
+
+    # Class Page #
+    url(regex = r'^class/(?P<classname>\w+)/$', 
+        view = 'Alumni.views.class_view',
+        name = 'class_view',),
 )
 '''
 # Search Page #
