@@ -1,17 +1,20 @@
 {% extends "Alumni/base.html" %}
 
 {% block content %}
-    <style type="text/css">
-        body {
-            background-image: url("../../static/Alumni/images/Background.jpg");
-            background-repeat: no-repeat;
-            background-color: #192843;
-            background-attachment: fixed;
-            background-position: 50% 10%;
-        }
-
-    </style>
-    <div>
-    </div>
-    <button name="button" class="btn signin"> Sign in </button>
+    <body class="landing">
+        <div class="site-wrapper">
+          <div class="site-wrapper-inner">
+            <div class="cover-container">
+              <div class="inner cover">
+                    <div class="row text-center">
+                        <img src="/static/Alumni/images/AKY_Logo.png">
+                    </div>
+                    <div class="row text-center">
+                        <button  name="button" class="landing"> Sign In </button>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
 {% endblock %}
