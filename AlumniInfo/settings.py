@@ -56,7 +56,7 @@ LOGIN_URL = '/signin_1/'
 
 LOGIN_REDIRECT_URL = '/home/'
 
-MEDIA_ROOT = '/Users/mukundraghavsharma/Desktop/AKPsi\ Applications/AlumniInfo/Alumni/media'
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'media')
 
 MEDIA_URL = '/media/'
 
@@ -83,6 +83,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+ALLOWED_HOSTS = ['*']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

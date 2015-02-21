@@ -2,11 +2,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-# Inbuilt Django User fields - 1. first_name
-#                              2. last_name
-#                              3. username
-#                              4. password 
-
 class Alumni(models.Model):
     user = models.OneToOneField(User)
     employer = models.CharField(blank = True, max_length = 100)
@@ -15,8 +10,8 @@ class Alumni(models.Model):
     phone = models.CharField(blank = True, max_length = 50)
     major = models.CharField(blank = True, max_length = 100)
     bio = models.CharField(blank = True, max_length = 500)
-    picture = models.FileField(upload_to = '/media/images')
-    company_logo = models.FileField()
+    picture = models.FileField(blank = True)
+    company_logo = models.FileField(blank = True)
     family = models.CharField(blank = True, max_length = 100)
     email = models.EmailField()
     nickname = models.CharField(blank = True, max_length = 100)

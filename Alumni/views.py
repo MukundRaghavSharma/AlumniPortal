@@ -104,14 +104,14 @@ def update(request):
         try:
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
-            destination_url = 'Alumni/static/media/images/' + name_url 
+            destination_url = 'Alumni/media/images/' + name_url 
             raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
 
         except IOError:
             name_url = '404.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
-            destination_url = 'Alumni/static/media/images/' + name_url 
+            destination_url = 'Alumni/media/images/' + name_url 
             raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
 
@@ -140,8 +140,8 @@ def profile(request, id):
         
         user = User.objects.get(id = id)
         context['alumni'] = Alumni.objects.get(user = user)
-        print context['alumni'].picture.url
-        context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
+        context['file_name'] = (str(user.first_name.lower() + '.' + 
+                                user.last_name.lower() + '.jpg'))
         return render(request, 'Alumni/profile.html', context)
 
 # Function to get the class view #
