@@ -13,11 +13,11 @@ class Alumni(models.Model):
     picture = models.FileField(blank = True)
     company_logo = models.FileField(blank = True)
     family = models.CharField(blank = True, max_length = 100)
-    email = models.EmailField()
+    email = models.EmailField(max_length = 100)
     nickname = models.CharField(blank = True, max_length = 100)
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
-    pledge_class = models.CharField(blank = True, max_length = 15)
+    pledge_class = models.CharField(blank = True, max_length = 100)
     created_at = models.DateTimeField(null = True, auto_now_add = True)
     updated_at = models.DateTimeField(null = True, auto_now_add = True)
 

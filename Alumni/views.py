@@ -95,7 +95,7 @@ def update(request):
         nickname = str(brother[11])
         family = str(brother[10])
         
-        username = uuid.uuid4()
+        username = str(uuid.uuid4())[0:30]
         user = User(username = username,
                     first_name = first_name,
                     last_name = last_name,
