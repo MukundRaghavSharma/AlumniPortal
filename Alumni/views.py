@@ -88,7 +88,7 @@ def update(request):
         major = str(brother[6])
         graduation_class = str(brother[7])
         hometown = str(brother[8])
-        pledge_class = str(brother[9])
+        pledge_class = str(brother[9]).split(' ')[0]
         
         username = uuid.uuid4()
         user = User(username = username,
@@ -124,14 +124,15 @@ def profile(request, id):
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
 
+# Function to get the class view #
 @login_required
 def class_view(request, classname):
     context = {}
 
     # Creating the classname string to filter the pledge class #
-    classname = classname[0].upper() + classname[1:]
-    query = classname + ' Class'
-    class_filter = Alumni.objects.filter(pledge_class = query)
+    classname = classname.lower()
+    classname = classname[0].upper() + classname[1:] 
+    class_filter = Alumni.objects.filter(pledge_class = classname)
     
     if len(class_filter) < 1:
         four_oh_four(request)
