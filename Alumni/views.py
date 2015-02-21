@@ -1,13 +1,16 @@
 from django.contrib.auth import login, authenticate, logout
-from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
+from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.templatetags.static import static
 from forms import SignInForm, SignUpForm
-import uuid
 from models import Alumni
 from util.get_data import get_first
+import urllib
+import uuid
 
 def signin_1(request):
     if request.method == 'GET':
@@ -63,6 +66,7 @@ def signup(request):
 @login_required
 def home(request):
     context = {}
+    context['file_name'] = str(request.user.first_name.lower() + '.' + request.user.last_name.lower() + '.jpg')
     context['alumni'] = Alumni.objects.all() 
     return render(request, 'Alumni/home.html', context)
 
@@ -76,7 +80,6 @@ def logout_user(request):
 @login_required
 @transaction.atomic
 def update(request):
-    count = 0
     brothers = get_first()
     for brother in brothers:
         first_name = str(brother[0])
@@ -96,17 +99,33 @@ def update(request):
                     last_name = last_name,
                     email = email)
         user.save()
-        alumni = Alumni(user = user,
-                        employer = employer,
-                        current_city = current_city,
-                        phone = phone,
-                        major = major,
-                        graduation_class = graduation_class,
-                        hometown = hometown,
-                        pledge_class = pledge_class,
-                        #picture =  
-                        )
-        alumni.save()
+
+        # Load the picture in the static folder by default #
+        try:
+            name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
+            url = 'Alumni/static/Alumni/images/' + name_url
+            destination_url = 'Alumni/static/media/images/' + name_url 
+            raw = urllib.urlopen(url)
+            content_file = ContentFile(raw.read())
+
+        except IOError:
+            name_url = '404.jpg' 
+            url = 'Alumni/static/Alumni/images/' + name_url
+            destination_url = 'Alumni/static/media/images/' + name_url 
+            raw = urllib.urlopen(url)
+            content_file = ContentFile(raw.read())
+
+        finally: 
+            alumni = Alumni(user = user,
+                            employer = employer,
+                            current_city = current_city,
+                            phone = phone,
+                            major = major,
+                            graduation_class = graduation_class,
+                            hometown = hometown,
+                            pledge_class = pledge_class,)
+            alumni.picture.save(destination_url, content_file)
+            alumni.save()
     return redirect('/home/')
 
 @login_required
@@ -121,6 +140,7 @@ def profile(request, id):
         
         user = User.objects.get(id = id)
         context['alumni'] = Alumni.objects.get(user = user)
+        print context['alumni'].picture.url
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
 

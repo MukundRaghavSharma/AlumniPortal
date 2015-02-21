@@ -15,7 +15,7 @@ class Alumni(models.Model):
     phone = models.CharField(blank = True, max_length = 50)
     major = models.CharField(blank = True, max_length = 100)
     bio = models.CharField(blank = True, max_length = 500)
-    picture = models.FileField()
+    picture = models.FileField(upload_to = '/media/images')
     company_logo = models.FileField()
     family = models.CharField(blank = True, max_length = 100)
     email = models.EmailField()

@@ -56,6 +56,11 @@ LOGIN_URL = '/signin_1/'
 
 LOGIN_REDIRECT_URL = '/home/'
 
+MEDIA_ROOT = '/Users/mukundraghavsharma/Desktop/AKPsi\ Applications/AlumniInfo/Alumni/media'
+
+MEDIA_URL = '/media/'
+
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
