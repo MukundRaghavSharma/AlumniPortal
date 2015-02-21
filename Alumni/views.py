@@ -110,11 +110,14 @@ def update(request):
 def profile(request, id):
     if request.method == 'GET':
         context = {}
-        user = User.objects.filter(id = id)
-        if len(user) == 0:
-            print 'j'
+        check_user = User.objects.filter(id = id)
+
+        # Id not found! #
+        if len(check_user) == 0:
             return HttpResponse('<h1>No Page Here</h1>') 
-        context['alumni'] = Alumni.objects.get(user =  user)
+        
+        user = User.objects.get(id = id)
+        context['alumni'] = Alumni.objects.get(user = user)
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
 
