@@ -1,6 +1,6 @@
-{% extends "Alumni/navbar.html" %}
+{% extends "Alumni/base.html" %}
 
-{% block file %}
+{% block content %}
     {% load staticfiles %}
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -25,28 +25,6 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="jumbotron">
-        <div class="jumbotron" id="post_gallery">
-            {% csrf_token %}
-            {% if errors %}
-                {% for error in errors %}
-                    <p> {{ error }} </p>
-                {% endfor %}
-            {% endif %}
-            {% if alumni %}
-            {% for alumn in alumni %}
-                <div class="well">
-                    <p> First Name: {{ alumn.user.first_name}} </p> 
-                    <p> Last Name: {{ alumn.user.last_name}} </p> 
-                    <p> Employer: {{ alumn.employer }} </p> 
-                    <p> Current City: {{ alumn.current_city }} </p> 
-                    <p> Email: {{ alumn.user.email }} </p> 
-                    <p> Graduation Year: {{ alumn.graduation_year }} </p> 
-                    <p> Hometown: {{ alumn.hometown }} </p> 
-                    <p> Pledge Class: {{ alumn.pledge_class }}</p> 
-                </div>
-            {% endfor %}
-            {% endif %}
-        </div>
-    </div>
+    {% block file %}
+    {% endblock %}
 {% endblock %}

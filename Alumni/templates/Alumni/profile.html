@@ -1,30 +1,8 @@
-{% extends "Alumni/base.html" %}
+{% extends "Alumni/navbar.html" %}
 
-{% block content %}
+{% block file %}
     {% load staticfiles %}
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav nav-style">
-            <li><a class="hov" ref="/search"> Search </a></li>
-            <li><a href="/home/"> Home </a></li>
-            <li><a href="/"> Gallery </a></li>
-            <li><a href="/"> Family Trees </a></li>
-            <li><a href="/"> Donations </a></li>
-            <li><a href="/logout/"> Logout </a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
     <div class="jumbotron">
         <div class="jumbotron" id="post_gallery">
             {% csrf_token %}
