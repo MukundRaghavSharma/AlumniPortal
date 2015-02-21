@@ -125,13 +125,14 @@ def profile(request, id):
 @login_required
 def class_view(request, classname):
     context = {}
+
+    # Creating the classname string to filter the pledge class #
     classname = classname[0].upper() + classname[1:]
     query = classname + ' Class'
     class_filter = Alumni.objects.filter(pledge_class = query)
     
     if len(class_filter) < 1:
         four_oh_four(request)
-
 
     context['alumni'] = class_filter
     return render(request, 'Alumni/class.html', context)
@@ -143,24 +144,3 @@ def family_view(request, family):
 @login_required
 def four_oh_four(request):
     return render(request, 'Alumni/404.html')
-
-'''
-@login_required
-def search(request):
-    context = {}
-    context['alumni'] = []
-    if request.method == 'GET':
-        return render(request, 'Alumni/search.html')
-
-    
-    if request.method == 'POST':
-        
-        if request.POST['search_name'] != '':
-            filtered_alumni = Alumni.objects.filter(Q(first_name__icontains = request.POST['search_name']) | Q(last_name__icontains = request.POST['search_name'])) 
-            context['alumni'] += filtered_alumni
-        
-        if request.POST['search_company'] != '':
-            filtered_alumni = Alumni.objects.filter(Q(employer__icontains = request.POST['search_company']))
-            context['alumni'] += filtered_alumni
-        return render(request, 'Alumni/search.html', context)
-'''
