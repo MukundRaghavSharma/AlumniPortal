@@ -47,9 +47,7 @@ def signup(request):
 
         if form.is_valid():
             # No errors i.e. Create User #
-            user = User.objects.create_user(username = request.POST['username'],
-                                            email = request.POST['email'],
-                                            password = request.POST['password1'],
+            user = User.objects.create_user(password = request.POST['password1'],
                                             first_name = request.POST['first_name'],
                                             last_name = request.POST['last_name'])
             user.save()
@@ -112,9 +110,23 @@ def profile(request, id):
     if request.method == 'GET':
         context = {}
         user = User.objects.get(id = id)
+        if user == None:
+            return HttpResponseNotFound('<h1>No Page Here</h1>') 
         context['alumni'] = Alumni.objects.get(user =  user)
         context['file_name'] = str(user.first_name.lower() + '.' + user.last_name.lower() + '.jpg')
         return render(request, 'Alumni/profile.html', context)
+
+@login_required
+def class_view(request, classname):
+    context = {}
+    classname = classname[0].upper() + classname[1:]
+    query = classname + ' Class'
+    class_filter = Alumni.objects.filter(pledge_class = classname)
+    return render(request, 'Alumni/classview.html', context)
+
+@login_required
+def family_view(request, family):
+    pass
 
 '''
 @login_required

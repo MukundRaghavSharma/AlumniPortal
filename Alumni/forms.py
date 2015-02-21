@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from Alumni.models import Alumni
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
@@ -23,6 +24,18 @@ class SignUpForm(forms.Form):
 
     password2 = forms.CharField(label = 'Re-enter your password',
                                widget = forms.PasswordInput()) 
+
+    class Meta:
+        model = Alumni
+        fields = [ ]
+
+
+        def clean(self):
+            pass
+
+        def save(self):
+            pass
+
 
 class SignInForm(forms.ModelForm):
     email = forms.EmailField(label = "Email",

@@ -29,10 +29,6 @@ urlpatterns = patterns('',
         view = 'Alumni.views.save_10',
         name = 'testSave'),
     
-    # Search Page #
-    url(regex = r'^search$',
-        view = 'Alumni.views.search',
-        name = 'search'),
 
     # Log out Page #
     url(regex = r'^logout', 
@@ -48,4 +44,9 @@ urlpatterns = patterns('',
         view = 'Alumni.views.signin_1',
         name = 'signin_1',),
 )
-
+'''
+# Search Page #
+# url(regex = r'^search$',
+#    view = 'Alumni.views.search',
+#    name = 'search'),
+'''
