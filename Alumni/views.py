@@ -92,6 +92,8 @@ def update(request):
         graduation_class = str(brother[7])
         hometown = str(brother[8])
         pledge_class = str(brother[9]).split(' ')[0]
+        nickname = str(brother[11])
+        family = str(brother[10])
         
         username = uuid.uuid4()
         user = User(username = username,
@@ -123,7 +125,9 @@ def update(request):
                             major = major,
                             graduation_class = graduation_class,
                             hometown = hometown,
-                            pledge_class = pledge_class,)
+                            pledge_class = pledge_class,
+                            nickname = nickname,
+                            family = family)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
     return redirect('/home/')

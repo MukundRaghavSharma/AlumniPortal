@@ -3,7 +3,7 @@ import os.path
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
 
-def get_first(max_count = 10):
+def get_first():
         brothers = []
         read_file = open(os.path.join(BASE, 'static/AlumniInformationUpgraded.csv', ), 'Ur')
         csv_file = csv.reader(read_file, delimiter=',')
@@ -12,8 +12,6 @@ def get_first(max_count = 10):
             if count == 0:
                 count += 1
                 continue
-            #if count == max_count:
-            #    break
             name = row[0].split(' ')
             del row[0]
             row.insert(0, name[0])
