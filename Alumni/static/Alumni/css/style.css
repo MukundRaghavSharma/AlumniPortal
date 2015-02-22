@@ -510,3 +510,22 @@ a:hover {
 .scroll-top-wrapper i.fa {
 	line-height: inherit;
 }
+
+.dash-name {
+	color: #2a3856;
+	font-size: 25px;
+	text-align: center;
+}
+
+.dashboard-imgLiquid {
+	position: relative;
+
+}
+
+.text-overlay {
+	position: absolute;
+	top: 60px;
+	left: 60px;
+	background-color: #63214C;
+	padding: 10px 30px 10px 10px;
+	color: #fff;
