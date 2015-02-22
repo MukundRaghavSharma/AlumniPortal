@@ -179,6 +179,14 @@ a:hover {
 	border-style: solid;
 }
 
+#cropped {
+	border-radius: 50%;
+	border-color: #2a3856;
+	border-color: #2a3856;
+	border-width: 2px;
+	border-style: solid;
+}
+
 .name {
 	color: #2a3856;
 	font-size: 50px;
@@ -354,4 +362,151 @@ a:hover {
 .fancy span:after {
   left: 100%;
   margin-left: 10px;
+}
+
+.class-name {
+	color: #2a3856;
+	font-size: 40px;
+}
+
+.class-date {
+	color: #516182;
+	font-style: italic;
+	margin-top: 0px;
+	margin-bottom: 40px;
+}
+
+.gallery-name {
+	font-size: 20px;
+	color: #2a3856;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.gallery-job {
+	margin-top: 0px;
+	font-size: 15px;
+	font-style: italic;
+	color: #516182;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/*.gallery-name a{
+	text-decoration: none;
+	color: #2a3856;
+}
+
+.gallery-name a:hover {
+	background-color: #2a3856;
+	color: #fff;
+	padding: 5px;
+}
+
+.img-circle:hover {
+	border-color: #516182;
+	border-width: 4px;
+	opacity: .5;
+
+}*/
+
+.gallery-hover .img-cicrlce:hover {
+	background-color: transparent;
+	
+}
+
+.hover-highlight:hover .img-circle {
+	border-color: #516182;
+	border-width: 4px;
+	opacity: .5;
+}
+
+.hover-highlight .gallery-name a{
+	text-decoration: none;
+	color: #2a3856;
+}
+
+.hover-highlight .gallery-name a:hover {
+	background-color: #2a3856;
+	color: #fff;
+	padding: 5px;
+}
+
+.icon-center {
+	text-align: center;
+	display: block;
+	margin-bottom: 30px;
+}
+
+.icon-center a:hover{
+	background-color: transparent;
+}
+
+.ih-item.circle.effect3 .info p {
+  color: #fff;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 12px;
+  border-top: 0px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.first-show {
+	padding: 40px 5px 5px 5px;
+	display: table;
+	width: 110px;
+}
+
+.first-show i {
+	display: table-cell;
+}
+
+.other-show {
+	padding: 5px 5px;
+	display: table;
+	width: 110px;
+}
+
+.other-show i {
+	display: table-cell;
+}
+
+#second-layer {
+	margin-top: 70px;
+}
+
+.scroll-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #2a3856;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-top-wrapper:hover {
+	background-color: #888888;
+}
+.scroll-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-top-wrapper i.fa {
+	line-height: inherit;
 }

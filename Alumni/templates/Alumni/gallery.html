@@ -2,32 +2,59 @@
 
 {% block file %}
     {% load staticfiles %}
-    <div class="jumbotron">
-        <div class="jumbotron" id="post_gallery">
-            {% csrf_token %}
             {% if class_based_view %}
-            {% for class in class_based_view %}
-                <div class="well">
-                {% with class|first as first_member %}
-                    <h3> {{ first_member.pledge_class }} Class </h3>
-                {% endwith %}
-                {% for alumn in class %}
-                        <div class="jumbotron">
-                        {% if alumn.picture %}
-                            <img src="{{ alumn.picture.url }}">
-                        {% endif %}
-                        <p> First Name: {{ alumn.user.first_name}} </p> 
-                        <p> Last Name: {{ alumn.user.last_name}} </p> 
-                        <p> Employer: {{ alumn.employer }} </p> 
-                        <p> Current City: {{ alumn.current_city }} </p> 
-                        <p> Email: {{ alumn.user.email }} </p> 
-                        <p> Graduation Year: {{ alumn.graduation_year }} </p> 
-                        <p> Hometown: {{ alumn.hometown }} </p> 
-                        </div>
+                {% for class in class_based_view %}
+                    <div class="row">
+                        {% with class|first as first_member %}
+                            <h1 class="class-name"> {{ first_member.pledge_class }} Class </h1>
+                            <h3 class="class-date"> Spring 2011 </h3>
+                        {% endwith %}
+                    </div>
+                        {% for alum in class %}
+                                {% if forloop.counter|divisibleby:3 or forloop.first %}
+                                    <div class="row">
+                                {% endif %}
+                                    <div class="col-md-4">
+                                        {% if alum.picture %}
+                                            <div class="center-block">
+                                            <!-- <div class="imgLiquidFill imgLiquid" id="cropped" style="width:175px; height:175px;"> -->
+                                                    <div class="ih-item circle colored effect3 left_to_right">
+                                                        <a class="gallery-hover" href="/profile/{{ alum.id }}">
+                                                            <div class="img">
+                                                                <img  class="img-circle" src="{{ STATIC_URL }}/Alumni/images/Shaggy.jpg" width="175" id="cropped">
+                                                            </div>
+                                                        <div class="info">
+                                                            <p class="first-show"><i class="fa fa-briefcase fa-fw"></i> &nbsp;{{ alum.employer }}</p>
+                                                            <p class="other-show"><i class="fa fa-book fa-fw"></i> &nbsp;{{ alum.major }}</p>
+                                                            <p class="other-show"><i class="fa fa-graduation-cap fa-fw"></i> &nbsp;{{ alum.graduation_class }}</p>
+                                                            <p class="other-show"><i class="fa fa-map-marker fa-fw"></i> &nbsp;Chicago, IL</p>
+
+
+
+                                                        </div>
+                                                        </a>
+                                                    </div>
+                                        {% endif %}
+                                            <h1 class="gallery-name"> {{ alum.user.first_name }} {{ alum.user.last_name }}</h1>
+                                            </div>
+                                            <span class="icon-center">
+                                                <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+                                                <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+                                                <a href="mailto:{{ alum.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
+                                                <a href="tel:+1{{ alum.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
+                                            </span>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter != 1 or forloop.last %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            <div class="scroll-top-wrapper ">
+                                <span class="scroll-top-inner">
+                                    <i class="fa fa-2x fa-arrow-circle-up"></i>
+                                </span>
+                            </div>
+
                 {% endfor %}
-                </div>
             {% endfor %}
             {% endif %}
-        </div>
-    </div>
 {% endblock %}
