@@ -207,8 +207,10 @@ def gallery_view(request):
             sorting_classes[i + 1] = temp
 
         for pledge_class in sorting_classes:
-            class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class).order_by('user.last_name'))
-        
+            filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
+            class_based_view.append(filtered_class)
+
+        # for pledge_class in class_based_view
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
