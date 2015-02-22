@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import getpass
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -76,7 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'AlumniPortal',
-        'USER': 'mukundraghavsharma',
+        'USER': getpass.getuser(), 
         'PASSWORD': 'cmuakpsi',
         'HOST': 'localhost',
         'PORT': '5432',
