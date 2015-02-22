@@ -287,14 +287,26 @@ a:hover {
 	color: #3B5998;
 }
 
+#facebook-icon:hover {
+	color: #2a3856;
+}
+
 #linkedin-icon {
 	color: #517fa4;
 	font-size: 30px;
 }
 
+#linkedin-icon:hover {
+	color: #2a3856;
+}
+
 #phone-icon {
 	font-size: 30px;
 	color: #815837;
+}
+
+#phone-icon:hover {
+	color: #2a3856;
 }
 
 #email-icon {
@@ -303,11 +315,20 @@ a:hover {
 
 }
 
+#email-icon:hover {
+	color: #2a3856;
+}
+
 #overview-icons {
 	margin: 5px 0px;
 	padding: 0px;
 	margin-top: 15px;
 }
+
+#overview-icons a:hover {
+	background-color: transparent;
+}
+
 
 .fancy {
   line-height: 0.5;
