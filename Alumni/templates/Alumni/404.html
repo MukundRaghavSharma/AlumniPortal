@@ -1,28 +1,7 @@
-{% extends "Alumni/base.html" %}
+{% extends "Alumni/navbar.html" %}
 
-{% block content %}
+{% block file %}
     {% load staticfiles %}
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/home/" class="navbar-brand"> AKPsi - Omega Psi: Alumni Portal </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/logout/"> Logout </a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div>
-        <h1> hasdashdhj </h1>
-    </div>
     <div class="jumbotron">
         <h3 class="form-signin-heading"> Alumni </h3> 
         {% csrf_token %}

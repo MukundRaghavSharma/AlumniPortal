@@ -1,61 +1,119 @@
-{% extends "Alumni/base.html" %}
+{% extends "Alumni/navbar.html" %}
 
-{% block content %}
+{% block file %}
     {% load staticfiles %}
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        <div class="row">
+            <div class="col-md-4" id="dp">
+                    <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
+                        <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}">
+                    </div>
+                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
             </div>
-    </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          <ul class="nav navbar-nav nav-style">
-            <li><a href="/home/"> Home </a></li>
-            <li><a href="/"> Gallery </a></li>
-            <li><a href="/"> Family Trees </a></li>
-            <li><a href="/"> Donations </a></li>
-            <li><a href="/logout/"> Logout </a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div class="jumbotron">
-        <div class="jumbotron" id="post_gallery">
-            {% csrf_token %}
-            {% if errors %}
-                {% for error in errors %}
-                    <p> {{ error }} </p>
-                {% endfor %}
-            {% endif %}
-            <div class="row">
-                <div class="span4">
-                    <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}" class="img-circle">
-                </div>
-                <div class="span2">
-                    <h2 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h2>
-                </div>
+            <div class="col-md-8" id="full_name">
+                <h1 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h1>
+                <h3 class="nickname"> Nickname </h3>
             </div>
+        </div>
+        <div class="row" id="row_2">
+            <div class="col-md-4">
+                    <ul class="list-group">
+                        {% if alumni %}
+                            <!-- <div class="well">
+                                <p> Employer: {{ alumni.employer }} </p> 
+                                <p> Current City: {{ alumni.current_city }} </p> 
+                                <p> Email: {{ alumni.user.email }} </p> 
+                                <p> Graduation Year: {{ alumni.graduation_year }} </p> 
+                                <p> Hometown: {{ alumni.hometown }} </p> 
+                                <p> Pledge Class: <a href="/class/{{ alumni.pledge_class }}"</p> {{ alumni.pledge_class }} </p> 
+                            </div> -->
+                            <li class="list-group-item" id="overview-heading">Overview</li>
+                           <!--  <li class="list-group-item" id="overview-second">
+                                <span class="overview-icon">N</span>
+                                <span class="overview-text">Pledged with the <a href="/class/{{ alumni.pledge_class }}">{{ alumni.pledge_class }}</a></span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="overview-icon">13</span>
+                                <span class="overview-text">Graudated in the class of 2013</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="overview-icon">R</span>
+                                <span class="overview-text">Majored in Business Administration</span>
+                            </li> -->
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon">N</span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Pledged with the <a href="/class/{{ alumni.pledge_class }}">{{ alumni.pledge_class }}</a></span>
+                                  </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon">R</span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Part of the Roc-a-fellas family</span>
+                                  </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon">13</span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Graduated in the class of 2013</span>
+                                  </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><span class="glyphicon glyphicon-education" aria-hidden="true"></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Majored in Business Administration</span>
+                                  </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Majored in Business Administration</span>
+                                  </div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
+            </div>
+            <div class="col-md-8">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".imgLiquidFill").imgLiquid();
+            });
+            $('#full_name').each(function() {
+                var o_height = $(this).height();
+                $(this).css('margin-top', (($('#dp').height()-o_height)/2));
+
+            });
+        </script>
             {% if alumni %}
-                <div class="well">
+                <!-- <div class="well">
                     <p> Employer: {{ alumni.employer }} </p> 
                     <p> Current City: {{ alumni.current_city }} </p> 
                     <p> Email: {{ alumni.user.email }} </p> 
                     <p> Graduation Year: {{ alumni.graduation_year }} </p> 
                     <p> Hometown: {{ alumni.hometown }} </p> 
                     <p> Pledge Class: <a href="/class/{{ alumni.pledge_class }}"</p> {{ alumni.pledge_class }} </p> 
-                </div>
+                </div> -->
             {% endif %}
-        </div>
-    </div>
 {% endblock %}
