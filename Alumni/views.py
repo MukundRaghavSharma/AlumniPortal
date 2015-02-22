@@ -71,6 +71,7 @@ def signup(request):
 def home(request):
     context = {}
     context['file_name'] = str(request.user.first_name.lower() + '.' + request.user.last_name.lower() + '.jpg')
+    context['user'] = request.user
     context['alumni'] = Alumni.objects.all() 
     return render(request, 'Alumni/home.html', context)
 
