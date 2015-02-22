@@ -18,8 +18,8 @@ class Alumni(models.Model):
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
     pledge_class = models.CharField(blank = True, max_length = 100)
-    created_at = models.DateTimeField(null = True, auto_now_add = True)
-    updated_at = models.DateTimeField(null = True, auto_now_add = True)
+    created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
+    updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
 
     def __unicode__(self):
         return self.user.first_name + " " +  self.user.last_name
@@ -38,10 +38,9 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender = User)
 
-
-
 '''
 class AlumniRelationship(models.Model):
+        big = models.ManyToOneField("Big", related_name='', verbose_name="Siblings", null=True, blank=True)
     big = models.OneToOneField(Alumni)
     little = models.OneToManyField(Alumni)
 '''
