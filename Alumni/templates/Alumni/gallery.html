@@ -1,0 +1,33 @@
+{% extends "Alumni/navbar.html" %}
+
+{% block file %}
+    {% load staticfiles %}
+    <div class="jumbotron">
+        <div class="jumbotron" id="post_gallery">
+            {% csrf_token %}
+            {% if class_based_view %}
+            {% for class in class_based_view %}
+                <div class="well">
+                {% with class|first as first_member %}
+                    <h3> {{ first_member.pledge_class }} Class </h3>
+                {% endwith %}
+                {% for alumn in class %}
+                        <div class="jumbotron">
+                        {% if alumn.picture %}
+                            <img src="{{ alumn.picture.url }}">
+                        {% endif %}
+                        <p> First Name: {{ alumn.user.first_name}} </p> 
+                        <p> Last Name: {{ alumn.user.last_name}} </p> 
+                        <p> Employer: {{ alumn.employer }} </p> 
+                        <p> Current City: {{ alumn.current_city }} </p> 
+                        <p> Email: {{ alumn.user.email }} </p> 
+                        <p> Graduation Year: {{ alumn.graduation_year }} </p> 
+                        <p> Hometown: {{ alumn.hometown }} </p> 
+                        </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

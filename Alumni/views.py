@@ -56,6 +56,10 @@ def signup(request):
                                             last_name = request.POST['last_name'])
             user.save()
             alumni = Alumni(user = user,)
+
+            #pledge_class = PledgeClass(
+
+
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
@@ -174,18 +178,21 @@ def family_view(request, family):
 
 @login_required
 def gallery_view(request):
-    pass
     context = {}
 
     if request.method == 'GET':
-        return
+        class_based_view = []
+        distinct_classes = []
+
         pledge_classes = Alumni.objects.values_list('pledge_class').distinct()
         for pledge_class in pledge_classes:
-            pass
-
-
-
-
+            distinct_classes.append(pledge_class[0])
+        
+        for pledge_class in distinct_classes:
+            class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class))
+         
+        context['class_based_view'] = class_based_view
+        return render(request, 'Alumni/gallery.html', context)
 
 @login_required
 def four_oh_four(request):
