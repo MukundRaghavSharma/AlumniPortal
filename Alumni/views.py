@@ -94,7 +94,7 @@ def update(request):
         pledge_class = str(brother[9]).split(' ')[0]
         nickname = str(brother[11])
         family = str(brother[10])
-        
+
         username = str(uuid.uuid4())[0:30]
         user = User(username = username,
                     first_name = first_name,
@@ -144,6 +144,7 @@ def profile(request, id):
         
         user = User.objects.get(id = id)
         context['alumni'] = Alumni.objects.get(user = user)
+        context['user'] = request.user
         context['file_name'] = (str(user.first_name.lower() + '.' + 
                                 user.last_name.lower() + '.jpg'))
         return render(request, 'Alumni/profile.html', context)
@@ -153,20 +154,35 @@ def profile(request, id):
 def class_view(request, classname):
     context = {}
 
-    # Creating the classname string to filter the pledge class #
-    classname = classname.lower()
-    classname = classname[0].upper() + classname[1:] 
-    class_filter = Alumni.objects.filter(pledge_class = classname)
-    
-    if len(class_filter) < 1:
-        four_oh_four(request)
+    if request.method == 'GET':
+        # Creating the classname string to filter the pledge class #
+        classname = classname.lower()
+        classname = classname[0].upper() + classname[1:] 
+        class_filter = Alumni.objects.filter(pledge_class = classname)
+        
+        if len(class_filter) < 1:
+            four_oh_four(request)
 
-    context['alumni'] = class_filter
-    return render(request, 'Alumni/class.html', context)
+        context['alumni'] = class_filter
+        return render(request, 'Alumni/class.html', context)
 
 @login_required
 def family_view(request, family):
     pass
+
+@login_required
+def gallery_view(request):
+    pass
+    context = {}
+
+    if request.method == 'GET':
+        pledge_classes = Alumni.objects.values_list('pledge_class').distinct()
+        for pledge_class in pledge_classes:
+            pass
+
+
+
+
 
 @login_required
 def four_oh_four(request):
