@@ -57,14 +57,14 @@
                                 </div>
                             </li>
                             {% endif %}
-                            {% if alumni.major or alumni.major.strip %}
+                            {% if alumni.major %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
                                       <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text"></span>
+                                    <span class="overview-text">Majored in {{ alumni.major }}</span>
                                   </div>
                                 </div>
                             </li>
