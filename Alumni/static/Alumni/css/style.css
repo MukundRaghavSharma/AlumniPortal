@@ -271,3 +271,87 @@ a:hover {
 .bio-body {
 	font-size: 16px;
 }
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: rgb(34, 51, 85);
+	color: #fff;
+	text-decoration: underline;
+}
+
+#facebook-icon {
+	font-size: 30px;
+	color: #3B5998;
+}
+
+#facebook-icon:hover {
+	color: #2a3856;
+}
+
+#linkedin-icon {
+	color: #517fa4;
+	font-size: 30px;
+}
+
+#linkedin-icon:hover {
+	color: #2a3856;
+}
+
+#phone-icon {
+	font-size: 30px;
+	color: #815837;
+}
+
+#phone-icon:hover {
+	color: #2a3856;
+}
+
+#email-icon {
+	font-size: 30px;
+	color: #727D36;
+
+}
+
+#email-icon:hover {
+	color: #2a3856;
+}
+
+#overview-icons {
+	margin: 5px 0px;
+	padding: 0px;
+	margin-top: 15px;
+}
+
+#overview-icons a:hover {
+	background-color: transparent;
+}
+
+
+.fancy {
+  line-height: 0.5;
+  text-align: center;
+}
+.fancy span {
+  display: inline-block;
+  position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+  content: "";
+  position: absolute;
+  height: 16px;
+  border-bottom: 1px solid #2a3856;
+  top: 0;
+  width: 52px;
+}
+.fancy span:before {
+  right: 100%;
+  margin-right: 10px;
+}
+.fancy span:after {
+  left: 100%;
+  margin-left: 10px;
+}
