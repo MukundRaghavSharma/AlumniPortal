@@ -18,7 +18,7 @@ urlpatterns = patterns('',
         name  = 'signup',),
     
     # Home Page #
-    url(regex = r'^home',
+    url(regex = r'^dashboard/$',
         view = 'Alumni.views.home',
         name = 'home',),
     

@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from forms import SignInForm, SignUpForm
-from models import Alumni
+from models import Alumni, PledgeClass
 from util.get_data import get_first
 import urllib
 import uuid
@@ -55,11 +55,13 @@ def signup(request):
                                             first_name = request.POST['first_name'],
                                             last_name = request.POST['last_name'])
             user.save()
-            alumni = Alumni(user = user,)
 
-            #pledge_class = PledgeClass(
+            pledge_class = PledgeClass(name = 'Boss Class',
+                                       season = 'Spring')
+            
 
-
+            pledge_class.save()
+            alumni = Alumni(user = user, pledge_class = pledge_class)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
@@ -71,6 +73,7 @@ def signup(request):
 def home(request):
     context = {}
     context['file_name'] = str(request.user.first_name.lower() + '.' + request.user.last_name.lower() + '.jpg')
+    context['user'] = request.user
     context['alumni'] = Alumni.objects.all() 
     return render(request, 'Alumni/home.html', context)
 
@@ -98,6 +101,8 @@ def update(request):
         pledge_class = str(brother[9]).split(' ')[0]
         nickname = str(brother[11])
         family = str(brother[10])
+        season = str(brother[12]) 
+        year = str(brother[13])
 
         username = str(uuid.uuid4())[0:30]
         user = User(username = username,
@@ -105,6 +110,11 @@ def update(request):
                     last_name = last_name,
                     email = email)
         user.save()
+
+        pledge_class = PledgeClass(season = season,
+                                    year = year)
+
+        pledge_class.save()
 
         # Load the picture in the static folder by default #
         try:
