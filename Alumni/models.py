@@ -27,6 +27,7 @@ class Alumni(models.Model):
     phone = models.CharField(blank = True, max_length = 50)
     major = models.CharField(blank = True, max_length = 100)
     bio = models.CharField(blank = True, max_length = 500)
+    position_description = models.CharField(blank = True, max_length = 500)
     picture = models.FileField(blank = True)
     company_logo = models.FileField(blank = True)
     family = models.CharField(blank = True, max_length = 100)
@@ -54,10 +55,3 @@ def create_profile(sender, instance, created, **kwargs):
         profile, created = Alumni.objects.get_or_create(user = instance)
 
 post_save.connect(create_profile, sender = User)
-
-'''
-class AlumniRelationship(models.Model):
-        big = models.ManyToOneField("Big", related_name='', verbose_name="Siblings", null=True, blank=True)
-    big = models.OneToOneField(Alumni)
-    little = models.OneToManyField(Alumni)
-'''
