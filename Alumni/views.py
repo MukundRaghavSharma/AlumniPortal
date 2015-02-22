@@ -193,7 +193,6 @@ def gallery_view(request):
         pledge_classes = pledge_classes.extra(order_by = ['year'])
 
         for pledge_class in pledge_classes:
-            print pledge_class
             sorting_classes.append(pledge_class)
 
         # Flip! #
@@ -206,8 +205,15 @@ def gallery_view(request):
             sorting_classes[i] = sorting_classes[i + 1]
             sorting_classes[i + 1] = temp
 
+        # Hacky way of sorting the last names #
+        #for pledge_class in sorting_class:
+            #for 
+            #last_names = pledge
+
+
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
+            #filtered_class
             class_based_view.append(filtered_class)
 
         # for pledge_class in class_based_view
