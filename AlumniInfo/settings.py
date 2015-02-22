@@ -53,7 +53,7 @@ ROOT_URLCONF = 'AlumniInfo.urls'
 
 WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
 
-LOGIN_URL = '/signin_1/'
+LOGIN_URL = '/'
 
 LOGIN_REDIRECT_URL = '/home/'
 
