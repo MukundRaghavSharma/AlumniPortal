@@ -72,9 +72,7 @@ def signup(request):
 @login_required
 def home(request):
     context = {}
-    context['file_name'] = str(request.user.first_name.lower() + '.' + request.user.last_name.lower() + '.jpg')
-    context['user'] = request.user
-    context['alumni'] = Alumni.objects.all() 
+    context['current_user'] = Alumni.objects.get(user = request.user)
     return render(request, 'Alumni/home.html', context)
 
 # Function that logs out the user #
@@ -158,12 +156,8 @@ def profile(request, id):
             four_oh_four(request)
         
         user = User.objects.get(id = id)
-        current_user = User.objects.get(username = request.user.username)
-
         context['alumni'] = Alumni.objects.get(user = user)
-        context['user'] = Alumni.objects.get(user = current_user)
-        context['file_name'] = (str(user.first_name.lower() + '.' + 
-                                user.last_name.lower() + '.jpg'))
+        context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/profile.html', context)
 
 # Function to get the class view #
@@ -198,8 +192,6 @@ def gallery_view(request):
         pledge_classes = PledgeClass.objects.all()
         pledge_classes = pledge_classes.extra(order_by = ['year'])
 
-        print pledge_classes
-
         for pledge_class in pledge_classes:
             print pledge_class
             sorting_classes.append(pledge_class)
@@ -210,13 +202,16 @@ def gallery_view(request):
             if i == 0:
                 continue
             
-            sorting_classes[i], sorting_classes[i + 1] = sorting_classes[i + 1], sorting_classes[i] 
+            temp = sorting_classes[i]
+            sorting_classes[i] = sorting_classes[i + 1]
+            sorting_classes[i + 1] = temp
+            #sorting_classes[i], sorting_classes[i + 1] = sorting_classes[i + 1], sorting_classes[i] 
 
         for pledge_class in sorting_classes:
-            class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class))
+            class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class).order_by('user.last_name'))
         
         context['class_based_view'] = class_based_view
-        context['user'] = request.user
+        context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
 
 @login_required
