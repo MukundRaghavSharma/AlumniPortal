@@ -56,13 +56,30 @@ LOGIN_URL = '/signin_1/'
 
 LOGIN_REDIRECT_URL = '/home/'
 
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni', 'media')
+
+MEDIA_URL = '/Alumni/media/'
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'AlumniPortal',
+        'USER': 'mukundraghavsharma',
+        'PASSWORD': 'cmuakpsi',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -78,6 +95,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+ALLOWED_HOSTS = ['*']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

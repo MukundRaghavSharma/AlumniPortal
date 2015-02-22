@@ -1,5 +1,8 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
     
@@ -28,7 +31,6 @@ urlpatterns = patterns('',
     url(regex = r'^update$',
         view = 'Alumni.views.update',
         name = 'testSave'),
-    
 
     # Log out Page #
     url(regex = r'^logout', 
@@ -48,7 +50,6 @@ urlpatterns = patterns('',
     url(regex = r'^class/(?P<classname>\w+)/$', 
         view = 'Alumni.views.class_view',
         name = 'class_view',),
-
     
     # 404 Page #
     url(regex = r'^404$',
@@ -56,9 +57,6 @@ urlpatterns = patterns('',
         name = '404',),
 
 )
-'''
-# Search Page #
-# url(regex = r'^search$',
-#    view = 'Alumni.views.search',
-#    name = 'search'),
-'''
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
