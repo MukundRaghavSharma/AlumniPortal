@@ -2,16 +2,15 @@
 
 {% block file %}
     {% load staticfiles %}
-        {% if alumni %}
+        {% if current_user %}
             <div class="row" id="second-layer">
                 <div class="col-md-3" >
                         <div class="text-center">
                             <div class="imgLiquidFill imgLiquid" id="cropped" style="width:170px; height:170px;">
-                                    <img src="{{ user.picture.url }}">
+                                    <img src="{{ current_user.picture.url }}">
                             </div>
                         </div>
-                        <h1 class="dash-name"> {{ user.first_name }} {{ user.last_name }} </h1>
-                    <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
+                        <h1 class="dash-name"> {{ current_user.user.first_name }} {{ current_user.user.last_name }} </h1>
                 </div>
                 <div class="col-md-9" >
                     <ul class="list-group">
@@ -26,8 +25,6 @@
                                 Carnival<br>
                                 2015!
                             </span>
-                        
-
                         </li>
                     </ul>
                 </div>
