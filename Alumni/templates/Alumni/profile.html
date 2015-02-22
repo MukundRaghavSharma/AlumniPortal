@@ -18,6 +18,7 @@
             <div class="col-md-4">
                     <ul class="list-group">
                         {% if alumni %}
+                            {% if alumni.pledge_class  %}
                             <li class="list-group-item" id="overview-heading">Overview</li>
                             <li class="list-group-item">
                                 <div class="media">
@@ -29,36 +30,44 @@
                                   </div>
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if alumni.family  %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
                                       <span class="overview-icon"><i class="fa fa-users fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Part of the Roc-a-fellas family</span>
+                                    <span class="overview-text">Part of the {{ alumni.family }}</span>
                                   </div>
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if alumni.graduation_class  %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in the class of 2013</span>
+                                    <span class="overview-text">Graduated in the class of {{ alumni.graduation_class }}</span>
                                   </div>
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if alumni.major  %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
                                       <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Majored in Business Administration</span>
+                                    <span class="overview-text"></span>
                                   </div>
                                 </div>
                             </li>
+                            {% endif %}
+                            {% if alumni.hometown  %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
@@ -69,6 +78,7 @@
                                   </div>
                                 </div>
                             </li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
