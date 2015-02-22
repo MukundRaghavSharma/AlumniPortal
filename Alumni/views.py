@@ -214,7 +214,9 @@ def gallery_view(request):
 
         for pledge_class in sorting_classes:
             class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class))
+        
         context['class_based_view'] = class_based_view
+        context['user'] = request.user
         return render(request, 'Alumni/gallery.html', context)
 
 @login_required
