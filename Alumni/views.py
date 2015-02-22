@@ -57,9 +57,9 @@ def signup(request):
             user.save()
             alumni = Alumni(user = user,)
 
-            #pledge_class = PledgeClass(
-
-
+            pledge_class = PledgeClass(name = 'Boss Class',
+                                       season = '   )
+            
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
