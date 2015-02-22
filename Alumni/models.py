@@ -13,11 +13,10 @@ class Alumni(models.Model):
     picture = models.FileField(blank = True)
     company_logo = models.FileField(blank = True)
     family = models.CharField(blank = True, max_length = 100)
-    email = models.EmailField(max_length = 100)
     nickname = models.CharField(blank = True, max_length = 100)
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
-    pledge_class = models.CharField(blank = True, max_length = 100)
+    pledge_class = models.ForeignKey(PledgeClass)
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
 
@@ -38,6 +37,24 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender = User)
 
+'''
+class PledgeClass:
+    alumni = models.OneToManyField(Alumni)
+    season = models.CharField(max_length = 10)
+    name = models.CharField(max_length = 40)
+
+    def __unicode__(self):
+        return self.name
+'''
+    '''
+    def save(self, *args, **kwargs):
+            try:
+                existing = PledgeClass.objects.get(pledr = self.user)
+                self.id = existing.id
+            except PledgeClass.DoesNotExist:
+                pass
+            models.Model.save(self, *args, **kwargs)
+    '''
 '''
 class AlumniRelationship(models.Model):
         big = models.ManyToOneField("Big", related_name='', verbose_name="Siblings", null=True, blank=True)
