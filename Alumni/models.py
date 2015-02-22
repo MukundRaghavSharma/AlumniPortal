@@ -10,14 +10,6 @@ class PledgeClass(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-            try:
-                existing = PledgeClass.objects.get(name = self.name)
-                self.id = existing.id
-            except PledgeClass.DoesNotExist:
-                pass
-            models.Model.save(self, *args, **kwargs)
-
 class Alumni(models.Model):
     user = models.OneToOneField(User)
     employer = models.CharField(blank = True, max_length = 100)
@@ -32,7 +24,7 @@ class Alumni(models.Model):
     nickname = models.CharField(blank = True, max_length = 100)
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
-    pledge_class = models.ForeignKey(PledgeClass)
+    pledge_class = models.ForeignKey(PledgeClass, null = True, blank = True)
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
 
@@ -43,6 +35,7 @@ class Alumni(models.Model):
             try:
                 existing = Alumni.objects.get(user = self.user)
                 self.id = existing.id
+                #self.pledge_class.id = existing.pledge_class.id
             except Alumni.DoesNotExist:
                 pass
             models.Model.save(self, *args, **kwargs)
