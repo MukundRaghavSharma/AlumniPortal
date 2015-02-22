@@ -66,7 +66,7 @@ def signup(request):
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
             login(request, authenticated_user)
-            return redirect('/home/')
+            return redirect('/dashboard/')
 
 # Function to displays the home screen #
 @login_required
@@ -98,7 +98,7 @@ def update(request):
         major = str(brother[6])
         graduation_class = str(brother[7])
         hometown = str(brother[8])
-        pledge_class = str(brother[9]).split(' ')[0]
+        class_name = str(brother[9]).split(' ')[0]
         nickname = str(brother[11])
         family = str(brother[10])
         season = str(brother[12]) 
@@ -111,7 +111,8 @@ def update(request):
                     email = email)
         user.save()
 
-        pledge_class = PledgeClass(season = season,
+        pledge_class = PledgeClass(name = class_name,
+                                    season = season,
                                     year = year)
 
         pledge_class.save()
@@ -144,7 +145,7 @@ def update(request):
                             family = family)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
-    return redirect('/home/')
+    return redirect('/dashboard/')
 
 @login_required
 def profile(request, id):
@@ -192,15 +193,27 @@ def gallery_view(request):
 
     if request.method == 'GET':
         class_based_view = []
-        distinct_classes = []
+        sorting_classes = []
 
-        pledge_classes = Alumni.objects.values_list('pledge_class').distinct()
+        pledge_classes = PledgeClass.objects.all()
+        pledge_classes = pledge_classes.extra(order_by = ['year'])
+
+        print pledge_classes
+
         for pledge_class in pledge_classes:
-            distinct_classes.append(pledge_class[0])
-        
-        for pledge_class in distinct_classes:
+            print pledge_class
+            sorting_classes.append(pledge_class)
+
+        # Flip! #
+        for i in range(0, len(sorting_classes) - 1):
+            # Remove if Boss Class not there #
+            if i == 0:
+                continue
+            
+            sorting_classes[i], sorting_classes[i + 1] = sorting_classes[i + 1], sorting_classes[i] 
+
+        for pledge_class in sorting_classes:
             class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class))
-         
         context['class_based_view'] = class_based_view
         return render(request, 'Alumni/gallery.html', context)
 

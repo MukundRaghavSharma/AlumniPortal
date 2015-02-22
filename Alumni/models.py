@@ -10,6 +10,15 @@ class PledgeClass(models.Model):
     def __unicode__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+            try:
+                print self.name
+                existing = PledgeClass.objects.get(name = self.name)
+                self.id = existing.id
+            except PledgeClass.DoesNotExist:
+                pass
+            models.Model.save(self, *args, **kwargs)
+
 class Alumni(models.Model):
     user = models.OneToOneField(User)
     employer = models.CharField(blank = True, max_length = 100)
