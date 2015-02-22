@@ -50,12 +50,16 @@ urlpatterns = patterns('',
     url(regex = r'^class/(?P<classname>\w+)/$', 
         view = 'Alumni.views.class_view',
         name = 'class_view',),
+
+    # Gallery Page #
+    url(regex = r'^gallery/$', 
+        view = 'Alumni.views.gallery_view',
+        name = 'class_view',),
     
     # 404 Page #
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
-
 )
 
 urlpatterns += staticfiles_urlpatterns()
