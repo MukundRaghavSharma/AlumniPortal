@@ -11,14 +11,16 @@
             </div>
             <div class="col-md-8" id="full_name">
                 <h1 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h1>
-                <h3 class="nickname"> Nickname </h3>
+                {% if alumni.nickname %}
+                    <h3 class="nickname"> {{ alumni.nickname }} </h3>
+                {% endif %}
             </div>
         </div>
         <div class="row" id="row_2">
             <div class="col-md-4">
                     <ul class="list-group">
                         {% if alumni %}
-                            {% if alumni.pledge_class  %}
+                            {% if alumni.pledge_class or alumni.pledge_class.strip  %}
                             <li class="list-group-item" id="overview-heading">Overview</li>
                             <li class="list-group-item">
                                 <div class="media">
@@ -31,7 +33,7 @@
                                 </div>
                             </li>
                             {% endif %}
-                            {% if alumni.family  %}
+                            {% if alumni.family or alumni.family.strip  %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
@@ -43,19 +45,19 @@
                                 </div>
                             </li>
                             {% endif %}
-                            {% if alumni.graduation_class  %}
+                            {% if alumni.graduation_class or alumni.graduation_class.strip %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in the class of {{ alumni.graduation_class }}</span>
+                                    <span class="overview-text">Graduated in the {{ alumni.graduation_class }}</span>
                                   </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if alumni.major  %}
+                            {% if alumni.major or alumni.major.strip %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
@@ -67,7 +69,7 @@
                                 </div>
                             </li>
                             {% endif %}
-                            {% if alumni.hometown  %}
+                            {% if alumni.hometown or alumni.hometown.strip %}
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
