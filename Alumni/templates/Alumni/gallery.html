@@ -1,0 +1,15 @@
+{% extends "Alumni/navbar.html" %}
+
+{% block file %}
+    {% load staticfiles %}
+        {% if alumni %}
+            {% for alumn in alumni %}
+            <div class="well">
+                <p> {{ alumn.user.first_name }} </p>
+                <p> {{ alumn.user.last_name }} </p>
+                <p> {{ alumn.employer }} </p>
+                <p><a href="/profile/{{ alumn.user.id }}"> {{ alumn.user.first_name }} {{ alumn.user.last_name }} </a></p>
+            </div>
+             {% endfor %}
+         {% endif %}
+{% endblock %}

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4" id="dp">
                     <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
-                        <img src="{{ STATIC_URL }}/Alumni/images/{{ file_name }}">
+                            <img src="{{ alumni.picture.url }}">
                     </div>
                 <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
             </div>
@@ -20,8 +20,11 @@
             <div class="col-md-4">
                     <ul class="list-group">
                         {% if alumni %}
+                            {% if alumni.pledge_class or alumni.family or alumni.graduation_class or alumni.major or alumni.hometown %}
+                                <li class="list-group-item" id="overview-heading">Overview</li>
+                            {% endif %}
                             {% if alumni.pledge_class or alumni.pledge_class.strip  %}
-                            <li class="list-group-item" id="overview-heading">Overview</li>
+                            
                             <li class="list-group-item">
                                 <div class="media">
                                   <div class="media-left media-middle">
@@ -40,7 +43,7 @@
                                       <span class="overview-icon"><i class="fa fa-users fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Part of the {{ alumni.family }}</span>
+                                    <span class="overview-text">Part of  <a href="/class/{{ alumni.family }}">{{ alumni.family }}</a></span>
                                   </div>
                                 </div>
                             </li>
@@ -52,7 +55,7 @@
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in the {{ alumni.graduation_class }}</span>
+                                    <span class="overview-text">Graduated in the <a href="/class/{{ alumni.graduation_class }}">{{ alumni.graduation_class }}</a></span>
                                   </div>
                                 </div>
                             </li>

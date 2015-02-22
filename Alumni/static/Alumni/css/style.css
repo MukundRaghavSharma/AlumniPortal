@@ -271,3 +271,13 @@ a:hover {
 .bio-body {
 	font-size: 16px;
 }
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: rgb(34, 51, 85);
+	color: #fff;
+	text-decoration: underline;
+}
