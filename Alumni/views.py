@@ -143,8 +143,10 @@ def profile(request, id):
             four_oh_four(request)
         
         user = User.objects.get(id = id)
+        current_user = User.objects.get(username = request.user.username)
+
         context['alumni'] = Alumni.objects.get(user = user)
-        context['user'] = request.user
+        context['user'] = Alumni.objects.get(user = current_user)
         context['file_name'] = (str(user.first_name.lower() + '.' + 
                                 user.last_name.lower() + '.jpg'))
         return render(request, 'Alumni/profile.html', context)
@@ -176,6 +178,7 @@ def gallery_view(request):
     context = {}
 
     if request.method == 'GET':
+        return
         pledge_classes = Alumni.objects.values_list('pledge_class').distinct()
         for pledge_class in pledge_classes:
             pass
