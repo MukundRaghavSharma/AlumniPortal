@@ -205,7 +205,6 @@ def gallery_view(request):
             temp = sorting_classes[i]
             sorting_classes[i] = sorting_classes[i + 1]
             sorting_classes[i + 1] = temp
-            #sorting_classes[i], sorting_classes[i + 1] = sorting_classes[i + 1], sorting_classes[i] 
 
         for pledge_class in sorting_classes:
             class_based_view.append(Alumni.objects.filter(pledge_class = pledge_class).order_by('user.last_name'))
