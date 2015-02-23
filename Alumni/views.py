@@ -6,9 +6,9 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from forms import SignInForm, SignUpForm
-from models import Alumni, PledgeClass
-from util.get_data import get_first
+from Alumni.forms import SignInForm, SignUpForm
+from Alumni.models import Alumni, PledgeClass
+from Alumni.util.get_data import get_first
 import urllib
 import uuid
 

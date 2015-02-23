@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 import os.path
+from social_auth.backends import get_backend
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import getpass
@@ -24,8 +26,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
-    #'social_auth',
+    'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +50,32 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+  #'social_auth.backends.contrib.linkedin.LinkedinBackend',
+  'social_auth.backends.contrib.github.GithubBackend'
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static',
+    'social_auth.context_processors.social_auth_by_type_backends',
+)
+
+SOCIAL_AUTH_UID_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_ENABLED_BACKENDS = ('github',)
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+
+#LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress',]
+#LINKEDIN_CONSUMER_KEY = 'xxxx' # The LinkedIn application "API Key"
+#LINKEDIN_CONSUMER_SECRET = 'xxxx' # The LinkedIn application "Secret Key"
+
+GITHUB_APP_ID = '400b129b1135d29f43e7' 
+GITHUB_API_SECRET = '390d0bc723659da4aa4bcd2390f79d2774f58c21'
+
 ROOT_URLCONF = 'AlumniInfo.urls'
 
 WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
@@ -57,6 +83,7 @@ WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
 LOGIN_URL = '/'
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_ERROR_URL = '/login-error/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni', 'media')
 
@@ -104,3 +131,4 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni', 'static')

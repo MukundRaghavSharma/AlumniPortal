@@ -3,24 +3,25 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import RedirectView
 
 urlpatterns = patterns('',
     
     # Sign-In #
-    url(regex = r'^signin',
+    url(regex = r'^signin/$',
         view  = 'django.contrib.auth.views.login',
         name  = 'signin',
         kwargs = {'template_name' : 'Alumni/signin.html'}),
 
     # Sign-Up #
-    url(regex = r'^signup',
+    url(regex = r'^signup/$',
         view  = 'Alumni.views.signup',
         name  = 'signup',),
     
     # Home Page #
     url(regex = r'^dashboard/$',
         view = 'Alumni.views.home',
-        name = 'home',),
+        name = 'Alumni.home',),
     
     # Profile Page #
     url(regex = r'^profile/(?P<id>\d+)/$',
@@ -33,7 +34,7 @@ urlpatterns = patterns('',
         name = 'testSave'),
 
     # Log out Page #
-    url(regex = r'^logout', 
+    url(regex = r'^logout/$', 
         view = 'Alumni.views.logout_user',
         name = 'Logout',),
 
@@ -60,6 +61,12 @@ urlpatterns = patterns('',
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
+
+    # Test Login #
+    url(r'^login/$', RedirectView.as_view(url = '/login/github')),
+
+    # Social Auth URL #
+    url(r'', include('social_auth.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
