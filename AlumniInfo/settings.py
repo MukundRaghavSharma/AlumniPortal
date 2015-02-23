@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
+    #'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +56,7 @@ WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
 
 LOGIN_URL = '/'
 
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni', 'media')
 
@@ -98,7 +99,6 @@ USE_L10N = True
 USE_TZ = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
