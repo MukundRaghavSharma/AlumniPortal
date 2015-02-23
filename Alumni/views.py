@@ -56,12 +56,17 @@ def signup(request):
                                             last_name = request.POST['last_name'])
             user.save()
 
+            name_url = '404.jpg' 
+            url = 'Alumni/static/Alumni/images/' + name_url
+            destination_url = 'Alumni/media/images/' + name_url 
+            raw = urllib.urlopen(url)
+            content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
                                        season = 'Spring')
             
-
             pledge_class.save()
             alumni = Alumni(user = user, pledge_class = pledge_class)
+            alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
@@ -209,7 +214,6 @@ def gallery_view(request):
         #for pledge_class in sorting_class:
             #for 
             #last_names = pledge
-
 
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
