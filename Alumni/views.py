@@ -6,11 +6,13 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from forms import SignInForm, SignUpForm
-from models import Alumni, PledgeClass
-from util.get_data import get_first
+from Alumni.forms import SignInForm, SignUpForm
+from Alumni.models import Alumni, PledgeClass
+from Alumni.util.get_data import get_first
 import urllib
 import uuid
+import sys
+import os
 
 def signin_1(request):
     if request.method == 'GET':
@@ -57,9 +59,13 @@ def signup(request):
             user.save()
 
             name_url = '404.jpg' 
-            url = 'Alumni/static/Alumni/images/' + name_url
+            url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + 
+                '/static/Alumni/images/' + name_url)
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.urlopen(url)
+            if sys.version_info >= (3, 0):
+                raw = urllib.request.urlopen(url)
+            else:
+                raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
                                        season = 'Spring')
@@ -125,7 +131,7 @@ def update(request):
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.urlopen(url)
+            raw = urllib.request.urlopen(url)
             content_file = ContentFile(raw.read())
 
         except IOError:
