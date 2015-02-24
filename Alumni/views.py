@@ -233,4 +233,7 @@ def gallery_view(request):
 
 @login_required
 def four_oh_four(request):
-    return render(request, 'Alumni/404.html')
+    response = render_to_response('Alumni/404.html', {}, 
+                                  context_instance = RequestContext(request))
+    response.status_code = 404
+    return response 
