@@ -6,11 +6,13 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from forms import SignInForm, SignUpForm
-from models import Alumni, PledgeClass
-from util.get_data import get_first
+from Alumni.forms import SignInForm, SignUpForm
+from Alumni.models import Alumni, PledgeClass
+from Alumni.util.get_data import get_first
 import urllib
 import uuid
+import sys
+import os
 
 def signin_1(request):
     if request.method == 'GET':
@@ -56,12 +58,21 @@ def signup(request):
                                             last_name = request.POST['last_name'])
             user.save()
 
+            name_url = '404.jpg' 
+            url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + 
+                '/static/Alumni/images/' + name_url)
+            destination_url = 'Alumni/media/images/' + name_url 
+            if sys.version_info >= (3, 0):
+                raw = urllib.request.urlopen(url)
+            else:
+                raw = urllib.urlopen(url)
+            content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
                                        season = 'Spring')
             
-
             pledge_class.save()
             alumni = Alumni(user = user, pledge_class = pledge_class)
+            alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
                                               password = request.POST['password1'])
@@ -120,7 +131,7 @@ def update(request):
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.urlopen(url)
+            raw = urllib.request.urlopen(url)
             content_file = ContentFile(raw.read())
 
         except IOError:
@@ -210,7 +221,6 @@ def gallery_view(request):
             #for 
             #last_names = pledge
 
-
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
             #filtered_class
@@ -223,4 +233,7 @@ def gallery_view(request):
 
 @login_required
 def four_oh_four(request):
-    return render(request, 'Alumni/404.html')
+    response = render_to_response('Alumni/404.html', {}, 
+                                  context_instance = RequestContext(request))
+    response.status_code = 404
+    return response 
