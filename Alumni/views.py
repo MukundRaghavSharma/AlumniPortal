@@ -126,14 +126,12 @@ def update(request):
 
         pledge_class.save()
 
-        # Load the picture in the static folder by default #
-        try:
+        try: 
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.request.urlopen(url)
+            raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
-
         except IOError:
             name_url = '404.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
