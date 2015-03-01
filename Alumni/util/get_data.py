@@ -1,7 +1,10 @@
 import csv
 import os.path
 import sys
-import urllib.request
+if sys.version_info >= (3, 0):
+    import urllib.request
+else:
+    import urllib
 from bs4 import BeautifulSoup 
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
