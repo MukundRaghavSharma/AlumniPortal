@@ -51,6 +51,117 @@ a:hover {
 	  color: #000; 
 	}
 
+.signup-background {
+	background-repeat: no-repeat;
+	background-image: url(../images/drinking_landing.jpg);
+	background-attachment: fixed;
+	background-position:50% 50%;  /* Sets reference point to scale from */
+	background-size:cover;
+	z-index: -1;
+}
+
+#signup-position {
+	position: relative;
+	  top: 50%;
+	  left: 50%;
+	  /* bring your own prefixes */
+	  transform: translate(-50%, -50%);
+	
+}
+
+.signup-title {
+	background-color: #2a3856;
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 0px;
+	-webkit-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+	-moz-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+	box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+}
+
+#signup-form-background {
+	background-color: #fff;
+	padding: 30px 30px 0px 30px;
+	-webkit-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+	-moz-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+	box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+}
+
+#signup-form-shadow {
+
+}
+
+#position-row {
+	padding-top: 20px;
+	margin-right: 0px;
+	margin-left: 0px;
+	background-color: #fff;
+
+}
+
+#button-row {
+	margin-bottom: 0px;
+
+}
+
+#yourId {
+	width: 100%;
+	height: 150px;
+	position:relative; /* or fixed or absolute */
+}
+
+.next-button {
+	float: right;
+	background-color: #2a3856;
+	border-color: #2a3856;
+	border-style: solid;
+	color: #fff;
+	width: 75%;
+	text-align: right;
+}
+
+.next-button:hover {
+	background-color: #516182;
+	border-color: #516182;
+}
+
+#position-one {
+	background-color: #2a3856;
+	color: #fff;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+    border-right-color: #fff;
+    border-top-color: #2a3856;
+    border-left-color: #2a3856;
+    border-bottom-color: #2a3856;
+    height: 30px;
+}
+
+#position-two {
+	background-color: #888888;
+	color: #fff;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+    border-right-color: #fff;
+    border-top-color: #888888;
+    border-left-color: #888888;
+    border-bottom-color: #888888;
+    height: 30px;
+}
+
+#position-three {
+	background-color: #888888;
+	color: #fff;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+    border-color: #888888;
+    height: 30px;
+}
+
 /*
  * Globals
  */
@@ -566,4 +677,32 @@ a:hover {
 	background-color: #63214C;
 	padding: 10px 30px 10px 10px;
 	color: #fff;
+}
+
+.numberCircle {
+	 border-radius: 50%;
+	 behavior: url(PIE.htc);
+	 width: 18px;
+	 height: 18px;
+	 padding: 0px;
+	 background: #fff;
+	 color: #2a3856;
+	 text-align: -webkit-center;
+	 font-size: 14px;
+	 display: -webkit-inline-box;
+	 vertical-align: -webkit-baseline-middle;
+}
+
+.numberCircle-other {
+	 border-radius: 50%;
+	 behavior: url(PIE.htc);
+	 width: 18px;
+	 height: 18px;
+	 padding: 0px;
+	 background: #fff;
+	 color: #888888;
+	 text-align: -webkit-center;
+	 font-size: 14px;
+	 display: -webkit-inline-box;
+	 vertical-align: -webkit-baseline-middle;
 }
