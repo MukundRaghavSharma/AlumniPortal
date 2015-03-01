@@ -29,7 +29,7 @@ def signin_1(request):
     context = {}
     
     if request.method == 'GET':
-        form = SignInForm(request.method)
+        form = SignInForm(request.GET)
         context['form'] = form
         return render(request, 'Alumni/signin_1.html', context)
 
@@ -56,7 +56,7 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        form = SignInForm(request.method)
+        form = PersonalInformationForm(request.POST)
         context['form'] = form
         return render(request, 'Alumni/signin_3.html', context)
 
@@ -66,10 +66,9 @@ def signin_4(request):
     context = {}
     
     if request.method == 'GET':
-        form = SignInForm(request.method)
+        form = PersonalInformationForm(request.POST)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
-
 
 
 # Function to signup user #
