@@ -36,6 +36,9 @@ class Alumni(models.Model):
     pledge_class = models.ForeignKey(PledgeClass, null = True, blank = True)
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
+    number = models.IntegerField(null = True, blank = True)
+    #big = models.OneToOneField(User)
+    #littles = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.user.first_name + " " +  self.user.last_name

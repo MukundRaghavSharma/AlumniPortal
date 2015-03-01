@@ -1,3 +1,6 @@
+from Alumni.forms import SignInForm, SignUpForm, PersonalInformationForm
+from Alumni.models import Alumni, PledgeClass
+from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -6,24 +9,62 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from Alumni.forms import SignInForm, SignUpForm
-from Alumni.models import Alumni, PledgeClass
-from Alumni.util.get_data import get_first
+import os
+import sys
 import urllib
 import uuid
-import sys
-import os
 
-def signin_1(request):
-    if request.method == 'GET':
-        return render(request, 'Alumni/signin_1.html')
-
-# Function to signin user #
+'''
 def signin(request):
+    if request.method == 'GET':
+        return render(request, 'Alumni/signin.html')
+'''
+# Sign in 1 #
+# Function to signin user #
+def signin_1(request):
     context = {}
-    form = SignInForm(request.method)
-    context['form'] = form
-    return render(request, 'Alumni/signin.html', context)
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_1.html', context)
+
+# Sign in 2 #
+@transaction.atomic
+def signin_2(request):
+    context = {}
+
+    # Get Request #
+    if request.method == 'GET':
+        form = PersonalInformationForm(request.GET)
+        context['form'] = form
+        return render(request, 'Alumni/signin_2.html', context) 
+
+    # Post Request #
+    if request.method == 'POST':
+        form = PersonalInformationForm(request.POST)
+        context['forms'] = form
+        return render(request, 'Alumni/signin_2.html', context)
+
+# Sign in 3 #
+# Function to signin user #
+def signin_3(request):
+    context = {}
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_3.html', context)
+
+# Sign in 4 #
+# Function to signin user #
+def signin_4(request):
+    context = {}
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_4.html', context)
 
 
 
@@ -102,18 +143,21 @@ def update(request):
     for brother in brothers:
         first_name = str(brother[0])
         last_name = str(brother[1])
-        employer = str(brother[2])
-        current_city = str(brother[3])
-        email = str(brother[4])
-        phone = str(brother[5])
-        major = str(brother[6])
-        graduation_class = str(brother[7])
-        hometown = str(brother[8])
-        class_name = str(brother[9]).split(' ')[0]
-        nickname = str(brother[11])
-        family = str(brother[10])
-        season = str(brother[12]) 
-        year = str(brother[13])
+        employer = str(brother[3])
+        current_city = str(brother[4])
+        email = str(brother[5])
+        phone = str(brother[6])
+        major = str(brother[7])
+        graduation_class = str(brother[8])
+        hometown = str(brother[9])
+        class_name = str(brother[10]).split(' ')[0]
+        nickname = str(brother[12])
+        family = str(brother[11])
+        season = str(brother[13]) 
+        year = str(brother[14])
+        number = str(brother[2])
+
+        print (brother)
 
         username = str(uuid.uuid4())[0:30]
         user = User(username = username,
@@ -130,22 +174,27 @@ def update(request):
 
         try: 
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
-            url = 'Alumni/static/Alumni/images/' + name_url
+
+            #url = 'file://Alumni/static/Alumni/images/' + name_url
+            url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + 
+                '/static/Alumni/images/' + name_url)
             destination_url = 'Alumni/media/images/' + name_url 
             if sys.version_info >= (3, 0):
                 raw = urllib.request.urlopen(url)
             else:
                 raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
+
         except IOError:
-            name_url = '404.jpg' 
-            url = 'Alumni/static/Alumni/images/' + name_url
-            destination_url = 'Alumni/media/images/' + name_url 
-            if sys.version_info >= (3, 0):
-                raw = urllib.request.urlopen(url)
-            else:
-                raw = urllib.urlopen(url)
-            content_file = ContentFile(raw.read())
+                name_url = '404.jpg' 
+                url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + 
+                    '/static/Alumni/images/' + name_url)
+                destination_url = 'Alumni/media/images/' + name_url 
+                if sys.version_info >= (3, 0):
+                    raw = urllib.request.urlopen(url)
+                else:
+                    raw = urllib.urlopen(url)
+                content_file = ContentFile(raw.read())
 
         finally: 
             alumni = Alumni(user = user,
@@ -157,7 +206,8 @@ def update(request):
                             hometown = hometown,
                             pledge_class = pledge_class,
                             nickname = nickname,
-                            family = family)
+                            family = family,
+                            number = number)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
     return redirect('/dashboard/')
@@ -213,14 +263,14 @@ def gallery_view(request):
             sorting_classes.append(pledge_class)
 
         # Flip! #
-        for i in range(0, len(sorting_classes) - 1):
-            # Remove if Boss Class not there #
-            if i == 0:
-                continue
-            
-            temp = sorting_classes[i]
-            sorting_classes[i] = sorting_classes[i + 1]
-            sorting_classes[i + 1] = temp
+        #for i in range(0, len(sorting_classes) - 1):
+        #    # Remove if Boss Class not there #
+        #    if i == 0:
+        #        continue
+        #    
+        #    temp = sorting_classes[i]
+        #    sorting_classes[i] = sorting_classes[i + 1]
+        #    sorting_classes[i + 1] = temp
 
         # Hacky way of sorting the last names #
         #for pledge_class in sorting_class:
@@ -230,12 +280,17 @@ def gallery_view(request):
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
             #filtered_class
+            sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(filtered_class)
 
         # for pledge_class in class_based_view
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
+
+@login_required
+def search(request):
+    pass
 
 @login_required
 def four_oh_four(request):

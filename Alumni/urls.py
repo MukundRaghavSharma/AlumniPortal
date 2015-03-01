@@ -5,23 +5,26 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
-    
-    # Sign-In #
-    url(regex = r'^signin',
-        view  = 'django.contrib.auth.views.login',
-        name  = 'signin',
-        kwargs = {'template_name' : 'Alumni/signin.html'}),
+    # Sign-Up 1 - Launch Page #
+    url(regex = r'^$',
+        view  = 'Alumni.views.signin_1',
+        name  = 'signin_1',),
 
-    # Sign-Up #
-    url(regex = r'^signup',
-        view  = 'Alumni.views.signup',
-        name  = 'signup',),
+    # Sign-Up 2 - Basic Information #
+    url(regex = r'^signin_2$',
+        view  = 'Alumni.views.signin_2',
+        name  = 'signin_2',),
 
-    # Sign-Up #
-    url(regex = r'^Information/$',
-        view  = 'Alumni.views.Information',
-        name  = 'Information',),
-    
+    # Sign-Up 3 - AKPsi Information #
+    url(regex = r'^signin_3$',
+        view  = 'Alumni.views.signin_3',
+        name  = 'signin_3',),
+
+    # Sign-Up 4 - Career Information #
+    url(regex = r'^signin_4$',
+        view  = 'Alumni.views.signin_4',
+        name  = 'signin_4',),
+   
     # Home Page #
     url(regex = r'^dashboard/$',
         view = 'Alumni.views.home',
@@ -46,11 +49,6 @@ urlpatterns = patterns('',
     url(regex = r'^admin/', 
         view = include(admin.site.urls)),
 
-    # Signin Page 1#
-    url(regex = r'^$', 
-        view = 'Alumni.views.signin_1',
-        name = 'signin_1',),
-
     # Class Page #
     url(regex = r'^class/(?P<classname>\w+)/$', 
         view = 'Alumni.views.class_view',
@@ -65,6 +63,7 @@ urlpatterns = patterns('',
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
