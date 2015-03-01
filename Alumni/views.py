@@ -137,13 +137,19 @@ def update(request):
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.urlopen(url)
+            if sys.version_info >= (3, 0):
+                raw = urllib.request.urlopen(url)
+            else:
+                raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
         except IOError:
             name_url = '404.jpg' 
             url = 'Alumni/static/Alumni/images/' + name_url
             destination_url = 'Alumni/media/images/' + name_url 
-            raw = urllib.urlopen(url)
+            if sys.version_info >= (3, 0):
+                raw = urllib.request.urlopen(url)
+            else:
+                raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
 
         finally: 
