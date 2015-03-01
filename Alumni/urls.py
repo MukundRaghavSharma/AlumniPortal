@@ -16,6 +16,11 @@ urlpatterns = patterns('',
     url(regex = r'^signup',
         view  = 'Alumni.views.signup',
         name  = 'signup',),
+
+    # Sign-Up #
+    url(regex = r'^Information',
+        view  = 'Alumni.views.Information',
+        name  = 'Information',),
     
     # Home Page #
     url(regex = r'^dashboard/$',

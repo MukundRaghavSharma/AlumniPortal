@@ -25,6 +25,13 @@ def signin(request):
     context['form'] = form
     return render(request, 'Alumni/signin.html', context)
 
+# Information #
+def Information(request):
+    context = {}
+    form = SignInForm(request.method)
+    context['form'] = form
+    return render(request, 'Alumni/Information.html', context)
+
 # Function to signup user #
 @transaction.atomic
 def signup(request):
