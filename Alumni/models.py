@@ -8,8 +8,11 @@ class PledgeClass(models.Model):
     name = models.CharField(max_length = 40)
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
+    def __str__(self):
+        return str(self.name)
+    
     def save(self, *args, **kwargs):
             try:
                 existing = PledgeClass.objects.get(name = self.name)
@@ -41,6 +44,9 @@ class Alumni(models.Model):
     #littles = models.ForeignKey(User)
 
     def __unicode__(self):
+        return self.user.first_name + " " +  self.user.last_name
+
+    def __str__(self):
         return self.user.first_name + " " +  self.user.last_name
 
     def save(self, *args, **kwargs):

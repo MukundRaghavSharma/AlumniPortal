@@ -1,4 +1,6 @@
-from Alumni.forms import SignInForm, SignUpForm, PersonalInformationForm
+from Alumni.forms import (SignInForm, 
+                  SignUpForm, PersonalInformationForm,
+                  AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
@@ -56,9 +58,12 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        form = PersonalInformationForm(request.POST)
+        form = AKPsiInformationForm(request.GET)
         context['form'] = form
         return render(request, 'Alumni/signin_3.html', context)
+
+    if request.method == 'POST':
+        pass
 
 # Sign in 4 #
 # Function to signin user #
@@ -66,7 +71,7 @@ def signin_4(request):
     context = {}
     
     if request.method == 'GET':
-        form = PersonalInformationForm(request.POST)
+        form = ProfessionalInformationForm(request.GET)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
 

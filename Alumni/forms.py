@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from Alumni.models import Alumni
+from Alumni.models import Alumni, PledgeClass
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
@@ -96,26 +96,48 @@ class PersonalInformationForm(forms.Form):
             raise ValidationError("Passwords must match!")
         return self.cleaned_data
 
-'''
+
 class AKPsiInformationForm(forms.Form):
-    # Age #
-    age = forms.IntegerField(label = 'Age',
-                             min_value = 0,
-                             initial = 0,
-                             widget = forms.NumberInput(
-                                 attrs = {'id' : 'age'}))
-    pledge_class = 
-    big = 
-    littles = 
-    age = 
-    phone = 
-    current_city = 
-    hometown = 
-    picture = 
-    year = 
-    major = 
+
+    
+    # Pledge Class #
+    pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
+                                          order_by('year'),
+                               widget = forms.TextInput(attrs = { 'id' : 'pledge_class', 'class' : 'form-control', 'placeholder': 'Select your pledge class' })) 
+
+    # Big #
+    big = forms.ModelChoiceField(queryset = Alumni.objects.all(), ,
+                               widget = forms.TextInput(attrs = { 'id' : 'big', 'class' : 'form-control', 'placeholder': 'Select your big' }))
+
+    # Littles # 
+    littles = forms.ModelChoiceField(queryset = Alumni.objects.all(), ,
+                               widget = forms.TextInput(attrs = { 'id' : 'little', 'class' : 'form-control', 'placeholder': 'Select your little' }))
+            
+    # Phone Number #
+    phone = forms.CharField(label = 'Phone',
+                            required = True,
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
+
+
+    # Hometown #
+    hometown = forms.CharField(label = 'Hometown',
+                               required = True,
+                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'little', 'class' : 'form-control', 'placeholder': 'Select your little' }))
+
+    # Major # 
+    major = forms.CharField(label = 'Major',
+                            required = True,
+                            max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
 
 class ProfessionalInformationForm(forms.Form):
-    current_employer = 
-    role = 
-'''
+    current_employer = forms.CharField(label = 'Current Employer',
+                            required = True,
+                            max_length = 100,)
+
+    role = forms.CharField(label = 'Role',
+                           required = True,
+                           max_length = 100,)
+    # Current City #
+    current_city = forms.CharField(label = 'Current City',    
+                                   required = True,
+                                   max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' })
