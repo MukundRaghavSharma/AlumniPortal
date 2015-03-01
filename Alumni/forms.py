@@ -63,3 +63,31 @@ class SignInForm(forms.ModelForm):
             if commit:
                 user.save()
             return user
+
+# Personal - AKPsi - Professional Information #
+
+class PersonalInformationForm(forms.Form):
+    first_name = 
+    last_name = 
+    age =  
+    email = 
+    password = 
+    password_reconfirmation = 
+
+
+
+class AKPsiInformationForm(forms.Form):
+    pledge_class = 
+    big = 
+    littles = 
+    age = 
+    phone = 
+    current_city = 
+    hometown = 
+    picture = 
+    year = 
+    major = 
+
+class ProfessionalInformationForm(forms.Form):
+    current_employer = 
+    role = 
