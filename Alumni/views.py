@@ -14,16 +14,57 @@ import sys
 import urllib
 import uuid
 
-def signin_1(request):
-    if request.method == 'GET':
-        return render(request, 'Alumni/signin_1.html')
-
-# Function to signin user #
+'''
 def signin(request):
+    if request.method == 'GET':
+        return render(request, 'Alumni/signin.html')
+'''
+# Sign in 1 #
+# Function to signin user #
+def signin_1(request):
     context = {}
-    form = SignInForm(request.method)
-    context['form'] = form
-    return render(request, 'Alumni/signin.html', context)
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_1.html', context)
+
+# Sign in 2 #
+@transaction.atomic
+def signin_2(request):
+    context = {}
+
+    # Get Request #
+    if request.method == 'GET':
+        form = PersonalInformationForm(request.GET)
+        context['form'] = form
+        return render(request, 'Alumni/signin_2.html', context) 
+
+    # Post Request #
+    if request.method == 'POST':
+        form = PersonalInformationForm(request.POST)
+        context['forms'] = form
+        return render(request, 'Alumni/signin_2.html', context)
+
+# Sign in 3 #
+# Function to signin user #
+def signin_3(request):
+    context = {}
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_3.html', context)
+
+# Sign in 4 #
+# Function to signin user #
+def signin_4(request):
+    context = {}
+    
+    if request.method == 'GET':
+        form = SignInForm(request.method)
+        context['form'] = form
+        return render(request, 'Alumni/signin_4.html', context)
 
 # Information #
 def Information(request):
@@ -255,27 +296,6 @@ def gallery_view(request):
 @login_required
 def search(request):
     pass
-
-# Sign in 2 #
-@login_required
-@transaction.atomic
-def sign_in_2(request):
-    context = {}
-
-    # Get Request #
-    if request.method == 'GET':
-        form = PersonalInformationForm(request.GET)
-        context['form'] = form
-        return render(request, 'Alumni/signin_2.html', context) 
-
-    # Post Request #
-    if request.method == 'POST':
-        # Check form validation #
-        form = PersonalInformationForm(request.POST)
-        context['forms'] = form
-
-        return render(request, 'Alumni/signin_2.html', context)
-        pass
 
 @login_required
 def four_oh_four(request):
