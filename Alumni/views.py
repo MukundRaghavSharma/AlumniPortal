@@ -11,7 +11,11 @@ from django.shortcuts import render, redirect
 from django.templatetags.static import static
 import os
 import sys
-import urllib
+if sys.version_info >= (3, 0):
+    import urllib.request
+else:
+    import urllib
+
 import uuid
 
 '''
