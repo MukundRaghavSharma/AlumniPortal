@@ -706,3 +706,23 @@ a:hover {
 	 display: -webkit-inline-box;
 	 vertical-align: -webkit-baseline-middle;
 }
+
+::-webkit-input-placeholder {
+   font-style: italic;
+   color: #516182;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-style: italic;
+   color: #516182;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style: italic;
+   color: #516182;
+}
+
+:-ms-input-placeholder {  
+   font-style: italic;
+   color: #516182;  
+}

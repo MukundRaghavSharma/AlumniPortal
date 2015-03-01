@@ -7,10 +7,10 @@
     <div class="row" id="signup-position">
       <div class="col-md-4 col-md-offset-4" id="signup-form-shadow" >
         <div class="signup-title">
-          CMU & AKPsi History
+          Personal Information
         </div>
-        <form class="form-horizontal" id="signup-form-background" method="post">
-         {% csrf_token %}
+        <form class="form-horizontal" id="signup-form-background">
+
           <div id="yourId"></div>
           <div class="cropImgWrapper"></div>
           <script type="text/javascript">
@@ -19,32 +19,27 @@
 
           <div class="form-group">
             <div class="col-sm-12">
-                {{ form.first_name }}
-              <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+              <input type="text" class="form-control" id="" placeholder="First Name">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-                {{ form.last_name }}
-              <!--input type="text" class="form-control" id="" placeholder="Last Name"-->
+              <input type="text" class="form-control" id="" placeholder="Last Name">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-                {{ form.email }}
-              <!--input type="email" class="form-control" id="" placeholder="Email"-->
+              <input type="email" class="form-control" id="" placeholder="Email">
             </div>
           </div>
           <div class="form-group">
               <div class="col-sm-12">
-                  {{ form.password1 }}
-                <!--input type="password" class="form-control" id="" placeholder="Password"-->
+                <input type="password" class="form-control" id="" placeholder="Password">
               </div>
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-                  {{ form.password2 }}
-              <!--input type="password" class="form-control" id="" placeholder="Re-type Password"-->
+              <input type="password" class="form-control" id="" placeholder="Re-type Password">
             </div>
           </div>
           <div class="form-group" id="button-row">

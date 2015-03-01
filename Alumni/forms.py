@@ -70,24 +70,26 @@ class PersonalInformationForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
                             widget = forms.TextInput(
-                                attrs = { 'id' : 'first_name' }))
+                                attrs = { 'id' : 'first_name', 'class' : 'form-control', 'placeholder': 'First Name' }))
 
     # Last name #
     last_name = forms.CharField(label = 'Last Name',
                                 max_length = 100,
                                 widget = forms.TextInput(
-                                    attrs = { 'id' : 'last_name' }))
+                                    attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
     # Email #
     email = forms.EmailField(label = 'Email',
-                             max_length = 100,)
+                             max_length = 100,
+                             widget = forms.TextInput(
+                                attrs = { 'id' : 'email', 'class' : 'form-control', 'placeholder': 'Email' }))
 
     # Password 1 #
     password1 = forms.CharField(label = 'Password',
-                               widget = forms.PasswordInput())
+                               widget = forms.PasswordInput(attrs = { 'id' : 'password', 'class' : 'form-control', 'placeholder': 'Password' }))
 
     # Password 2 #
     password2 = forms.CharField(label = 'Re-enter your password',
-                               widget = forms.PasswordInput()) 
+                               widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
 
     def clean(self):
         if self.cleaned_data.get('password1') != self.cleaned_data.get('password2'):
