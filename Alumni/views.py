@@ -1,4 +1,4 @@
-from Alumni.forms import SignInForm, SignUpForm
+from Alumni.forms import SignInForm, SignUpForm, PersonalInformationForm
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
@@ -248,6 +248,27 @@ def gallery_view(request):
 @login_required
 def search(request):
     pass
+
+# Sign in 2 #
+@login_required
+@transaction.atomic
+def sign_in_2(request):
+    context = {}
+
+    # Get Request #
+    if request.method == 'GET':
+        form = PersonalInformationForm(request.GET)
+        context['form'] = form
+        return render(request, 'Alumni/signin_2.html', context) 
+
+    # Post Request #
+    if request.method == 'POST':
+        # Check form validation #
+        form = PersonalInformationForm(request.POST)
+        context['forms'] = form
+
+        return render(request, 'Alumni/signin_2.html', context)
+        pass
 
 @login_required
 def four_oh_four(request):

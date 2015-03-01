@@ -41,11 +41,16 @@ urlpatterns = patterns('',
     url(regex = r'^admin/', 
         view = include(admin.site.urls)),
 
-    # Signin Page 1#
+    # Signin Page 1 #
     url(regex = r'^$', 
         view = 'Alumni.views.signin_1',
         name = 'signin_1',),
 
+    # Signin Page 2 - Basic Information #
+    url(regex = r'^$',
+        view = 'Alumni.views.signin_2',
+        name = 'signin_2',),
+    
     # Class Page #
     url(regex = r'^class/(?P<classname>\w+)/$', 
         view = 'Alumni.views.class_view',
@@ -60,6 +65,8 @@ urlpatterns = patterns('',
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
+
+
 )
 
 urlpatterns += staticfiles_urlpatterns()

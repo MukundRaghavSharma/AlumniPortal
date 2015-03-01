@@ -65,18 +65,43 @@ class SignInForm(forms.ModelForm):
             return user
 
 # Personal - AKPsi - Professional Information #
-
 class PersonalInformationForm(forms.Form):
-    first_name = 
-    last_name = 
-    age =  
-    email = 
-    password = 
-    password_reconfirmation = 
+    # First Name #
+    first_name = forms.CharField(label = 'First Name',
+                            max_length = 100,
+                            widget = forms.TextInput(
+                                attrs = { 'id' : 'first_name' }))
 
+    # Last name #
+    last_name = forms.CharField(label = 'Last Name',
+                                max_length = 100,
+                                widget = forms.TextInput(
+                                    attrs = { 'id' : 'last_name' }))
+    # Email #
+    email = forms.EmailField(label = 'Email',
+                             max_length = 100,)
 
+    # Password 1 #
+    password1 = forms.CharField(label = 'Password',
+                               widget = forms.PasswordInput())
 
+    # Password 2 #
+    password2 = forms.CharField(label = 'Re-enter your password',
+                               widget = forms.PasswordInput()) 
+
+    def clean(self):
+        if self.cleaned_data.get('password1') != self.cleaned_data.get('password2'):
+            raise ValidationError("Passwords must match!")
+        return self.cleaned_data
+
+'''
 class AKPsiInformationForm(forms.Form):
+    # Age #
+    age = forms.IntegerField(label = 'Age',
+                             min_value = 0,
+                             initial = 0,
+                             widget = forms.NumberInput(
+                                 attrs = {'id' : 'age'}))
     pledge_class = 
     big = 
     littles = 
@@ -91,3 +116,4 @@ class AKPsiInformationForm(forms.Form):
 class ProfessionalInformationForm(forms.Form):
     current_employer = 
     role = 
+'''
