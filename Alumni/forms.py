@@ -4,7 +4,6 @@ from Alumni.models import Alumni, PledgeClass
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
-
                                  required = True,
                                  max_length = 100,)
     
@@ -66,6 +65,7 @@ class SignInForm(forms.ModelForm):
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):
+
     # First Name #
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
@@ -97,32 +97,23 @@ class PersonalInformationForm(forms.Form):
 
 class AKPsiInformationForm(forms.Form):
 
-    # Age #
-    age = forms.IntegerField(label = 'Age',
-                             min_value = 0,
-                             initial = 0,
-                             widget = forms.NumberInput(
-                                 attrs = {'id' : 'age'}))
-    
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
                                           order_by('year')) 
 
     # Big #
-    big = forms.ModelChoiceField(queryset = Alumni.objects.all(),)
+    big = forms.ModelChoiceField(queryset = Alumni.objects.all(),
+                                 empty_label = "Enter your Big's name")
 
     # Littles # 
-    littles = forms.ModelChoiceField(queryset = Alumni.objects.all())
+    littles = forms.ModelChoiceField(queryset = Alumni.objects.all(),
+                                     empty_label = "Enter your Little's name")
             
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
                             required = True,
                             max_length = 100,)
 
-    # Current City #
-    current_city = forms.CharField(label = 'Current City',    
-                                   required = True,
-                                   max_length = 100,)
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
                                required = True,
@@ -134,10 +125,17 @@ class AKPsiInformationForm(forms.Form):
                             max_length = 100,)
 
 class ProfessionalInformationForm(forms.Form):
+    
+    # Current Employer #
     current_employer = forms.CharField(label = 'Current Employer',
                             required = True,
                             max_length = 100,)
 
+    # Current Role in the Company #
     role = forms.CharField(label = 'Role',
                            required = True,
                            max_length = 100,)
+    # Current City #
+    current_city = forms.CharField(label = 'Current City',    
+                                   required = True,
+                                   max_length = 100,)
