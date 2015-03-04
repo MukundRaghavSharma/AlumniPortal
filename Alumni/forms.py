@@ -77,6 +77,7 @@ class PersonalInformationForm(forms.Form):
                                 max_length = 100,
                                 widget = forms.TextInput(
                                     attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
+
     # Email #
     email = forms.EmailField(label = 'Email',
                              max_length = 100,

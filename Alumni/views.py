@@ -1,5 +1,4 @@
-from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm,
-                  AKPsiInformationForm, ProfessionalInformationForm)
+from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
@@ -12,6 +11,7 @@ from django.shortcuts import render, redirect
 from django.templatetags.static import static
 import os
 import sys
+import linkedin
 if sys.version_info >= (3, 0):
     import urllib.request
 else:
@@ -40,10 +40,10 @@ def signin_1(request):
 @transaction.atomic
 def signin_2(request):
     context = {}
-    print (request)
 
     # Get Request #
     if request.method == 'GET':
+
         form = PersonalInformationForm(request.GET)
         context['form'] = form
         context['form'].fields['first_name'].initial = 'Cock'
@@ -167,8 +167,6 @@ def update(request):
         season = str(brother[13]) 
         year = str(brother[14])
         number = str(brother[2])
-
-        print (brother)
 
         username = str(uuid.uuid4())[0:30]
         user = User(username = username,

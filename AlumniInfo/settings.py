@@ -101,6 +101,17 @@ SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/signin_2'
 
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details'
+)
+
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
