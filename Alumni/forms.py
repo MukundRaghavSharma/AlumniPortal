@@ -1,6 +1,7 @@
+from Alumni.models import Alumni, PledgeClass
 from django import forms
 from django.contrib.auth.models import User
-from Alumni.models import Alumni, PledgeClass
+import datetime
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
@@ -100,15 +101,16 @@ class PersonalInformationForm(forms.Form):
 
 class AKPsiInformationForm(forms.Form):
 
-
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
                                           order_by('year'),
                                           empty_label = "Select your pledge class",
                                widget=forms.Select(attrs={'class':'form-control'})) 
 
-    # Big #
+    # Graduation Year #
+    graduation_year = forms.ModelChoiceField(queryset = set([x for x in range(2005, datetime.date.today().year + 2)]), empty_label = "Select your graduation year")
 
+    # Big #
     big = forms.ModelChoiceField(queryset = Alumni.objects.all(),
                                  empty_label = "Select your Big",
                                widget=forms.Select(attrs={'class':'form-control'}))
@@ -122,7 +124,6 @@ class AKPsiInformationForm(forms.Form):
     phone = forms.CharField(label = 'Phone',
                             required = True,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
-
 
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
