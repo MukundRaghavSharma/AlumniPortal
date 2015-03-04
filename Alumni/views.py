@@ -257,9 +257,12 @@ def family_view(request, family):
 
 @login_required
 def gallery_view(request):
+
+    template_name = 'Alumni/gallery.html'
+    page_template = 'Alumni/brothers.html'
     context = {}
 
-    if request.method == 'GET':
+    def get(self, request, *args, **kwargs):
         class_based_view = []
         sorting_classes = []
 
@@ -293,7 +296,23 @@ def gallery_view(request):
         # for pledge_class in class_based_view
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
-        return render(request, 'Alumni/gallery.html', context)
+        if request.is_ajax():
+            self.template_name = self.page_template
+        return super(AlumniGallery, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+       context = super(AlumniGallery, self).get_context_data(**kwargs)
+       context.update({
+           'alumni': Comment.objects.order_by('-id').filter(parent=None),
+           'page_template': self.page_template,
+       })
+
+       return context
+
+    
+
+        
+    return render(request, 'Alumni/gallery.html', context)
 
 @login_required
 def search(request):
