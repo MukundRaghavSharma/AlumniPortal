@@ -1,5 +1,4 @@
-from Alumni.forms import (SignInForm, 
-                  SignUpForm, PersonalInformationForm,
+from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm,
                   AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
@@ -18,6 +17,7 @@ if sys.version_info >= (3, 0):
 else:
     import urllib
 import uuid
+
 
 def signin(request):
     if request.method == 'GET':
