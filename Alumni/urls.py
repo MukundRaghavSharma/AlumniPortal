@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 
     
     # AUX Signin #
-    url(regex = r'^signin$',
+    url(regex = r'^signin/$',
         view  = 'Alumni.views.signin',
         name  = 'signin',),
 

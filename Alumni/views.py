@@ -17,12 +17,13 @@ if sys.version_info >= (3, 0):
     import urllib.request
 else:
     import urllib
-
 import uuid
 
 def signin(request):
     if request.method == 'GET':
-        return render(request, 'Alumni/signin.html')
+        context = {}
+        context['request'] = request
+        return render(request, 'Alumni/signin.html', context)
 
 # Sign in 1 #
 # Function to signin user #

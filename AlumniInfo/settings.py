@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
-    #'social_auth',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +48,27 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'social.backends.linkedin.LinkedinOAuth',
+   'social_auth.backends.contrib.linkedin.LinkedinBackend',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'AlumniInfo.urls'
@@ -61,6 +82,23 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni', 'media')
 
 MEDIA_URL = '/Alumni/media/'
+
+SOCIAL_AUTH_TWITTER_KEY = '8GKxgJ1XHZS9Ub2oxdYYUdiM6' 
+SOCIAL_AUTH_TWITTER_SECRET = 'TSX9MNCsGdcBZ39GZ6X58IByoFSojbCfH0IbibV8MqH9U8a8Oq'
+
+# LinkedIn Stuff #
+
+SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 
+SOCIAL_AUTH_LINKEDIN_SECRET = 'feGCLy3VQPEGk4Ot'
+
+SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
+SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
+                                   ('firstName', 'first_name'),
+                                   ('lastName', 'last_name'),
+                                   ('emailAddress', 'email_address'),
+                                   ('headline', 'headline'),
+                                   ('industry', 'industry')]
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
