@@ -5,15 +5,18 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
-	
-    url(regex = r'^signin/$',
+
+    
+    # AUX Signin #
+    url(regex = r'^signin$',
         view  = 'Alumni.views.signin',
         name  = 'signin',),
 
+    # AUX Signup #
     url(regex = r'^signup/$',
         view  = 'Alumni.views.signup',
         name  = 'signup',),
-    
+        
     # Sign-Up 1 - Launch Page #
     url(regex = r'^$',
         view  = 'Alumni.views.signin_1',

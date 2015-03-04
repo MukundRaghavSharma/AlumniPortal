@@ -4,7 +4,6 @@ from Alumni.models import Alumni, PledgeClass
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
-
                                  required = True,
                                  max_length = 100,)
     
@@ -66,6 +65,7 @@ class SignInForm(forms.ModelForm):
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):
+
     # First Name #
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
@@ -99,20 +99,20 @@ class PersonalInformationForm(forms.Form):
 
 class AKPsiInformationForm(forms.Form):
 
-    
+
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
                                           order_by('year'),
                                widget=forms.Select(attrs={'class':'form-control'})) 
 
     # Big #
-    big = forms.ModelChoiceField(queryset = Alumni.objects.all(), 
-                                 widget=forms.Select(attrs={'class':'form-control', 'placeholder': 'Phone Number'}))
+
+    big = forms.ModelChoiceField(queryset = Alumni.objects.all(),
+                                 empty_label = "Select your Big")
 
     # Littles # 
     littles = forms.ModelChoiceField(queryset = Alumni.objects.all(),
-                               widget=forms.Select(attrs={'class':'form-control'}),
-                               initial='Select your little...',)
+                                     empty_label = "Select your Little")
             
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
@@ -131,10 +131,13 @@ class AKPsiInformationForm(forms.Form):
                             max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
 
 class ProfessionalInformationForm(forms.Form):
+    
+    # Current Employer #
     current_employer = forms.CharField(label = 'Current Employer',
                             required = True,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'current_employer', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
 
+    # Current Role in the Company #
     role = forms.CharField(label = 'Role',
                            required = True,
                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'role', 'class' : 'form-control', 'placeholder': 'Role' }))
@@ -142,3 +145,4 @@ class ProfessionalInformationForm(forms.Form):
     current_city = forms.CharField(label = 'Current City',    
                                    required = True,
                                    max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))
+
