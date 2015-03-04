@@ -6,7 +6,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
 
-    
     # AUX Signin #
     url(regex = r'^signin/$',
         view  = 'Alumni.views.signin',

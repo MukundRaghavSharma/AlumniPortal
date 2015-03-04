@@ -25,6 +25,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 
 # Application definition
@@ -82,8 +83,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni
 
 MEDIA_URL = '/Alumni/media/'
 
-SOCIAL_AUTH_TWITTER_KEY = '8GKxgJ1XHZS9Ub2oxdYYUdiM6' 
-SOCIAL_AUTH_TWITTER_SECRET = 'TSX9MNCsGdcBZ39GZ6X58IByoFSojbCfH0IbibV8MqH9U8a8Oq'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 # LinkedIn Stuff #
 
@@ -98,18 +98,10 @@ SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
                                    ('emailAddress', 'email_address'),
                                    ('headline', 'headline'),
                                    ('industry', 'industry')]
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-'''
 
 DATABASES = {
     'default': {
