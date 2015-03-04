@@ -103,6 +103,7 @@ class AKPsiInformationForm(forms.Form):
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
                                           order_by('year'),
+                                          empty_label = "Select your pledge class",
                                widget=forms.Select(attrs={'class':'form-control'})) 
 
     # Big #
