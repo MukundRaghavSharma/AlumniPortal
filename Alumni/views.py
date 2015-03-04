@@ -33,17 +33,20 @@ def signin_1(request):
     if request.method == 'GET':
         form = SignInForm(request.GET)
         context['form'] = form
+        context['request'] = request
         return render(request, 'Alumni/signin_1.html', context)
 
 # Sign in 2 #
 @transaction.atomic
 def signin_2(request):
     context = {}
+    print (request)
 
     # Get Request #
     if request.method == 'GET':
         form = PersonalInformationForm(request.GET)
         context['form'] = form
+        context['form'].fields['first_name'].initial = 'Cock'
         return render(request, 'Alumni/signin_2.html', context) 
 
     # Post Request #
