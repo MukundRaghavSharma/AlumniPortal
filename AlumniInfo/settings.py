@@ -98,7 +98,8 @@ SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
                                    ('emailAddress', 'email_address'),
                                    ('headline', 'headline'),
                                    ('industry', 'industry')]
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard/'
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/signin_2'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
