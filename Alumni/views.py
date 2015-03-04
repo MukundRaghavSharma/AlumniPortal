@@ -11,7 +11,6 @@ from django.shortcuts import render, redirect
 from django.templatetags.static import static
 import os
 import sys
-import linkedin
 if sys.version_info >= (3, 0):
     import urllib.request
 else:
@@ -43,10 +42,13 @@ def signin_2(request):
 
     # Get Request #
     if request.method == 'GET':
-
-        form = PersonalInformationForm(request.GET)
+        user = request.user
+        alumni = Alumni.objects.get(user = user)
+        initial = {'first_name' : user.first_name,
+                   'last_name' : user.last_name,
+                   'email' : user.email} 
+        form = PersonalInformationForm(initial = initial)
         context['form'] = form
-        context['form'].fields['first_name'].initial = 'Cock'
         return render(request, 'Alumni/signin_2.html', context) 
 
     # Post Request #
@@ -61,7 +63,14 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        form = AKPsiInformationForm(request.GET)
+        user = request.user
+        alumni = Alumni.objects.get(user = user)
+        pledge_class = alumni.pledge_class
+        initial = {'major' : alumni.major,
+                   'hometown' : alumni.hometown,
+                   'email' : user.email,
+                   'phone' : alumni.phone } 
+        form = AKPsiInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_3.html', context)
 
@@ -74,10 +83,14 @@ def signin_4(request):
     context = {}
     
     if request.method == 'GET':
-        form = ProfessionalInformationForm(request.GET)
+        user = request.user
+        alumni = Alumni.objects.get(user = user)
+        initial = {'current_employer' : alumni.employer,
+                   'role' : alumni.position,
+                   'city' : alumni.current_city}
+        form = ProfessionalInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
-
 
 # Function to signup user #
 @transaction.atomic

@@ -90,13 +90,19 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 
 SOCIAL_AUTH_LINKEDIN_SECRET = 'feGCLy3VQPEGk4Ot'
 
-SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
+SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_emailaddress', 'r_fullprofile', 'r_contactinfo']
 SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
 SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
                                    ('firstName', 'first_name'),
                                    ('lastName', 'last_name'),
                                    ('emailAddress', 'email_address'),
+                                   ('location', 'location'),
                                    ('headline', 'headline'),
+                                   ('positions', 'positions'),
+                                   ('summary', 'summary'),
+                                   ('site-standard-profile-request', 'site_standard_profile_request'),
+                                   ('public-profile-url', 'public_profile_url'),
+                                   ('picture-url', 'picture_url'),
                                    ('industry', 'industry')]
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/signin_2'
@@ -108,9 +114,11 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_user',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details'
+    'social.pipeline.user.user_details',
+    'Alumni.models.social_auth_to_profile',
 )
 
+AUTH_PROFILE_MODULE = 'Alumni.Alumni'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
