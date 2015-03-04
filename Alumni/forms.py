@@ -109,11 +109,13 @@ class AKPsiInformationForm(forms.Form):
     # Big #
 
     big = forms.ModelChoiceField(queryset = Alumni.objects.all(),
-                                 empty_label = "Select your Big")
+                                 empty_label = "Select your Big",
+                               widget=forms.Select(attrs={'class':'form-control'}))
 
     # Littles # 
     littles = forms.ModelChoiceField(queryset = Alumni.objects.all(),
-                                     empty_label = "Select your Little")
+                                     empty_label = "Select your Little",
+                               widget=forms.Select(attrs={'class':'form-control'}))
             
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
