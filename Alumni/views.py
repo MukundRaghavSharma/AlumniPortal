@@ -20,11 +20,9 @@ else:
 
 import uuid
 
-'''
 def signin(request):
     if request.method == 'GET':
         return render(request, 'Alumni/signin.html')
-'''
 # Sign in 1 #
 # Function to signin user #
 def signin_1(request):

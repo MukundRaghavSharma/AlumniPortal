@@ -66,6 +66,7 @@ a:hover {
 	  left: 50%;
 	  /* bring your own prefixes */
 	  transform: translate(-50%, -50%);
+
 	
 }
 
@@ -86,6 +87,9 @@ a:hover {
 	-webkit-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
 	-moz-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
 	box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.8);
+	padding-bottom: 10px;
+	height: 460px;
+	margin-bottom: -5px;
 }
 
 #signup-form-shadow {
@@ -111,7 +115,7 @@ a:hover {
 	position:relative; /* or fixed or absolute */
 }
 
-.next-button {
+.next-button-right {
 	float: right;
 	background-color: #2a3856;
 	border-color: #2a3856;
@@ -121,9 +125,23 @@ a:hover {
 	text-align: right;
 }
 
+
+.next-button-left {
+	background-color: #2a3856;
+	border-color: #2a3856;
+	border-style: solid;
+	color: #fff;
+	width: 75%;
+	text-align: left;
+	float: left;
+	background-color: #888888;
+	border-color: #888888;
+}
+
 .next-button:hover {
 	background-color: #516182;
 	border-color: #516182;
+
 }
 
 #position-one {
@@ -161,6 +179,18 @@ a:hover {
     border-color: #888888;
     height: 30px;
 }
+
+#position-done {
+	background-color: #2a3856;
+	color: #fff;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+    border-color: #2a3856;
+    height: 30px;
+}
+
+
 
 /*
  * Globals
@@ -726,3 +756,28 @@ a:hover {
    font-style: italic;
    color: #516182;  
 }
+
+.form-control:focus {
+border-color: #516182;
+outline: 0;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(81, 97, 130, .6);
+box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(81, 97, 130, .6);
+}
+
+.form-control {
+display: block;
+width: 100%;
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+color: #223355;
+background-color: #fff;
+background-image: none;
+border: 1px solid #223355;
+border-radius: 15px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
