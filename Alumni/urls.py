@@ -70,6 +70,8 @@ urlpatterns = patterns('',
         view = 'Alumni.views.gallery_view',
         name = 'class_view',),
     
+    
+    
     # 404 Page #
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
