@@ -25,6 +25,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 
 # Application definition
@@ -37,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
-    #'social_auth',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +49,26 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'social.backends.linkedin.LinkedinOAuth',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'AlumniInfo.urls'
@@ -62,17 +83,25 @@ MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni
 
 MEDIA_URL = '/Alumni/media/'
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# LinkedIn Stuff #
+
+SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 
+SOCIAL_AUTH_LINKEDIN_SECRET = 'feGCLy3VQPEGk4Ot'
+
+SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
+SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
+                                   ('firstName', 'first_name'),
+                                   ('lastName', 'last_name'),
+                                   ('emailAddress', 'email_address'),
+                                   ('headline', 'headline'),
+                                   ('industry', 'industry')]
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard/'
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-'''
 
 DATABASES = {
     'default': {
