@@ -806,3 +806,19 @@ transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
         background-color: #516182;
         border: 1px solid #516182;
     }
+
+.input-group-addon {
+	border-radius: 15px;
+}
+
+#error-text {
+	margin-bottom: 5px;
+	margin-top: -15px;
+	padding-left: 15px;
+	padding-right: 20px;
+	width: inherit;
+	text-align: right;
+	color: #a94442;
+	font-style: italic;
+	font-size: 12px;
+}

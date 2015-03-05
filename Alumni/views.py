@@ -8,6 +8,7 @@ from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.templatetags.static import static
 import os
 import sys
@@ -54,8 +55,20 @@ def signin_2(request):
     # Post Request #
     if request.method == 'POST':
         form = PersonalInformationForm(request.POST)
-        context['forms'] = form
-        return render(request, 'Alumni/signin_2.html', context)
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
+        password2 = form.cleaned_data['password2']
+
+        if form.is_valid():
+                    # process the data in form.cleaned_data as required
+                    # ...
+                    # redirect to a new URL:
+                    return HttpResponseRedirect('/signin_3')
+        else :
+            context['forms'] = form
+            return render(request, 'Alumni/signin_2.html', context)
 
 # Sign in 3 #
 # Function to signin user #
