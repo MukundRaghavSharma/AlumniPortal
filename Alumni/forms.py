@@ -98,7 +98,6 @@ class PersonalInformationForm(forms.Form):
             raise ValidationError("Passwords must match!")
         return self.cleaned_data
 
-
 class AKPsiInformationForm(forms.Form):
 
     # Pledge Class #
@@ -107,19 +106,16 @@ class AKPsiInformationForm(forms.Form):
                                           empty_label = "Select your pledge class",
                                widget=forms.Select(attrs={'class':'form-control'})) 
 
+    CHOICES = [ x for x in range(2004, datetime.date.today().year + 2) ]
+    CHOICES[0] = (0, 'Select your graduation year')
+    for i in range(1, len(CHOICES)):
+        CHOICES[i] = (i, CHOICES[i])
+    CHOICES = tuple(CHOICES)
+
     # Graduation Year #
-    graduation_year = forms.ModelChoiceField(queryset = set([x for x in range(2005, datetime.date.today().year + 2)]), empty_label = "Select your graduation year")
+    graduation_year = forms.ChoiceField(choices = CHOICES, widget =
+            forms.Select(attrs={'class':'form-control'}), required = True)
 
-    # Big #
-    big = forms.ModelChoiceField(queryset = Alumni.objects.all(),
-                                 empty_label = "Select your Big",
-                               widget=forms.Select(attrs={'class':'form-control'}))
-
-    # Littles # 
-    littles = forms.ModelChoiceField(queryset = Alumni.objects.all(),
-                                     empty_label = "Select your Little",
-                               widget=forms.Select(attrs={'class':'form-control'}))
-            
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
                             required = True,
