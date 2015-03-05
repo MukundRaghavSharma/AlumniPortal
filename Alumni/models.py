@@ -15,6 +15,7 @@ class PledgeClass(models.Model):
     
     def save(self, *args, **kwargs):
             try:
+                print (self.name)
                 existing = PledgeClass.objects.get(name = self.name)
                 self.id = existing.id
             except PledgeClass.DoesNotExist:
