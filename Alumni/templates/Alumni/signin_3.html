@@ -17,7 +17,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-                {{ form.major }}
+                
               <!--input type="text" class="form-control" id="" placeholder="First Name"-->
             </div>
           </div>
@@ -33,11 +33,14 @@
               <!--input type="email" class="form-control" id="" placeholder="Email"-->
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group has-error">
               <div class="col-sm-12">
                   {{ form.pledge_class }}
                 <!--input type="password" class="form-control" id="" placeholder="Password"-->
               </div>
+          </div>
+          <div class="form-group" id="error-text">
+            This field is required.
           </div>
           <div class="form-group">
             <div class="col-sm-12">
