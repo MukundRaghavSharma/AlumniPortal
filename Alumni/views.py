@@ -18,7 +18,6 @@ else:
     import urllib
 import uuid
 
-
 def signin(request):
     if request.method == 'GET':
         context = {}
@@ -44,6 +43,8 @@ def signin_2(request):
     # Get Request #
     if request.method == 'GET':
         user = request.user
+        print (user)
+        user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
@@ -194,7 +195,8 @@ def update(request):
         year = str(brother[14])
         number = str(brother[2])
 
-        username = str(uuid.uuid4())[0:30]
+        username = first_name + last_name + email
+        username = username[0:30]
         user = User(username = username,
                     first_name = first_name,
                     last_name = last_name,
@@ -333,3 +335,59 @@ def four_oh_four(request):
                                   context_instance = RequestContext(request))
     response.status_code = 404
     return response 
+
+def social_auth_to_profile(backend, details, response, is_new=False, *args, **kwargs):
+
+    # Stuff to parse from LinkedIn:
+    # 1. Employer
+    # 2. Summary 
+    # 3. Position
+    # 4. LinkedIn Public Page URL
+    # 5. Picture URL
+
+    # Check for each field.. some could be None #
+    first_name = details['first_name']
+    last_name = details['last_name']
+    email = details['email']
+
+    # If user is not in the DB #
+    # - Create the user object 
+    # - Create the Alumni object 
+    
+    # If user is in the DB #
+    # - Get the user object  
+    # - Get the alumni object
+
+    # Fix a unique username username = fullname + email #
+
+    username = first_name + last_name + email
+    username = username[0:30]
+    is_new = len(User.objects.filter(first_name = first_name, last_name = last_name,email = email, username = username)) == 0
+    user = None
+    print (is_new)
+        
+    if is_new:
+        # Create new profile here #
+            print ('here')
+            user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email)
+            alumni = Alumni(user = user)
+            authenticated_user = authenticate(username = username, 
+                                              password = 'cmuakpsi')
+            user.save()
+            alumni.save()
+
+    else:
+        # Not new -> link to already created profile #
+        user = User.objects.get(username = username, first_name = first_name, last_name = last_name, email = email)
+
+    print (user)
+    alumni = Alumni.objects.get(user = user)
+    if kwargs.get('social') != None:
+        print (kwargs.get('social').extra_data)
+        linkedin_info = kwargs['social'].extra_data
+        alumni.role = linkedin_info['headline']
+        print (alumni.role)
+        #alumni.position_description = linkedin_info['summary'] 
+        #alumni.= social_user.extra_data['positions']['position'][0]['title']
+        print ("Alumni info")
+        alumni.save()
