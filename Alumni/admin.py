@@ -1,3 +1,5 @@
 from django.contrib import admin
+from Alumni.models import Alumni, PledgeClass
 
-# Register your models here.
+admin.site.register(Alumni)
+admin.site.register(PledgeClass)
