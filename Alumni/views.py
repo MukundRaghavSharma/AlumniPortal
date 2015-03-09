@@ -1,6 +1,7 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
+from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -32,8 +33,6 @@ def signin_1(request):
     context = {}
     
     if request.method == 'GET':
-        form = SignInForm(request.GET)
-        context['form'] = form
         context['request'] = request
         return render(request, 'Alumni/signin_1.html', context)
 
@@ -45,7 +44,6 @@ def signin_2(request):
     # Get Request #
     if request.method == 'GET':
         user = request.user
-        print (user)
         user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         initial = {'first_name' : user.first_name,
@@ -130,9 +128,8 @@ def signup(request):
         # Check if the passwords match #
         if request.POST['password1'] != request.POST['password2']:
             errors.append('Passwords do not match')    
+
         if len(errors) > 0:
-            print ("HERE")
-            print (errors)
             return render(request, 'Alumni/signup.html', context)
 
         if form.is_valid():
@@ -153,7 +150,8 @@ def signup(request):
                 raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
-                                       season = 'Spring')
+                                       season = 'Spring',
+                                       class_number = 14444)
             
             pledge_class.save()
             alumni = Alumni(user = user, pledge_class = pledge_class)
@@ -207,9 +205,19 @@ def update(request):
                     email = email)
         user.save()
 
+        class_number = 14444 # Default bullshit 
+        if class_name in pledge_class_dictionary:
+            class_number = pledge_class_dictionary[class_name] 
+
+        if class_name not in pledge_class_dictionary:
+            print (first_name)
+            print (last_name)
+            print (number)
+
         pledge_class = PledgeClass(name = class_name,
-                                    season = season,
-                                    year = year)
+                                   season = season,
+                                   year = year,
+                                   class_number = class_number)
 
         pledge_class.save()
 
@@ -299,29 +307,13 @@ def gallery_view(request):
         sorting_classes = []
 
         pledge_classes = PledgeClass.objects.all()
-        pledge_classes = pledge_classes.extra(order_by = ['year'])
+        pledge_classes = pledge_classes.extra(order_by = ['class_number'])
 
         for pledge_class in pledge_classes:
             sorting_classes.append(pledge_class)
 
-        # Flip! #
-        #for i in range(0, len(sorting_classes) - 1):
-        #    # Remove if Boss Class not there #
-        #    if i == 0:
-        #        continue
-        #    
-        #    temp = sorting_classes[i]
-        #    sorting_classes[i] = sorting_classes[i + 1]
-        #    sorting_classes[i + 1] = temp
-
-        # Hacky way of sorting the last names #
-        #for pledge_class in sorting_class:
-            #for 
-            #last_names = pledge
-
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
-            #filtered_class
             sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(filtered_class)
 
@@ -383,9 +375,12 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
 
     alumni = Alumni.objects.get(user = user)
     if kwargs.get('social') != None:
+        print (kwargs)
         print (kwargs.get('social').extra_data)
         linkedin_info = kwargs['social'].extra_data
         alumni.role = linkedin_info['headline']
+        alumni.current_city = linkedin_info['location']
+        print (alumni.role)
         #alumni.position_description = linkedin_info['summary'] 
-        #alumni.= social_user.extra_data['positions']['position'][0]['title']
+        #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()

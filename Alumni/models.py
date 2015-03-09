@@ -9,6 +9,7 @@ class PledgeClass(models.Model):
     season = models.CharField(max_length = 10, blank = True)
     year = models.CharField(max_length = 10, blank = True)
     name = models.CharField(max_length = 40, blank = True)
+    class_number = models.PositiveIntegerField()
 
     def __unicode__(self):
         return unicode(self.name)
@@ -29,7 +30,7 @@ class Alumni(models.Model):
     user = models.OneToOneField(User)
     employer = models.CharField(blank = True, max_length = 100)
     position = models.CharField(blank = True, max_length = 100)
-    current_city = models.CharField(blank = True, max_length = 50)
+    current_city = models.CharField(blank = True, null = True, max_length = 50)
     phone = models.CharField(blank = True, max_length = 50)
     major = models.CharField(blank = True, max_length = 100)
     bio = models.CharField(blank = True, max_length = 500)
@@ -44,8 +45,6 @@ class Alumni(models.Model):
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
     number = models.IntegerField(null = True, blank = True)
-    #big = models.OneToOneField(User)
-    #littles = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.user.first_name + " " +  self.user.last_name
