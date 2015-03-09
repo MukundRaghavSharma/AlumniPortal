@@ -1,15 +1,16 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, EditForm)
 from Alumni.models import Alumni, PledgeClass
-from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
+from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models import Q
-from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.templatetags.static import static
 import os
 import sys
@@ -359,7 +360,11 @@ def edit_profile(request, id):
         alumni_data = request.POST
 
         # User Info Change #
-
+        if (alumni_data['password1'] != alumni_data['password2'] and alumni_data['password1'] != '' and
+            alumni_data['password2'] != ''):
+            raise ValidationError("PASSWORDS SHOULD MATCH!")
+        else:
+            alumni.user.set_password(alumni_data['password1'])
 
         # Alumni Info Change #
         alumni.phone = alumni_data['phone']
