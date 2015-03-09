@@ -309,6 +309,10 @@ def gallery_view(request):
         pledge_classes = PledgeClass.objects.all()
         pledge_classes = pledge_classes.extra(order_by = ['class_number'])
 
+        # Edge case: Charters #
+        charters = PledgeClass.objects.filter(name = 'Charter').order_by('number')
+        sorting_classes.append(charters)
+
         for pledge_class in pledge_classes:
             sorting_classes.append(pledge_class)
 
@@ -317,7 +321,6 @@ def gallery_view(request):
             sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(filtered_class)
 
-        # for pledge_class in class_based_view
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
