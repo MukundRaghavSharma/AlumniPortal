@@ -21,7 +21,9 @@ import uuid
 def signin(request):
     if request.method == 'GET':
         context = {}
+        form = SignInForm(request.method)
         context['request'] = request
+        context['form'] = SignInForm(request.GET)
         return render(request, 'Alumni/signin.html', context)
 
 # Sign in 1 #
@@ -129,6 +131,8 @@ def signup(request):
         if request.POST['password1'] != request.POST['password2']:
             errors.append('Passwords do not match')    
         if len(errors) > 0:
+            print ("HERE")
+            print (errors)
             return render(request, 'Alumni/signup.html', context)
 
         if form.is_valid():
@@ -252,6 +256,7 @@ def update(request):
 @login_required
 def profile(request, id):
     if request.method == 'GET':
+        print (id)
         context = {}
         check_user = User.objects.filter(id = id)
 
@@ -364,15 +369,11 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
     username = username[0:30]
     is_new = len(User.objects.filter(first_name = first_name, last_name = last_name,email = email, username = username)) == 0
     user = None
-    print (is_new)
         
     if is_new:
         # Create new profile here #
-            print ('here')
             user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email)
             alumni = Alumni(user = user)
-            authenticated_user = authenticate(username = username, 
-                                              password = 'cmuakpsi')
             user.save()
             alumni.save()
 
@@ -380,14 +381,11 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
         # Not new -> link to already created profile #
         user = User.objects.get(username = username, first_name = first_name, last_name = last_name, email = email)
 
-    print (user)
     alumni = Alumni.objects.get(user = user)
     if kwargs.get('social') != None:
         print (kwargs.get('social').extra_data)
         linkedin_info = kwargs['social'].extra_data
         alumni.role = linkedin_info['headline']
-        print (alumni.role)
         #alumni.position_description = linkedin_info['summary'] 
         #alumni.= social_user.extra_data['positions']['position'][0]['title']
-        print ("Alumni info")
         alumni.save()

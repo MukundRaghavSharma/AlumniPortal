@@ -8,8 +8,9 @@ urlpatterns = patterns('',
 
     # AUX Signin #
     url(regex = r'^signin/$',
-        view  = 'Alumni.views.signin',
-        name  = 'signin',),
+        view  = 'django.contrib.auth.views.login',
+        name  = 'signin',
+        kwargs = {'template_name' : 'Alumni/signin.html'},),
 
     # AUX Signup #
     url(regex = r'^signup/$',
@@ -69,8 +70,6 @@ urlpatterns = patterns('',
     url(regex = r'^gallery/$', 
         view = 'Alumni.views.gallery_view',
         name = 'class_view',),
-    
-    
     
     # 404 Page #
     url(regex = r'^404$',
