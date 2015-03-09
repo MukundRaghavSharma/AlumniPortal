@@ -11,6 +11,7 @@
                             </div>
                         </div>
                         <h1 class="dash-name"> {{ current_user.user.first_name }} {{ current_user.user.last_name }} </h1>
+                        <a href='{% url 'edit_page' current_user.user.id %}'> Edit </a>
                 </div>
                 <div class="col-md-9" >
                     <ul class="list-group">

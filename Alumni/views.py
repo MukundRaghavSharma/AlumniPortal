@@ -1,4 +1,4 @@
-from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
+from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, EditForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
@@ -334,9 +334,15 @@ def search(request):
 
 
 @login_required
-def edit_profile(request):
+def edit_profile(request, id):
+    context = {}
     if request.method == 'GET':
-        pass
+        alumni = Alumni.objects.get(user = request.user)
+        initial = {'first_name' : request.user.first_name,
+                   'last_name' : request.user.last_name,
+                   'email' : request.user.email} 
+        context['form'] = EditForm(initial = initial) 
+        return render(request, 'Alumni/edit.html', context)
 
     if request.method == 'POST':
         pass

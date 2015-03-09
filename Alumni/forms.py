@@ -99,7 +99,6 @@ class PersonalInformationForm(forms.Form):
         return self.cleaned_data
 
 class AKPsiInformationForm(forms.Form):
-
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
                                           order_by('year'),
@@ -147,3 +146,23 @@ class ProfessionalInformationForm(forms.Form):
                                    required = True,
                                    max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))
 
+class EditForm(forms.Form):
+    # First Name #
+    first_name = forms.CharField(label = 'First Name',
+                            max_length = 100,
+                            widget = forms.TextInput(
+                                attrs = { 'id' : 'first_name', 'class' : 'form-control', 'placeholder': 'First Name' }))
+
+    # Last name #
+    last_name = forms.CharField(label = 'Last Name',
+                                max_length = 100,
+                                widget = forms.TextInput(
+                                    attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
+
+    # Password 1 #
+    password1 = forms.CharField(label = 'Password',
+                               widget = forms.PasswordInput(attrs = { 'id' : 'password', 'class' : 'form-control', 'placeholder': 'Password' }))
+
+    # Password 2 #
+    password2 = forms.CharField(label = 'Re-enter your password',
+                               widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 

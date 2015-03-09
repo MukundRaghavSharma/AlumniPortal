@@ -55,7 +55,7 @@ urlpatterns = patterns('',
     # Log out Page #
     url(regex = r'^logout', 
         view = 'Alumni.views.logout_user',
-        name = 'Logout',),
+        name = 'logout',),
 
     # Admin Page #
     url(regex = r'^admin/', 
@@ -70,6 +70,11 @@ urlpatterns = patterns('',
     url(regex = r'^gallery/$', 
         view = 'Alumni.views.gallery_view',
         name = 'class_view',),
+
+    # Edit Page #
+    url(regex = r'^edit/(?P<id>\d+)/$', 
+        view = 'Alumni.views.edit_profile',
+        name = 'edit_page',),
     
     # 404 Page #
     url(regex = r'^404$',
