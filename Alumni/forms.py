@@ -123,7 +123,7 @@ class AKPsiInformationForm(forms.Form):
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
                                required = True,
-                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'little', 'class' : 'form-control', 'placeholder': 'Hometown' }))
+                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'hometown', 'class' : 'form-control', 'placeholder': 'Hometown' }))
 
     # Major # 
     major = forms.CharField(label = 'Major',
@@ -147,6 +147,7 @@ class ProfessionalInformationForm(forms.Form):
                                    max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))
 
 class EditForm(forms.Form):
+
     # First Name #
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
@@ -166,3 +167,42 @@ class EditForm(forms.Form):
     # Password 2 #
     password2 = forms.CharField(label = 'Re-enter your password',
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
+    
+    # Pledge Class #
+    #pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
+    #                                      order_by('year'),
+    #                                      empty_label = "Select your pledge class",
+    #                           widget=forms.Select(attrs={'class':'form-control'})) 
+    # Graduation Year #
+    #graduation_year = forms.ChoiceField(choices = CHOICES, widget =
+    #        forms.Select(attrs={'class':'form-control'}), required = True)
+
+    # Phone Number #
+    phone = forms.CharField(label = 'Phone',
+                            required = True,
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
+
+    # Hometown #
+    hometown = forms.CharField(label = 'Hometown',
+                               required = True,
+                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'hometown', 'class' : 'form-control', 'placeholder': 'Hometown' }))
+
+    # Major # 
+    major = forms.CharField(label = 'Major',
+                            required = True,
+                            max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
+
+    # Current Employer #
+    current_employer = forms.CharField(label = 'Current Employer',
+                            required = True,
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'current_employer', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
+
+    # Current Role in the Company #
+    role = forms.CharField(label = 'Role',
+                           required = True,
+                           max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'role', 'class' : 'form-control', 'placeholder': 'Role' }))
+
+    # Current City #
+    current_city = forms.CharField(label = 'Current City',    
+                                   required = True,
+                                   max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))

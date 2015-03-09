@@ -13,11 +13,11 @@ from django.http import HttpResponseRedirect
 from django.templatetags.static import static
 import os
 import sys
+
 if sys.version_info >= (3, 0):
     import urllib.request
 else:
     import urllib
-import uuid
 
 def signin(request):
     if request.method == 'GET':
@@ -336,16 +336,42 @@ def search(request):
 @login_required
 def edit_profile(request, id):
     context = {}
+    alumni = Alumni.objects.get(user = request.user)
+
     if request.method == 'GET':
-        alumni = Alumni.objects.get(user = request.user)
         initial = {'first_name' : request.user.first_name,
                    'last_name' : request.user.last_name,
-                   'email' : request.user.email} 
+                   'email' : request.user.email,
+                   'phone' : alumni.phone,
+                   'hometown' : alumni.hometown,
+                   'major' : alumni.major,
+                   'current_employer' : alumni.employer,
+                   'role' : alumni.position,
+                   'current_city' : alumni.current_city,
+                   'password1' : request.user.password,
+                   'password2' : request.user.password,
+        } 
+
         context['form'] = EditForm(initial = initial) 
         return render(request, 'Alumni/edit.html', context)
 
     if request.method == 'POST':
-        pass
+        alumni_data = request.POST
+
+        # User Info Change #
+
+
+        # Alumni Info Change #
+        alumni.phone = alumni_data['phone']
+        alumni.hometown = alumni_data['hometown']
+        alumni.major = alumni_data['major']
+        alumni.employer = alumni_data['current_employer']
+        alumni.position = alumni_data['role']
+        alumni.current_city = alumni_data['current_city']
+
+        alumni.save()
+        return redirect('/edit/' + id)
+
 
 @login_required
 def four_oh_four(request):
