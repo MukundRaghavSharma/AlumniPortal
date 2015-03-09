@@ -38,6 +38,7 @@ def signin_1(request):
 
 # Sign in 2 #
 @transaction.atomic
+@login_required
 def signin_2(request):
     context = {}
 
@@ -73,6 +74,7 @@ def signin_2(request):
 
 # Sign in 3 #
 # Function to signin user #
+@login_required
 def signin_3(request):
     context = {}
     
@@ -327,7 +329,17 @@ def gallery_view(request):
 
 @login_required
 def search(request):
-    pass
+    if request.method == 'POST':
+        pass
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'GET':
+        pass
+
+    if request.method == 'POST':
+        pass
 
 @login_required
 def four_oh_four(request):
@@ -358,11 +370,12 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
     # - Get the user object  
     # - Get the alumni object
 
-    # Fix a unique username username = fullname + email #
-
     username = first_name + last_name + email
     username = username[0:30]
-    is_new = len(User.objects.filter(first_name = first_name, last_name = last_name,email = email, username = username)) == 0
+    is_new = len(User.objects.filter(first_name = first_name, 
+             last_name = last_name,
+             email = email, 
+             username = username)) == 0
     user = None
         
     if is_new:
@@ -383,7 +396,6 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
         linkedin_info = kwargs['social'].extra_data
         alumni.role = linkedin_info['headline']
         alumni.current_city = linkedin_info['location']
-        print (alumni.role)
         #alumni.position_description = linkedin_info['summary'] 
         #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()
