@@ -100,7 +100,6 @@ SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
                                    ('headline', 'headline'),
                                    ('positions', 'positions'),
                                    ('summary', 'summary'),
-                                   ('site-standard-profile-request', 'site_standard_profile_request'),
                                    ('public-profile-url', 'public_profile_url'),
                                    ('picture-url', 'picture_url'),
                                    ('industry', 'industry')]
@@ -115,7 +114,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
-    'Alumni.models.social_auth_to_profile',
+    'Alumni.views.social_auth_to_profile',
 )
 
 AUTH_PROFILE_MODULE = 'Alumni.Alumni'

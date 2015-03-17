@@ -38,31 +38,31 @@ class SignUpForm(forms.Form):
 
 
 class SignInForm(forms.ModelForm):
-    email = forms.EmailField(label = "Email",
-                            widget = forms.TextInput( 
-                                attrs = { 'id' : 'email' }),)
+    username = forms.CharField(label = 'Username',
+                               required = True,
+                               max_length = 100,)
+    
+    password1 = forms.CharField(label = 'Password',
+                               widget = forms.PasswordInput())
 
-    password = forms.CharField(label = 'Enter your Password', 
-                                max_length = 100,
-                                widget = forms.PasswordInput(
-                                    attrs = {'id' : 'password'}))
-
+    '''
     class Meta:
-        model = User
-        fields = ['email', 'password']
+    model = User
+    fields = ['username', 'password']
 
-        def clean(self):
-            cleaned_data = super(SignInForm, self).clean()
-            if 'password' not in self.cleaned_data:
-                raise forms.ValidationError("Enter the password!")
-            return self.cleaned_data
+    def clean(self):
+    cleaned_data = super(SignInForm, self).clean()
+    if 'password' not in self.cleaned_data:
+    raise forms.ValidationError("Enter the password!")
+    return self.cleaned_data
 
-        def save(self, commit = True):
-            user = super(SignInForm, self).save(commit = False)
-            user.set_password(self.cleaned_data['password'])
-            if commit:
-                user.save()
-            return user
+    def save(self, commit = True):
+    user = super(SignInForm, self).save(commit = False)
+    user.set_password(self.cleaned_data['password'])
+    if commit:
+    user.save()
+    return user
+    '''
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):

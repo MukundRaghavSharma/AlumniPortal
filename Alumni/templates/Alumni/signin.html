@@ -15,8 +15,6 @@
             </div>
           </div>
         </nav>
-        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
-        <a href="{% url 'social:begin' 'linkedin' %}?next={{ request.path }}">Login with Linkedin</a>
         <div class="well signin">
             {% if form.errors %}
                 <p> Incorrect Username/Password </p>
@@ -26,9 +24,9 @@
             </h4>
             <form class="form-signin" method="post" action="{% url 'signin' %}">
                {% csrf_token %}
-               {{ form.as_table }}
+               {{ form }}
                 <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block padded">
-                <input type="hidden" name="next" value="/home/"/>
+                <input type="hidden" name="next" value="/dashboard/"/>
                 <a href="/signup/" class="rememberme">
                     New User? Sign up here.
                 </a>

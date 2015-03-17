@@ -1,6 +1,7 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
+from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -18,11 +19,12 @@ else:
     import urllib
 import uuid
 
-
 def signin(request):
     if request.method == 'GET':
         context = {}
+        form = SignInForm(request.method)
         context['request'] = request
+        context['form'] = SignInForm(request.GET)
         return render(request, 'Alumni/signin.html', context)
 
 # Sign in 1 #
@@ -31,19 +33,19 @@ def signin_1(request):
     context = {}
     
     if request.method == 'GET':
-        form = SignInForm(request.GET)
-        context['form'] = form
         context['request'] = request
         return render(request, 'Alumni/signin_1.html', context)
 
 # Sign in 2 #
 @transaction.atomic
+@login_required
 def signin_2(request):
     context = {}
 
     # Get Request #
     if request.method == 'GET':
         user = request.user
+        user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
@@ -68,6 +70,7 @@ def signin_2(request):
 
 # Sign in 3 #
 # Function to signin user #
+@login_required
 def signin_3(request):
     context = {}
     
@@ -123,6 +126,7 @@ def signup(request):
         # Check if the passwords match #
         if request.POST['password1'] != request.POST['password2']:
             errors.append('Passwords do not match')    
+
         if len(errors) > 0:
             return render(request, 'Alumni/signup.html', context)
 
@@ -144,7 +148,8 @@ def signup(request):
                 raw = urllib.urlopen(url)
             content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
-                                       season = 'Spring')
+                                       season = 'Spring',
+                                       class_number = 14444)
             
             pledge_class.save()
             alumni = Alumni(user = user, pledge_class = pledge_class)
@@ -190,16 +195,27 @@ def update(request):
         year = str(brother[14])
         number = str(brother[2])
 
-        username = str(uuid.uuid4())[0:30]
+        username = first_name + last_name + email
+        username = username[0:30]
         user = User(username = username,
                     first_name = first_name,
                     last_name = last_name,
                     email = email)
         user.save()
 
+        class_number = 14444 # Default bullshit 
+        if class_name in pledge_class_dictionary:
+            class_number = pledge_class_dictionary[class_name] 
+
+        if class_name not in pledge_class_dictionary:
+            print (first_name)
+            print (last_name)
+            print (number)
+
         pledge_class = PledgeClass(name = class_name,
-                                    season = season,
-                                    year = year)
+                                   season = season,
+                                   year = year,
+                                   class_number = class_number)
 
         pledge_class.save()
 
@@ -246,6 +262,7 @@ def update(request):
 @login_required
 def profile(request, id):
     if request.method == 'GET':
+        print (id)
         context = {}
         check_user = User.objects.filter(id = id)
 
@@ -288,40 +305,37 @@ def gallery_view(request):
         sorting_classes = []
 
         pledge_classes = PledgeClass.objects.all()
-        pledge_classes = pledge_classes.extra(order_by = ['year'])
+        pledge_classes = pledge_classes.extra(order_by = ['class_number'])
+
+        # Edge case: Charters #
+        charters = PledgeClass.objects.filter(name = 'Charter').order_by('number')
+        sorting_classes.append(charters)
 
         for pledge_class in pledge_classes:
             sorting_classes.append(pledge_class)
 
-        # Flip! #
-        #for i in range(0, len(sorting_classes) - 1):
-        #    # Remove if Boss Class not there #
-        #    if i == 0:
-        #        continue
-        #    
-        #    temp = sorting_classes[i]
-        #    sorting_classes[i] = sorting_classes[i + 1]
-        #    sorting_classes[i + 1] = temp
-
-        # Hacky way of sorting the last names #
-        #for pledge_class in sorting_class:
-            #for 
-            #last_names = pledge
-
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
-            #filtered_class
             sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(filtered_class)
 
-        # for pledge_class in class_based_view
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
 
 @login_required
 def search(request):
-    pass
+    if request.method == 'POST':
+        pass
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'GET':
+        pass
+
+    if request.method == 'POST':
+        pass
 
 @login_required
 def four_oh_four(request):
@@ -329,3 +343,55 @@ def four_oh_four(request):
                                   context_instance = RequestContext(request))
     response.status_code = 404
     return response 
+
+def social_auth_to_profile(backend, details, response, is_new=False, *args, **kwargs):
+
+    # Stuff to parse from LinkedIn:
+    # 1. Employer
+    # 2. Summary 
+    # 3. Position
+    # 4. LinkedIn Public Page URL
+    # 5. Picture URL
+
+    # Check for each field.. some could be None #
+    first_name = details['first_name']
+    last_name = details['last_name']
+    email = details['email']
+
+    # If user is not in the DB #
+    # - Create the user object 
+    # - Create the Alumni object 
+    
+    # If user is in the DB #
+    # - Get the user object  
+    # - Get the alumni object
+
+    username = first_name + last_name + email
+    username = username[0:30]
+    is_new = len(User.objects.filter(first_name = first_name, 
+             last_name = last_name,
+             email = email, 
+             username = username)) == 0
+    user = None
+        
+    if is_new:
+        # Create new profile here #
+            user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email)
+            alumni = Alumni(user = user)
+            user.save()
+            alumni.save()
+
+    else:
+        # Not new -> link to already created profile #
+        user = User.objects.get(username = username, first_name = first_name, last_name = last_name, email = email)
+
+    alumni = Alumni.objects.get(user = user)
+    if kwargs.get('social') != None:
+        print (kwargs)
+        print (kwargs.get('social').extra_data)
+        linkedin_info = kwargs['social'].extra_data
+        alumni.role = linkedin_info['headline']
+        alumni.current_city = linkedin_info['location']
+        #alumni.position_description = linkedin_info['summary'] 
+        #alumni = social_user.extra_data['positions']['position'][0]['title']
+        alumni.save()
