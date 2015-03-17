@@ -7,52 +7,53 @@
         <div class="signup-title">
           Personal Information
         </div>
-        <form class="form-horizontal" id="signup-form-background" method="post">
+        <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post">
          {% csrf_token %}
           <div id="yourId"></div>
           <div class="cropImgWrapper"></div>
           <script type="text/javascript">
             var cropperHeader = new Croppic('yourId');
           </script>
+          {% for field in form %}
+              {% if field.errors %}
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      <div class="input-group has-error">
+                        {{ field }}
+                        <div class="input-group-addon"><i class="fa fa-exclamation-circle"></i></div>
+                      </div>
+                    <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                  </div>
+                </div>
+                {% for error in field.errors %}
+                  <div class="form-group" id="error-text">
+                    <div class="col-sm-12">
+                        
+                              {{ error }}
+                        
+                      <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      {{ field }}
+                    <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                  </div>
+                </div>
+              {% endif %}
 
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.first_name }}
-              <!--input type="text" class="form-control" id="" placeholder="First Name"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.last_name }}
-              <!--input type="text" class="form-control" id="" placeholder="Last Name"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.email }}
-              <!--input type="email" class="form-control" id="" placeholder="Email"-->
-            </div>
-          </div>
-          <div class="form-group">
-              <div class="col-sm-12">
-                  {{ form.password1 }}
-                <!--input type="password" class="form-control" id="" placeholder="Password"-->
+          {% endfor %}
+
+
+            <div class="form-group" id="button-row">
+              <div class="col-sm-offset-8 col-sm-4">
+                <button  id="page_1_right" class="next-button-right" page="/signin_3 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
               </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                  {{ form.password2 }}
-              <!--input type="password" class="form-control" id="" placeholder="Re-type Password"-->
             </div>
-          </div>
         </form>
-        <div class="row" id="position-row">
-          <div class="form-group" id="button-row">
-            <div class="col-sm-offset-8 col-sm-4">
-              <button  id="page_1_right" class="next-button-right" page="/signin_3 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
-            </div>
-          </div>
-        </div>
+
         <div class="row" id="position-row">
           <div class="col-sm-4" id="position-one">
             <div class="numberCircle">1</div>

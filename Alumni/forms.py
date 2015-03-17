@@ -70,33 +70,57 @@ class PersonalInformationForm(forms.Form):
     # First Name #
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
+                            required = True,
                             widget = forms.TextInput(
                                 attrs = { 'id' : 'first_name', 'class' : 'form-control', 'placeholder': 'First Name' }))
 
     # Last name #
     last_name = forms.CharField(label = 'Last Name',
                                 max_length = 100,
+                                required = True,
                                 widget = forms.TextInput(
                                     attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
 
     # Email #
     email = forms.EmailField(label = 'Email',
                              max_length = 100,
+                             required = True,
                              widget = forms.TextInput(
                                 attrs = { 'id' : 'email', 'class' : 'form-control', 'placeholder': 'Email' }))
 
+    # Phone Number #
+    phone = forms.CharField(label = 'Phone',
+                            required = True,
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
+
     # Password 1 #
     password1 = forms.CharField(label = 'Password',
+        required = True,
                                widget = forms.PasswordInput(attrs = { 'id' : 'password', 'class' : 'form-control', 'placeholder': 'Password' }))
 
     # Password 2 #
-    password2 = forms.CharField(label = 'Re-enter your password',
+    password2 = forms.CharField(label = 'Re-enter your password', required = True,
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
 
     def clean(self):
-        if self.cleaned_data.get('password1') != self.cleaned_data.get('password2'):
-            raise ValidationError("Passwords must match!")
-        return self.cleaned_data
+        form_data = self.cleaned_data
+
+        if 'password1' not in form_data and 'password2' not in form_data:
+            self._errors["password1"] = ["A Password is Required."] # Will raise a error message
+            self._errors["password2"] = ["A Password is Required."] # Will raise a error message
+        elif 'password1' not in form_data:
+            self._errors["password1"] = ["A Password is Required."] # Will raise a error message
+        elif 'password2' not in form_data:
+            self._errors["password2"] = ["A Password is Required."] # Will raise a error message
+        else:
+            if form_data['password1'] != form_data['password2']:
+                self._errors["password2"] = ["Passwords do not match"] # Will raise a error message
+                self._errors["password1"] = ["Passwords do not match"] # Will raise a error message
+                del form_data['password1']
+                del form_data['password2']
+        return form_data
+
+
 
 class AKPsiInformationForm(forms.Form):
 
@@ -116,10 +140,7 @@ class AKPsiInformationForm(forms.Form):
     graduation_year = forms.ChoiceField(choices = CHOICES, widget =
             forms.Select(attrs={'class':'form-control'}), required = True)
 
-    # Phone Number #
-    phone = forms.CharField(label = 'Phone',
-                            required = True,
-                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
+
 
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
