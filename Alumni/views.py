@@ -1,15 +1,16 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
 from Alumni.models import Alumni, PledgeClass
-from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
+from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.templatetags.static import static
 import os
 import sys
@@ -17,6 +18,7 @@ if sys.version_info >= (3, 0):
     import urllib.request
 else:
     import urllib
+import json
 import uuid
 
 def signin(request):
@@ -58,13 +60,11 @@ def signin_2(request):
     if request.method == 'POST':
         errors = []
         form = PersonalInformationForm(request.POST)
-        
 
         if form.is_valid():
-                    print("valid")
-                    return redirect('/signin_3')
-        else :
-            
+            print("valid")
+            return redirect('/signin_3')
+        else:
             context['form'] = form
         return render(request, 'Alumni/signin_2.html', context)
 
@@ -387,11 +387,17 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
 
     alumni = Alumni.objects.get(user = user)
     if kwargs.get('social') != None:
-        print (kwargs)
-        print (kwargs.get('social').extra_data)
         linkedin_info = kwargs['social'].extra_data
         alumni.role = linkedin_info['headline']
         alumni.current_city = linkedin_info['location']
         #alumni.position_description = linkedin_info['summary'] 
         #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()
+
+def get_pledge_class(request, class_number):
+    if request.method == 'GET':
+        pledge_class = PledgeClass.objects.get(class_number = class_number)
+        alumni = Alumni(pledge_class = pledge_class)
+        response_text = serializers.serialize('json', alumni)
+        print (response_text)
+        return HttpResponse(response_text, content_type='application/json')

@@ -75,6 +75,11 @@ urlpatterns = patterns('',
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
+
+    # AJAX Pledge Class Response #
+    url(regex = r'^get_pledge_class/(?P<class_number>\w+)/$',
+        view = 'Alumni.views.get_pledge_class',
+        name = 'get_pledge_class',),
 )
 
 urlpatterns += staticfiles_urlpatterns()
