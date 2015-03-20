@@ -41,12 +41,11 @@ def signin_1(request):
 @login_required
 def signin_2(request):
     context = {}
+    user = request.user
+    alumni = Alumni.objects.get(user = user)
 
     # Get Request #
     if request.method == 'GET':
-        user = request.user
-        user = User.objects.get(username = request.user)
-        alumni = Alumni.objects.get(user = user)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
                    'email' : user.email} 
@@ -56,26 +55,31 @@ def signin_2(request):
 
     # Post Request #
     if request.method == 'POST':
-        errors = []
-        form = PersonalInformationForm(request.POST)
-        
+        print (request.POST)
+        form = PersonalInformationForm(request.POST, request.FILES)
 
         if form.is_valid():
-                    print("valid")
-                    return redirect('/signin_3')
-        else :
-            
-            context['form'] = form
+            alumni.user.first_name = form.cleaned_data.get('first_name')
+            alumni.user.last_name = form.cleaned_data.get('last_name')
+            alumni.email = form.cleaned_data.get('email')
+            alumni.phone = form.cleaned_data.get('phone')
+            alumni.user.set_password(form.cleaned_data.get('password2'))
+            alumni.user.save()
+            alumni.save()
+            return redirect('/signin_3')
+
+        context['form'] = form
         return render(request, 'Alumni/signin_2.html', context)
 
 # Sign in 3 #
 # Function to signin user #
 @login_required
+@transaction.atomic
 def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        user = request.user
+        user = User.objects.get(user = request.user)
         alumni = Alumni.objects.get(user = user)
         pledge_class = alumni.pledge_class
         initial = {'major' : alumni.major,
@@ -87,20 +91,45 @@ def signin_3(request):
         return render(request, 'Alumni/signin_3.html', context)
 
     if request.method == 'POST':
-        pass
+        form = AKPsiInformationForm(request.POST)
+        user = request.user
+        alumni = Alumni.objects.get(user = user)
+        if form.is_valid():
+            alumni.major = form.cleaned_data['major']
+            alumni.graduation_class = form.cleaned_data['graduation_year']
+            alumni.hometown = form.cleaned_data['hometown']
+            alumni.save()
+            return redirect('/signin_4')
+
+        # Invalid form #
+        context['form'] = form
+        return render(request, 'Alumni/signin_3.html', context)  
 
 # Sign in 4 #
 # Function to signin user #
+@transaction.atomic
 def signin_4(request):
     context = {}
+    user = request.user
+    alumni = Alumni.objects.get(user = user)
     
     if request.method == 'GET':
-        user = request.user
-        alumni = Alumni.objects.get(user = user)
         initial = {'current_employer' : alumni.employer,
                    'role' : alumni.position,
                    'city' : alumni.current_city}
         form = ProfessionalInformationForm(initial = initial)
+        context['form'] = form
+        return render(request, 'Alumni/signin_4.html', context)
+
+    if request.method == 'POST':
+        form = ProfessionalInformationForm(request.POST)
+        if form.is_valid():
+            alumni.employer = form.cleaned_data.get('current_employer')
+            alumni.role = form.cleaned_data.get('role')
+            alumni.current_city = form.cleaned_data.get('current_city')
+            alumni.save()
+            return redirect('/dashboard/')
+
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
 
@@ -395,3 +424,10 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
         #alumni.position_description = linkedin_info['summary'] 
         #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()
+
+def donations(request):
+    context = {}
+
+    if request.method == 'GET':
+        return render(request, 'Alumni/donations.html', context)
+
