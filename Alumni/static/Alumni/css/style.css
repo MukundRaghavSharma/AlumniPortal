@@ -423,8 +423,13 @@ a:hover {
 	color: #516182;
 }
 
+.employer-description{
+	word-wrap: break-word;
+}
+
 .bio-body {
 	font-size: 16px;
+	word-wrap: break-word;
 }
 
 a {
@@ -827,4 +832,9 @@ transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
 	color: #a94442;
 	font-style: italic;
 	font-size: 12px;
+}
+
+.full_size {
+	height: 100%,
+	width: 100%;
 }
