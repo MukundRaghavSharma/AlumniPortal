@@ -75,6 +75,12 @@ urlpatterns = patterns('',
     url(regex = r'^404$',
         view = 'Alumni.views.four_oh_four',
         name = '404',),
+
+    # Donation Class #
+    url(regex = r'^donations/$',
+        view = 'Alumni.views.donations',
+        name = 'donations',),
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
