@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 import uuid
 
 class Family(models.Model):
-    name = models.CharField(max_length = 10, blank = True)
+    name = models.CharField(max_length = 20, blank = True)
 
     def __unicode__(self):
         return unicode(self.name)
@@ -18,7 +18,7 @@ class Family(models.Model):
             try:
                 existing = Family.objects.get(name = self.name)
                 self.id = existing.id
-            except PledgeClass.DoesNotExist:
+            except Family.DoesNotExist:
                 pass
             models.Model.save(self, *args, **kwargs)
 
@@ -54,7 +54,6 @@ class Alumni(models.Model):
     picture = models.FileField(blank = True)
     company_logo = models.FileField(blank = True)
     family = models.ForeignKey(Family, blank = True, null = True)
-    #family = models.CharField(blank = True, max_length = 100)
     nickname = models.CharField(blank = True, max_length = 100)
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
