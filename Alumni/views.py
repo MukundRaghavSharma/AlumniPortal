@@ -38,6 +38,7 @@ def signin_1(request):
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
+        print ("In signin 2 post")
         confirmation_code = request.POST['confirmation'] 
 
         if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
@@ -49,8 +50,8 @@ def signin_1(request):
             alumni.save()
             login(request, alumni.user)
             return redirect('/signin_2')
-            context['username'] = alumni.user.username
-            return render(request, 'Alumni/signin_2.html')
+            #context['username'] = alumni.user.username
+            #return render(request, 'Alumni/signin_2.html')
 
 # Sign in 2 #
 @login_required
@@ -76,6 +77,7 @@ def signin_2(request):
         alumni = Alumni.objects.get(user = request.user)
 
         if form.is_valid():
+            print ("In the Personal Information POST")
             alumni = Alumni.objects.get(user = request.user)
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
@@ -87,6 +89,7 @@ def signin_2(request):
             alumni = Alumni.objects.filter(user = request.user) 
             alumni.update(phone = form.cleaned_data.get('phone'))
             login(request, user)
+            
             return redirect('/signin_3')
 
         context['form'] = form
@@ -100,9 +103,12 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
+        print ("in get of the AKPsi page")
         alumni = Alumni.objects.get(user = request.user)
-        print (alumni.graduation_class)
-        alumni.graduation_class = alumni.graduation_class.split(' ')[2]
+        if len(alumni.graduation_class) < 2:
+            alumni.graduation_class = ''
+        else:
+            alumni.graduation_class = alumni.graduation_class.split(' ')[2]
         class_choice = CHOICES[0]
         for choice in CHOICES:
             if choice == alumni.graduation_class:
@@ -118,6 +124,7 @@ def signin_3(request):
         return render(request, 'Alumni/signin_3.html', context)
 
     if request.method == 'POST':
+        print ("in post of the AKPsi page")
         form = AKPsiInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = user)
@@ -139,14 +146,16 @@ def signin_4(request):
     context = {}
     user = request.user
     alumni = Alumni.objects.get(user = request.user)
+    #print (alumni)
     
     if request.method == 'GET':
+        print ("In get of the Prof Page")
         print ("Alumni Employer ", alumni.employer)
         print ("Alumni role", alumni.position)
         print ("Alumni city", alumni.current_city)
-        initial = {'current_employer' : alumni.employer,
+        initial = {'employer' : alumni.employer,
                    'role' : alumni.position,
-                   'current_city' : alumni.current_city}
+                   'current_city' : alumni.current_city }
         form = ProfessionalInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
@@ -155,14 +164,14 @@ def signin_4(request):
         print ("IN POST FOR PROFESSIONAL INFO")
         form = ProfessionalInformationForm(request.POST)
         alumni = Alumni.objects.get(user = request.user)
-        print ("Alumni Employer ", alumni.employer)
-        print ("Alumni role", alumni.position)
-        print ("Alumni city", alumni.current_city)
-        alumni = Alumni.objects.get(user = request.user)
+        #print ("Alumni Employer ", alumni.employer)
+        #print ("Alumni role", alumni.position)
+        #print ("Alumni city", alumni.current_city)
+        #alumni = Alumni.objects.get(user = request.user)
         if form.is_valid():
             print ("PROFESSIONAL FORM VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
-            alumni.role = form.cleaned_data.get('role')
+            alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
             alumni.save()
             return redirect('/dashboard/')
