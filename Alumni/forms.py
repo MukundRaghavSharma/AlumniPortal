@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 import datetime
 import re
 
+CHOICES = [ x for x in range(2004, datetime.date.today().year + 2) ]
+CHOICES[0] = (0, 'Select your graduation year')
+for i in range(1, len(CHOICES)):
+    CHOICES[i] = (i, CHOICES[i])
+CHOICES = tuple(CHOICES)
+
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
                                  required = True,
@@ -104,11 +110,11 @@ class PersonalInformationForm(forms.Form):
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
 
     def clean(self):
-        phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
+        #phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
         email_regex = re.compile("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$")
         form_data = self.cleaned_data
         print(form_data)
-        isValidPhone = phone_regex.search(form_data['phone'])
+        #isValidPhone = phone_regex.search(form_data['phone'])
         isValidEmail = email_regex.search(form_data['email'])
 
 
@@ -123,9 +129,9 @@ class PersonalInformationForm(forms.Form):
             del form_data['password2']
         if isValidEmail is None:
             self._errors["email"] = ["A Valid Email Address is Required."] # Will raise a error message
-        if isValidPhone is None:
-            print(145)
-            self._errors["phone"] = ["A Valid Phone Number is Required."] # Will raise a error message
+        #if isValidPhone is None:
+        #    print(145)
+        #    self._errors["phone"] = ["A Valid Phone Number is Required."] # Will raise a error message
         return form_data
 
 

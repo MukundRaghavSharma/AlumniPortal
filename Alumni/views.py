@@ -1,4 +1,4 @@
-from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm)
+from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass
 from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
@@ -101,9 +101,16 @@ def signin_3(request):
     
     if request.method == 'GET':
         alumni = Alumni.objects.get(user = request.user)
+        print (alumni.graduation_class)
+        alumni.graduation_class = alumni.graduation_class.split(' ')[2]
+        class_choice = CHOICES[0]
+        for choice in CHOICES:
+            if choice == alumni.graduation_class:
+                class_choice = choice 
+
         pledge_class = alumni.pledge_class
         initial = {'major' : alumni.major,
-                   'graduation_year' : alumni.graduation_class,
+                   'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
                    'pledge_class' : alumni.pledge_class } 
         form = AKPsiInformationForm(initial = initial)
@@ -116,8 +123,7 @@ def signin_3(request):
         alumni = Alumni.objects.get(user = user)
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
-            alumni.graduation_class = form.cleaned_data['graduation_year']
-            print (form.cleaned_data['graduation_year'])
+            alumni.graduation_class = "Class of " + form.cleaned_data['graduation_year']
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -281,8 +287,7 @@ def update(request):
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
 
             #url = 'file://Alumni/static/Alumni/images/' + name_url
-            url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + 
-                '/static/Alumni/images/' + name_url)
+            url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + '/static/Alumni/images/' + name_url)
             destination_url = 'Alumni/media/images/' + name_url 
             if sys.version_info >= (3, 0):
                 raw = urllib.request.urlopen(url)
