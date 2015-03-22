@@ -64,7 +64,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.contrib.messages.context_processors.messages',
    #'social.apps.django_app.context_processors.backends',
    #'social.apps.django_app.context_processors.login_redirect',
+<<<<<<< HEAD
    
+=======
+>>>>>>> be2923eb77a58e570fb99655d6f9bb0eb9c4436a
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -89,47 +92,10 @@ MEDIA_URL = '/Alumni/media/'
 
 #SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-'''
-=======
 INPLACEEDIT_EVENT = "click"
 INPLACE_ENABLE_CLASS = 'enable'
 INPLACEEDIT_EDIT_EMPTY_VALUE = 'Click to edit'
 
->>>>>>> 1a4a7326bfe59d3cdbaa9b711a0039e734092d11
-# LinkedIn Stuff #
-
-SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 
-SOCIAL_AUTH_LINKEDIN_SECRET = 'feGCLy3VQPEGk4Ot'
-
-SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_emailaddress', 'r_fullprofile', 'r_contactinfo']
-SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
-SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
-                                   ('firstName', 'first_name'),
-                                   ('lastName', 'last_name'),
-                                   ('emailAddress', 'email_address'),
-                                   ('location', 'location'),
-                                   ('headline', 'headline'),
-                                   ('positions', 'positions'),
-                                   ('summary', 'summary'),
-                                   ('public-profile-url', 'public_profile_url'),
-                                   ('picture-url', 'picture_url'),
-                                   ('industry', 'industry')]
-
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/signin_2'
-
-SOCIAL_AUTH_PIPELINE = (
-    'social.pipeline.social_auth.social_details',
-    'social.pipeline.social_auth.social_uid',
-    'social.pipeline.social_auth.auth_allowed',
-    'social.pipeline.social_auth.social_user',
-    'social.pipeline.social_auth.associate_user',
-    'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details',
-    'Alumni.views.social_auth_to_profile',
-)
-
-
-'''
 AUTH_PROFILE_MODULE = 'Alumni.Alumni'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
