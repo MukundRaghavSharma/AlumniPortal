@@ -46,8 +46,7 @@ class Alumni(models.Model):
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
     number = models.IntegerField(null = True, blank = True)
-    big = models.ForeignKey(Alumni, null = True, blank = True)
-    little = models.ManyToManyField(Alumni)
+    big = models.ForeignKey("self", null = True, blank = True)
 
 
 

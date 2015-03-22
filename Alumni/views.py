@@ -250,10 +250,20 @@ def update(request):
         class_name = str(brother[10]).split(' ')[0]
         nickname = str(brother[12])
         family = str(brother[11])
-        season = str(brother[13]) 
+        season = str(brother[13])
         year = str(brother[14])
         number = str(brother[2])
         big = str(brother[15])
+
+        if len(big) != 0:
+            big_first_name = big.split(' ')
+            big_last_name = big.split(' ')
+            if len(big_first_name) > 2:
+                big_first_name = big_first_name[0]
+                big_last_name = big_last_name[2]
+            else:
+                big_first_name = big_first_name[0]
+                big_last_name = big_last_name[1]
 
         password = str(uuid.uuid4()) 
         username = first_name + last_name + email
@@ -263,8 +273,15 @@ def update(request):
                                         last_name = last_name,
                                         email = email,
                                         password = password)
-        user.is_active = False 
         user.save()
+        if len(big) != 0:
+            print (user)
+            big_user = User.objects.get(first_name = big_first_name,
+                                        last_name = big_last_name)
+        else:
+            print ("CHARTER")
+            big_user = None
+        user.is_active = False 
 
         class_number = 14444 # Default bullshit 
         if class_name in pledge_class_dictionary:
@@ -301,7 +318,12 @@ def update(request):
                     raw = urllib.urlopen(url)
                 content_file = ContentFile(raw.read())
 
-        finally: 
+        finally:
+            if big_user == None:
+                big_alumni = None
+            else:
+                big_alumni = Alumni.objects.get(user = big_user)
+
             alumni = Alumni(user = user,
                             employer = employer,
                             current_city = current_city,
@@ -313,6 +335,7 @@ def update(request):
                             nickname = nickname,
                             family = family,
                             confirmation_code = password,
+                            big = big_alumni,
                             number = number)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
