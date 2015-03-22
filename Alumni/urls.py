@@ -81,6 +81,11 @@ urlpatterns = patterns('',
         view = 'Alumni.views.donations',
         name = 'donations',),
 
+    # Family Tree Class #
+    url(regex = r'^family_trees/$',
+        view = 'Alumni.views.family_trees',
+        name = 'family_trees',),
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
