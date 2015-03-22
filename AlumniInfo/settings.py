@@ -24,7 +24,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
 SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 
@@ -38,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
-    'social.apps.django_app.default',
+    #'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,15 +58,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.core.context_processors.static',
    'django.core.context_processors.tz',
    'django.contrib.messages.context_processors.messages',
-   'social.apps.django_app.context_processors.backends',
-   'social.apps.django_app.context_processors.login_redirect',
+   #'social.apps.django_app.context_processors.backends',
+   #'social.apps.django_app.context_processors.login_redirect',
 )
 
 AUTHENTICATION_BACKENDS = (
-   'social.backends.facebook.FacebookOAuth2',
-   'social.backends.google.GoogleOAuth2',
-   'social.backends.twitter.TwitterOAuth',
-   'social.backends.linkedin.LinkedinOAuth',
+   #'social.backends.facebook.FacebookOAuth2',
+   #'social.backends.google.GoogleOAuth2',
+   #'social.backends.twitter.TwitterOAuth',
+   #'social.backends.linkedin.LinkedinOAuth',
    'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -83,8 +82,9 @@ MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../Alumni
 
 MEDIA_URL = '/Alumni/media/'
 
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
+#SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
+'''
 # LinkedIn Stuff #
 
 SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 
@@ -117,8 +117,9 @@ SOCIAL_AUTH_PIPELINE = (
     'Alumni.views.social_auth_to_profile',
 )
 
-AUTH_PROFILE_MODULE = 'Alumni.Alumni'
 
+'''
+AUTH_PROFILE_MODULE = 'Alumni.Alumni'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 

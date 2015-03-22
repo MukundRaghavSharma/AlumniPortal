@@ -13,11 +13,11 @@ from django.http import HttpResponseRedirect
 from django.templatetags.static import static
 import os
 import sys
+import uuid
 if sys.version_info >= (3, 0):
     import urllib.request
 else:
     import urllib
-import uuid
 
 def signin(request):
     if request.method == 'GET':
@@ -35,37 +35,58 @@ def signin_1(request):
     if request.method == 'GET':
         context['request'] = request
         return render(request, 'Alumni/signin_1.html', context)
+    
+    # Post redirects to signin_2 #
+    if request.method == 'POST':
+        confirmation_code = request.POST['confirmation'] 
+
+        if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
+               context['is_error'] = True
+               return render(request, 'Alumni/signin_1.html', context)
+        else: 
+            alumni = Alumni.objects.get(confirmation_code = confirmation_code)
+            alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
+            alumni.save()
+            login(request, alumni.user)
+            return redirect('/signin_2')
+            context['username'] = alumni.user.username
+            return render(request, 'Alumni/signin_2.html')
 
 # Sign in 2 #
-@transaction.atomic
 @login_required
+@transaction.atomic
 def signin_2(request):
     context = {}
-    user = request.user
-    alumni = Alumni.objects.get(user = user)
 
     # Get Request #
     if request.method == 'GET':
+        user = User.objects.get(username = request.user.username)
+        alumni = Alumni.objects.get(user = user)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
-                   'email' : user.email} 
+                   'email' : user.email,
+                   'phone' : alumni.phone} 
         form = PersonalInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_2.html', context) 
 
     # Post Request #
     if request.method == 'POST':
-        print (request.POST)
         form = PersonalInformationForm(request.POST, request.FILES)
+        alumni = Alumni.objects.get(user = request.user)
 
         if form.is_valid():
+            alumni = Alumni.objects.get(user = request.user)
+            user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
-            alumni.email = form.cleaned_data.get('email')
-            alumni.phone = form.cleaned_data.get('phone')
+            alumni.user.email = form.cleaned_data.get('email')
             alumni.user.set_password(form.cleaned_data.get('password2'))
+            alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
             alumni.user.save()
-            alumni.save()
+            alumni = Alumni.objects.filter(user = request.user) 
+            alumni.update(phone = form.cleaned_data.get('phone'))
+            login(request, user)
             return redirect('/signin_3')
 
         context['form'] = form
@@ -79,13 +100,12 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        user = User.objects.get(user = request.user)
-        alumni = Alumni.objects.get(user = user)
+        alumni = Alumni.objects.get(user = request.user)
         pledge_class = alumni.pledge_class
         initial = {'major' : alumni.major,
+                   'graduation_year' : alumni.graduation_class,
                    'hometown' : alumni.hometown,
-                   'email' : user.email,
-                   'phone' : alumni.phone } 
+                   'pledge_class' : alumni.pledge_class } 
         form = AKPsiInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_3.html', context)
@@ -97,6 +117,7 @@ def signin_3(request):
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
             alumni.graduation_class = form.cleaned_data['graduation_year']
+            print (form.cleaned_data['graduation_year'])
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -111,19 +132,29 @@ def signin_3(request):
 def signin_4(request):
     context = {}
     user = request.user
-    alumni = Alumni.objects.get(user = user)
+    alumni = Alumni.objects.get(user = request.user)
     
     if request.method == 'GET':
+        print ("Alumni Employer ", alumni.employer)
+        print ("Alumni role", alumni.position)
+        print ("Alumni city", alumni.current_city)
         initial = {'current_employer' : alumni.employer,
                    'role' : alumni.position,
-                   'city' : alumni.current_city}
+                   'current_city' : alumni.current_city}
         form = ProfessionalInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
 
     if request.method == 'POST':
+        print ("IN POST FOR PROFESSIONAL INFO")
         form = ProfessionalInformationForm(request.POST)
+        alumni = Alumni.objects.get(user = request.user)
+        print ("Alumni Employer ", alumni.employer)
+        print ("Alumni role", alumni.position)
+        print ("Alumni city", alumni.current_city)
+        alumni = Alumni.objects.get(user = request.user)
         if form.is_valid():
+            print ("PROFESSIONAL FORM VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.role = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
@@ -200,8 +231,7 @@ def home(request):
 @login_required
 def logout_user(request):
     logout(request)
-    form = SignUpForm(request.GET)
-    return render(request, 'Alumni/signin.html', {'form' : form})
+    return redirect('/')
 
 @login_required
 @transaction.atomic
@@ -224,22 +254,20 @@ def update(request):
         year = str(brother[14])
         number = str(brother[2])
 
+        password = str(uuid.uuid4()) 
         username = first_name + last_name + email
         username = username[0:30]
-        user = User(username = username,
-                    first_name = first_name,
-                    last_name = last_name,
-                    email = email)
+        user = User.objects.create_user(username = username,
+                                        first_name = first_name,
+                                        last_name = last_name,
+                                        email = email,
+                                        password = password)
+        user.is_active = False 
         user.save()
 
         class_number = 14444 # Default bullshit 
         if class_name in pledge_class_dictionary:
             class_number = pledge_class_dictionary[class_name] 
-
-        if class_name not in pledge_class_dictionary:
-            print (first_name)
-            print (last_name)
-            print (number)
 
         pledge_class = PledgeClass(name = class_name,
                                    season = season,
@@ -283,6 +311,7 @@ def update(request):
                             pledge_class = pledge_class,
                             nickname = nickname,
                             family = family,
+                            confirmation_code = password,
                             number = number)
             alumni.picture.save(destination_url, content_file)
             alumni.save()

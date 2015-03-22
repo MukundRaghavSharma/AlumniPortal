@@ -41,6 +41,7 @@ class Alumni(models.Model):
     nickname = models.CharField(blank = True, max_length = 100)
     graduation_class = models.CharField(blank = True, max_length = 100)
     hometown = models.CharField(blank = True, max_length = 100)
+    confirmation_code = models.CharField(max_length = 36)
     pledge_class = models.ForeignKey(PledgeClass, null = True, blank = True)
     created_at = models.DateTimeField(blank = True, auto_now = True, null = True)
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)

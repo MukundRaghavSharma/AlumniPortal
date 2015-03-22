@@ -7,11 +7,14 @@
             <div class="cover-container">
               <div class="inner cover">
                     <div class="row text-center">
-                        <img src="/static/Alumni/images/AKY_Logo.png">
+                        <img src="{{ STATIC_URL }}Alumni/images/AKY_Logo.png">
                     </div>
                     <div class="row text-center">
-                        <form action="{% url 'social:begin' 'linkedin' %}">
-                            <button  name="button" class="landing"> Sign In </button>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            Enter confirmation code: <input type="text" name="confirmation"> 
+                            <div></div>
+                            <button type="submit" name="button" class="landing"> Sign Up</button>
                         </form>
                     </div>
               </div>

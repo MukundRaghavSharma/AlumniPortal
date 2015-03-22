@@ -126,9 +126,9 @@ class AKPsiInformationForm(forms.Form):
 
     # Pledge Class #
     pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
-                                          order_by('year'),
+                                          order_by('class_number'),
                                           empty_label = "Select your pledge class",
-                               widget=forms.Select(attrs={'class':'form-control'})) 
+                                          widget=forms.Select(attrs={'class':'form-control', 'id' : 'pledge_class'})) 
 
     CHOICES = [ x for x in range(2004, datetime.date.today().year + 2) ]
     CHOICES[0] = (0, 'Select your graduation year')
@@ -138,14 +138,12 @@ class AKPsiInformationForm(forms.Form):
 
     # Graduation Year #
     graduation_year = forms.ChoiceField(choices = CHOICES, widget =
-            forms.Select(attrs={'class':'form-control'}), required = True)
-
-
+            forms.Select(attrs={'class':'form-control', 'id' : 'graduation_year'}), required = True)
 
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
                                required = True,
-                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'little', 'class' : 'form-control', 'placeholder': 'Hometown' }))
+                               max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'hometown', 'class' : 'form-control', 'placeholder': 'Hometown' }))
 
     # Major # 
     major = forms.CharField(label = 'Major',

@@ -1,14 +1,12 @@
 {% extends "Alumni/form_wrapper.html" %}
 
-
 {% block shit %}
       <div id="loader">
         <div class="signup-title">
           CMU & AKPsi History
         </div>
-        <form class="form-horizontal" id="signup-form-background" method="post">
+        <form class="form-horizontal" id="signup-form-background" method="post" action="/signin_4">
          {% csrf_token %}
-
           <div class="form-group">
             <div class="col-sm-12">
                 {{ form.major }}
@@ -33,35 +31,20 @@
               <!--input type="email" class="form-control" id="" placeholder="Email"-->
             </div>
           </div>
-          <div class="form-group has-error">
+          <div class="form-group">
               <div class="col-sm-12">
                   {{ form.pledge_class }}
                 <!--input type="password" class="form-control" id="" placeholder="Password"-->
               </div>
           </div>
-          <div class="form-group" id="error-text">
-            This field is required.
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                  {{ form.big }}
-              <!--input type="password" class="form-control" id="" placeholder="Re-type Password"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                  {{ form.littles }}
-              <!--input type="password" class="form-control" id="" placeholder="Re-type Password"-->
-            </div>
-          </div>
-        </form>
         <div class="row" id="position-row">
           <div class="form-group" id="button-row">
             <div class=" col-sm-4">
               <button  id="page_2_left" class="next-button-left" page="/signin_2 #loader"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
             </div>
             <div class="col-sm-offset-4 col-sm-4">
-              <button  id="page_2_right" class="next-button-right" page="/signin_4 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
+              <button type="submit" id="page_2_right" class="next-button-right" page="/signin_4 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
+        </form>
             </div>
           </div>
         </div>

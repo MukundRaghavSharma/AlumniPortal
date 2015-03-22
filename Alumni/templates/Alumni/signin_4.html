@@ -7,9 +7,8 @@
         <div class="signup-title">
           Employment Information
         </div>
-        <form class="form-horizontal" id="signup-form-background" method="post">
+        <form class="form-horizontal" id="signup-form-background" method="post" action="/dashboard/">
          {% csrf_token %}
-
           <div class="form-group">
             <div class="col-sm-12">
                 {{ form.current_employer }}
@@ -28,7 +27,6 @@
               <!--input type="email" class="form-control" id="" placeholder="Email"-->
             </div>
           </div>
-        </form>
         <div class="row" id="position-row">
           <div class="form-group" id="button-row">
             <div class=" col-sm-4">
@@ -36,6 +34,7 @@
             </div>
             <div class="col-sm-offset-4 col-sm-4">
               <button type="submit" id="page_3_right" class="next-button-right" page="/signin_3 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
+          </form>
             </div>
           </div>
         </div>
