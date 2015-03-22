@@ -1,5 +1,5 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
-from Alumni.models import Alumni, PledgeClass
+from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.contrib.auth import login, authenticate, logout
@@ -216,9 +216,10 @@ def signup(request):
             pledge_class = PledgeClass(name = 'Boss Class',
                                        season = 'Spring',
                                        class_number = 14444)
-            
+            family = Family(name = "Boss")
+            family.save()
             pledge_class.save()
-            alumni = Alumni(user = user, pledge_class = pledge_class)
+            alumni = Alumni(user = user, pledge_class = pledge_class, family = family)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
@@ -329,6 +330,8 @@ def update(request):
             else:
                 big_alumni = Alumni.objects.get(user = big_user)
 
+            family_model = Family(name = family)
+            family_model.save()
             alumni = Alumni(user = user,
                             employer = employer,
                             current_city = current_city,
@@ -338,7 +341,7 @@ def update(request):
                             hometown = hometown,
                             pledge_class = pledge_class,
                             nickname = nickname,
-                            family = family,
+                            family = family_model,
                             confirmation_code = password,
                             big = big_alumni,
                             number = number)
