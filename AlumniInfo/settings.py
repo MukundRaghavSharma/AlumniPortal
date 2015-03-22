@@ -64,6 +64,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.contrib.messages.context_processors.messages',
    #'social.apps.django_app.context_processors.backends',
    #'social.apps.django_app.context_processors.login_redirect',
+<<<<<<< HEAD
+   
+=======
+>>>>>>> be2923eb77a58e570fb99655d6f9bb0eb9c4436a
 )
 
 AUTHENTICATION_BACKENDS = (
