@@ -41,6 +41,7 @@ def signin_1(request):
         print ("In signin 2 post")
         confirmation_code = request.POST['confirmation'] 
 
+        print (Alumni.objects.filter(confirmation_code = confirmation_code))
         if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
                context['is_error'] = True
                return render(request, 'Alumni/signin_1.html', context)
@@ -426,7 +427,7 @@ def gallery_view(request):
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
             sorted_by_number = filtered_class.extra(order_by = ['number'])
-            class_based_view.append(filtered_class)
+            class_based_view.append(sorted_by_number)
 
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
@@ -453,6 +454,7 @@ def four_oh_four(request):
     response.status_code = 404
     return response 
 
+'''
 def social_auth_to_profile(backend, details, response, is_new=False, *args, **kwargs):
 
     # Stuff to parse from LinkedIn:
@@ -504,11 +506,10 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
         #alumni.position_description = linkedin_info['summary'] 
         #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()
-
+'''
 @login_required
 def donations(request):
     context = {}
 
     if request.method == 'GET':
         return render(request, 'Alumni/donations.html', context)
-
