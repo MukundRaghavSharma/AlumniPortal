@@ -115,6 +115,8 @@ def signin_3(request):
                 class_choice = choice 
 
         pledge_class = alumni.pledge_class
+        class_choice = CHOICES[class_choice[0]][1]
+        print (class_choice)
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -128,9 +130,15 @@ def signin_3(request):
         form = AKPsiInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = user)
+        class_choice = CHOICES[0]
+        for choice in CHOICES:
+            if choice == alumni.graduation_class:
+                class_choice = choice 
+
+        class_choice = CHOICES[class_choice[0]][1]
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
-            alumni.graduation_class = "Class of " + form.cleaned_data['graduation_year']
+            alumni.graduation_class = "Class of " + class_choice 
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -150,10 +158,10 @@ def signin_4(request):
     
     if request.method == 'GET':
         print ("In get of the Prof Page")
-        print ("Alumni Employer ", alumni.employer)
+        print ("Alumni Employer", alumni.employer)
         print ("Alumni role", alumni.position)
         print ("Alumni city", alumni.current_city)
-        initial = {'employer' : alumni.employer,
+        initial = {'emp' : alumni.employer,
                    'role' : alumni.position,
                    'current_city' : alumni.current_city }
         form = ProfessionalInformationForm(initial = initial)

@@ -117,7 +117,6 @@ class PersonalInformationForm(forms.Form):
         #isValidPhone = phone_regex.search(form_data['phone'])
         isValidEmail = email_regex.search(form_data['email'])
 
-
         if 'password1' not in form_data:
             self._errors["password1"] = ["A Password is Required."] # Will raise a error message
         elif 'password2' not in form_data:
@@ -169,7 +168,7 @@ class ProfessionalInformationForm(forms.Form):
     # Current Employer #
     current_employer = forms.CharField(label = 'Current Employer',
                             required = True,
-                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'employer', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'emp', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
 
     # Current Role in the Company #
     role = forms.CharField(label = 'Role',
