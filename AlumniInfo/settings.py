@@ -13,6 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import getpass
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -38,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'Alumni',
     #'social.apps.django_app.default',
+    'inplaceeditform',
+    'django_wysiwyg',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,9 +60,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.core.context_processors.media',
    'django.core.context_processors.static',
    'django.core.context_processors.tz',
+   'django.core.context_processors.request',
    'django.contrib.messages.context_processors.messages',
+<<<<<<< HEAD
    #'social.apps.django_app.context_processors.backends',
    #'social.apps.django_app.context_processors.login_redirect',
+=======
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+   
+>>>>>>> 1a4a7326bfe59d3cdbaa9b711a0039e734092d11
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -84,7 +94,14 @@ MEDIA_URL = '/Alumni/media/'
 
 #SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
+<<<<<<< HEAD
 '''
+=======
+INPLACEEDIT_EVENT = "click"
+INPLACE_ENABLE_CLASS = 'enable'
+INPLACEEDIT_EDIT_EMPTY_VALUE = 'Click to edit'
+
+>>>>>>> 1a4a7326bfe59d3cdbaa9b711a0039e734092d11
 # LinkedIn Stuff #
 
 SOCIAL_AUTH_LINKEDIN_KEY = '75rg300f8mdwnn' 

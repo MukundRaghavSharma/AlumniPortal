@@ -1,7 +1,16 @@
 {% extends "Alumni/navbar.html" %}
 
 {% block file %}
-    {% load staticfiles %}
+{% load inplace_edit %}
+{% load wysiwyg %}
+{% wysiwyg_setup %}
+{% inplace_static %}
+
+
+    
+    
+
+
         <div class="row">
             <div class="col-md-4" id="dp">
                     <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
@@ -12,7 +21,7 @@
             <div class="col-md-8" id="full_name">
                 <h1 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h1>
                 {% if alumni.nickname %}
-                    <h3 class="nickname"> {{ alumni.nickname }} </h3>
+                    <h3 class="nickname"> {% inplace_edit "alumni.nickname" auto_height=1, auto_width=1 %} </h3>
                 {% endif %}
             </div>
         </div>
@@ -31,7 +40,7 @@
                                       <span class="overview-icon"><i class="fa fa-font fa-fw"></i></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Pledged with the <a href="/class/{{ alumni.pledge_class.name }}">{{ alumni.pledge_class.name }} Class</a></span>
+                                    <span class="overview-text">Pledged with the <a href="/gallery#{{ alumni.pledge_class }}">{{ alumni.pledge_class.name }} Class</a></span>
                                   </div>
                                 </div>
                             </li>
@@ -55,7 +64,7 @@
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in the <a href="/class/{{ alumni.graduation_class }}">{{ alumni.graduation_class }}</a></span>
+                                    <span class="overview-text">Graduated in the <a href="/gallery#{{ alumni.graduation_class }}">{{ alumni.graduation_class }}</a></span>
                                   </div>
                                 </div>
                             </li>
@@ -67,7 +76,7 @@
                                       <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Majored in {{ alumni.major }}</span>
+                                    <span class="overview-text">Majored in {% inplace_edit "alumni.major" auto_height=1, auto_width=1 %}</span>
                                   </div>
                                 </div>
                             </li>
@@ -79,7 +88,7 @@
                                       <span class="overview-icon"><i class="fa fa-home fa-fw"></i></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">From {{ alumni.hometown }}</span>
+                                    <span class="overview-text">From {% inplace_edit "alumni.hometown" auto_height=1, auto_width=1, %}</span>
                                   </div>
                                 </div>
                             </li>
@@ -104,10 +113,11 @@
                     <div class="panel">
                       <div class="panel-heading">Current Employment</div>
                       <div class="panel-body">
-                        <h1 class="employer-heading"> {{ alumni.employer }} </h1>
-                        <h3 class="employer-role"> Advisory Associate </h3>
-                        <h4 class="employer-location"><i class="fa fa-map-marker"></i>&nbsp; Chicago, IL</h4>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        <h1 class="employer-heading"> {% inplace_edit "alumni.employer" auto_height=1, auto_width=1, edit_empty_value="Click to add your current employer." %} </h1>
+                        <h3 class="employer-role"> {% inplace_edit "alumni.position" auto_height=1, auto_width=1, edit_empty_value="Click to add your current role." %} </h3>
+                        <h4 class="employer-location"><i class="fa fa-map-marker"></i>&nbsp; {% inplace_edit "alumni.current_city" edit_empty_value="Click to add your current city", auto_height=1, auto_width=1 %}</h4>
+                        <p class="employer-description" id="editor">
+                          {% inplace_edit "alumni.position_description" auto_height=1, auto_width=1, class_inplace="full_size", edit_empty_value="Click to add a short description of your current role." %}
                         </p>
                       </div>
                     </div>
@@ -116,7 +126,12 @@
                     <div class="panel">
                       <div class="panel-heading">Biography</div>
                       <div class="panel-body">
-                        <p class="bio-body"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                        <p class="bio-body" id="editor">
+                          {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself."  %}
+
+
+                          
+                        </p>
                       </div>
                     </div>
                 </div>
@@ -133,6 +148,26 @@
 
             });
 
+            $("p").each(function() {
+              console.log(234);
+              $(this).keypress(function() {
+                $('input').each(function() {
+
+                  if ($(this).prop("name") != "search") {
+                    
+                    $input = $(this);
+                    $textarea = $("<textarea></textarea>").attr({
+                        id: $input.prop('id'),
+                        name: $input.prop('name'),
+                        value: $input.val()
+                    });
+                    $textarea.css({"width":"100%","height":"250px"});
+                    $textarea.val($input.val());
+                    $input.after($textarea).remove();
+                  };
+                });
+              });
+            });
         </script>
             {% if alumni %}
                 <!-- <div class="well">

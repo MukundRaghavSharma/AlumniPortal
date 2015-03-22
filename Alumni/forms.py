@@ -2,6 +2,7 @@ from Alumni.models import Alumni, PledgeClass
 from django import forms
 from django.contrib.auth.models import User
 import datetime
+import re
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(label = 'First Name',
@@ -103,21 +104,28 @@ class PersonalInformationForm(forms.Form):
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
 
     def clean(self):
+        phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
+        email_regex = re.compile("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$")
         form_data = self.cleaned_data
+        print(form_data)
+        isValidPhone = phone_regex.search(form_data['phone'])
+        isValidEmail = email_regex.search(form_data['email'])
 
-        if 'password1' not in form_data and 'password2' not in form_data:
-            self._errors["password1"] = ["A Password is Required."] # Will raise a error message
-            self._errors["password2"] = ["A Password is Required."] # Will raise a error message
-        elif 'password1' not in form_data:
+
+        if 'password1' not in form_data:
             self._errors["password1"] = ["A Password is Required."] # Will raise a error message
         elif 'password2' not in form_data:
             self._errors["password2"] = ["A Password is Required."] # Will raise a error message
-        else:
-            if form_data['password1'] != form_data['password2']:
-                self._errors["password2"] = ["Passwords do not match"] # Will raise a error message
-                self._errors["password1"] = ["Passwords do not match"] # Will raise a error message
-                del form_data['password1']
-                del form_data['password2']
+        elif form_data['password1'] != form_data['password2']:
+            self._errors["password2"] = ["Passwords do not match"] # Will raise a error message
+            self._errors["password1"] = ["Passwords do not match"] # Will raise a error message
+            del form_data['password1']
+            del form_data['password2']
+        if isValidEmail is None:
+            self._errors["email"] = ["A Valid Email Address is Required."] # Will raise a error message
+        if isValidPhone is None:
+            print(145)
+            self._errors["phone"] = ["A Valid Phone Number is Required."] # Will raise a error message
         return form_data
 
 

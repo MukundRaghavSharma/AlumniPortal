@@ -253,6 +253,7 @@ def update(request):
         season = str(brother[13]) 
         year = str(brother[14])
         number = str(brother[2])
+        big = str(brother[15])
 
         password = str(uuid.uuid4()) 
         username = first_name + last_name + email
@@ -351,8 +352,10 @@ def class_view(request, classname):
         return render(request, 'Alumni/class.html', context)
 
 @login_required
-def family_view(request, family):
-    pass
+def family_trees(request):
+    context = {}
+    if request.method == 'GET':
+        return render(request, 'Alumni/family_trees.html', context)
 
 @login_required
 def gallery_view(request):
@@ -454,6 +457,7 @@ def social_auth_to_profile(backend, details, response, is_new=False, *args, **kw
         #alumni = social_user.extra_data['positions']['position'][0]['title']
         alumni.save()
 
+@login_required
 def donations(request):
     context = {}
 

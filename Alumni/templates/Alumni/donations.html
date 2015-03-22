@@ -2,52 +2,168 @@
 
 {% block file %}
     {% load staticfiles %}
-        {% if current_user %}
-            <div class="row" id="second-layer">
-                <div class="col-md-3" >
-                        <div class="text-center">
-                            <div class="imgLiquidFill imgLiquid" id="cropped" style="width:170px; height:170px;">
-                                    <img src="{{ current_user.picture.url }}">
-                            </div>
-                        </div>
-                        <h1 class="dash-name"> {{ current_user.user.first_name }} {{ current_user.user.last_name }} </h1>
-                </div>
-                <div class="col-md-9" >
-                    <ul class="list-group">
-                        <li class="list-group-item" id="overview-heading">News from Omega Psi</li>
-                            <li class="list-group-item">
+        <h1 class="text-center">Consider Making a Donation to Banquet 2015!</h1>
+        <div class ="row">
+            <div class="col-md-6">
+                <svg id="fillgauge2" width="100%" height="500"></svg>
 
-                                <div class="imgLiquidFill dashboard-imgLiquid" style="width:100%; height:170px;">
-                                    <img src="{{ STATIC_URL }}/Alumni/images/drinking.jpg">
-                            </div>
-                            <span class="text-overlay">
-                                Spring<br>
-                                Carnival<br>
-                                2015!
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                <script language="JavaScript">
 
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $(".imgLiquidFill").imgLiquid();
-                    });
-                    $('#full_name').each(function() {
-                        var o_height = $(this).height();
-                        $(this).css('margin-top', (($('#dp').height()-o_height)/2));
-
-                    });
+                    loadLiquidFillGauge("fillgauge2", 20, config2);
+                    var config2 = liquidFillGaugeDefaultSettings();
+                    config2.textVertPosition = 0.8;
+                    config2.waveAnimateTime = 5000;
+                    config2.waveHeight = 0.15;
+                    config2.waveAnimate = false;
+                    config2.waveOffset = 0.25;
+                    config2.valueCountUp = false;
+                    config2.displayPercent = false;
 
                 </script>
-                {% for alumn in alumni %}
-<!--                 <div class="well">
-                    <p> {{ alumn.user.first_name }} </p>
-                    <p> {{ alumn.user.last_name }} </p>
-                    <p> {{ alumn.employer }} </p>
-                    <p><a href="/profile/{{ alumn.user.id }}"> {{ alumn.user.first_name }} {{ alumn.user.last_name }} </a></p>
-                </div> -->
-                 {% endfor %}
             </div>
-         {% endif %}
+            <div class="col-md-6" id="message">
+                <h3> Dear Alumni, </h3>
+                <p><em>
+                    As this is a landmark celebration for our chapter, we are aspiring to have the best banquet ever. Our current budget for this semester is $3,400, and with dues still at $180, this means we will need to dip into our reserves in order to pay for the options we desire. Therefore, we humbly ask our alumni body to consider making a donation to our chapter for this banquet. Donations can be made in cash, and can also be directed towards a specific part of the event, such as transportation, catering, or board games. We would hate to have to make brothers or alumni pay out of pocket.
+                </em></p>
+                <h5>Sincerely,</h5>
+                <h5>Mukund Sharma</h5>
+                <a class="venmo-pay-button" data-recipient-id="1397129314566144218" /></a>
+                <script type="text/javascript">
+
+                $('#message').each(function() {
+                    var o_height = $(this).height();
+                    $(this).css('margin-top', (($('#fillgauge2').height()-o_height)/2));
+
+                });
+
+                </script>
+
+            </div>
+         </div>
+         <div class="row" id="row_3">
+            <h3 class="text-center" id="longer">Thank You to the following Donors:</h3>
+
+
+                    <div class="row">
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Matt Wilson</span>
+                                </div>
+                                <div class="pane-body">
+                                  Because I love AKPsi
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Kunal Natu</span>
+                                </div>
+                                <div class="pane-body"  id="dp">
+                                  AKPSI Donation on behalf of the Lambda Class (just to let you know, by doing this, we expect a great carnival and even better banquet)
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Margo Johnson</span>
+                                </div>
+                                <div class="pane-body">
+                                  AKPsi donation CAN'T WAIT TO SEE YOU/ EVERYONE!
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Will Xia</span>
+                                </div>
+                                <div class="pane-body">
+                                  Banquet Donations
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                    <div class="row">
+
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Min Kim</span>
+                                </div>
+                                <div class="pane-body">
+                                  Please use this to purge Carnival of any Vladi or Jose Cuervo gold. No one needs that poison ruining the weekend.
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Neil Sethi</span>
+                                </div>
+                                <div class="pane-body">
+                                  Make this carnival the most memorable. Or make it so "memorable" that we forget
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Suraj Baxi</span>
+                                </div>
+                                <div class="pane-body">
+                                  Bail Money For Ratchet Alumni
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Andrew Yeung</span>
+                                </div>
+                                <div class="pane-body">
+                                  for whatever alcohol is left in Pittsburgh after the other donations
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                    <div class="row">
+
+
+                            <div class="col-md-3" id="short">
+                              <div class="pane pane-default">
+                                <div class="pane-heading">
+                                  <span class="pane-title">Nicole Tseng</span>
+                                </div>
+                                <div class="pane-body">
+                                  I'm missing carnival, so use this to cover ubers for the drunkards (especially Andrew 1.0 and 2.0)
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            <script type="text/javascript">
+            // $('.pane-body').each(function() {
+            //     var max_height = $("#dp").height();
+            //     if ( $(this).height > max_height) {
+            //         max_height = $(this).height();
+            //         $("#dp").height(max_height);
+            //     }
+
+            // });
+            // $('.pane-body').each(function() {
+            //     $(this).height($("#dp").height() + 27);
+
+            // });
+
+
+            </script>
+
 {% endblock %}
