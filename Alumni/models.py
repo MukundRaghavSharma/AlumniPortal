@@ -19,7 +19,6 @@ class PledgeClass(models.Model):
     
     def save(self, *args, **kwargs):
             try:
-                print (self.name)
                 existing = PledgeClass.objects.get(name = self.name)
                 self.id = existing.id
             except PledgeClass.DoesNotExist:
@@ -61,8 +60,6 @@ class Alumni(models.Model):
             except Alumni.DoesNotExist:
                 pass
             models.Model.save(self, *args, **kwargs)
-
-
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
