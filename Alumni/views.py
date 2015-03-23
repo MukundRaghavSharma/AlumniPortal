@@ -422,11 +422,13 @@ def __create_family_trees__():
             big = big.replace("\xe2\x80\x98","")
             big_first_name = big.split(' ')[0]
             big_last_name = big.split(' ')[1]
+            big_img = ''
             little = line.split(',')[0].split('[')[1]
             little = little.replace("\xe2\x80\x99","").replace("'","")
             little = little.replace("\xe2\x80\x98", "")
-            if big == '' or len(User.objects.filter(first_name = big_first_name,
-                                                    last_name = big_last_name)
+            if big != '' or len(User.objects.filter(first_name = big_first_name,
+                                                    last_name = big_last_name)) != 0:
+                pass
             print ("Big ", str(big), " Little ", str(little))
             
 
