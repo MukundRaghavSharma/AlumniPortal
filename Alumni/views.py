@@ -1,16 +1,18 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass, Family
-from Alumni.util.get_data import get_first
 from Alumni.util.class_dictionary import pledge_class_dictionary
+from django.shortcuts import get_object_or_404
+from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models import Q
-from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.templatetags.static import static
+from itertools import chain
 import os
 import sys
 import uuid
@@ -38,10 +40,8 @@ def signin_1(request):
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
-        print ("In signin 2 post")
         confirmation_code = request.POST['confirmation'] 
 
-        print (Alumni.objects.filter(confirmation_code = confirmation_code))
         if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
                context['is_error'] = True
                return render(request, 'Alumni/signin_1.html', context)
@@ -51,8 +51,6 @@ def signin_1(request):
             alumni.save()
             login(request, alumni.user)
             return redirect('/signin_2')
-            #context['username'] = alumni.user.username
-            #return render(request, 'Alumni/signin_2.html')
 
 # Sign in 2 #
 @login_required
@@ -78,7 +76,6 @@ def signin_2(request):
         alumni = Alumni.objects.get(user = request.user)
 
         if form.is_valid():
-            print ("In the Personal Information POST")
             alumni = Alumni.objects.get(user = request.user)
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
@@ -104,7 +101,6 @@ def signin_3(request):
     context = {}
     
     if request.method == 'GET':
-        print ("in get of the AKPsi page")
         alumni = Alumni.objects.get(user = request.user)
         if len(alumni.graduation_class) < 2:
             alumni.graduation_class = ''
@@ -127,7 +123,6 @@ def signin_3(request):
         return render(request, 'Alumni/signin_3.html', context)
 
     if request.method == 'POST':
-        print ("in post of the AKPsi page")
         form = AKPsiInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = user)
@@ -368,18 +363,11 @@ def update(request):
     return redirect('/dashboard/')
 
 @login_required
-def profile(request, id):
-    if request.method == 'GET':
-        print (id)
-        context = {}
-        check_user = User.objects.filter(id = id)
+def profile(request, brother_number):
+    context = {}
 
-        # Id not found! #
-        if len(check_user) == 0:
-            four_oh_four(request)
-        
-        user = User.objects.get(id = id)
-        context['alumni'] = Alumni.objects.get(user = user)
+    if request.method == 'GET':
+        context['alumni'] = get_object_or_404(Alumni, number = brother_number)
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/profile.html', context)
 
@@ -405,6 +393,47 @@ def family_trees(request):
     context = {}
     if request.method == 'GET':
         return render(request, 'Alumni/family_trees.html', context)
+
+def __create_family_trees__():
+    # Parse File #
+    file_names = ('kaleidoscope.txt', 'dynasty.txt', 'family.txt', 
+            'reaganbrothers.txt', 'rocafellas.txt', 'incredibles.txt')
+    for file_name in file_names:
+        name = file_name.split('.')[0]
+        name += '.js'
+        read_file = open('./static/Families/' + file_name, 'r')
+        write_file = open('./static/Alumni/js/' + name, 'w')
+        js_starter = ''' <script type="text/javascript">
+          google.load("visualization", "1", {packages:["orgchart"]});
+          google.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Manager');
+            data.addColumn('string', 'ToolTip');
+            data.addRows('''
+
+        #if big == '' or len(User.objects.filter(first_name = big_first_name, 
+        #last_name = big_last_name):  
+        for line in f:
+            line.decode('utf-8', 'replace')
+            big = line.split(',')[1].split('[')[0]
+            big = big.replace("\xe2\x80\x99","").replace("'", "")
+            big = big.replace("\xe2\x80\x98","")
+            big_first_name = big.split(' ')[0]
+            big_last_name = big.split(' ')[1]
+            little = line.split(',')[0].split('[')[1]
+            little = little.replace("\xe2\x80\x99","").replace("'","")
+            little = little.replace("\xe2\x80\x98", "")
+            if big == '' or len(User.objects.filter(first_name = big_first_name,
+                                                    last_name = big_last_name)
+            print ("Big ", str(big), " Little ", str(little))
+            
+
+        read_file.close()
+        write_file.close()
+
+
 
 @login_required
 def gallery_view(request):
@@ -434,82 +463,51 @@ def gallery_view(request):
         return render(request, 'Alumni/gallery.html', context)
 
 @login_required
-def search(request):
-    if request.method == 'POST':
-        pass
-
-
-@login_required
-def edit_profile(request):
-    if request.method == 'GET':
-        pass
-
-    if request.method == 'POST':
-        pass
-
-@login_required
 def four_oh_four(request):
     response = render_to_response('Alumni/404.html', {}, 
                                   context_instance = RequestContext(request))
     response.status_code = 404
     return response 
 
-'''
-def social_auth_to_profile(backend, details, response, is_new=False, *args, **kwargs):
-
-    # Stuff to parse from LinkedIn:
-    # 1. Employer
-    # 2. Summary 
-    # 3. Position
-    # 4. LinkedIn Public Page URL
-    # 5. Picture URL
-
-    # Check for each field.. some could be None #
-    first_name = details['first_name']
-    last_name = details['last_name']
-    email = details['email']
-
-    # If user is not in the DB #
-    # - Create the user object 
-    # - Create the Alumni object 
-    
-    # If user is in the DB #
-    # - Get the user object  
-    # - Get the alumni object
-
-    username = first_name + last_name + email
-    username = username[0:30]
-    is_new = len(User.objects.filter(first_name = first_name, 
-             last_name = last_name,
-             email = email, 
-             username = username)) == 0
-    user = None
-        
-    if is_new:
-        # Create new profile here #
-            user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email)
-            alumni = Alumni(user = user)
-            user.save()
-            alumni.save()
-
-    else:
-        # Not new -> link to already created profile #
-        user = User.objects.get(username = username, first_name = first_name, last_name = last_name, email = email)
-
-    alumni = Alumni.objects.get(user = user)
-    if kwargs.get('social') != None:
-        print (kwargs)
-        print (kwargs.get('social').extra_data)
-        linkedin_info = kwargs['social'].extra_data
-        alumni.role = linkedin_info['headline']
-        alumni.current_city = linkedin_info['location']
-        #alumni.position_description = linkedin_info['summary'] 
-        #alumni = social_user.extra_data['positions']['position'][0]['title']
-        alumni.save()
-'''
 @login_required
 def donations(request):
     context = {}
 
     if request.method == 'GET':
         return render(request, 'Alumni/donations.html', context)
+
+@login_required
+def search(request):
+    context = {}
+
+    if request.method == 'POST':
+        print ("IN POST")
+        search = str(request.POST['search'])
+
+        # Fix the user case #
+        # Add hyperlinks #
+        user_results = User.objects.filter(Q(first_name__icontains=search) |
+                                           Q(last_name__icontains=search) | 
+                                           Q(email__icontains=search)) 
+
+        alumni_results = Alumni.objects.filter(Q(employer__icontains=search) |
+                                               Q(position__icontains=search) | 
+                                               Q(current_city__icontains=search) | 
+                                               Q(major__icontains=search) | 
+                                               Q(graduation_class__icontains=search) | 
+                                               Q(hometown__icontains=search)) 
+        user_to_alumni = []
+        for user in user_results:
+            alumni = Alumni.objects.get(user = user)
+            user_to_alumni.add(alumni) 
+            #alumni_results = alumni_results | alumni
+
+        pledge_class_results = PledgeClass.objects.filter(Q(season__icontains=search) |
+                                               Q(year__icontains=search) | 
+                                               Q(name__icontains=search)) 
+
+        family_results = Family.objects.filter(Q(name__icontains=search)) 
+
+        results = list(chain(user_to_alumni, alumni_results, pledge_class_results, family_results)) 
+        context['results'] = results
+        return render(request, 'Alumni/search.html', context)

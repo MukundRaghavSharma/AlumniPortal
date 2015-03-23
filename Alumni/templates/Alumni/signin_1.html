@@ -12,9 +12,13 @@
                     <div class="row text-center">
                         <form action="" method="post">
                             {% csrf_token %}
-                            Enter confirmation code: <input type="text" name="confirmation"> 
+                            <h3 style="color:#F8E26C;">
+                            Enter confirmation code: <input style="color:black;" type="text" name="confirmation"> 
+                            </h1>
                             <div></div>
-                            <button type="submit" name="button" class="landing"> Sign Up</button>
+                            <button type="submit" onclick="this.style.visibility='hidden;'" name="button" class="landing"> Sign Up</button>
+                            <span>
+                            </span>
                         </form>
                     </div>
               </div>
