@@ -27,19 +27,49 @@ a:hover {
 }
 
 
-.landing button {
+.landing #signup {
 	text-transform: uppercase;
 	font-weight: lighter;
 	margin-top: 40px;
 	color: #FDE57e;
-	  -webkit-border-radius: 0;
-	  -moz-border-radius: 0;
-	  border-radius: 0px;
-	  color: #fde573;
-	  font-size: 20px;
-	  padding: 10px 40px 10px 40px;
-	  border: solid #fde57e 2px;
-	  vertical-align: middle;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0px;
+	color: #fde573;
+	font-size: 20px;
+	padding: 10px 40px 10px 40px;
+	border: solid #fde57e 2px;
+	vertical-align: middle;
+	width: 30%;
+	text-align: center;
+	margin-left: 35%;
+	margin-right: 35%;
+
+
+}
+
+.landing #signup:hover {
+		font-weight: lighter;
+		text-transform: uppercase;
+	  text-decoration: none;
+	  background-color: #fde57e;
+	  color: #000; 
+	}
+
+.landing button {
+	text-transform: uppercase;
+	font-weight: lighter;
+	color: #FDE57e;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0px;
+	color: #fde573;
+	font-size: 20px;
+	padding: 10px 40px 10px 40px;
+	border: solid #fde57e 2px;
+	vertical-align: middle;
+	text-align: center;
+
 
 }
 

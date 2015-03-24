@@ -12,15 +12,24 @@
                     <div class="row text-center">
                         <form action="" method="post">
                             {% csrf_token %}
-                            <h3 style="color:#F8E26C;">
-                            Enter confirmation code: <input style="color:black;" type="text" name="confirmation"> 
-                            </h1>
-                            <div></div>
-                            <button type="submit" onclick="this.style.visibility='hidden;'" name="button" class="landing"> Sign Up</button>
+                            <div id="signup" class="landing">Enter</div>
+                            <h3 id="message" style="color:#F8E26C;display:none">
+                            <input style="color:black;width: 158px;height: 52px;" placeholder="Your Code" type="text" name="confirmation"> 
+                            </h3>
+                            <!-- <div></div> -->
+                            
+                            <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing"> Submit</button>
                             <span>
                             </span>
                         </form>
                     </div>
+                    <script type="text/javascript">
+                        $( "#signup" ).click(function() {
+                            $("#submit").show();
+                            $("#message").show();
+                            $("#signup").hide();
+                        });
+                    </script>
               </div>
             </div>
           </div>
