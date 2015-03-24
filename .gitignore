@@ -38,6 +38,7 @@ venv
 ._*
 .Spotlight-V100
 .Trashes
+mainSpace
 ehthumbs.db
 Thumbs.db
 migrations/

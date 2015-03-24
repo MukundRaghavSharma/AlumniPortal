@@ -43,7 +43,7 @@ urlpatterns = patterns('',
         name = 'home',),
     
     # Profile Page #
-    url(regex = r'^profile/(?P<id>\d+)/$',
+    url(regex = r'^profile/(?P<brother_number>\d+)/$',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
@@ -85,6 +85,11 @@ urlpatterns = patterns('',
     url(regex = r'^family_trees/$',
         view = 'Alumni.views.family_trees',
         name = 'family_trees',),
+
+    # Search Functionality #
+    url(regex = r'^search/$',
+        view = 'Alumni.views.search',
+        name = 'search',),
 
 )
 

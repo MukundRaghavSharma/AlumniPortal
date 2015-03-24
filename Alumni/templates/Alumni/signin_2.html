@@ -6,7 +6,7 @@
         <div class="signup-title">
           Personal Information
         </div>
-        <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post">
+        <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post" enctype='multipart/form-data' >
          {% csrf_token %}
           <div id="yourId"></div>
           <div class="cropImgWrapper"></div>
