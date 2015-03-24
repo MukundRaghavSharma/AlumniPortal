@@ -392,6 +392,9 @@ def class_view(request, classname):
 def family_trees(request):
     context = {}
     if request.method == 'GET':
+        user = User.objects.get(username = request.user)
+        alumni = Alumni.objects.get(user = user)
+        context['current_user'] = alumni 
         return render(request, 'Alumni/family_trees.html', context)
 
 def __create_family_trees__():
@@ -417,21 +420,29 @@ def __create_family_trees__():
         #last_name = big_last_name):  
         for line in f:
             line.decode('utf-8', 'replace')
+            # Big Info #
             big = line.split(',')[1].split('[')[0]
             big = big.replace("\xe2\x80\x99","").replace("'", "")
             big = big.replace("\xe2\x80\x98","")
             big_first_name = big.split(' ')[0]
             big_last_name = big.split(' ')[1]
             big_img = ''
+            
+            # Little Info #
             little = line.split(',')[0].split('[')[1]
             little = little.replace("\xe2\x80\x99","").replace("'","")
             little = little.replace("\xe2\x80\x98", "")
-            if big != '' or len(User.objects.filter(first_name = big_first_name,
-                                                    last_name = big_last_name)) != 0:
+
+            # Search for the big #
+            if big != '' or len(User.objects.filter(first_name = big_first_name, 
+                last_name = big_last_name)) > 0:
+                user = User.objects.get(first_name = big_first_name, last_name = big_last_name)
+                alumni = Alumni.objects.get(user = user)
+
+            else:
                 pass
             print ("Big ", str(big), " Little ", str(little))
             
-
         read_file.close()
         write_file.close()
 
@@ -476,6 +487,9 @@ def donations(request):
     context = {}
 
     if request.method == 'GET':
+        user = User.objects.get(username = request.user)
+        alumni = Alumni.objects.get(user = user)
+        context['current_user'] = alumni 
         return render(request, 'Alumni/donations.html', context)
 
 @login_required
@@ -498,18 +512,22 @@ def search(request):
                                                Q(major__icontains=search) | 
                                                Q(graduation_class__icontains=search) | 
                                                Q(hometown__icontains=search)) 
+        '''
         user_to_alumni = []
         for user in user_results:
             alumni = Alumni.objects.get(user = user)
             user_to_alumni.add(alumni) 
             #alumni_results = alumni_results | alumni
-
+        ''' 
         pledge_class_results = PledgeClass.objects.filter(Q(season__icontains=search) |
                                                Q(year__icontains=search) | 
                                                Q(name__icontains=search)) 
 
         family_results = Family.objects.filter(Q(name__icontains=search)) 
 
-        results = list(chain(user_to_alumni, alumni_results, pledge_class_results, family_results)) 
+        results = list(chain(alumni_results, pledge_class_results, family_results)) 
+        user = User.objects.get(user = request.user)
+        alumni = Alumni.objects.get(user = user)
+        context['current_user'] = alumni 
         context['results'] = results
         return render(request, 'Alumni/search.html', context)
