@@ -91,6 +91,10 @@ urlpatterns = patterns('',
         view = 'Alumni.views.search',
         name = 'search',),
 
+    # Send Emails #
+    url(regex = r'^send_email/$',
+        view = 'Alumni.views.send_email',
+        name = 'search',),
 )
 
 urlpatterns += staticfiles_urlpatterns()

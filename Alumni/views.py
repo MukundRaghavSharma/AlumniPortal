@@ -1,15 +1,17 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
-from django.shortcuts import get_object_or_404
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
+from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from itertools import chain
@@ -252,6 +254,49 @@ def home(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+@login_required
+def send_email(request):
+    easy_mode = True
+    if easy_mode == False:
+        brothers = get_first()
+        for brother in brothers:
+            first_name = str(brother[0])
+            last_name = str(brother[1]) 
+            user = User.objects.get(first_name = first_name, last_name = last_name)
+            alumni = Alumni.objects.get(user = user)
+            email = str(brother[5])
+            email_body = '''
+    Dear %s %s,
+
+    The following is your confirmation code: %s!
+
+    Have a good day..
+
+    Sincerely,
+    Mog San
+    ''' % (alumni.user.first_name, alumni.user.last_name, alumni.confirmation_code)
+        send_mail(subject="AKPsi Alumni Code",
+          message= email_body,
+          from_email="mrsharma@andrew.cmu.edu",
+          recipient_list=[alumni.user.email])
+
+    else:
+        alumni = Alumni.objects.all()[2]
+        email_body = '''
+    Dear %s %s,
+
+    The following is your confirmation code: %s!
+
+    Have a good day..
+
+    Sincerely,
+    Mog San
+    ''' % (alumni.user.first_name, alumni.user.last_name, alumni.confirmation_code)
+        send_mail(subject="AKPsi Alumni Code",
+          message= email_body,
+          from_email="mrsharma@andrew.cmu.edu",
+          recipient_list=["mrsharma@andrew.cmu.edu"])
 
 @login_required
 @transaction.atomic

@@ -7,11 +7,16 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
+import sys
 import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import getpass
+
+if sys.version_info > (3, 0):
+    import configparser
+else:
+    import ConfigParser
 
 
 # Quick-start development settings - unsuitable for production
@@ -122,6 +127,19 @@ USE_L10N = True
 USE_TZ = True
 
 ALLOWED_HOSTS = ['*']
+
+# Email Information #
+if sys.version_info > (3,0):
+    config = configparser.ConfigParser()
+else:
+    config = ConfigParser.ConfigParser()
+config.read("config.ini")
+
+EMAIL_HOST = config.get('Email', 'Host')
+EMAIL_PORT = config.get('Email', 'Port')
+EMAIL_HOST_USER = config.get('Email', 'User')
+EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
+EMAIL_USE_SSL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
