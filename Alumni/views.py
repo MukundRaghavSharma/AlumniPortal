@@ -115,7 +115,6 @@ def signin_3(request):
 
         pledge_class = alumni.pledge_class
         class_choice = CHOICES[class_choice[0]][1]
-        print (class_choice)
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -155,10 +154,6 @@ def signin_4(request):
     #print (alumni)
     
     if request.method == 'GET':
-        print ("In get of the Prof Page")
-        print ("Alumni Employer", alumni.employer)
-        print ("Alumni role", alumni.position)
-        print ("Alumni city", alumni.current_city)
         initial = {'emp' : alumni.employer,
                    'role' : alumni.position,
                    'current_city' : alumni.current_city }
@@ -167,15 +162,9 @@ def signin_4(request):
         return render(request, 'Alumni/signin_4.html', context)
 
     if request.method == 'POST':
-        print ("IN POST FOR PROFESSIONAL INFO")
         form = ProfessionalInformationForm(request.POST)
         alumni = Alumni.objects.get(user = request.user)
-        #print ("Alumni Employer ", alumni.employer)
-        #print ("Alumni role", alumni.position)
-        #print ("Alumni city", alumni.current_city)
-        #alumni = Alumni.objects.get(user = request.user)
         if form.is_valid():
-            print ("PROFESSIONAL FORM VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
@@ -343,7 +332,6 @@ def update(request):
             big_user = User.objects.get(first_name = big_first_name,
                                         last_name = big_last_name)
         else:
-            print ("CHARTER")
             big_user = None
         user.is_active = False 
 
@@ -485,7 +473,6 @@ def __create_family_trees__():
 
             else:
                 pass
-            print ("Big ", str(big), " Little ", str(little))
             
         read_file.close()
         write_file.close()
@@ -541,7 +528,6 @@ def search(request):
     context = {}
 
     if request.method == 'POST':
-        print ("IN POST")
         search = str(request.POST['search'])
 
         # Fix the user case #
