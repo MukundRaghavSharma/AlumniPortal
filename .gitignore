@@ -30,6 +30,7 @@ db.sqlite3
 *.sqlite3
 media
 venv
+config.ini
 
 # OS generated files #
 ######################
