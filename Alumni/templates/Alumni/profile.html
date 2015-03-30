@@ -2,14 +2,7 @@
 
 {% block file %}
 {% load inplace_edit %}
-{% load wysiwyg %}
-{% wysiwyg_setup %}
 {% inplace_static %}
-
-
-    
-    
-
 
         <div class="row">
             <div class="col-md-4" id="dp">
@@ -64,7 +57,7 @@
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in the <a href="/gallery#{{ alumni.graduation_class }}">{{ alumni.graduation_class }}</a></span>
+                                    <span class="overview-text">Graduated in <a href="/gallery#{{ alumni.graduation_class }}"> 2007</a></span>
                                   </div>
                                 </div>
                             </li>
@@ -128,9 +121,6 @@
                       <div class="panel-body">
                         <p class="bio-body" id="editor">
                           {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself."  %}
-
-
-                          
                         </p>
                       </div>
                     </div>

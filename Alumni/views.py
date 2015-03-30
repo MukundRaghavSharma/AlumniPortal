@@ -526,7 +526,7 @@ def search(request):
         family_results = Family.objects.filter(Q(name__icontains=search)) 
 
         results = list(chain(alumni_results, pledge_class_results, family_results)) 
-        user = User.objects.get(user = request.user)
+        user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         context['current_user'] = alumni 
         context['results'] = results
