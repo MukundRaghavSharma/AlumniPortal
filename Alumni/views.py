@@ -295,7 +295,6 @@ def update(request):
                                         password = password)
         user.save()
         if len(big) != 0:
-            print (user)
             big_user = User.objects.get(first_name = big_first_name,
                                         last_name = big_last_name)
         else:
