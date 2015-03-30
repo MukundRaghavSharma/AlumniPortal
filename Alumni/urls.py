@@ -19,23 +19,23 @@ urlpatterns = patterns('',
         
     # Sign-Up 1 - Launch Page #
     url(regex = r'^$',
-        view  = 'Alumni.views.signin_1',
-        name  = 'signin_1',),
+        view  = 'Alumni.views.signup_1',
+        name  = 'signup1',),
 
     # Sign-Up 2 - Basic Information #
-    url(regex = r'^signin_2$',
-        view  = 'Alumni.views.signin_2',
-        name  = 'signin_2',),
+    url(regex = r'^signup2/$',
+        view  = 'Alumni.views.signup_2',
+        name  = 'signup2',),
 
     # Sign-Up 3 - AKPsi Information #
-    url(regex = r'^signin_3$',
-        view  = 'Alumni.views.signin_3',
-        name  = 'signin_3',),
+    url(regex = r'^signup3/$',
+        view  = 'Alumni.views.signup_3',
+        name  = 'signup3',),
 
     # Sign-Up 4 - Career Information #
-    url(regex = r'^signin_4$',
-        view  = 'Alumni.views.signin_4',
-        name  = 'signin_4',),
+    url(regex = r'^signup4/$',
+        view  = 'Alumni.views.signup_4',
+        name  = 'signup4',),
    
     # Home Page #
     url(regex = r'^dashboard/$',

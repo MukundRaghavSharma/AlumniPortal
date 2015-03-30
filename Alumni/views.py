@@ -33,7 +33,7 @@ def signin(request):
 
 # Sign in 1 #
 # Function to signin user #
-def signin_1(request):
+def signup_1(request):
     context = {}
     
     if request.method == 'GET':
@@ -52,12 +52,12 @@ def signin_1(request):
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
             alumni.save()
             login(request, alumni.user)
-            return redirect('/signin_2')
+            return redirect('/signup2/')
 
 # Sign in 2 #
 @login_required
 @transaction.atomic
-def signin_2(request):
+def signup_2(request):
     context = {}
 
     # Get Request #
@@ -74,6 +74,7 @@ def signin_2(request):
 
     # Post Request #
     if request.method == 'POST':
+        print ("HERE in post of signin_2")
         form = PersonalInformationForm(request.POST, request.FILES)
         alumni = Alumni.objects.get(user = request.user)
 
@@ -89,8 +90,7 @@ def signin_2(request):
             alumni = Alumni.objects.filter(user = request.user) 
             alumni.update(phone = form.cleaned_data.get('phone'))
             login(request, user)
-            
-            return redirect('/signin_3')
+            return redirect('/signup3/')
 
         context['form'] = form
         return render(request, 'Alumni/signin_2.html', context)
@@ -99,7 +99,7 @@ def signin_2(request):
 # Function to signin user #
 @login_required
 @transaction.atomic
-def signin_3(request):
+def signup_3(request):
     context = {}
     
     if request.method == 'GET':
@@ -115,7 +115,6 @@ def signin_3(request):
 
         pledge_class = alumni.pledge_class
         class_choice = CHOICES[class_choice[0]][1]
-        print (class_choice)
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -139,7 +138,7 @@ def signin_3(request):
             alumni.graduation_class = "Class of " + class_choice 
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
-            return redirect('/signin_4')
+            return redirect('/signup4/')
 
         # Invalid form #
         context['form'] = form
@@ -148,17 +147,12 @@ def signin_3(request):
 # Sign in 4 #
 # Function to signin user #
 @transaction.atomic
-def signin_4(request):
+def signup_4(request):
     context = {}
     user = request.user
     alumni = Alumni.objects.get(user = request.user)
-    #print (alumni)
     
     if request.method == 'GET':
-        print ("In get of the Prof Page")
-        print ("Alumni Employer", alumni.employer)
-        print ("Alumni role", alumni.position)
-        print ("Alumni city", alumni.current_city)
         initial = {'emp' : alumni.employer,
                    'role' : alumni.position,
                    'current_city' : alumni.current_city }
@@ -167,15 +161,9 @@ def signin_4(request):
         return render(request, 'Alumni/signin_4.html', context)
 
     if request.method == 'POST':
-        print ("IN POST FOR PROFESSIONAL INFO")
         form = ProfessionalInformationForm(request.POST)
         alumni = Alumni.objects.get(user = request.user)
-        #print ("Alumni Employer ", alumni.employer)
-        #print ("Alumni role", alumni.position)
-        #print ("Alumni city", alumni.current_city)
-        #alumni = Alumni.objects.get(user = request.user)
         if form.is_valid():
-            print ("PROFESSIONAL FORM VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
@@ -230,7 +218,7 @@ def signup(request):
             content_file = ContentFile(raw.read())
             pledge_class = PledgeClass(name = 'Boss Class',
                                        season = 'Spring',
-                                       class_number = 14444)
+                                       class_number = 0)
             family = Family(name = "Boss")
             family.save()
             pledge_class.save()
@@ -343,7 +331,6 @@ def update(request):
             big_user = User.objects.get(first_name = big_first_name,
                                         last_name = big_last_name)
         else:
-            print ("CHARTER")
             big_user = None
         user.is_active = False 
 
@@ -361,7 +348,6 @@ def update(request):
         try: 
             name_url = first_name.lower() + '.' + last_name.lower() + '.jpg' 
 
-            #url = 'file://Alumni/static/Alumni/images/' + name_url
             url = ('file://' + os.path.dirname(os.path.realpath(__file__)) + '/static/Alumni/images/' + name_url)
             destination_url = 'Alumni/media/images/' + name_url 
             if sys.version_info >= (3, 0):
@@ -541,7 +527,6 @@ def search(request):
     context = {}
 
     if request.method == 'POST':
-        print ("IN POST")
         search = str(request.POST['search'])
 
         # Fix the user case #
