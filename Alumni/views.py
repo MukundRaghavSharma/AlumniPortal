@@ -1,6 +1,7 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
+from django.templatetags.static import static
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -505,6 +506,48 @@ def gallery_view(request):
         context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
+
+@login_required
+def family_trees_create(request):
+    INITIAL_SCRIPT = '''
+    google.load("visualization", "1", {packages:["orgchart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+        data.addRows([
+    '''
+    
+    FINAL_SCRIPT = '''
+    )];
+
+    var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
+    chart.draw(data, {allowHtml: true, nodeClass:"node"});
+    }
+    '''
+
+    families = Family.objects.all()
+    for family in families:
+        cwd = os.getcwd()
+        family_file = open(cwd + '/Alumni/static/Alumni/js/Families/' + family.name.lower() + '.js', 'w')
+        family_file.write(INITIAL_SCRIPT)
+        for alumni in Alumni.objects.filter(family = family):
+            big = alumni.big
+            little_name = "'" + alumni.user.first_name + ' ' + alumni.user.last_name + "\'"
+            big_text = '' + '\'],\''
+            if big != None:
+                big_name = "'" + big.user.first_name + ' ' + big.user.last_name + "'"
+                #big_text = '<img src="' + big.picture.url + '" class="pull-left" width=20> ' + big.user.first_name + ' ' + big.user.last_name + "'', '']," 
+                big_text = little_name + '\' \',' + '\' \',],' 
+            #little_text = "['<img src=\"" + alumni.picture.url + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
+            little_text = "[" + little_name + "\',\'"
+            final_text = little_text + big_text + '\n'
+            family_file.write(final_text)
+        family_file.write(FINAL_SCRIPT)
+        family_file.close()
+    return redirect('/dashboard/')
 
 @login_required
 def four_oh_four(request):
