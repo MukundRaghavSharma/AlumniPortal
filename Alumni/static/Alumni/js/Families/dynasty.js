@@ -1,4 +1,4 @@
-
+function Dynasty() {
     google.load("visualization", "1", {packages:["orgchart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -7,22 +7,22 @@
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-    ['Imee Chan'',''],'
-['Daniel Kim'',''],'
-['Melanie Mui'',''],'
-['Anna Ly'',''Anna Ly'' ',' ',],
-['Lu Zhang'',''Lu Zhang'' ',' ',],
-['Jason Ma'',''Jason Ma'' ',' ',],
-['Konstantin Vidensky'',''Konstantin Vidensky'' ',' ',],
-['Hugo Zhang'',''Hugo Zhang'' ',' ',],
-['Alvin Poh'',''],'
-['Stephanie Yue'',''Stephanie Yue'' ',' ',],
-['Ahmad Shamsuddin'',''Ahmad Shamsuddin'' ',' ',],
-['Zachary Rousselle'',''Zachary Rousselle'' ',' ',],
+	['Imee Chan','',''],
+['Daniel Kim','',''],
+['Melanie Mui','',''],
+['Anna Ly','Ellen Lai','',''],
+['Lu Zhang','Melanie Mui','',''],
+['Jason Ma','Anna Ly','',''],
+['Konstantin Vidensky','Lu Zhang','',''],
+['Hugo Zhang','Jason Ma','',''],
+['Alvin Poh','',''],
+['Stephanie Yue','Hugo Zhang','',''],
+['Ahmad Shamsuddin','Hugo Zhang','',''],
+['Zachary Rousselle','Konstantin Vidensky','',''],
 
-    )];
+    ]);
 
     var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }
+    }}
     

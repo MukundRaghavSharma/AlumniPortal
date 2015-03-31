@@ -1,4 +1,4 @@
-
+function Roc-a-fellas() {
     google.load("visualization", "1", {packages:["orgchart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -7,16 +7,16 @@
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-    ['Malcolm Ong'',''],'
-['Danielle Rosenfeld'',''Danielle Rosenfeld'' ',' ',],
-['Brenda Lee'',''Brenda Lee'' ',' ',],
-['Johnny Bae'',''Johnny Bae'' ',' ',],
-['Matt Wilson'',''Matt Wilson'' ',' ',],
-['Emily Wright'',''Emily Wright'' ',' ',],
+	['Malcolm Ong','',''],
+['Danielle Rosenfeld','Julia Degeratu','',''],
+['Brenda Lee','Hayden Tang','',''],
+['Johnny Bae','Charles Mbaruguru','',''],
+['Matt Wilson','Julia Choicer','',''],
+['Emily Wright','Emily Wright','',''],
 
-    )];
+    ]);
 
     var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }
+    }}
     

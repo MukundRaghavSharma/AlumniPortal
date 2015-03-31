@@ -517,32 +517,32 @@ def family_trees_create(request):
         data.addColumn('string', 'Name');
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
-        data.addRows([
-    '''
+        data.addRows([\n\t'''
     
     FINAL_SCRIPT = '''
-    )];
+    ]);
 
     var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }
+    }}
     '''
 
     families = Family.objects.all()
     for family in families:
         cwd = os.getcwd()
         family_file = open(cwd + '/Alumni/static/Alumni/js/Families/' + family.name.lower() + '.js', 'w')
-        family_file.write(INITIAL_SCRIPT)
+        FUNCTION_HEADER = 'function ' + family.name + '() {'
+        family_file.write(FUNCTION_HEADER + INITIAL_SCRIPT)
         for alumni in Alumni.objects.filter(family = family):
             big = alumni.big
-            little_name = "'" + alumni.user.first_name + ' ' + alumni.user.last_name + "\'"
-            big_text = '' + '\'],\''
+            little_name = "'" + alumni.user.first_name + ' ' + alumni.user.last_name + "'"
+            big_text = '' + '\'\',\'\'],'
             if big != None:
-                big_name = "'" + big.user.first_name + ' ' + big.user.last_name + "'"
+                big_name = "'" + big.user.first_name + ' ' + big.user.last_name
                 #big_text = '<img src="' + big.picture.url + '" class="pull-left" width=20> ' + big.user.first_name + ' ' + big.user.last_name + "'', '']," 
-                big_text = little_name + '\' \',' + '\' \',],' 
+                big_text = big_name + '\',' + '\'\',\'\'],' 
             #little_text = "['<img src=\"" + alumni.picture.url + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
-            little_text = "[" + little_name + "\',\'"
+            little_text = "[" + little_name + ","
             final_text = little_text + big_text + '\n'
             family_file.write(final_text)
         family_file.write(FINAL_SCRIPT)
