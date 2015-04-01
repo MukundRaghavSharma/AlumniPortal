@@ -21,7 +21,7 @@
         <div class="row" id="row_2">
             <div class="col-md-4">
                     <ul class="list-group">
-                        {% if alumni %}
+                        {% if alumni and alumni.picture %}
                             {% if alumni.pledge_class or alumni.family or alumni.graduation_class or alumni.major or alumni.hometown %}
                                 <li class="list-group-item" id="overview-heading">Overview</li>
                             {% endif %}
