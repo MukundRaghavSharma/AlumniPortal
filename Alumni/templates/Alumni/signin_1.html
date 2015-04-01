@@ -10,25 +10,72 @@
                         <img src="{{ STATIC_URL }}Alumni/images/AKY_Logo.png">
                     </div>
                     <div class="row text-center">
+                        <div id="register" class="landing register">Register</div>
+                        <div class="line"><span>Or</span></div>
+                        <div id="signup" class="landing signup">Sign In</div>
+                        
+                        
+
                         <form action="" method="post">
                             {% csrf_token %}
-                            <div id="signup" class="landing">Enter</div>
-                            <h3 id="message" style="color:#F8E26C;display:none">
-                            <input style="color:black;width: 158px;height: 52px;" placeholder="Your Code" type="text" name="confirmation"> 
-                            </h3>
-                            <!-- <div></div> -->
-                            
-                            <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing"> Submit</button>
-                            <span>
-                            </span>
+                            <input class="code" placeholder="Enter Your Code" type="text" name="confirmation"> 
+                            <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Submit</button>
                         </form>
+                        <br>
+                        <a id="code-back" class="back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+                        
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input class="user" placeholder="Username" type="text" name="username">
+                            <br>
+                            <input class="pass" placeholder="Password" type="password" name="password"> 
+                            <button id="login" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Login</button>
+                        </form>
+                        <br>
+                        <a id="login-back" class="back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+
+
                     </div>
                     <script type="text/javascript">
-                        $( "#signup" ).click(function() {
+                        $( ".register" ).click(function() {
+
                             $("#submit").show();
-                            $("#message").show();
+                            $(".code").show();
+                            $("#code-back").show();
                             $("#signup").hide();
+                            $("#register").hide();
+                            $(".line").hide();
+
                         });
+                        $( "#signup" ).click(function() {
+
+                            $("#submit").hide();
+                            $(".pass").show();
+                            $(".user").show();
+                            $("#login").show();
+                            $("#login-back").show();
+                            $("#signup").hide();
+                            $("#register").hide();
+                            $(".line").hide();
+
+                        });
+
+                        $( ".back" ).click(function() {
+
+                            $(".register").show();
+                            $(".signup").show();
+                            $(".line").show();
+                            $(".pass").hide();
+                            $(".user").hide();
+                            $("#login").hide();
+                            $("#submit").hide();
+                            $(".code").hide();
+                            $("#code-back").hide();
+                            $("#login-back").hide();
+
+                        });
+
                     </script>
               </div>
             </div>

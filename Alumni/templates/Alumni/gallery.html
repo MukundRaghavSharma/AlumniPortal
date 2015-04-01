@@ -5,10 +5,11 @@
         <div class="sidebar" id="myScrollspy">
             <ul class="list-group nav" data-spy="affix" data-offset-top="120" >
                 <div class="toggle-btn-grp joint-toggle">
-                    <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Year View</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Class View</label>
+                    <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Taco</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Kebab</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Burrito</label>
                 </div>
 
                 <script type="text/javascript">
+
                     $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
                     $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
                         if( $(this).attr("name") ) {
@@ -18,8 +19,9 @@
                         }
                     });
 
-
                 </script>
+
+
                 {% for class in class_based_view %}
                     {% with class|first as first_member %}
                         {% if forloop.counter == 2 %}

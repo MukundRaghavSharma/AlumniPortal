@@ -44,13 +44,13 @@ class SignUpForm(forms.Form):
             pass
 
 
-class SignInForm(forms.ModelForm):
-    username = forms.CharField(label = 'Username',
-                               required = True,
-                               max_length = 100,)
+class SignInForm(forms.Form):
+    username = forms.CharField(required = True,
+                               max_length = 100,
+                               widget = forms.TextInput(
+                                   attrs = { 'id': 'chick' , 'class' : 'code', 'placeholder': 'Username' }))
     
-    password1 = forms.CharField(label = 'Password',
-                               widget = forms.PasswordInput())
+    password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code', 'placeholder': 'Password' }))
 
     '''
     class Meta:

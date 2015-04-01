@@ -24,10 +24,11 @@ else:
 def signin(request):
     if request.method == 'GET':
         context = {}
-        form = SignInForm(request.method)
+        form = SignInForm(request.GET)
         context['request'] = request
-        context['form'] = SignInForm(request.GET)
+        context['form'] = form
         return render(request, 'Alumni/signin.html', context)
+
 
 # Sign in 1 #
 # Function to signin user #
@@ -40,16 +41,21 @@ def signin_1(request):
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
-        confirmation_code = request.POST['confirmation'] 
+        if request.POST['confirmation']:
+            confirmation_code = request.POST['confirmation'] 
 
-        if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
-               context['is_error'] = True
-               return render(request, 'Alumni/signin_1.html', context)
-        else: 
-            alumni = Alumni.objects.get(confirmation_code = confirmation_code)
-            alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
-            alumni.save()
-            login(request, alumni.user)
+            if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
+                   context['is_error'] = True
+                   return render(request, 'Alumni/signin_1.html', context)
+            else: 
+                alumni = Alumni.objects.get(confirmation_code = confirmation_code)
+                alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
+                alumni.save()
+                login(request, alumni.user)
+                return redirect('/signin_2')
+        if request.POST['username'] and request.POST['password']:
+            username = request.POST['username']
+            password = request.POST['password']
             return redirect('/signin_2')
 
 # Sign in 2 #
