@@ -1,15 +1,17 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
-from django.shortcuts import get_object_or_404
 from Alumni.util.get_data import get_first
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
+from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from itertools import chain
@@ -119,7 +121,6 @@ def signin_3(request):
 
         pledge_class = alumni.pledge_class
         class_choice = CHOICES[class_choice[0]][1]
-        print (class_choice)
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -159,10 +160,6 @@ def signin_4(request):
     #print (alumni)
     
     if request.method == 'GET':
-        print ("In get of the Prof Page")
-        print ("Alumni Employer", alumni.employer)
-        print ("Alumni role", alumni.position)
-        print ("Alumni city", alumni.current_city)
         initial = {'emp' : alumni.employer,
                    'role' : alumni.position,
                    'current_city' : alumni.current_city }
@@ -171,15 +168,9 @@ def signin_4(request):
         return render(request, 'Alumni/signin_4.html', context)
 
     if request.method == 'POST':
-        print ("IN POST FOR PROFESSIONAL INFO")
         form = ProfessionalInformationForm(request.POST)
         alumni = Alumni.objects.get(user = request.user)
-        #print ("Alumni Employer ", alumni.employer)
-        #print ("Alumni role", alumni.position)
-        #print ("Alumni city", alumni.current_city)
-        #alumni = Alumni.objects.get(user = request.user)
         if form.is_valid():
-            print ("PROFESSIONAL FORM VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
@@ -260,6 +251,49 @@ def logout_user(request):
     return redirect('/')
 
 @login_required
+def send_email(request):
+    easy_mode = True
+    if easy_mode == False:
+        brothers = get_first()
+        for brother in brothers:
+            first_name = str(brother[0])
+            last_name = str(brother[1]) 
+            user = User.objects.get(first_name = first_name, last_name = last_name)
+            alumni = Alumni.objects.get(user = user)
+            email = str(brother[5])
+            email_body = '''
+    Dear %s %s,
+
+    The following is your confirmation code: %s!
+
+    Have a good day..
+
+    Sincerely,
+    Mog San
+    ''' % (alumni.user.first_name, alumni.user.last_name, alumni.confirmation_code)
+        send_mail(subject="AKPsi Alumni Code",
+          message= email_body,
+          from_email="mrsharma@andrew.cmu.edu",
+          recipient_list=[alumni.user.email])
+
+    else:
+        alumni = Alumni.objects.all()[2]
+        email_body = '''
+    Dear %s %s,
+
+    The following is your confirmation code: %s!
+
+    Have a good day..
+
+    Sincerely,
+    Mog San
+    ''' % (alumni.user.first_name, alumni.user.last_name, alumni.confirmation_code)
+        send_mail(subject="AKPsi Alumni Code",
+          message= email_body,
+          from_email="mrsharma@andrew.cmu.edu",
+          recipient_list=["mrsharma@andrew.cmu.edu"])
+
+@login_required
 @transaction.atomic
 def update(request):
     brothers = get_first()
@@ -304,7 +338,6 @@ def update(request):
             big_user = User.objects.get(first_name = big_first_name,
                                         last_name = big_last_name)
         else:
-            print ("CHARTER")
             big_user = None
         user.is_active = False 
 
@@ -446,7 +479,6 @@ def __create_family_trees__():
 
             else:
                 pass
-            print ("Big ", str(big), " Little ", str(little))
             
         read_file.close()
         write_file.close()
@@ -502,7 +534,6 @@ def search(request):
     context = {}
 
     if request.method == 'POST':
-        print ("IN POST")
         search = str(request.POST['search'])
 
         # Fix the user case #
