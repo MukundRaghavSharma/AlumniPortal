@@ -10,19 +10,19 @@ function Dynasty() {
 	['Imee Chan','',''],
 ['Daniel Kim','',''],
 ['Melanie Mui','',''],
-['Anna Ly','Ellen Lai','',''],
-['Lu Zhang','Melanie Mui','',''],
-['Jason Ma','Anna Ly','',''],
-['Konstantin Vidensky','Lu Zhang','',''],
-['Hugo Zhang','Jason Ma','',''],
+['Anna Ly','Ellen Lai',''],
+['Lu Zhang','Melanie Mui',''],
+['Jason Ma','Anna Ly',''],
+['Konstantin Vidensky','Lu Zhang',''],
+['Hugo Zhang','Jason Ma',''],
 ['Alvin Poh','',''],
-['Stephanie Yue','Hugo Zhang','',''],
-['Ahmad Shamsuddin','Hugo Zhang','',''],
-['Zachary Rousselle','Konstantin Vidensky','',''],
+['Stephanie Yue','Hugo Zhang',''],
+['Ahmad Shamsuddin','Hugo Zhang',''],
+['Zachary Rousselle','Konstantin Vidensky',''],
 
     ]);
 
-    var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
+    var chart = new google.visualization.OrgChart(document.getElementById('dynasty_tree'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
     }}
     

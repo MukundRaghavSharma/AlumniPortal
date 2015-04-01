@@ -7,29 +7,29 @@ function Family() {
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-	['Julian Chun','',''],
-['Chris Chyu','',''],
-['Patrick Cao','',''],
-['Andrew Kiang','',''],
-['Jennifer Suh','',''],
-['Jessica Wong','Jennifer Suh','',''],
-['Niharika Bandi','',''],
-['Xiao-Lan Wong','Patrick Cao','',''],
-['Sheldon Cheung','Xiao-Lan Wong','',''],
-['Daniel Chen','Jessica Wong','',''],
-['Shi Chung','',''],
-['William Ouyang','Jessica Wong','',''],
-['Neil Sethi','Niharika Bandi','',''],
-['Christopher Jo','Shi Chung','',''],
-['Deniz Kalaycioglu','William Ouyang','',''],
-['Vincent Liu','Christopher Jo','',''],
-['Bernard Yuan','Deniz Kalaycioglu','',''],
-['Adhip Sacheti','Daniel Chen','',''],
-['Raphael Kim','Vincent Liu','',''],
+	       ['Julian Chun','',''],
+            ['Chris Chyu','',''],
+            ['Andrew Kiang','',''],
+            ['Patrick Cao','',''],
+            ['Jennifer Suh','',''],
+            ['Jessica Wong','Jennifer Suh',''],
+            ['Niharika Bandi','',''],
+            ['Xiao-Lan Wong','Patrick Cao',''],
+            ['Sheldon Cheung','Xiao-Lan Wong',''],
+            ['Daniel Chen','Jessica Wong',''],
+            ['Shi Chung','',''],
+            ['William Ouyang','Jessica Wong',''],
+            ['Neil Sethi','Niharika Bandi',''],
+            ['Christopher Jo','Shi Chung',''],
+            ['Deniz Kalaycioglu','William Ouyang',''],
+            ['Vincent Liu','Christopher Jo',''],
+            ['Bernard Yuan','Deniz Kalaycioglu',''],
+            ['Adhip Sacheti','Daniel Chen',''],
+            ['Raphael Kim','Vincent Liu',''],
+        ]);
 
-    ]);
-
-    var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
-    chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }}
+        var chart = new google.visualization.OrgChart(document.getElementById('family_tree'));
+        chart.draw(data, {allowHtml: true, nodeClass:"node"});
+    }
+}
     

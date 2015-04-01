@@ -152,7 +152,6 @@ def signin_4(request):
     context = {}
     user = request.user
     alumni = Alumni.objects.get(user = request.user)
-    #print (alumni)
     
     if request.method == 'GET':
         initial = {'emp' : alumni.employer,
@@ -478,8 +477,6 @@ def __create_family_trees__():
         read_file.close()
         write_file.close()
 
-
-
 @login_required
 def gallery_view(request):
     context = {}
@@ -522,7 +519,7 @@ def family_trees_create(request):
     FINAL_SCRIPT = '''
     ]);
 
-    var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
+    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
     }}
     '''
@@ -540,7 +537,7 @@ def family_trees_create(request):
             if big != None:
                 big_name = "'" + big.user.first_name + ' ' + big.user.last_name
                 #big_text = '<img src="' + big.picture.url + '" class="pull-left" width=20> ' + big.user.first_name + ' ' + big.user.last_name + "'', '']," 
-                big_text = big_name + '\',' + '\'\',\'\'],' 
+                big_text = big_name + '\',' + '\'\'],' 
             #little_text = "['<img src=\"" + alumni.picture.url + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
             little_text = "[" + little_name + ","
             final_text = little_text + big_text + '\n'

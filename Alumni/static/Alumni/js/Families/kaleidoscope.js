@@ -15,26 +15,26 @@ function Kaleidoscope() {
 ['Ran Yi','',''],
 ['Randall Aluwi','',''],
 ['Eric Tang','',''],
-['Chris Chan','Ran Yi','',''],
-['Christine Chang','Jessica Ma','',''],
+['Chris Chan','Ran Yi',''],
+['Christine Chang','Jessica Ma',''],
 ['Margaret Sheng','',''],
-['Amanda Davenport','Nabila Walji','',''],
-['Song Im','Christine Chang','',''],
-['Parthesh Karna','Nabila Walji','',''],
-['Casey Piper','Margaret Sheng','',''],
-['Min Kim','Amanda Davenport','',''],
-['Michelle Berman','Casey Piper','',''],
-['Umang Patel','Parthesh Karna','',''],
+['Amanda Davenport','Nabila Walji',''],
+['Song Im','Christine Chang',''],
+['Parthesh Karna','Nabila Walji',''],
+['Casey Piper','Margaret Sheng',''],
+['Min Kim','Amanda Davenport',''],
+['Michelle Berman','Casey Piper',''],
+['Umang Patel','Parthesh Karna',''],
 ['Kunal Natu','',''],
-['Lydia Yi','Song Im','',''],
-['Alvi Hasan','Kunal Natu','',''],
-['Sidharth Madan','Michelle Berman','',''],
-['Jisoo Park','Min Kim','',''],
-['Carol Kim','Kunal Natu','',''],
+['Lydia Yi','Song Im',''],
+['Alvi Hasan','Kunal Natu',''],
+['Sidharth Madan','Michelle Berman',''],
+['Jisoo Park','Min Kim',''],
+['Carol Kim','Kunal Natu',''],
 
     ]);
 
-    var chart = new google.visualization.OrgChar(document.getElementById('chart_div'));
+    var chart = new google.visualization.OrgChart(document.getElementById('kaleidoscope_tree'));
     chart.draw(data, {allowHtml: true, nodeClass:"node"});
     }}
     
