@@ -1088,3 +1088,56 @@ label {
     background:lightgreen;
     border:solid 1px green !important; 
 }
+
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+   border: 0px solid white; 
+   border-bottom: 0px solid white; 
+   border-radius: 0px 0px 0 0; 
+  /* background-color: #2a3856; */
+  color: #2a3856;
+  /* display: inline-block; */
+  width: 150px;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  /* background-color: #eee; */
+  background-color: #2a3856;
+  color: #fff;
+   border: 0px solid #2a3856; 
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  /* color: #555; */
+  cursor: default;
+  background-color: #2a3856;
+   border: 0px solid #ddd; 
+   border-bottom-color: transparent; 
+  color: #fff;
+}
+
+.nav-tabs {
+   border-bottom: 0px solid #ddd; 
+   left: 100px;
+   /* font-size: 12px; */
+   /* color: #2a3856; */
+   position: absolute;
+   /* display: inline-block; */
+   width: 160px;
+   padding-top: 20px;
+   }
+}
+
+#inline-with-heading {
+	padding-top: 20px;
+}
+
+.right-small {
+	float: right;
+	font-size: 10px;
+}

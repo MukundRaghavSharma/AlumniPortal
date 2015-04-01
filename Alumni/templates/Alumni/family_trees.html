@@ -2,69 +2,94 @@
 
 {% block file %}
     {% load staticfiles %}
-    <div class="familytree">
-      
-      <div role="tabpanel">
+    
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#dynasty" aria-controls="home" role="tab" data-toggle="tab">Dynasty</a></li>
-          <li role="presentation"><a href="#family" aria-controls="profile" role="tab" data-toggle="tab">The Family</a></li>
-          <li role="presentation"><a href="#incredibles" aria-controls="messages" role="tab" data-toggle="tab">The Incredibles</a></li>
-          <li role="presentation"><a href="#kaleidoscope" aria-controls="settings" role="tab" data-toggle="tab">Kaleidoscope</a></li>
-          <li role="presentation"><a href="#reagan_bros" aria-controls="settings" role="tab" data-toggle="tab">Reagan Bros</a></li>
-          <li role="presentation"><a href="#roc-a-fellas" aria-controls="settings" role="tab" data-toggle="tab">Roc-a-Fellas</a></li>
-        </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="dynasty">
-            <h1> The Dynasty Family </h1>
-            <script type="text/javascript">
-              Dynasty();
-            </script>
-            <div id="dynasty_tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="family">
-            <h1> The Family </h1>
-            <script type="text/javascript">
-              Family();
-            </script>
-            <div id="family_tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="incredibles">
-            <h1> The Incredibles </h1>
-            <script type="text/javascript">
-              Incredibles();
-            </script>
-            <div id="incredibles_tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="kaleidoscope">
-            <h1> Kaleidoscope </h1>
-            <script type="text/javascript">
-              Kaleidoscope();
-            </script>
-            <div id="kaleidoscope_tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="reagan_bros">
-            <h1> Reagan Bros </h1>
-            <script type="text/javascript">
-              Reagan_Brothers();
-            </script>
-            <div id="reagan_bros_tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="roc-a-fellas">
-            <h1> Roc-a-Fellas </h1>
-            <script type="text/javascript">
-              Roc_a_Fellas();
-            </script>
-            <div id="roc_a_fellas_tree"></div>
-          </div>
+        
+        <div role="tabpanel">
+          <div class="row">
+
+          <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#dynasty" aria-controls="home" role="tab" data-toggle="tab">
+                  Dynasty<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#family" aria-controls="profile" role="tab" data-toggle="tab">
+                  The Family<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#incredibles" aria-controls="messages" role="tab" data-toggle="tab">
+                  The Incredibles<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#kaleidoscope" aria-controls="settings" role="tab" data-toggle="tab">
+                  Kaleidoscope<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#reagan_bros" aria-controls="settings" role="tab" data-toggle="tab">
+                  Reagan Bros<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#roc-a-fellas" aria-controls="settings" role="tab" data-toggle="tab">
+                  Roc-a-Fellas<span class="right-small"><i class="fa fa-arrow-right fa-fw"></i></span>
+                </a>
+              </li>
+            </ul>
+        
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="dynasty">
+                <h1> The Dynasty Family </h1>
+                <script type="text/javascript">
+                  Dynasty();
+                </script>
+                <div id="dynasty_tree"></div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="family">
+                <h1> The Family </h1>
+                <script type="text/javascript">
+                  Family();
+                </script>
+                <div id="family_tree"></div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="incredibles">
+                <h1> The Incredibles </h1>
+                <script type="text/javascript">
+                  Incredibles();
+                </script>
+                <div id="incredibles_tree"></div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="kaleidoscope">
+                <h1> Kaleidoscope </h1>
+                <script type="text/javascript">
+                  Kaleidoscope();
+                </script>
+                <div id="kaleidoscope_tree"></div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="reagan_bros">
+                <h1> Reagan Bros </h1>
+                <script type="text/javascript">
+                  Reagan_Brothers();
+                </script>
+                <div id="reagan_bros_tree"></div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="roc-a-fellas">
+                <h1> Roc-a-Fellas </h1>
+                <script type="text/javascript">
+                  Roc_a_Fellas();
+                </script>
+                <div id="roc_a_fellas_tree"></div>
+              </div>
+            </div>
         </div>
-
-      </div>
-
-       
      </div>
 
 {% endblock %}
