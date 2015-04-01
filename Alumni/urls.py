@@ -95,6 +95,11 @@ urlpatterns = patterns('',
     url(regex = r'^send_email/$',
         view = 'Alumni.views.send_email',
         name = 'search',),
+
+    # Create Family Trees #
+    url(regex = r'^create_family_trees/$',
+        view = 'Alumni.views.family_trees_create',
+        name = 'search',),
 )
 
 urlpatterns += staticfiles_urlpatterns()
