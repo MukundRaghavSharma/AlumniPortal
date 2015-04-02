@@ -43,10 +43,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Alumni',
-    #'social.apps.django_app.default',
+    'endless_pagination',
+    'ajaximage',
     'inplaceeditform',
     'django_wysiwyg',
 )
+
+AJAXIMAGE_AUTH_TEST = lambda u: True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,7 +72,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.contrib.messages.context_processors.messages',
    #'social.apps.django_app.context_processors.backends',
    #'social.apps.django_app.context_processors.login_redirect',
-
 )
 
 AUTHENTICATION_BACKENDS = (

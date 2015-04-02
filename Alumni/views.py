@@ -44,7 +44,7 @@ def signin_1(request):
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
-        if request.POST['confirmation']:
+        if 'confirmation' in request.POST:
             confirmation_code = request.POST['confirmation'] 
 
             if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
@@ -56,7 +56,7 @@ def signin_1(request):
                 alumni.save()
                 login(request, alumni.user)
                 return redirect('/signin_2')
-        if request.POST['username'] and request.POST['password']:
+        if 'username' in request.POST and 'password' in request.POST:
             username = request.POST['username']
             password = request.POST['password']
             return redirect('/signin_2')
@@ -77,6 +77,7 @@ def signin_2(request):
                    'phone' : alumni.phone} 
         form = PersonalInformationForm(initial = initial)
         context['form'] = form
+        context['alumni'] = alumni 
         return render(request, 'Alumni/signin_2.html', context) 
 
     # Post Request #
@@ -607,3 +608,9 @@ def search(request):
         context['current_user'] = alumni 
         context['results'] = results
         return render(request, 'Alumni/search.html', context)
+
+def upload_image(request):
+    context = {}
+
+    if request.method == 'POST':
+        pass 

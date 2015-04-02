@@ -1,5 +1,6 @@
 from Alumni.models import Alumni, PledgeClass
 from django import forms
+from ajaximage.widgets import AjaxImageWidget
 from django.contrib.auth.models import User
 import datetime
 import re
@@ -73,6 +74,10 @@ class SignInForm(forms.Form):
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):
+
+    # Picture #
+    images = forms.URLField(widget = 
+            AjaxImageWidget(upload_to='form_uploads'))
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',

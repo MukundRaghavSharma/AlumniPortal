@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.shortcuts import render, redirect
 import uuid
+from ajaximage.fields import AjaxImageField
 
 class Family(models.Model):
     name = models.CharField(max_length = 20, blank = True)
