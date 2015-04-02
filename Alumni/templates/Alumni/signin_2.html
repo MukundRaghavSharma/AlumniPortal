@@ -1,6 +1,8 @@
 {% extends "Alumni/form_wrapper.html" %}
 
 {% block shit %}
+{% load cropping %}
+{{ form.media }}
       <div id="loader">
 
         <div class="signup-title">
@@ -14,8 +16,11 @@
          {{ form.media }}
           <div id="yourId"></div>
           <div class="cropImgWrapper"></div>
+         {% load cropping %}
           {% for field in form %}
               {% if field.errors %}
+                {% cropped_thumbnail alumni.image "cropping"  %}
+                <img src="{% cropped_thumbnail alumni.image "cropping" scale=0.5 %}">
                 <div class="form-group">
                   <div class="col-sm-12">
                       <div class="input-group has-error">

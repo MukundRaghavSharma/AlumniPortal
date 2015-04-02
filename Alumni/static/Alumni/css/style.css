@@ -1111,7 +1111,10 @@ label {
     padding:0.4em 2em 0.4em 0; 
 }
 .toggle-btn-grp { 
-    margin:3px 0; 
+    margin:3px 0;
+    right: 5%;
+    font-size: 12px;
+    position: fixed;
 }
 .toggle-btn { 
     text-align:centre; 
@@ -1143,14 +1146,14 @@ label {
 
 
 .toggle-btn:hover { 
-    border:solid 1px #a0d5dc !important; 
-    background:#f1fdfe;
+    border: solid 1px grey !important;
+    background: lightgrey;
 }
 
 
 .toggle-btn.success { 
-    background:lightgreen;
-    border:solid 1px green !important; 
+    background: lightgrey;
+    border: solid 1px grey !important;
 }
 
 

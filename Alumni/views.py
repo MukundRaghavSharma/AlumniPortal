@@ -508,6 +508,29 @@ def gallery_view(request):
             class_based_view.append(sorted_by_number)
 
         context['class_based_view'] = class_based_view
+
+        
+
+        batches = Alumni.objects.all()
+        batches = batches.extra(order_by = ['graduation_class','number'])
+
+        first_class = batches[0].graduation_class
+        temp_class = []
+        year_sorting_classes = []
+        for alum in batches:
+            if alum.graduation_class == first_class:
+                temp_class.append(alum)
+            else: 
+                temp_class.sort()
+                year_sorting_classes.append(temp_class)
+                first_class = alum.graduation_class
+                temp_class = []
+                temp_class.append(alum)
+
+
+
+        context['year_based_view'] = year_sorting_classes
+
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
 

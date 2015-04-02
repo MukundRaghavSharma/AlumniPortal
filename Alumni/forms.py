@@ -2,6 +2,7 @@ from Alumni.models import Alumni, PledgeClass
 from django import forms
 from ajaximage.widgets import AjaxImageWidget
 from django.contrib.auth.models import User
+from image_cropping import ImageCropWidget
 import datetime
 import re
 
@@ -49,7 +50,7 @@ class SignInForm(forms.Form):
     username = forms.CharField(required = True,
                                max_length = 100,
                                widget = forms.TextInput(
-                                   attrs = { 'id': 'chick' , 'class' : 'code', 'placeholder': 'Username' }))
+                                   attrs = { 'id': 'username' , 'class' : 'code', 'placeholder': 'Username' }))
     
     password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code', 'placeholder': 'Password' }))
 

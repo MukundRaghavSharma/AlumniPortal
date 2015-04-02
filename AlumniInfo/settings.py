@@ -45,8 +45,12 @@ INSTALLED_APPS = (
     'Alumni',
     'endless_pagination',
     'ajaximage',
+    #'social.apps.django_app.default',
+    # 'django_wysiwyg',
+    'easy_thumbnails',
+    'image_cropping',
     'inplaceeditform',
-    'django_wysiwyg',
+    'inplaceeditform_extra_fields',
 )
 
 AJAXIMAGE_AUTH_TEST = lambda u: True
@@ -70,6 +74,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.core.context_processors.tz',
    'django.core.context_processors.request',
    'django.contrib.messages.context_processors.messages',
+
    #'social.apps.django_app.context_processors.backends',
    #'social.apps.django_app.context_processors.login_redirect',
 )
@@ -84,7 +89,6 @@ AUTHENTICATION_BACKENDS = (
 
 ROOT_URLCONF = 'AlumniInfo.urls'
 
-WSGI_APPLICATION = 'AlumniInfo.wsgi.application'
 
 LOGIN_URL = '/'
 
@@ -99,6 +103,18 @@ MEDIA_URL = '/Alumni/media/'
 INPLACEEDIT_EVENT = "click"
 INPLACE_ENABLE_CLASS = 'enable'
 INPLACEEDIT_EDIT_EMPTY_VALUE = 'Click to edit'
+
+# ADAPTOR_INPLACEEDIT = {'textarea': 'inplaceeditform_extra_fields.fields.AdaptorTinyMCEField',
+#                        #'textarea': 'inplaceeditform_extra_fields.fields.AdaptorSimpleTinyMCEField',
+#                        'image': 'inplaceeditform_extra_fields.fields.AdaptorImageThumbnailField',
+#                        'fk': 'inplaceeditform_extra_fields.fields.AdaptorAutoCompleteForeingKeyField',
+#                        'm2mcomma': 'inplaceeditform_extra_fields.fields.AdaptorAutoCompleteManyToManyField'}
+
+# ADAPTOR_INPLACEEDIT = {'auto_fk': 'inplaceeditform_extra_fields.fields.AdaptorAutoCompleteForeingKeyField',
+#                        'auto_m2m': 'inplaceeditform_extra_fields.fields.AdaptorAutoCompleteManyToManyField',
+#                        'image_thumb': 'inplaceeditform_extra_fields.fields.AdaptorImageThumbnailField',
+#                        'tiny': 'inplaceeditform_extra_fields.fields.AdaptorTinyMCEField',
+#                        'tiny_simple': 'inplaceeditform_extra_fields.fields.AdaptorSimpleTinyMCEField'}
 
 AUTH_PROFILE_MODULE = 'Alumni.Alumni'
 # Database
@@ -147,3 +163,8 @@ EMAIL_USE_SSL = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS

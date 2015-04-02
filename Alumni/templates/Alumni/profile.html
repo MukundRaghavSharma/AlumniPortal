@@ -1,8 +1,14 @@
 {% extends "Alumni/navbar.html" %}
 
 {% block file %}
-{% load inplace_edit %}
-{% inplace_static %}
+  {% load inplace_edit %}
+  {% inplace_static %}
+
+  <script type="text/javascript">
+  tinymce.init({
+      selector: "textarea#id_140584671124096-bio"
+   });
+  </script>
 
         <div class="row">
             <div class="col-md-4" id="dp">
@@ -120,7 +126,7 @@
                       <div class="panel-heading">Biography</div>
                       <div class="panel-body">
                         <p class="bio-body" id="editor">
-                          {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself."  %}
+                          {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself.", adaptor="textarea"  %}
                         </p>
                       </div>
                     </div>
@@ -139,11 +145,10 @@
             });
 
             $("p").each(function() {
-              console.log(234);
               $(this).keypress(function() {
                 $('input').each(function() {
 
-                  if ($(this).prop("name") != "search") {
+                  if ( $(this).prop("name") != "search" && $(this).prop("name") != "csrfmiddlewaretoken" ) {
                     
                     $input = $(this);
                     $textarea = $("<textarea></textarea>").attr({
@@ -153,6 +158,7 @@
                     });
                     $textarea.css({"width":"100%","height":"250px"});
                     $textarea.val($input.val());
+                    $(".bio-body").append($textarea);
                     $input.after($textarea).remove();
                   };
                 });
