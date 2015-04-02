@@ -7,7 +7,11 @@
                 <div class="col-md-3" >
                         <div class="text-center">
                             <div class="imgLiquidFill imgLiquid" id="cropped" style="width:170px; height:170px;">
+                                {% if current_user.picture %}
                                     <img src="{{ current_user.picture.url }}">
+                                {% else %}
+                                    <img src="{{ STATIC_URL }}Alumni/images/404.jpg">
+                                {% endif %}
                             </div>
                         </div>
                         <h1 class="dash-name"> {{ current_user.user.first_name }} {{ current_user.user.last_name }} </h1>
