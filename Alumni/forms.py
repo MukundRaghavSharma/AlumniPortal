@@ -1,6 +1,7 @@
 from Alumni.models import Alumni, PledgeClass
 from django import forms
 from django.contrib.auth.models import User
+from image_cropping import ImageCropWidget
 import datetime
 import re
 
@@ -73,6 +74,9 @@ class SignInForm(forms.Form):
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):
+
+    # Picture #
+    image = forms.FileField( widget = forms.FileInput( { 'image': ImageCropWidget }))
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',

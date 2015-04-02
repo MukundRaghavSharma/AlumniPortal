@@ -3,26 +3,57 @@
 {% block file %}
     {% load staticfiles %}
         <div class="toggle-btn-grp joint-toggle">
-            <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Taco</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Kebab</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Burrito</label>
+            <label onclick="" class="toggle-btn"><input type="radio" id="class" name="group3"/>Pledge Class</label><label onclick="" class="toggle-btn"><input id="year" type="radio" name="group3"/>Grad Year</label>
         </div>
+
+        <script type="text/javascript">
+
+            $( document ).ready(function() {
+                $("#class").trigger('click');
+            });
+
+            $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
+            $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+                if( $(this).attr("name") ) {
+                    $(this).parent().addClass("success").siblings().removeClass("success")
+                } else {
+                    $(this).parent().toggleClass("success");
+                }
+            });
+
+            $( "#class" ).click(function() {
+
+                $(".class_view").show();
+                $("#class_sidebar").show();
+                $(".year_view").hide();
+                $("#year_sidebar").hide();
+
+            });
+
+            $( "#year" ).click(function() {
+
+                $(".class_view").hide();
+                $("#class_sidebar").hide();
+                $(".year_view").show();
+                $("#year_sidebar").show();
+
+            });
+
+        </script>
+
         <div class="sidebar" id="myScrollspy">
-            <ul class="list-group nav" data-spy="affix" data-offset-top="120" >
-
-
-                <script type="text/javascript">
-
-                    $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
-                    $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
-                        if( $(this).attr("name") ) {
-                            $(this).parent().addClass("success").siblings().removeClass("success")
-                        } else {
-                            $(this).parent().toggleClass("success");
-                        }
-                    });
-
-                </script>
-
-
+            <ul  id = "year_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
+                {% for year in year_based_view %}
+                    {% with year|first as first_member %}
+                        {% if forloop.counter == 2 %}
+                            <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
+                        {% elif not forloop.first %}
+                            <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+            <ul  id = "class_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
                 {% for class in class_based_view %}
                     {% with class|first as first_member %}
                         {% if forloop.counter == 2 %}
@@ -33,70 +64,138 @@
                     {% endwith %}
                 {% endfor %}
             </ul>
+
         </div>
-            {% if class_based_view %}
-                {% for class in class_based_view %}
 
-                    {% if not forloop.first %}
-                        {% with class|first as first_member %}
-                            <div class="row">
-                                <h1 class="class-name" id="{{ first_member.pledge_class.name }}" >{{ first_member.pledge_class.name }} Class</h1>
-                                <h3 class="class-date"> {{ first_member.pledge_class.season }} {{ first_member.pledge_class.year }} </h3>
-                            </div>
-                        {% endwith %}
-
-                        {% for alum in class %}
-                                {% if forloop.counter|divisibleby:3 or forloop.first %}
-                                    <div class="row">
-                                {% endif %}
+        
+        {% if year_based_view %}
+        <div class="year_view">
+            {% for year in year_based_view %}
+                {% if not forloop.first %}
+                    {% with year|first as first_member %}
+                        <div class="row">
+                            <h1 class="class-name" id="{{ first_member.graduation_class|slugify }}" >{{ first_member.graduation_class }}</h1>
+                        </div>
+                    {% endwith %}
+                    {% for alum in year %}
+                            {% if forloop.counter0|divisibleby:3 or forloop.first %}
+                                <div class="row">
+                            {% endif %}
                                     <div class="col-md-4">
-                                        {% if alum.picture %}
-                                            <div class="center-block">
-                                                    <div class="ih-item circle colored effect3 left_to_right">
-                                                        <a class="gallery-hover" href="/profile/{{ alum.number }}">
-                                                            <div class="img">
-                                                                <div class="imgLiquidFill imgLiquid" id="cropped" style="width:220px; height:220px;">
-                                                                    <img src="{{ alum.picture.url }}">
-                                                                </div>
-                                                            </div>
-                                                            <script type="text/javascript">
-                                                                $(document).ready(function() {
-                                                                    $(".imgLiquidFill").imgLiquid();
-                                                                });
-                                                                $('#full_name').each(function() {
-                                                                    var o_height = $(this).height();
-                                                                    $(this).css('margin-top', (($('#dp').height()-o_height)/2));
-
-                                                                });
-
-                                                            </script>
-                                                        <div class="info">
-                                                            <p class="first-show"><i class="fa fa-briefcase fa-fw"></i> &nbsp;{{ alum.employer }}</p>
-                                                            <p class="other-show"><i class="fa fa-book fa-fw"></i> &nbsp;{{ alum.major }}</p>
-                                                            <p class="other-show"><i class="fa fa-graduation-cap fa-fw"></i> &nbsp;{{ alum.graduation_class }}</p>
-                                                            <p class="other-show"><i class="fa fa-map-marker fa-fw"></i> &nbsp;{{ alum.hometown }}</p>
-
-
-
+                                    {% if alum.picture %}
+                                        <div class="center-block">
+                                            <div class="ih-item circle colored effect3 left_to_right">
+                                                <a class="gallery-hover" href="/profile/{{ alum.number }}">
+                                                    <div class="img">
+                                                        <div class="imgLiquidFill imgLiquid" id="cropped" style="width:220px; height:220px;">
+                                                            <img src="{{ alum.picture.url }}">
                                                         </div>
-                                                        </a>
                                                     </div>
-                                        {% endif %}
-                                            <h1 class="gallery-name"> {{ alum.user.first_name }} {{ alum.user.last_name }}</h1>
-                                            </div>
-                                            <span class="icon-center">
-                                                <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
-                                                <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
-                                                <a href="mailto:{{ alum.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
-                                                <a href="tel:+1{{ alum.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
-                                            </span>
-                                {% if forloop.counter|divisibleby:3 and forloop.counter != 1 or forloop.last %}
-                                    </div>
-                                {% endif %}
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function() {
+                                                            $(".imgLiquidFill").imgLiquid();
+                                                        });
+                                                        $('#full_name').each(function() {
+                                                            var o_height = $(this).height();
+                                                            $(this).css('margin-top', (($('#dp').height()-o_height)/2));
 
-                            </div>
-                {% endfor %}
+                                                        });
+
+                                                    </script>
+                                                    <div class="info">
+                                                        <p class="first-show"><i class="fa fa-briefcase fa-fw"></i> &nbsp;{{ alum.employer }}</p>
+                                                        <p class="other-show"><i class="fa fa-book fa-fw"></i> &nbsp;{{ alum.major }}</p>
+                                                        <p class="other-show"><i class="fa fa-graduation-cap fa-fw"></i> &nbsp;{{ alum.graduation_class }}</p>
+                                                        <p class="other-show"><i class="fa fa-map-marker fa-fw"></i> &nbsp;{{ alum.hometown }}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                    {% endif %}
+                                        <h1 class="gallery-name"> {{ alum.user.first_name }} {{ alum.user.last_name }}</h1>
+                                        </div>
+                                        <span class="icon-center">
+                                            <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+                                            <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+                                            <a href="mailto:{{ alum.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
+                                            <a href="tel:+1{{ alum.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
+                                        </span>
+                                    </div>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter != 1 or forloop.last %}
+                                </div>
+                                {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
-            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if class_based_view %}
+                <div class="class_view">
+                    {% for class in class_based_view %}
+                        {% if not forloop.first %}
+                            {% with class|first as first_member %}
+                                <div class="row">
+                                    <h1 class="class-name" id="{{ first_member.pledge_class.name }}" >{{ first_member.pledge_class.name }} Class</h1>
+                                    <h3 class="class-date"> {{ first_member.pledge_class.season }} {{ first_member.pledge_class.year }} </h3>
+                                </div>
+                            {% endwith %}
+                            {% for alum in class %}
+                                    {% if forloop.counter0|divisibleby:3 or forloop.first %}
+                                        <div class="row">
+                                    {% endif %}
+                                            <div class="col-md-4">
+                                            {% if alum.picture %}
+                                                <div class="center-block">
+                                                        <div class="ih-item circle colored effect3 left_to_right">
+                                                            <a class="gallery-hover" href="/profile/{{ alum.number }}">
+                                                                <div class="img">
+                                                                    <div class="imgLiquidFill imgLiquid" id="cropped" style="width:220px; height:220px;">
+                                                                        <img src="{{ alum.picture.url }}">
+                                                                    </div>
+                                                                </div>
+                                                                <script type="text/javascript">
+                                                                    $(document).ready(function() {
+                                                                        $(".imgLiquidFill").imgLiquid();
+                                                                    });
+                                                                    $('#full_name').each(function() {
+                                                                        var o_height = $(this).height();
+                                                                        $(this).css('margin-top', (($('#dp').height()-o_height)/2));
+
+                                                                    });
+
+                                                                </script>
+                                                                <div class="info">
+                                                                    <p class="first-show"><i class="fa fa-briefcase fa-fw"></i> &nbsp;{{ alum.employer }}</p>
+                                                                    <p class="other-show"><i class="fa fa-book fa-fw"></i> &nbsp;{{ alum.major }}</p>
+                                                                    <p class="other-show"><i class="fa fa-graduation-cap fa-fw"></i> &nbsp;{{ alum.graduation_class }}</p>
+                                                                    <p class="other-show"><i class="fa fa-map-marker fa-fw"></i> &nbsp;{{ alum.hometown }}</p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                            {% endif %}
+                                                    <h1 class="gallery-name"> {{ alum.user.first_name }} {{ alum.user.last_name }}</h1>
+                                                </div>
+                                                    <span class="icon-center">
+                                                        <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+                                                        <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+                                                        <a href="mailto:{{ alum.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
+                                                        <a href="tel:+1{{ alum.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
+                                                    </span>
+                                            </div>
+                                        {% if forloop.counter|divisibleby:3 and forloop.counter != 1 or forloop.last %}
+                                        </div>
+                                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+        
+
+            
+
+
+            
+            
 {% endblock %}

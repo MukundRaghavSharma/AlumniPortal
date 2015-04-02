@@ -1,6 +1,8 @@
 {% extends "Alumni/form_wrapper.html" %}
 
 {% block shit %}
+{% load cropping %}
+{{ form.media }}
       <div id="loader">
 
         <div class="signup-title">
@@ -8,13 +10,12 @@
         </div>
         <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post" enctype='multipart/form-data' >
          {% csrf_token %}
-          <div id="yourId"></div>
-          <div class="cropImgWrapper"></div>
-          <script type="text/javascript">
-            var cropperHeader = new Croppic('yourId');
-          </script>
+         {% load cropping %}
+
           {% for field in form %}
               {% if field.errors %}
+                {% cropped_thumbnail alumni.image "cropping"  %}
+                <img src="{% cropped_thumbnail alumni.image "cropping" scale=0.5 %}">
                 <div class="form-group">
                   <div class="col-sm-12">
                       <div class="input-group has-error">
