@@ -1480,6 +1480,42 @@ label {
 	z-index: 1000;
 }
 
+.well a:hover {
+	text-decoration: none !important;
+	color: #2a3856 !important;
+	background-color: darkgrey;
+}
+
+.well h1 {
+	text-decoration: none !important;
+	color: #2a3856 !important;
+}
+
+.well img:hover {
+	text-decoration: none !important;
+	color: #2a3856 !important;
+	background-color: darkgrey;
+	opacity: .4;
+	z-index: 1000;
+}
+
+.well:hover {
+	text-decoration: none !important;
+	  color: #2a3856 !important;
+	  background-color: gainsboro;
+	  z-index: 1000;
+	  border-color: gainsboro;
+	  border-style: solid;
+	  border-width: 1px;
+}
+
+.well {
+	border-color: #fff;
+	background-color: #fff;
+	-webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .05);
+	  box-shadow: inset 0 0px 0px rgba(0, 0, 0, .05);
+}
+
 
 
 
@@ -1506,6 +1542,7 @@ footer {
  .sidebar-offcanvas {
     position: fixed;
     left:5%;
+    width: 50px;
   }
 
 
