@@ -51,6 +51,8 @@ class Alumni(models.Model):
     current_city = models.CharField(blank = True, null = True, max_length = 50)
     phone = models.CharField(blank = True, max_length = 50)
     major = models.CharField(blank = True, max_length = 100)
+    linkedin_url = models.CharField(blank = True, max_length = 100)
+    facebook_url = models.CharField(blank = True, max_length = 100)
     bio = models.CharField(blank = True, max_length = 500)
     position_description = models.CharField(blank = True, max_length = 500)
     picture = models.FileField(blank = True)

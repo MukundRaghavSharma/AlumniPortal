@@ -106,6 +106,9 @@ class PersonalInformationForm(forms.Form):
                             required = True,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
 
+    # Facebook Link #
+    facebook_link = forms.CharField(label = 'Facebook Link', required = False, widget = forms.TextInput(attrs = { 'id' : 'facebook', 'class' : 'form-control', 'placeholder': 'Facebook URL' })) 
+
     # Password 1 #
     password1 = forms.CharField(label = 'Password',
         required = True,
@@ -114,10 +117,6 @@ class PersonalInformationForm(forms.Form):
     # Password 2 #
     password2 = forms.CharField(label = 'Re-enter your password', required = True,
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
-
-    # Facebook Link #
-    facebook_link = forms.CharField(label = 'Facebook Link', required = False,
-                               widget = forms.TextInput(attrs = { 'id' : 'facebook', 'class' : 'form-control', 'placeholder': 'Facebook Link' })) 
 
     def clean(self):
         #phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
@@ -189,4 +188,4 @@ class ProfessionalInformationForm(forms.Form):
 
     # Linkedin Link #
     linkedin_link = forms.CharField(label = 'LinkedIn Link', required = False,
-                               widget = forms.TextInput(attrs = { 'id' : 'linkedin', 'class' : 'form-control', 'placeholder': 'LinkedIn Link' })) 
+                               widget = forms.TextInput(attrs = { 'id' : 'linkedin', 'class' : 'form-control', 'placeholder': 'LinkedIn URL' })) 
