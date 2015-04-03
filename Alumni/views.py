@@ -592,30 +592,37 @@ def search(request):
     if request.method == 'POST':
         search = str(request.POST['search'])
 
+
+
+
         # Fix the user case #
         # Add hyperlinks #
         user_results = User.objects.filter(Q(first_name__icontains=search) |
                                            Q(last_name__icontains=search) | 
-                                           Q(email__icontains=search)) 
+                                           Q(email__icontains=search)).values_list() 
 
         alumni_results = Alumni.objects.filter(Q(employer__icontains=search) |
                                                Q(position__icontains=search) | 
                                                Q(current_city__icontains=search) | 
                                                Q(major__icontains=search) | 
                                                Q(graduation_class__icontains=search) | 
-                                               Q(hometown__icontains=search)).values() 
+                                               Q(hometown__icontains=search)) 
+        print (alumni_results)
         user_to_alumni = []
         for user in user_results:
             alumni = Alumni.objects.get(user = user)
             user_to_alumni.append(alumni) 
-          
-        pledge_class_results = PledgeClass.objects.filter(Q(season__icontains=search) |
-                                               Q(year__icontains=search) | 
-                                               Q(name__icontains=search)) 
 
-        family_results = Family.objects.filter(Q(name__icontains=search)) 
+        print (user_to_alumni)
+        results = list(alumni_results) 
+        results += user_to_alumni
 
-        results = list(chain(alumni_results, pledge_class_results, family_results)) 
+        # Easter Eggs #
+        if search.lower() == 'slut':
+            slut = User.objects.get(first_name = 'Kathleen', last_name = 'Dolan')
+            alumni_slut = Alumni.objects.get(user = slut)
+            results += [alumni_slut]
+
         user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         context['current_user'] = alumni 
