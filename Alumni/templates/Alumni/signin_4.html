@@ -2,42 +2,51 @@
 
 
 {% block shit %}
-      <div id="loader">
 
         <div class="signup-title">
           Employment Information
         </div>
-        <form class="form-horizontal" id="signup-form-background" method="post" action="/signin_4">
+        <form action='/dashboard/' class="form-horizontal" id="signup-form-background" method="post">
          {% csrf_token %}
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.current_employer }}
-              <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+         {% load cropping %}
+          {% for field in form %}
+              {% if field.errors %}
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      <div class="input-group has-error">
+                        {{ field }}
+                        <div class="input-group-addon"><i class="fa fa-exclamation-circle"></i></div>
+                      </div>
+                    <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                  </div>
+                </div>
+                {% for error in field.errors %}
+                  <div class="form-group" id="error-text">
+                    <div class="col-sm-12">
+                              {{ error }}
+                      <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      {{ field }}
+                    <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                  </div>
+                </div>
+              {% endif %}
+          {% endfor %}
+
+            <div class="form-group" id="button-row">
+              <div class=" col-sm-4">
+                <button type="button" id="page_3_left" href="/signin_3" class="next-button-left"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
+              </div>
+              <div class="col-sm-offset-4 col-sm-4">
+                <button  id="page_3_right" class="next-button-right">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.role }}
-              <!--input type="text" class="form-control" id="" placeholder="Last Name"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.current_city }}
-              <!--input type="email" class="form-control" id="" placeholder="Email"-->
-            </div>
-          </div>
-        <div class="row" id="position-row">
-          <div class="form-group" id="button-row">
-            <div class=" col-sm-4">
-              <button id="page_3_left" class="next-button-left" page="/signin_3 #loader" ><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
-            </div>
-            <div class="col-sm-offset-4 col-sm-4">
-              <button type="submit" id="page_3_right" class="next-button-right" page="/signin_4 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
-          </form>
-            </div>
-          </div>
-        </div>
+        </form>
         <div class="row" id="position-row">
           <div class="col-sm-4" id="position-one">
             <div class="numberCircle">1</div>

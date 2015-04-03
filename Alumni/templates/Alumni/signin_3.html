@@ -1,63 +1,62 @@
 {% extends "Alumni/form_wrapper.html" %}
 
 {% block shit %}
-      <div id="loader">
-        <div class="signup-title">
-          CMU & AKPsi History
-        </div>
-        <form class="form-horizontal" id="signup-form-background" method="post" action="/signin_3">
-         {% csrf_token %}
+
+  <div class="signup-title">
+    CMU & AKPsi History
+  </div>
+  <form action='/signin_3' class="form-horizontal" id="signup-form-background" method="post">
+   {% csrf_token %}
+   {% load cropping %}
+    {% for field in form %}
+        {% if field.errors %}
           <div class="form-group">
             <div class="col-sm-12">
-                {{ form.major }}
+                <div class="input-group has-error">
+                  {{ field }}
+                  <div class="input-group-addon"><i class="fa fa-exclamation-circle"></i></div>
+                </div>
               <!--input type="text" class="form-control" id="" placeholder="First Name"-->
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.graduation_year }}
-              <!--input type="text" class="form-control" id="" placeholder="First Name"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.hometown }}
-              <!--input type="text" class="form-control" id="" placeholder="Last Name"-->
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12">
-                {{ form.phone }}
-              <!--input type="email" class="form-control" id="" placeholder="Email"-->
-            </div>
-          </div>
-          <div class="form-group">
+          {% for error in field.errors %}
+            <div class="form-group" id="error-text">
               <div class="col-sm-12">
-                  {{ form.pledge_class }}
-                <!--input type="password" class="form-control" id="" placeholder="Password"-->
+                        {{ error }}
+                <!--input type="text" class="form-control" id="" placeholder="First Name"-->
               </div>
-          </div>
-        <div class="row" id="position-row">
-          <div class="form-group" id="button-row">
-            <div class=" col-sm-4">
-              <button  id="page_2_left" class="next-button-left" page="/signin_2 #loader"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
             </div>
-            <div class="col-sm-offset-4 col-sm-4">
-              <button type="submit" id="page_2_right" class="next-button-right" page="/signin_4 #loader">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
-        </form>
+          {% endfor %}
+        {% else %}
+          <div class="form-group">
+            <div class="col-sm-12">
+                {{ field }}
+              <!--input type="text" class="form-control" id="" placeholder="First Name"-->
             </div>
           </div>
+        {% endif %}
+    {% endfor %}
+
+      <div class="form-group" id="button-row">
+        <div class=" col-sm-4">
+          <button type="button" id="page_2_left" class="next-button-left"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
         </div>
-        <div class="row" id="position-row">
-          <div class="col-sm-4" id="position-one">
-            <div class="numberCircle">1</div>
-          </div>
-          <div class="col-sm-4" id="position-one">
-            <div class="numberCircle">2</div>
-          </div>
-          <div class="col-sm-4" id="position-three">
-            <div class="numberCircle-other">3</div>
-          </div>
+        <div class="col-sm-offset-4 col-sm-4">
+          <button  id="page_2_right" class="next-button-right">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></button>
         </div>
       </div>
+  </form>
+
+  <div class="row" id="position-row">
+    <div class="col-sm-4" id="position-one">
+      <div class="numberCircle">1</div>
+    </div>
+    <div class="col-sm-4" id="position-one">
+      <div class="numberCircle">2</div>
+    </div>
+    <div class="col-sm-4" id="position-three">
+      <div class="numberCircle-other">3</div>
+    </div>
+  </div>
+</div>
 {% endblock %}

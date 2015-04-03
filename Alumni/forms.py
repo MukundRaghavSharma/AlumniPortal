@@ -169,6 +169,11 @@ class AKPsiInformationForm(forms.Form):
                             required = True,
                             max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
 
+    def clean(self):
+        if 'pledge_class' == CHOICES[0]:
+          self._errors["pledge_class"] = ["Please select a pledge class."]
+        return form_data
+
 class ProfessionalInformationForm(forms.Form):
     
     # Current Employer #
