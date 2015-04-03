@@ -16,10 +16,12 @@
                         
                         
 
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <input class="code" placeholder="Enter Your Code" type="text" name="confirmation"> 
-                            <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Submit</button>
+                        <form class="form-horizontal" action="" method="post">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                <input class="code" placeholder="Enter Your Code" type="text" name="confirmation"> 
+                                <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Submit</button>
+                            </div>
                         </form>
                         <br>
                         <a id="code-back" class="back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>

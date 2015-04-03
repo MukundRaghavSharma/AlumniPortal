@@ -74,7 +74,7 @@ a:hover {
 		padding: 10px 20px 10px 20px;
 		border: solid #fde57e 2px;
 		vertical-align: middle;
-		width: 40%;
+		width: 207px;
 		text-align: center;
 		cursor: pointer;
 		margin: 40px auto 0 auto;
@@ -131,7 +131,7 @@ a:hover {
 		padding: 10px 20px 10px 20px;
 		border: solid #fde57e 2px;
 		vertical-align: middle;
-		width: 40%;
+		width: 207px;
 		text-align: center;
 		cursor: pointer;
 		margin: 0px auto 0 auto;
@@ -217,6 +217,18 @@ a:hover {
   position: relative;
   font-size: 12px;
 }
+
+@media screen and (max-width: 767px) {
+
+	.line span {
+	  display: inline-block;
+	  position: relative;
+	  font-size: 10px;
+	}
+
+}
+
+
 .line span:before,
 .line span:after {
   content: "";
@@ -226,6 +238,22 @@ a:hover {
   top: 50%;
   width: 78px;
 }
+
+@media screen and (max-width: 767px) {
+
+	.line span:before,
+	.line span:after {
+	  content: "";
+	  position: absolute;
+	  height: 5px;
+	  border-top: 1px solid;
+	  top: 50%;
+	  width: 80px;
+	}
+
+}
+
+
 .line span:before {
   right: 100%;
   margin-right: 15px;
