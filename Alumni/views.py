@@ -159,6 +159,7 @@ def signin_3(request):
 
 # Sign in 4 #
 # Function to signin user #
+@login_required
 @transaction.atomic
 def signin_4(request):
     context = {}
@@ -174,9 +175,13 @@ def signin_4(request):
         return render(request, 'Alumni/signin_4.html', context)
 
     if request.method == 'POST':
+
         form = ProfessionalInformationForm(request.POST)
+        user = request.user
         alumni = Alumni.objects.get(user = request.user)
+        print ("BEFORE VALID")
         if form.is_valid():
+            print ("IN VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
