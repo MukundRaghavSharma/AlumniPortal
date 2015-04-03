@@ -1503,6 +1503,11 @@ footer {
  * --------------------------------------------------
  */
 
+ .sidebar-offcanvas {
+    position: fixed;
+    left:5%;
+  }
+
 
 
 @media screen and (max-width: 767px) {
