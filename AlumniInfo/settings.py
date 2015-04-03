@@ -13,6 +13,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import getpass
 
+#from perms import MyAdaptorEditInline
+
 if sys.version_info > (3, 0):
     import configparser
 else:
@@ -65,6 +67,21 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+class MyAdaptorEditInline(object):
+
+    @classmethod
+    def can_edit(cls, adaptor_field):
+        user = adaptor_field.request.user
+        obj = adaptor_field.obj
+        can_edit = False
+        if user.is_anonymous():
+            pass
+        elif user.is_superuser:
+            can_edit = True
+        else:
+           can_edit = has_permission(obj, user, 'edit')
+        return can_edit
+
 TEMPLATE_CONTEXT_PROCESSORS = (
    'django.contrib.auth.context_processors.auth',
    'django.core.context_processors.debug',
@@ -103,6 +120,9 @@ MEDIA_URL = '/Alumni/media/'
 INPLACEEDIT_EVENT = "click"
 INPLACE_ENABLE_CLASS = 'enable'
 INPLACEEDIT_EDIT_EMPTY_VALUE = 'Click to edit'
+
+# ADAPTOR_INPLACEEDIT_EDIT = 'AlumniInfo.fields.MyAdaptor'
+
 
 # ADAPTOR_INPLACEEDIT = {'textarea': 'inplaceeditform_extra_fields.fields.AdaptorTinyMCEField',
 #                        #'textarea': 'inplaceeditform_extra_fields.fields.AdaptorSimpleTinyMCEField',

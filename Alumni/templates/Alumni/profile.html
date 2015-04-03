@@ -3,6 +3,10 @@
 {% block file %}
   {% load inplace_edit %}
   {% inplace_static %}
+  {% if current_user.user.alumni.number == alumni.number %}
+    {{ alumni.user.first_name }}
+  {% endif %}
+
 
   <script type="text/javascript">
   tinymce.init({
@@ -127,6 +131,9 @@
                       <div class="panel-body">
                         <p class="bio-body" id="editor">
                           {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself.", adaptor="textarea"  %}
+                          
+
+                          
                         </p>
                       </div>
                     </div>
@@ -138,11 +145,22 @@
             $(document).ready(function() {
                 $(".imgLiquidFill").imgLiquid();
             });
-            $('#full_name').each(function() {
-                var o_height = $(this).height();
-                $(this).css('margin-top', (($('#dp').height()-o_height)/2));
 
-            });
+            var mq = window.matchMedia('(max-width: 767px)');
+                    if(mq.matches) {
+
+
+
+                        
+                    } else {
+                      $('#full_name').each(function() {
+                          var o_height = $(this).height();
+                          $(this).css('margin-top', (($('#dp').height()-o_height)/2));
+
+                      });
+                        // the width of browser is less then 700px
+                    }
+            
 
             $("p").each(function() {
               $(this).keypress(function() {

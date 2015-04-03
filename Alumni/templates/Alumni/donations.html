@@ -31,17 +31,32 @@
                 <a class="venmo-pay-button" data-recipient-id="1397129314566144218" /></a>
                 <script type="text/javascript">
 
-                $('#message').each(function() {
-                    var o_height = $(this).height();
-                    $(this).css('margin-top', (($('#fillgauge2').height()-o_height)/2));
+                
+                  $( document ).ready(function() {
 
-                });
+                    var mq = window.matchMedia('(max-width: 767px)');
+                    if(mq.matches) {
+
+
+
+                        
+                    } else {
+                      $('#message').each(function() {
+                          var o_height = $(this).height();
+                          $(this).css('margin-top', (($('#fillgauge2').height()-o_height)/2));
+
+                      });
+                        // the width of browser is less then 700px
+                    }
+                  });
 
                 </script>
 
             </div>
          </div>
          <div class="row" id="row_3">
+            <div class="col-md-12">
+
             <h3 class="text-center" id="longer">Thank You to the following Donors:</h3>
 
 
@@ -146,6 +161,7 @@
                               </div>
                             </div>
                         </div>
+                    </div>
                     </div>
 
 

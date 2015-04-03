@@ -5,11 +5,15 @@
     
 
 
-        
-        <div role="tabpanel">
-          <div class="row">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <p class="pull-left visible-xs">
+          <button type="button" class="small-nav" data-toggle="offcanvas">Switch Family</button>
+        </p>
+        <div role="tabpanel" >
 
           <!-- Nav tabs -->
+          
+          <div class=" col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active">
                 <a href="#dynasty" aria-controls="home" role="tab" data-toggle="tab">
@@ -42,54 +46,80 @@
                 </a>
               </li>
             </ul>
-        
+          </div>
+          
 
+         
+        
+            
             <!-- Tab panes -->
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="dynasty">
-                <h1> The Dynasty Family </h1>
-                <script type="text/javascript">
-                  Dynasty();
-                </script>
-                <div id="dynasty_tree"></div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="family">
-                <h1> The Family </h1>
-                <script type="text/javascript">
-                  Family();
-                </script>
-                <div id="family_tree"></div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="incredibles">
-                <h1> The Incredibles </h1>
-                <script type="text/javascript">
-                  Incredibles();
-                </script>
-                <div id="incredibles_tree"></div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="kaleidoscope">
-                <h1> Kaleidoscope </h1>
-                <script type="text/javascript">
-                  Kaleidoscope();
-                </script>
-                <div id="kaleidoscope_tree"></div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="reagan_bros">
-                <h1> Reagan Bros </h1>
-                <script type="text/javascript">
-                  Reagan_Brothers();
-                </script>
-                <div id="reagan_bros_tree"></div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="roc-a-fellas">
-                <h1> Roc-a-Fellas </h1>
-                <script type="text/javascript">
-                  Roc_a_Fellas();
-                </script>
-                <div id="roc_a_fellas_tree"></div>
+            <div class="col-xs-12 col-sm-9">
+              
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="dynasty">
+                  <h1> The Dynasty Family </h1>
+                  <script type="text/javascript">
+                    Dynasty();
+                  </script>
+                  <div id="dynasty_tree"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="family">
+                  <h1> The Family </h1>
+                  <script type="text/javascript">
+                    Family();
+                  </script>
+                  <div id="family_tree"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="incredibles">
+                  <h1> The Incredibles </h1>
+                  <script type="text/javascript">
+                    Incredibles();
+                  </script>
+                  <div id="incredibles_tree"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="kaleidoscope">
+                  <h1> Kaleidoscope </h1>
+                  <script type="text/javascript">
+                    Kaleidoscope();
+                  </script>
+                  <div id="kaleidoscope_tree"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="reagan_bros">
+                  <h1> Reagan Bros </h1>
+                  <script type="text/javascript">
+                    Reagan_Brothers();
+                  </script>
+                  <div id="reagan_bros_tree"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="roc-a-fellas">
+                  <h1> Roc-a-Fellas </h1>
+                  <script type="text/javascript">
+                    Roc_a_Fellas();
+                  </script>
+                  <div id="roc_a_fellas_tree"></div>
+                </div>
               </div>
             </div>
+
+            
+
+
+
+
         </div>
      </div>
+
+     <script type="text/javascript">
+       $(document).ready(function () {
+         $('[data-toggle="offcanvas"]').click(function () {
+           $('.row-offcanvas').toggleClass('active');
+           $('.small-nav').toggleClass('color');
+         });
+         $('[data-toggle="tab"]').click(function () {
+           $('.row-offcanvas').toggleClass('active');
+           $('.small-nav').toggleClass('color');
+         });
+       });
+     </script>
 
 {% endblock %}
