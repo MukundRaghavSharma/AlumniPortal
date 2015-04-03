@@ -116,13 +116,23 @@ def signin_3(request):
             alumni.graduation_class = ''
         else:
             alumni.graduation_class = alumni.graduation_class.split(' ')[2]
-        class_choice = CHOICES[0]
         for choice in CHOICES:
             if choice == alumni.graduation_class:
                 class_choice = choice 
 
+        print (CHOICES)
         pledge_class = alumni.pledge_class
-        class_choice = CHOICES[class_choice[0]][1]
+        print (alumni.graduation_class)
+        if alumni.graduation_class == '':
+            class_choice = CHOICES[[0]][1]
+        else:
+            class_choice = CHOICES[2][1]
+
+        class_choice = 0 
+        for choice in CHOICES:
+            if str(choice[1]) == str(alumni.graduation_class):
+                class_choice = choice[0] 
+                
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -135,12 +145,7 @@ def signin_3(request):
         form = AKPsiInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = user)
-        class_choice = CHOICES[0]
-        for choice in CHOICES:
-            if choice == alumni.graduation_class:
-                class_choice = choice 
-
-        class_choice = CHOICES[class_choice[0]][1]
+        class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
             alumni.graduation_class = "Class of " + class_choice 
@@ -609,13 +614,11 @@ def search(request):
                                                Q(major__icontains=search) | 
                                                Q(graduation_class__icontains=search) | 
                                                Q(hometown__icontains=search)) 
-        print (alumni_results)
         user_to_alumni = []
         for user in user_results:
             alumni = Alumni.objects.get(user = user)
             user_to_alumni.append(alumni) 
 
-        print (user_to_alumni)
         results = list(alumni_results) 
         results += user_to_alumni
 
