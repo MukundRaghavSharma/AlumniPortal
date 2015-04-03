@@ -89,6 +89,7 @@ def signin_2(request):
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
+            alumni.facebook_url= form.cleaned_data.get('facebook_link')
             alumni.user.email = form.cleaned_data.get('email')
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
@@ -115,13 +116,23 @@ def signin_3(request):
             alumni.graduation_class = ''
         else:
             alumni.graduation_class = alumni.graduation_class.split(' ')[2]
-        class_choice = CHOICES[0]
         for choice in CHOICES:
             if choice == alumni.graduation_class:
                 class_choice = choice 
 
+        print (CHOICES)
         pledge_class = alumni.pledge_class
-        class_choice = CHOICES[class_choice[0]][1]
+        print (alumni.graduation_class)
+        if alumni.graduation_class == '':
+            class_choice = CHOICES[[0]][1]
+        else:
+            class_choice = CHOICES[2][1]
+
+        class_choice = 0 
+        for choice in CHOICES:
+            if str(choice[1]) == str(alumni.graduation_class):
+                class_choice = choice[0] 
+                
         initial = {'major' : alumni.major,
                    'graduation_year' : class_choice,
                    'hometown' : alumni.hometown,
@@ -134,12 +145,7 @@ def signin_3(request):
         form = AKPsiInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = user)
-        class_choice = CHOICES[0]
-        for choice in CHOICES:
-            if choice == alumni.graduation_class:
-                class_choice = choice 
-
-        class_choice = CHOICES[class_choice[0]][1]
+        class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
             alumni.graduation_class = "Class of " + class_choice 
@@ -174,6 +180,7 @@ def signin_4(request):
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
+            alumni.linkedin_url = form.cleaned_data.get('linkedin_link')
             alumni.save()
             return redirect('/dashboard/')
 
@@ -607,13 +614,11 @@ def search(request):
                                                Q(major__icontains=search) | 
                                                Q(graduation_class__icontains=search) | 
                                                Q(hometown__icontains=search)) 
-        print (alumni_results)
         user_to_alumni = []
         for user in user_results:
             alumni = Alumni.objects.get(user = user)
             user_to_alumni.append(alumni) 
 
-        print (user_to_alumni)
         results = list(alumni_results) 
         results += user_to_alumni
 
@@ -622,6 +627,21 @@ def search(request):
             slut = User.objects.get(first_name = 'Kathleen', last_name = 'Dolan')
             alumni_slut = Alumni.objects.get(user = slut)
             results += [alumni_slut]
+
+        if search.lower() == 'spice girls':
+            spice1 = User.objects.get(first_name = 'Eumie', last_name = 'Kim')
+            spice2 = User.objects.get(first_name = 'Lydia', last_name = 'Yi')
+            spice3 = User.objects.get(first_name = 'Megan', last_name = 'Kwan')
+            spice4 = User.objects.get(first_name = 'Tricia', last_name = 'Chiou')
+            spice5 = User.objects.get(first_name = 'Amanda', last_name = 'Ho-Sang')
+            spice6 = User.objects.get(first_name = 'David', last_name = 'Baboolall')
+            alumni_spice1 = Alumni.objects.get(user = spice1)
+            alumni_spice2 = Alumni.objects.get(user = spice2)
+            alumni_spice3 = Alumni.objects.get(user = spice3)
+            alumni_spice4 = Alumni.objects.get(user = spice4)
+            alumni_spice5 = Alumni.objects.get(user = spice5)
+            alumni_spice6 = Alumni.objects.get(user = spice6)
+            results += [alumni_spice1, alumni_spice2, alumni_spice3, alumni_spice4, alumni_spice5, alumni_spice6]
 
         user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)

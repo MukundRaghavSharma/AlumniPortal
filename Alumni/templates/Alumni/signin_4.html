@@ -8,7 +8,6 @@
         </div>
         <form action='/dashboard/' class="form-horizontal" id="signup-form-background" method="post">
          {% csrf_token %}
-         {% load cropping %}
           {% for field in form %}
               {% if field.errors %}
                 <div class="form-group">
