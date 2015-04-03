@@ -120,9 +120,7 @@ def signin_3(request):
             if choice == alumni.graduation_class:
                 class_choice = choice 
 
-        print (CHOICES)
         pledge_class = alumni.pledge_class
-        print (alumni.graduation_class)
         if alumni.graduation_class == '':
             class_choice = CHOICES[[0]][1]
         else:
@@ -146,6 +144,7 @@ def signin_3(request):
         user = request.user
         alumni = Alumni.objects.get(user = user)
         class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
+        print (request.POST['pledge_class'])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
             alumni.graduation_class = "Class of " + class_choice 
