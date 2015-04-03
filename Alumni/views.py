@@ -603,14 +603,12 @@ def search(request):
                                                Q(current_city__icontains=search) | 
                                                Q(major__icontains=search) | 
                                                Q(graduation_class__icontains=search) | 
-                                               Q(hometown__icontains=search)) 
-        '''
+                                               Q(hometown__icontains=search)).values() 
         user_to_alumni = []
         for user in user_results:
             alumni = Alumni.objects.get(user = user)
-            user_to_alumni.add(alumni) 
-            #alumni_results = alumni_results | alumni
-        ''' 
+            user_to_alumni.append(alumni) 
+          
         pledge_class_results = PledgeClass.objects.filter(Q(season__icontains=search) |
                                                Q(year__icontains=search) | 
                                                Q(name__icontains=search)) 

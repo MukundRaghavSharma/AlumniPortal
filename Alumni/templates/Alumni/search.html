@@ -1,13 +1,9 @@
 {% extends "Alumni/navbar.html" %}
 
 {% block file %}
-{% load inplace_edit %}
-{% load wysiwyg %}
-{% wysiwyg_setup %}
-{% inplace_static %}
     <h1> Search Results </h1>
     {% for result in results %}
-    <div class="well">
+    <div class="well">	
         {{ result }}
     </div>
     {% endfor %}
