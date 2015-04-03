@@ -162,7 +162,7 @@ def signin_4(request):
     alumni = Alumni.objects.get(user = request.user)
     
     if request.method == 'GET':
-        initial = {'emp' : alumni.employer,
+        initial = {'current_employer' : alumni.employer,
                    'role' : alumni.position,
                    'current_city' : alumni.current_city }
         form = ProfessionalInformationForm(initial = initial)

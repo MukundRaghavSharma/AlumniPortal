@@ -77,8 +77,8 @@ class SignInForm(forms.Form):
 class PersonalInformationForm(forms.Form):
 
     # Picture #
-    images = forms.URLField(widget = 
-            AjaxImageWidget(upload_to='form_uploads'))
+    #images = forms.URLField(widget = 
+    #        AjaxImageWidget(upload_to='form_uploads'))
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',
@@ -174,7 +174,7 @@ class ProfessionalInformationForm(forms.Form):
     # Current Employer #
     current_employer = forms.CharField(label = 'Current Employer',
                             required = True,
-                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'emp', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
+                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'current_employer', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
 
     # Current Role in the Company #
     role = forms.CharField(label = 'Role',

@@ -4,7 +4,6 @@
   {% load inplace_edit %}
   {% inplace_static %}
   {% if current_user.user.alumni.number == alumni.number %}
-    {{ alumni.user.first_name }}
   {% endif %}
 
 
@@ -55,7 +54,7 @@
                                       <span class="overview-icon"><i class="fa fa-users fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Part of  <a href="/class/{{ alumni.family }}">{{ alumni.family }}</a></span>
+                                    <span class="overview-text">Part of <a href="/family_trees/#{{ alumni.family | lower }}">{{ alumni.family }} </a></span>
                                   </div>
                                 </div>
                             </li>
@@ -67,7 +66,7 @@
                                       <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Graduated in <a href="/gallery#{{ alumni.graduation_class }}"> 2007</a></span>
+                                    <span class="overview-text">Graduated in <a href="/gallery#{{ alumni.graduation_class }}"> {{ alumni.graduation_class }}</a></span>
                                   </div>
                                 </div>
                             </li>
