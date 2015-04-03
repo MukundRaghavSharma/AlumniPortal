@@ -171,6 +171,8 @@ class AKPsiInformationForm(forms.Form):
                             max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
 
     def clean(self):
+        form_data = self.cleaned_data
+        print(form_data)
         if 'pledge_class' == CHOICES[0]:
           self._errors["pledge_class"] = ["Please select a pledge class."]
         return form_data
@@ -193,4 +195,12 @@ class ProfessionalInformationForm(forms.Form):
 
     # Linkedin Link #
     linkedin_link = forms.CharField(label = 'LinkedIn Link', required = False,
-                               widget = forms.TextInput(attrs = { 'id' : 'linkedin', 'class' : 'form-control', 'placeholder': 'LinkedIn URL' })) 
+                               widget = forms.TextInput(attrs = { 'id' : 'linkedin', 'class' : 'form-control', 'placeholder': 'LinkedIn URL' }))
+
+    # def clean(self):
+    #     print("HERR")
+    #     form_data = self.cleaned_data
+    #     print(form_data)
+    #     if 'linkedin_link' not in form_data:
+    #       self._errors["linkedin_link"] = ["Please enter your linkedin public url"]
+    #     return form_data
