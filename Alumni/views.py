@@ -1,4 +1,5 @@
-from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
+from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, 
+AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.templatetags.static import static
@@ -484,6 +485,9 @@ def __create_family_trees__():
         read_file.close()
         write_file.close()
 
+def ValuesQuerySetToDict(vqs):
+    return [item for item in vqs]
+
 @login_required
 def gallery_view(request):
     context = {}
@@ -507,30 +511,23 @@ def gallery_view(request):
             sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(sorted_by_number)
 
-        context['class_based_view'] = class_based_view
+        # Year based view #
+        year_based_view = []
+        sorted_graduation_classes = []
+        graduation_classes = Alumni.objects.values('graduation_class').distinct()
+        graduation_classes = [item for item in graduation_classes]
 
+        # Sort the graduation class #
+        for grad_class in graduation_classes:
+            sorted_graduation_classes.append(grad_class['graduation_class'])
         
+        sorted_graduation_classes.sort()
+        for graduation_class in sorted_graduation_classes:
+            batch = Alumni.objects.filter(graduation_class = graduation_class)
+            year_based_view.append(batch)
 
-        batches = Alumni.objects.all()
-        batches = batches.extra(order_by = ['graduation_class','number'])
-
-        first_class = batches[0].graduation_class
-        temp_class = []
-        year_sorting_classes = []
-        for alum in batches:
-            if alum.graduation_class == first_class:
-                temp_class.append(alum)
-            else: 
-                temp_class.sort()
-                year_sorting_classes.append(temp_class)
-                first_class = alum.graduation_class
-                temp_class = []
-                temp_class.append(alum)
-
-
-
-        context['year_based_view'] = year_sorting_classes
-
+        context['year_based_view'] = year_based_view
+        context['class_based_view'] = class_based_view
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/gallery.html', context)
 
