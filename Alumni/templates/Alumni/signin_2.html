@@ -1,26 +1,20 @@
 {% extends "Alumni/form_wrapper.html" %}
 
 {% block shit %}
-{% load cropping %}
-{{ form.media }}
       <div id="loader">
 
         <div class="signup-title">
           Personal Information
         </div>
-        <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post" enctype='multipart/form-data' >
+        <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post">
          {% csrf_token %}
          {% if alumni.picture %}
              <img src="{{ alumni.picture.url }}" width="40%"> 
          {% endif %}
-         {{ form.media }}
           <div id="yourId"></div>
-          <div class="cropImgWrapper"></div>
          {% load cropping %}
           {% for field in form %}
               {% if field.errors %}
-                {% cropped_thumbnail alumni.image "cropping"  %}
-                <img src="{% cropped_thumbnail alumni.image "cropping" scale=0.5 %}">
                 <div class="form-group">
                   <div class="col-sm-12">
                       <div class="input-group has-error">
@@ -47,7 +41,6 @@
                   </div>
                 </div>
               {% endif %}
-
           {% endfor %}
 
 
