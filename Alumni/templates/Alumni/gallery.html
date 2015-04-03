@@ -16,6 +16,13 @@
 
             $( document ).ready(function() {
                 $("#class").trigger('click');
+                var url = document.location.toString();
+                if (url.match('#')) {
+                 var abc = url.split('#')[1];
+                 if ( abc.match(/class/g) ) {
+                   $("#year").trigger('click');
+                 }
+                } 
             });
 
             $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
@@ -44,6 +51,12 @@
                 $("#year_sidebar").show();
 
             });
+
+
+
+            $('.nav-tabs a').on('shown', function (e) {
+              window.location.hash = e.target.hash;
+            })
         </script>
 
         <!-- Side Bar Function -->

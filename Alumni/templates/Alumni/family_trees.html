@@ -107,12 +107,11 @@
       $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
      } 
 
-// Change hash for page-reload
     $('.nav-tabs a').on('shown', function (e) {
       window.location.hash = e.target.hash;
     })
      </script>
-     
+
      <script type="text/javascript">
        $(document).ready(function () {
          $('[data-toggle="offcanvas"]').click(function () {
