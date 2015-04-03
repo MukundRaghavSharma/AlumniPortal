@@ -1090,6 +1090,50 @@ transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
 	font-size: 12px;
 }
 
+@media screen and (max-width: 767px) {
+
+	.sidebar {
+		left: 0;
+		font-size: 12px;
+		color: #2a3856;
+		position: static;
+		
+	}
+
+	.sidebar li {
+		padding: 0px 0px;
+	}
+
+	.sidebar a{
+		color: #2a3856;
+		display: compact !important;
+	}
+
+	.sidebar li.active a, .sidebar li.active a:hover{
+	        color: #fff;
+	        font-style: italic;
+	        background-color: #516182;
+	        border: 1px solid #516182;
+	    }
+	.affix {
+		position: static;
+	}
+
+	#class_sidebar {
+		  position: fixed;
+	}
+
+	#year_sidebar {
+		  position: fixed;
+	}
+
+	#button_sidebar {
+		  position: fixed;
+	}
+
+
+}
+
 .full_size {
 	height: 100%,
 	width: 100%;
@@ -1217,6 +1261,7 @@ table {
 label { 
     padding:0.4em 2em 0.4em 0; 
 }
+
 .toggle-btn-grp { 
     margin:3px 0;
     right: 5%;
@@ -1263,6 +1308,54 @@ label {
     border: solid 1px grey !important;
 }
 
+@media screen and (max-width: 767px) {
+	.toggle-btn-grp { 
+	    margin:3px 0;
+	    right: 0;
+	    font-size: 12px;
+	    position: static;
+	    width: 85px;
+	}
+	.toggle-btn { 
+	    text-align:centre; 
+	    margin:5px 2px;
+	    padding:0.4em 3em; 
+	    color:#000; 
+	    background-color:#FFF; 
+	    border-radius:0px; 
+	    display:inline-block; 
+	    border:solid 1px #CCC; 
+	    cursor:pointer;
+	}
+
+	.toggle-btn-grp.joint-toggle .toggle-btn { 
+	    margin:5px 0; 
+	    padding:0.4em 2em; 
+	    border-radius:0;
+	    border-right-color:white;
+	}
+	.toggle-btn-grp.joint-toggle .toggle-btn:first-child { 
+	    margin-left:2px; 
+	    border-radius: 0px 0px 0px 0px; 
+	}
+	.toggle-btn-grp.joint-toggle .toggle-btn:last-child { 
+	    margin-right:2px;  
+	    border-radius: 0px 0px 0px 0px;
+	    border-right:solid 1px #CCC;
+	}
+
+
+	.toggle-btn:hover { 
+	    border: solid 1px grey !important;
+	    background: lightgrey;
+	}
+
+
+	.toggle-btn.success { 
+	    background: lightgrey;
+	    border: solid 1px grey !important;
+	}
+}
 
 .visuallyhidden { 
     border: 0; 
@@ -1374,6 +1467,8 @@ label {
 	border-style: solid;
 	border-color: #2a3856;
 	background-color: #fff;
+	position: fixed;
+	z-index: 1000;
 }
 
 .color {
@@ -1381,6 +1476,8 @@ label {
 	border-style: solid;
 	border-color: #2a3856;
 	background-color: #2a3856;
+	position: fixed;
+	z-index: 1000;
 }
 
 

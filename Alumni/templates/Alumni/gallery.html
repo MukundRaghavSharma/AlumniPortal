@@ -4,10 +4,16 @@
     {% load staticfiles %}
     {% load endless %}
 
+<div class="row row-offcanvas row-offcanvas-left">
+    <p class="pull-left visible-xs">
+      <button type="button" id="class_small_menu" class="small-nav" data-toggle="offcanvas">Switch Pledge Class</button>
+      <button type="button" id="year_small_menu" class="small-nav" data-toggle="offcanvas">Switch Grad Year</button>
+    </p>
 
     <!-- Scroll Bar Stuff -->
     <div class="sidebar" id="myScrollspy">
-            <ul class="list-group nav" data-spy="affix" data-offset-top="120" >
+        <div class=" col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
+            <ul id="button_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
                 <div class="toggle-btn-grp joint-toggle">
                     <label onclick="" class="toggle-btn"><input type="radio" id="class" name="group3"/>Pledge Class</label><label onclick="" class="toggle-btn"><input id="year" type="radio" name="group3"/>Grad Year</label>
                 </div>
@@ -31,8 +37,10 @@
 
                 $(".class_view").show();
                 $("#class_sidebar").show();
+                $('#class_small_menu').show();
                 $(".year_view").hide();
                 $("#year_sidebar").hide();
+                $("#year_small_menu").hide()
 
             });
 
@@ -40,36 +48,51 @@
 
                 $(".class_view").hide();
                 $("#class_sidebar").hide();
+                $('#class_small_menu').hide();
                 $(".year_view").show();
                 $("#year_sidebar").show();
+                $("#year_small_menu").show()
 
             });
+
+              $(document).ready(function () {
+                $('[data-toggle="offcanvas"]').click(function () {
+                  $('.row-offcanvas').toggleClass('active');
+                  $('.small-nav').toggleClass('color');
+                });
+                $('[data-toggle="tab"]').click(function () {
+                  $('.row-offcanvas').toggleClass('active');
+                  $('.small-nav').toggleClass('color');
+                });
+              });
         </script>
 
         <!-- Side Bar Function -->
-        <div class="sidebar" id="myScrollspy">
-            <ul  id = "year_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
-                {% for year in year_based_view %}
-                    {% with year|first as first_member %}
-                        {% if forloop.counter == 2 %}
-                            <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
-                        {% elif not forloop.first %}
-                            <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </ul>
-            <ul id = "class_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
-                {% for class in class_based_view %}
-                    {% with class|first as first_member %}
-                        {% if forloop.counter == 2 %}
-                            <li><a href="#{{ first_member.pledge_class.name }}">{{ first_member.pledge_class.name }}</a></li>
-                        {% elif not forloop.first %}
-                            <li><a href="#{{ first_member.pledge_class.name }}">{{ first_member.pledge_class.name }}</a></li>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </ul>
+        
+            <div class="sidebar" id="myScrollspy">
+                <ul  id = "year_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
+                    {% for year in year_based_view %}
+                        {% with year|first as first_member %}
+                            {% if forloop.counter == 2 %}
+                                <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
+                            {% elif not forloop.first %}
+                                <li><a href="#{{ first_member.graduation_class|slugify }}">{{ first_member.graduation_class }}</a></li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+                <ul id = "class_sidebar" class="list-group nav" data-spy="affix" data-offset-top="120" >
+                    {% for class in class_based_view %}
+                        {% with class|first as first_member %}
+                            {% if forloop.counter == 2 %}
+                                <li><a href="#{{ first_member.pledge_class.name }}">{{ first_member.pledge_class.name }}</a></li>
+                            {% elif not forloop.first %}
+                                <li><a href="#{{ first_member.pledge_class.name }}">{{ first_member.pledge_class.name }}</a></li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
             
@@ -201,5 +224,6 @@
                 {% endif %}
             {% endfor %}
         </div>
+    </div>
 
 {% endblock %}
