@@ -68,7 +68,6 @@ def signin_1(request):
 def signin_2(request):
     context = {}
 
-    # Get Request #
     if request.method == 'GET':
         user = User.objects.get(username = request.user.username)
         alumni = Alumni.objects.get(user = user)
@@ -81,7 +80,6 @@ def signin_2(request):
         context['alumni'] = alumni 
         return render(request, 'Alumni/signin_2.html', context) 
 
-    # Post Request #
     if request.method == 'POST':
         form = PersonalInformationForm(request.POST, request.FILES)
         alumni = Alumni.objects.get(user = request.user)
@@ -231,7 +229,7 @@ def signup(request):
             family = Family(name = "Boss")
             family.save()
             pledge_class.save()
-            alumni = Alumni(user = user, pledge_class = pledge_class, family = family)
+            alumni = Alumni(user = user, pledge_class = pledge_class, family = family, number = 14444)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
@@ -575,10 +573,7 @@ def family_trees_create(request):
 
 @login_required
 def four_oh_four(request):
-    response = render_to_response('Alumni/404.html', {}, 
-                                  context_instance = RequestContext(request))
-    response.status_code = 404
-    return response 
+    return render(request, 'Alumni/404.html', status=404)
 
 @login_required
 def donations(request):
