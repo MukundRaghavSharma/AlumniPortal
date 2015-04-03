@@ -5,7 +5,7 @@
     {% load endless %}
 
 
-        <!-- Scroll Bar Stuff -->
+    <!-- Scroll Bar Stuff -->
     <div class="sidebar" id="myScrollspy">
             <ul class="list-group nav" data-spy="affix" data-offset-top="120" >
         <div class="toggle-btn-grp joint-toggle">
@@ -81,7 +81,7 @@
                             paginateOnScroll: true,
                         });
                     </script>
-                    {% if forloop.counter == 2 or forloop.counter == 3 %}
+                    {% if not forloop.first %}
                         {% with class|first as first_member %}
                             <div class="row">
                                 <h1 class="class-name" id="{{ first_member.pledge_class.name }}" >{{ first_member.pledge_class.name }} Class</h1>
@@ -144,10 +144,9 @@
         </div>
 
             <!-- Year Based Stuff -->
-            {% lazy_paginate 34,6 year_based_view %}
             <div class="year_view">
             {% for year in year_based_view %}
-                {% if forloop.counter == 2 or forloop.counter == 3 %}
+                {% if not forloop.first %}
                     {% with year|first as first_member %}
                         <div class="row">
                             <h1 class="class-name" id="{{ first_member.graduation_class|slugify }}" >{{ first_member.graduation_class }}</h1>
@@ -201,7 +200,6 @@
                     {% endfor %}
                 {% endif %}
             {% endfor %}
-            {% show_more %}
         </div>
 
 {% endblock %}
