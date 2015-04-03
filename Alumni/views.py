@@ -623,6 +623,21 @@ def search(request):
             alumni_slut = Alumni.objects.get(user = slut)
             results += [alumni_slut]
 
+        if search.lower() == 'spice girls':
+            spice1 = User.objects.get(first_name = 'Eumie', last_name = 'Kim')
+            spice2 = User.objects.get(first_name = 'Lydia', last_name = 'Yi')
+            spice3 = User.objects.get(first_name = 'Megan', last_name = 'Kwan')
+            spice4 = User.objects.get(first_name = 'Tricia', last_name = 'Chiou')
+            spice5 = User.objects.get(first_name = 'Amanda', last_name = 'Ho-Sang')
+            spice6 = User.objects.get(first_name = 'David', last_name = 'Baboolall')
+            alumni_spice1 = Alumni.objects.get(user = spice1)
+            alumni_spice2 = Alumni.objects.get(user = spice2)
+            alumni_spice3 = Alumni.objects.get(user = spice3)
+            alumni_spice4 = Alumni.objects.get(user = spice4)
+            alumni_spice5 = Alumni.objects.get(user = spice5)
+            alumni_spice6 = Alumni.objects.get(user = spice6)
+            results += [alumni_spice1, alumni_spice2, alumni_spice3, alumni_spice4, alumni_spice5, alumni_spice6]
+
         user = User.objects.get(username = request.user)
         alumni = Alumni.objects.get(user = user)
         context['current_user'] = alumni 
