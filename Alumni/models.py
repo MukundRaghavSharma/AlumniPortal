@@ -67,6 +67,8 @@ class Alumni(models.Model):
     updated_at = models.DateTimeField(blank = True, auto_now_add = True, null = True)
     number = models.IntegerField(null = True, blank = True)
     big = models.ForeignKey("self", null = True, blank = True)
+    #is_active = models.("self", null = True, blank = True)
+    #is_alumni = models.ForeignKey("self", null = True, blank = True)
 
     def __unicode__(self):
         return self.user.first_name + " " +  self.user.last_name

@@ -9,9 +9,9 @@ function Boss() {
         data.addRows([
 	['Mukund Sharma','',''],
 
-    ]);
+        ]);
 
-    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-    chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }}
-    
+        var chart = new google.visualization.OrgChart(document.getElementById('boss_tree'));
+        chart.draw(data, {allowHtml:true, nodeClass:"node"});
+        }}
+        

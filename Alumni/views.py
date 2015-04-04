@@ -550,19 +550,30 @@ def family_trees_create(request):
         data.addColumn('string', 'ToolTip');
         data.addRows([\n\t'''
     
-    FINAL_SCRIPT = '''
-    ]);
-
-    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-    chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }}
-    '''
-
     families = Family.objects.all()
     for family in families:
         cwd = os.getcwd()
+        file_name = family.name
+        div_name = family.name.lower()
+
+        div_name = div_name.replace(' ', '_')
+        div_name = div_name.replace('-', '_')
+
+        if family.name == 'Reagan Brothers':
+            file_name = 'Reagan_Brothers' 
+        file_name = family.name.replace('-', '_')
+        file_name = family.name.replace(' ', '_')
+
+        FINAL_SCRIPT = '''
+        ]);
+
+        var chart = new google.visualization.OrgChart(document.getElementById('''+"\'"+ div_name+'''_tree'));
+        chart.draw(data, {allowHtml:true, nodeClass:"node"});
+        }}
+        '''
+
         family_file = open(cwd + '/Alumni/static/Alumni/js/Families/' + family.name.lower() + '.js', 'w')
-        FUNCTION_HEADER = 'function ' + family.name + '() {'
+        FUNCTION_HEADER = 'function ' + file_name + '() {'
         family_file.write(FUNCTION_HEADER + INITIAL_SCRIPT)
         for alumni in Alumni.objects.filter(family = family):
             big = alumni.big
@@ -600,9 +611,6 @@ def search(request):
 
     if request.method == 'POST':
         search = str(request.POST['search'])
-
-
-
 
         # Fix the user case #
         # Add hyperlinks #

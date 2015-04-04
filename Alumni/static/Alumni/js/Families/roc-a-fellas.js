@@ -1,4 +1,4 @@
-function Roc_a_Fellas() {
+function Roc-a-fellas() {
     google.load("visualization", "1", {packages:["orgchart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -8,15 +8,24 @@ function Roc_a_Fellas() {
         data.addColumn('string', 'ToolTip');
         data.addRows([
 	['Malcolm Ong','',''],
+['Joanna Hartzmark','Angela Guh',''],
 ['Danielle Rosenfeld','Julia Degeratu',''],
 ['Brenda Lee','Hayden Tang',''],
 ['Johnny Bae','Charles Mbaruguru',''],
 ['Matt Wilson','Julia Choicer',''],
 ['Emily Wright','Emily Wright',''],
+['Karthik Annaamalai','Joanna Chen',''],
+['Sanika Natu','Eumie Kim',''],
+['Danning Wang','Mia Wang',''],
+['Nikita Bokil','Mia Wang',''],
+['Yoona Seon','Mia Wang',''],
+['Clare Svirsko','Mia Wang',''],
+['Jobert Sauray','Mia Wang',''],
+['Emily Su','Mia Wang',''],
 
-    ]);
+        ]);
 
-    var chart = new google.visualization.OrgChart(document.getElementById('roc_a_fellas_tree'));
-    chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }}
-    
+        var chart = new google.visualization.OrgChart(document.getElementById('roc_a_fellas_tree'));
+        chart.draw(data, {allowHtml:true, nodeClass:"node"});
+        }}
+        
