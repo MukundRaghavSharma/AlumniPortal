@@ -144,10 +144,10 @@ def signin_3(request):
         user = request.user
         alumni = Alumni.objects.get(user = user)
         class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
-        print (request.POST['pledge_class'])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
-            alumni.graduation_class = "Class of " + class_choice 
+            alumni.graduation_class = "Class of " + class_choice
+            alumni.pledge_class = form.cleaned_data['pledge_class'] 
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -493,9 +493,6 @@ def __create_family_trees__():
             
         read_file.close()
         write_file.close()
-
-def ValuesQuerySetToDict(vqs):
-    return [item for item in vqs]
 
 @login_required
 def gallery_view(request):
