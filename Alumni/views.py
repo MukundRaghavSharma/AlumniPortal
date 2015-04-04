@@ -562,6 +562,8 @@ def family_trees_create(request):
             file_name = 'Reagan_Brothers' 
         file_name = family.name.replace('-', '_')
         file_name = family.name.replace(' ', '_')
+        if family.name == 'Roc-a-Fellas':
+            file_name = 'Roc_a_Fellas' 
 
         FINAL_SCRIPT = '''
         ]);
@@ -580,9 +582,9 @@ def family_trees_create(request):
             big_text = '' + '\'\',\'\'],'
             if big != None:
                 big_name = "'" + big.user.first_name + ' ' + big.user.last_name
-                #big_text = '<img src="' + big.picture.url + '" class="pull-left" width=20> ' + big.user.first_name + ' ' + big.user.last_name + "'', '']," 
+                #big_text = '<a href="/profile/' + big.number + '" class="pull-left" width=20> ' + big_name + "'', '']," 
                 big_text = big_name + '\',' + '\'\'],' 
-            #little_text = "['<img src=\"" + alumni.picture.url + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
+            #little_text = "['<a href=\"/profile/" + alumni.number + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
             little_text = "[" + little_name + ","
             final_text = little_text + big_text + '\n'
             family_file.write(final_text)
