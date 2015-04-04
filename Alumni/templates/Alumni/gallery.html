@@ -205,12 +205,22 @@
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
                                                             $(".imgLiquidFill").imgLiquid();
+                                                            $("#joyRideTipContent").joyride({
+                                                                autoStart : true,
+                                                                modal:true,
+                                                                expose: true,
+                                                                cookieMonster: true,
+                                                                cookieName: 'JoyRide',
+                                                                cookieDomain: false
+
+                                                            });
                                                         });
                                                         $('#full_name').each(function() {
                                                             var o_height = $(this).height();
                                                             $(this).css('margin-top', (($('#dp').height()-o_height)/2));
 
                                                         });
+                                                        
                                                     </script>
                                                     <div class="info">
                                                         <p class="first-show"><i class="fa fa-briefcase fa-fw"></i> &nbsp;{{ alum.employer }}</p>
@@ -238,5 +248,24 @@
             {% endfor %}
         </div>
     </div>
+
+    <ol id="joyRideTipContent">
+        <li>
+            <h1> Gallery </h1>
+            <p> View all alumni and brothers! </p>
+        </li>
+        <li data-id="class">
+            <h3> Toggle </h3>
+            <p> Press this to switch between pledge class and graduation year view </p>
+        </li>
+        <li data-class="center-block">
+            <h3> Profile </h3>
+            <p> Click to view the individual profile, or hover to view basic stats </p>
+        </li>
+        <li data-class="icon-center">
+            <h3> Contact Info </h3>
+            <p> Access the individual's facebook, linkedin, email and phone number </p>
+        </li>
+    </ol>
 
 {% endblock %}

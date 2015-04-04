@@ -4,7 +4,7 @@
     {% load staticfiles %}
         {% if current_user %}
             <div class="row" id="second-layer">
-                <div class="col-md-3" >
+                <div class="col-md-3" id="newHeader" >
                         <div class="text-center">
                             <div class="imgLiquidFill imgLiquid" id="cropped" style="width:170px; height:170px;">
                                 {% if current_user.picture %}
@@ -21,7 +21,7 @@
                         <li class="list-group-item" id="overview-heading">News from Omega Psi</li>
                             <li class="list-group-item">
 
-                                <div class="imgLiquidFill dashboard-imgLiquid" style="width:100%; height:170px;">
+                                <div id="news" class="imgLiquidFill dashboard-imgLiquid" style="width:100%; height:170px;">
                                     <img src="{{ STATIC_URL }}/Alumni/images/drinking.jpg">
                             </div>
                             <span class="text-overlay">
@@ -36,6 +36,15 @@
                 <script type="text/javascript">
                     $(document).ready(function() {
                         $(".imgLiquidFill").imgLiquid();
+
+                      $("#joyRideTipContent").joyride({
+                        autoStart : true,
+                        modal:true,
+                        expose: true,
+                        cookieMonster: true,
+                        cookieName: 'JoyRide',
+                        cookieDomain: false
+                      });
                     });
                     $('#full_name').each(function() {
                         var o_height = $(this).height();
@@ -44,14 +53,41 @@
                     });
 
                 </script>
-                {% for alumn in alumni %}
-<!--                 <div class="well">
-                    <p> {{ alumn.user.first_name }} </p>
-                    <p> {{ alumn.user.last_name }} </p>
-                    <p> {{ alumn.employer }} </p>
-                    <p><a href="/profile/{{ alumn.user.id }}"> {{ alumn.user.first_name }} {{ alumn.user.last_name }} </a></p>
-                </div> -->
-                 {% endfor %}
+
             </div>
+
+
+            <ol id="joyRideTipContent">
+                <li>
+                    <h1> Welcome to the Alumni Portal</h1>
+                    <p> Thank you for registering for the alumni portal. We hope you find this website an easy and efficient way to update your information and keep in contact with your fellow brothers!</p>
+                </li>
+                <li data-id="profile">
+                    <h3> Profile </h3>
+                    <p> Click here to view and edit your profile, and log out. </p>
+                </li>
+                <li data-id="news">
+                    <h3> News </h3>
+                    <p> These panels contain the latest news from our chapter! Click them to get more details. </p>
+                </li>
+                <li data-id="search">
+                    <h3> Search </h3>
+                    <p> Search by name, company, hometown, etc.</p>
+                </li>
+                <li data-id="gallery">
+                    <h3> Gallery </h3>
+                    <p> Click to view all alumni, sorted by pledge class or year </p>
+                </li>
+                <li data-id="trees">
+                    <h3> Family Trees </h3>
+                    <p> View up-to-date information on each family and bigs and littles </p>
+                </li>
+                <li data-id="donations">
+                    <h3> Donations </h3>
+                    <p> Thanks for taking the tour. We really enjoyed building this site, and in turn we hope you could contribute to our banquet and carnival efforts!  </p>
+                    <p> Best,</p>
+                    <p> Jay & Moko </p>
+                </li>
+            </ol>
          {% endif %}
 {% endblock %}
