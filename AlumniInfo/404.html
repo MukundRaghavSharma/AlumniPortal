@@ -1,0 +1,11 @@
+{% extends "Alumni/navbar.html" %}
+
+{% block file %}
+    {% load staticfiles %}
+    <div class="jumbotron">
+        <h3 class="form-signin-heading"> Alumni </h3> 
+        {% csrf_token %}
+        <img src="{{ STATIC_URL }}/Alumni/images/404.jpg">
+        <h1> Don't go here! </h1>
+    </div>
+{% endblock %}

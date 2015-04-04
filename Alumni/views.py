@@ -17,6 +17,8 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from itertools import chain
+# from django.http import Http404
+# from django.http import HttpResponse
 import os
 import sys
 import uuid
@@ -492,9 +494,6 @@ def __create_family_trees__():
         read_file.close()
         write_file.close()
 
-def ValuesQuerySetToDict(vqs):
-    return [item for item in vqs]
-
 @login_required
 def gallery_view(request):
     context = {}
@@ -664,3 +663,7 @@ def upload_image(request):
 
     if request.method == 'POST':
         pass 
+
+# def error404(request):
+#     context = {}
+#     return render(request, 'Alumni/404.html', context)
