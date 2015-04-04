@@ -325,6 +325,18 @@ def update(request):
         year = str(brother[14])
         number = str(brother[2])
         big = str(brother[15])
+        is_alumni = str(brother[16])
+        is_active = str(brother[17])
+
+        if is_alumni == 'TRUE':
+            is_alumni = True
+        else:
+            is_alumni = False
+
+        if is_active == 'TRUE':
+            is_active = True
+        else:
+            is_active = False
 
         if len(big) != 0:
             big_first_name = big.split(' ')
@@ -406,6 +418,8 @@ def update(request):
                             family = family_model,
                             confirmation_code = password,
                             big = big_alumni,
+                            is_active = is_active,
+                            is_alumni = is_alumni,
                             number = number)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
@@ -513,7 +527,7 @@ def gallery_view(request):
             sorting_classes.append(pledge_class)
 
         for pledge_class in sorting_classes:
-            filtered_class = Alumni.objects.filter(pledge_class = pledge_class)
+            filtered_class = Alumni.objects.filter(pledge_class = pledge_class, is_alumni = True, is_active = True)
             sorted_by_number = filtered_class.extra(order_by = ['number'])
             class_based_view.append(sorted_by_number)
 
@@ -529,7 +543,7 @@ def gallery_view(request):
         
         sorted_graduation_classes.sort()
         for graduation_class in sorted_graduation_classes:
-            batch = Alumni.objects.filter(graduation_class = graduation_class)
+            batch = Alumni.objects.filter(graduation_class = graduation_class, is_alumni = True, is_active = True)
             year_based_view.append(batch)
 
         context['year_based_view'] = year_based_view
