@@ -144,10 +144,10 @@ def signin_3(request):
         user = request.user
         alumni = Alumni.objects.get(user = user)
         class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
-        print (request.POST['pledge_class'])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
             alumni.graduation_class = "Class of " + class_choice 
+            alumni.pledge_class = form.cleaned_data['pledge_class']
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -178,9 +178,7 @@ def signin_4(request):
         form = ProfessionalInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = request.user)
-        print ("BEFORE VALID")
         if form.is_valid():
-            print ("IN VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
