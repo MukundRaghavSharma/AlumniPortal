@@ -7,10 +7,10 @@ function Dynasty() {
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-	['Imee Chan','',''],
+	['<a href="/profile/3/">Imee Chan</a>','',''],
 ['Daniel Kim','',''],
 ['Melanie Mui','',''],
-['Anna Ly','Ellen Lai',''],
+['<a href="/profile/3/">Anna Ly</a>','<a href="/profile/3/">Ellen Lai</a>',''],
 ['Lu Zhang','Melanie Mui',''],
 ['Jason Ma','Anna Ly',''],
 ['Scarlett Su','Anna Ly',''],
