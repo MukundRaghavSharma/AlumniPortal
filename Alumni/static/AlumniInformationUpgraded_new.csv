@@ -17,7 +17,7 @@ Number,Name,Current Employer,Current City,Email,Phone Number,Major,Graduation Ye
 21,Kenny Loh,Greenman-Pedersen Inc.,Bohemia - NY,kloh7_2000@yahoo.com,,Civil & Environmental Engineering,Class of 2006,,Charter Class,Roc-a-Fellas,El Nino,,,,TRUE,TRUE
 23,Jessica Ma,Arryve,Bellevue - Washington,jessica.k.ma@gmail.com,,Business Administration,Class of 2006,,Charter Class,Kaleidoscope,Rogue,,,,TRUE,TRUE
 24,Melanie Mui,eHarmony.com,Los Angeles,,917.833.5658,Business Administration (Marketing) and Psychology,Class of 2006,,Charter Class,Dynasty,Slim Shady,,,,TRUE,TRUE
-25,Malcolm Ong,Skillshare,New York City,malcolm.ong@gmail.com,(714) 202-6646,,Class of 2005,,Charter Class,Roc-a-fellas,Ignition,,,,TRUE,TRUE
+25,Malcolm Ong,Skillshare,New York City,malcolm.ong@gmail.com,(714) 202-6646,,Class of 2005,,Charter Class,Roc-a-Fellas,Ignition,,,,TRUE,TRUE
 26,Abhishek Shah,Bloomberg,New York City,abhishah85@gmail.com,609-865-1890,Electrical & Computer Engineering,Class of 2007,"West Windsor, NJ",Charter Class,Reagan Brothers,Brown Shooter,,,,TRUE,TRUE
 27,Kenneth Sim,Google,Seattle,kwhsim@gmail.com,,,Class of 2005,,Charter Class,Reagan Brothers,Rock Steady,,,,TRUE,TRUE
 28,Rona Song,TKC Global,Washington DC,qqs@alumni.cmu.edu,(517)-207-6899,Business Administration,Class of 2008,,Charter Class,Incredibles,Daytona,,,,TRUE,TRUE
@@ -25,57 +25,71 @@ Number,Name,Current Employer,Current City,Email,Phone Number,Major,Graduation Ye
 30,Peter Sukits,Procter & Gamble,Cincinnati,peter.sukits@gmail.com,(724) 766-0499,Business Administration,Class of 2006,,Charter Class,Reagan Brothers,Griffin,,,,TRUE,TRUE
 31,Dynne Sung,Marsh & McLennan Companies/Georgetown University,New York City,dynne.sung@gmail.com,904-707-0148,Political Science,Class of 2007,"Weston, MA",Charter Class,Roc-a-Fellas,Amore,,,,TRUE,TRUE
 32,Jigar Vora,Ayla Networks,San Francisco,jigarjig@gmail.com,,Electrical & Computer Engineering,Class of 2007,"Westborough, MA",Charter Class,Reagan Brothers,Tigger,,,,TRUE,TRUE
-33,Nabila Walji,Egon Zehnder International,London,xnabilax@gmail.com,(206_ 579-2859,Business Administration,Class of 2008,"Seattle, WA",Charter Class,Kaleidoscope,Life Saver,,,,TRUE,TRUE
+33,Nabila Walji,Egon Zehnder International,London,xnabilax@gmail.com,(206)-579-2859,Business Administration,Class of 2008,"Seattle, WA",Charter Class,Kaleidoscope,Life Saver,,,,TRUE,TRUE
+34,Wei-Wei Wang,,New York City,,,,Class of 2008,,Charter Class,Incredibles,Fobulicious,,,,TRUE,TRUE
+35,Sophie Wong,,,,,Business Administration,,,Charter Class,Kaleidoscope,Edna Mole,,,,TRUE,TRUE
 37,Ran Yi,China Europe International Business School (2014),Shanghai,ranyi1115@gmail.com,,Business Administration,Class of 2006,,Charter Class,Kaleidoscope,Force of Nature,,,,TRUE,TRUE
 38,Kenneth Yu,Celerity,Washington DC,kennethwyu@gmail.com,,Computer Science,Class of 2006,CA,Charter Class,Roc-a-Fellas,Cypher,,,,TRUE,TRUE
-39,Randall Aluwi,UCLA Anderson School of Mangement (2015),"Los Angeles, CA",raluwi@gmail.com,909-996-3698,Business Administration,Class of 2008,,Alpha Class,Kaleidoscope,Reptar,Spring,2005,,TRUE,TRUE
+39,Randall Aluwi,UCLA Anderson School of Mangement (2015),"Los Angeles, CA",raluwi@gmail.com,909-996-3698,Business Administration,Class of 2008,,Alpha Class,Kaleidoscope,Reptar,Spring,2005,Sophie Wong,TRUE,TRUE
 40,Brian Loo,Citadel,Chicago,bloogle@gmail.com,(412) 478-9581,Electrical & Computer Engineering,Class of 2007,,Alpha Class,Incredibles,Waterloo,Fall,2005,Arish Gupta,TRUE,TRUE
 41,Anna Ly,Brooklyn Children's Museum,New York City,annakimly@gmail.com,,Business Administration (Finance) and Human-Computer Interaction,Class of 2008,"Cherry Hill, NJ",Alpha Class,Dynasty,Moxie,Spring ,2005,Ellen Lai,TRUE,TRUE
 42,Malvika Tamhane,BNP Paribas,New York City,tamhanem@gmail.com,1 412.519.8365,Economics,Class of 2007,,Alpha Class,Reagan Brothers,Energizer Bunny,Spring,2005,Jigar Vora,TRUE,TRUE
-43,Eric Tang,NextJump Inc,,tangxiao57@gmail.com,,Electrical & Computer Engineering,Class of 2007,,Alpha,Kaleidoscope,Dash,Spring,2006,,TRUE,TRUE
+43,Eric Tang-1,NextJump Inc,,tangxiao57@gmail.com,,Electrical & Computer Engineering,Class of 2007,,Alpha Class,Kaleidoscope,Dash,Spring,2006,Sophie Wong,TRUE,TRUE
 44,Matthew Tsau,WSP Flack +Kurtz,"Washington, DC",matt.tsau@gmail.com,(310) 938-6131,Mechanical Engineering,Class of 2007,,Alpha Class,Reagan Brothers,C-Unit,Spring,2005,Peter Sukits,TRUE,TRUE
 46,Chris Chan,Salesforce,San Francisco,siukwai@gmail.com,1 650.245.9856,Information Systems,Class of 2007,,Beta Class,Kaleidoscope,OJ,Fall,2005,Ran Yi,TRUE,TRUE
 47,Christine Chang,Apple,San Francisco Bay Area,ckchang.design@gmail.com,562-607-3736,Communication Design,Class of 2008,,Beta Class,Kaleidoscope,Myriad,Fall,2005,Jessica Ma,TRUE,TRUE
 48,Julia Degeratu,Discovery Communications,Maryland,imdegeratu@gmail.com,(814) 574-6178,Economics and Statistics,Class of 2009,"State College, PA",Beta Class,Roc-a-Fellas,Harmony,Fall,2005,Dynne Sung,TRUE,TRUE
 49,Angela Guh,,"Fremont, CA",,,,Class of 2009,,Beta Class,Roc-a-Fellas,All about the Benjamins,Fall,2005,Kenny Loh,TRUE,TRUE
+51,Jay Khil,,,,,Business Administration,Class of 2008,"Seoul, Korea",Beta Class,Family,Dormigilia,Fall,2005,Andrew Kiang,TRUE,TRUE
 52,Linda Min,Matrix New World Engineering,New Jersey,sunghee09@gmail.com,(973) 809-6060,Civil & Environmental Engineering,Class of 2009,"Cedar Grove, NJ",Beta Class,Incredibles,Buttercup,Fall,2005,Brian Loo,TRUE,TRUE
 53,Jessica Wong,General Mills,Minnesota,jesswong05@gmail.com,(651) 210-4123,Chemistry,Class of 2009,"St. Paul, MN",Beta Class,Family,Espresso,Fall,2005,Jennifer Suh,TRUE,TRUE
-55,Nicholas Yoder,Morgan Stanley,New York City,,,,Class of 2009,"Uniontown, PA",Alpha,Reagan Brothers,Mr. Krabs,Spring,2005,Malvika Tamhane,TRUE,TRUE
+55,Nicholas Yoder,Morgan Stanley,New York City,,,,Class of 2009,"Uniontown, PA",Alpha Class,Reagan Brothers,Mr. Krabs,Spring,2005,Malvika Tamhane,TRUE,TRUE
 56,Frank Zhang,PriceWaterhouseCoopers,Perth - Australia,yunfan86@gmail.com,,Business Administration,Class of 2009,"Hangzhou, China",Beta Class,Roc-a-Fellas,Enstein,Fall,2005,Jin Fu,TRUE,TRUE
 57,Lu Zhang,University of Chicago MBA (2014),Chicago,caligany@gmail.com,(732) 485-3239,Business Administration (Finance and Entrepreneurship),Class of 2008,"Brooklyn, NY",Beta Class,Dynasty,Maverick,Fall,2005,Melanie Mui,TRUE,TRUE
-59,Niharika Bandi,Ross Stores Inc.,San Francisco,niharika.bandi@yahoo.com,,Business Administration,Class of 2009,"Irvine, CA",Gamma Class,Family,Bambina,Spring,2006,,TRUE,TRUE
+59,Niharika Bandi,Ross Stores Inc.,San Francisco,niharika.bandi@yahoo.com,,Business Administration,Class of 2009,"Irvine, CA",Gamma Class,Family,Bambina,Spring,2006,Jay Khil,TRUE,TRUE
 60,Salman Khoja,MKS Wireless,Dallas,salman.khoja@gmail.com,1 469.867.5505,"Policy and Management, Political Science",Class of 2008,"Lewisville, TX",Gamma Class,Incredibles,Diablo,Spring,2006,Salman Khoja,TRUE,TRUE
 61,Raymond Liu,NYU Stern MBA,New York City,RaymondLiu10@gmail.com,(646) 714-8988,Economics,Class of 2009,"Staten Island, NY",Gamma Class,Reagan Brothers,Zer,Spring,2006,Anuj Kumar,TRUE,TRUE
-63,Eric Tang,Capco,New York City,goldenrice@gmail.com,(917) 340-8961,Information Systems,Class of 2009,"Staten Island, NY",Gamma Class,Incredibles,Kirbee,Spring ,2006,,TRUE,TRUE
+63,Eric Tang-2,Capco,New York City,goldenrice@gmail.com,(917) 340-8961,Information Systems,Class of 2009,"Staten Island, NY",Gamma Class,Incredibles,Kirbee,Spring ,2006,Wei-Wei Wang,TRUE,TRUE
 64,Xiao-Lan Wong,Bank of America,Pasadena - CA,xiaolan.wong@gmail.com,,Business Administration,Class of 2008,"Edison, NJ",Gamma Class,Family,Tesorina,Spring,2006,Patrick Cao,TRUE,TRUE
 65,Matt Glantz,Citigroup,New York City,mglantz@andrew.cmu.edu,,Business Administration,Class of 2010,"East Greenwich, RI",Delta Class,Reagan Brothers,Wildcard,Fall,2006,Raymond Liu,TRUE,TRUE
+66,Michael Lu,Capital One,"Staten Island, NY",,,Business Administration and History,Class of 2009,"Staten Island, NY",Delta Class,Roc-a-Fellas,Skip to my,Fall,2006,Kenneth Yu,TRUE,TRUE
 67,Mark Luk,Teza Technologies,Chicago,mark.luk@gmail.com,,Electrical & Computer Engineering,Class of 2007,"Fremont, CA",Delta Class,Reagan Brothers,AARP,Fall,2006,Anuj Kumar,TRUE,TRUE
 68,Victor Tam,Squarespace,New York City,victor.h.tam@gmail.com,(562) 897-1881,Business Administration,Class of 2010,"Fullerton, CA",Delta Class,Reagan Brothers,Black Gold,Fall,2006,Victor Tam,TRUE,TRUE
 69,Alex Voo,Genewiz - Inc,Seattle,terranova11@gmail.com,,Biological Science,Class of 2010,"Millington, NJ",Delta Class,Incredibles,Bubble M.D.,Fall,2006,Salman Khoja,TRUE,TRUE
 70,Steven Yi,DuPont Powder Coatings,Houston,steveny1988@gmail.com,(646)- 703-2693,Chemical Engineering & Biomedical Engineering,Class of 2010,"Staten Island, NY",Delta Class,Incredibles,Incognito,Fall,2006,Linda Min,TRUE,TRUE
+71,Joon Yoon,,,,,Information Systems,Class of 2010,"Yangou, Myanmar and Seoul, Korea",Delta Class,Incredibles,Pekkle,Fall,2006,Eric Tang-2,TRUE,TRUE
 72,Sheldon Cheung,Cal Tech - Grad School,Pasadena - California,scheung@caltech.edu,,Chemistry,Class of 2010,"Ridgefield, CT",Epsilon Class,Family,Spumoni,Spring,2007,Xiao-Lan Wong,TRUE,TRUE
 73,William Chu,Asia Cassava Resources,Hong Kong,lasalle.will@gmail.com,852 61399815 (INTL),Business Administration,Class of 2009,Hong Kong,Epsilon Class,Reagan Brothers,Buffett,Spring,2007,Nicholas Yoder,TRUE,TRUE
+74,Ji-Soo Hong,,,,,Economics,Class of 2011,"San Jose, CA",Epsilon Class,Roc-a-Fellas,Iris,Spring,2007,Frank Zhang,TRUE,TRUE
 75,David Leong,Citadel,Chicago,tianseng@gmail.com,(412) 251-4696,Electrical and Computer Engineering,Class of 2010,"Ipoh, Malaysia",Epsilon Class,Incredibles,Optimus Prime,Spring,2007,David Leong,TRUE,TRUE
 76,Jason Ma,Booz Allen Hamilton,Northern Virginia,fishybrainz@yahoo.com,(972) 375-6113,Electrical and Computer Engineering,Class of 2010,"Richardson, TX",Epsilon Class,Dynasty,Jimini Cricket,Spring,2007,Anna Ly,TRUE,TRUE
 77,Wangeci Ngari,Nomura,Australia,wangeci.ngari@gmail.com,(862) 755-0858,Business Administration,Class of 2010,"Irvington, NJ",Epsilon Class,Reagan Brothers,Unbreakable,Spring,2007,Mark Luk,TRUE,TRUE
-78,Margaret Sheng,,California,mmili88@gmail.com,(626) 290-0063,Electrical & Computer Engineering,Class of 2010,"West Covina, CA",Epsilon Class,Kaleidoscope,Lilo,Spring,2007,,TRUE,TRUE
+78,Margaret Sheng,,California,mmili88@gmail.com,(626) 290-0063,Electrical & Computer Engineering,Class of 2010,"West Covina, CA",Epsilon Class,Kaleidoscope,Lilo,Spring,2007,Eric Tang-1,TRUE,TRUE
 79,Erica Tang,NYU Graduate School,New York City,erica.y.tang@gmail.com,(724) 594-4962,Chemistry,Class of 2010,"Pittsburgh, PA",Epsilon Class,Roc-a-Fellas,Meeko,Spring,2007,Angela Guh,TRUE,TRUE
 80,Kimberly Chan,JPMorgan Chase,New York City,kimberlychan8@gmail.com,,Business Administration,Class of 2011,"Holmdel, New Jersey",Zeta Class,Roc-a-Fellas,Eclipse,Fall,2007,Erica Tang,TRUE,TRUE
 81,Daniel Chen,(technology),San Francisco,danielchen@alumni.cmu.edu,,Computer Science,Class of 2011,"Arcadia, California",Zeta Class,Family,Donatello,Fall,2007,Jessica Wong,TRUE,TRUE
-82,Shi Chung,Booz Allen Hamilton,Northern Virginia,shichung@gmail.com,(718) 704-4819,Electrical and Computer Engineering,Class of 2009,"Brooklyn, NY",Zeta Class,Family,Piccante,Fall,2007,,TRUE,TRUE
+82,Shi Chung,Booz Allen Hamilton,Northern Virginia,shichung@gmail.com,(718) 704-4819,Electrical and Computer Engineering,Class of 2009,"Brooklyn, NY",Zeta Class,Family,Piccante,Fall,2007,Jay Khil,TRUE,TRUE
 83,Amanda Davenport,Grayson Company,New York City,adavenport67@gmail.com,,Business Administration,Class of 2011,"Bowie, Maryland",Zeta Class,Kaleidoscope,Peppermint Patty,Fall,2007,Nabila Walji,TRUE,TRUE
+84,Joanna Hartzmark,,,,,Chinese and Public Policy and Management,Class of 2010,"Chicago, IL",Zeta Class,Roc-a-Fellas,Chinese Laundry,Fall,2007,Angela Guh,TRUE,TRUE
+85,Jennifer Hwang,Business Administration,,,,,Class of 2011,"Alpharetta, Georgia",Zeta Class,Reagan Brothers,Jade,Fall,2007,Nicholas Yoder,TRUE,TRUE
 86,Song Im,Samsung,New York City,maru0376@gmail.com,,Undeclared (H&SS),Class of 2011,"Seoul, Korea",Zeta Class,Kaleidoscope,Zapfino,Fall,2007,Christine Chang,TRUE,TRUE
 87,Valerie Jordan,JPMorgan Chase,London,valerie.k.jordan@gmail.com,,Business Administration and Mathematics,Class of 2011,"Rochester, NY",Zeta Class,Reagan Brothers,jolt,Fall,2007,Matt Glantz,TRUE,TRUE
 88,Parthesh Karna,Deutsche Bank,,parthmhk03@gmail.com,,Business Administration,Class of 2011,"Bel Air, MD",Zeta Class,Kaleidoscope,Aladdin,Fall,2007,Nabila Walji,TRUE,TRUE
+89,Gigi Li,,,,,Business Administration,Class of 2011,"Vancouver, Canada",Zeta Class,Reagan Brothers,Webby,Fall,2007,William Chu,TRUE,TRUE
+90,Gabriella Moskowitz,,,,,Computer Science,Class of 2010,"Hewlett, New York",Zeta Class,Kaleidoscope,Impact,Fall,2007,Christine Chang,TRUE,TRUE
+91,Elizabeth Mutisya,,,,,Business Administration,Class of 2011,"Raleigh, NC",Zeta Class,Incredibles,Bubbles,Fall,2007,Brian Loo,TRUE,FALSE
 92,William Ouyang,Starwood Energy Group,New York City,williamouyang@gmail.com,,Economics & Statistics and Business Administration,Class of 2011,"Belle Mead, New Jersey",Zeta Class,Family,Leonardo,Fall,2007,Jessica Wong,TRUE,TRUE
 93,Seungtaek Park,Pricewaterhouse Coopers,Korea,seungtae@andrew.cmu.edu,(412)330-9670,Business Administration,Class of 2012,"Seoul, Korea",Zeta Class,Reagan Brothers,Wildthing,Fall,2007,Raymond Liu,TRUE,TRUE
-94,Danielle Rosenfeld,IBM,New York City,dannirosenfeld@gmail.com,,Business Administration,Class of 2011,"Gladwyne, PA",Zeta Class,Roc-a-fellas,Esperanza,Fall,2007,Julia Degeratu,TRUE,TRUE
+94,Danielle Rosenfeld,IBM,New York City,dannirosenfeld@gmail.com,,Business Administration,Class of 2011,"Gladwyne, PA",Zeta Class,Roc-a-Fellas,Esperanza,Fall,2007,Julia Degeratu,TRUE,TRUE
 95,Neil Sethi,Citigroup,New York City,neilsethi13@gmail.com,,Business Administration,Class of 2011,"Skillman, New Jersey",Zeta Class,Family,Casanova,Fall,2007,Niharika Bandi,TRUE,TRUE
+96,Michael Wang,Business Administration,,,,,Class of 2009,"Kaohsiung, Taiwan",Zeta Class,Reagan Brothers,Wild n Out,Fall,2007,Raymond Liu,TRUE,TRUE
 97,Andrew Yi,Brigade Capital Management,New York City,andrew.yi89@gmail.com,,Electrical and Computer Engineering,Class of 2011,"Wilton, Connecticut",Zeta Class,Incredibles,Terk,Fall,2007,Linda Min,TRUE,TRUE
-100,Shing Yan Lau,Hong Kong Monetary Authority,Hong Kong,shingyanl@gmail.com,,B.S. Economics & Statistics,Class of 2011,Hong Kong,Eta Class,Reagan Brothers,Bon Vivant,Spring,2008,,TRUE,TRUE
-101,Jason Lei,Insomniac Games,,jlei89@gmail.com,,Electrical & Computer Engineering,Class of 2011,"Beijing, China",Eta Class,Roc-a-Fellas,Smoove,Spring,2008,,TRUE,TRUE
+99,Elizabeth Koh,Business Administration,,,,,Class of 2011,Hong Kong,Eta Class,Family,Risata,Spring,2008,Sheldon Cheung,TRUE,TRUE
+100,Shing Yan Lau,Hong Kong Monetary Authority,Hong Kong,shingyanl@gmail.com,,Economics & Statistics,Class of 2011,Hong Kong,Eta Class,Reagan Brothers,Bon Vivant,Spring,2008,Michael Wang,TRUE,TRUE
+101,Jason Lei,Insomniac Games,,jlei89@gmail.com,,Electrical & Computer Engineering,Class of 2011,"Beijing, China",Eta Class,Roc-a-Fellas,Smoove,Spring,2008,Michael Lu,TRUE,TRUE
 102,Billy Litner,Liberty Mutual,Boston,billykazam@yahoo.com,,Business Administration,Class of 2011,"Livingston, NJ",Eta Class,Incredibles,Fuego,Spring,2008,Brian Loo,TRUE,TRUE
 103,Casey Piper,Qualcomm,San Diego,casey.piper@gmail.com,,Information Systems,Class of 2011,"Butler, PA",Eta Class,Kaleidoscope,Road Runner,Spring,2008,Margaret Sheng,TRUE,TRUE
+104,Scarlett Su,,,,,Business Administration,Class of 2011,"Cupertino, CA",Eta Class,Dynasty,Avalon,Spring,2008,Anna Ly,TRUE,TRUE
 105,Konstantin Vidensky,,,kvidensky@gmail.com,,Mechanical Engineering,Class of 2011,"Baltimore, MD",Eta Class,Dynasty,Kaiser Chef,Spring,2008,Lu Zhang,TRUE,TRUE
 106,Bin Yang,ZocDoc,New York City,yangbin88olp@gmail.com,,Business Administration,Class of 2011,"Beijing, China",Eta Class,Incredibles,Flame,Spring,2008,Salman Khoja,TRUE,TRUE
 107,Kent Yeung,JP Morgan,New York City,kent@yeung.com,,Business Administration,Class of 2011,"Crofton, MD",Eta Class,Incredibles,Crush,Spring,2008,David Leong,TRUE,TRUE
@@ -86,62 +100,144 @@ Number,Name,Current Employer,Current City,Email,Phone Number,Major,Graduation Ye
 113,Hyejoo Kim,Freddie Mac,Washington DC,hyejoo90@gmail.com,(734)478-9394,Business Adminstration & Statistics,Class of 2012,"Seoul, Korea",Theta Class,Incredibles,Pinkberry,Fall,2008,Kent Yeung,TRUE,TRUE
 114,Min Kim,Deloitte,Pittsburgh,minkim90@gmail.com,(410)710-1733,Business Administration,Class of 2012,"Baltimore, MD",Theta Class,Kaleidoscope,Skeeter Valentine,Fall,2008,Amanda Davenport,TRUE,TRUE
 115,Sean Kim,McKinsey & Company,Pittsburgh,skim723@gmail.com,,Information Systems,Class of 2011,"Woodbridge, CT",Theta Class,Reagan Brothers,Casper,Fall,2008,Matt Glantz,TRUE,TRUE
-116,Yeonjoo Kim,Accenture,Washington DC,yeonjoo90@gmail.com,(734)466-2053,Business Administration,Class of 2012,"Seoul, Korea",Theta Class,Incredibles,Jubilee,Fall,2008,,TRUE,TRUE
+116,Yeonjoo Kim,Accenture,Washington DC,yeonjoo90@gmail.com,(734)466-2053,Business Administration,Class of 2012,"Seoul, Korea",Theta Class,Incredibles,Jubilee,Fall,2008,Steven Yi,TRUE,TRUE
 117,Meghan Nahass,Robert Wood Johnson Medical School,New Jersey,meghannahass@gmail.com,908-392-0456,Policy Management & Biology,Class of 2012,"Montgomery, NJ",Theta Class,Roc-a-Fellas,Valiente,Fall,2008,Danielle Rosenfeld,TRUE,TRUE
-118,Nicole Tseng,IMG,New York City,nktseng@gmail.com,(203) 570-2573,Business Administration,Class of 2010,"Los Angeles, CA / Beijing, Chi",Theta Class,Reagan Brothers,Bon Zele,Fall,2008,,TRUE,TRUE
+118,Nicole Tseng,IMG,New York City,nktseng@gmail.com,(203) 570-2573,Business Administration,Class of 2010,"Los Angeles, CA / Beijing, Chi",Theta Class,Reagan Brothers,Bon Zele,Fall,2008,Michael Wang,TRUE,TRUE
 119,Daria Wong,UCLA Law School,Los Angeles,daria.wong20@gmail.com,(732)712-9055,Civil & Environmental Engineering,Class of 2012,"Edison, NJ",Theta Class,Reagan Brothers,Wildflower,Fall,2008,Raymond Liu,TRUE,TRUE
+120,William Xia,Citadel,,,,,Class of 2012,"Oak Hill, VA",Theta Class,Reagan Brothers,Cookiecutter,Fall,2008,Gigi Li,TRUE,TRUE
 121,Hugo Zhang,Citadel,Chicago,hugotherapist@gmail.com,,Electrical & Computer Engineering,Class of 2011,"Newtown, PA",Theta Class,Dynasty,Boss,Fall,2008,Jason Ma,TRUE,TRUE
-122,Julia Choicer,AllianceBernstein,Pittsburgh,jchoicer@gmail.com,(917)399-2390,Business Administration,Class of 2012,"Brooklyn, NY",Iota Class,Roc-a-Fellas,Hopscotch,Spring,2009,,TRUE,TRUE
-124,Jun Lee,Korean Army,Korea,junthecj@gmail.com,,Mathematical Sciences,Class of 2012,Korea,Iota Class,Reagan Brothers,Ryu,Spring,2009,,TRUE,TRUE
-125,Alvin Poh,,Singapore,poh.alvin@gmail.com,65 90088522 (INTL),Information Systems,Class of 2010,Singapore,Iota Class,Dynasty,,Spring,2009,,TRUE,TRUE
+122,Julia Choicer,AllianceBernstein,Pittsburgh,jchoicer@gmail.com,(917)399-2390,Business Administration,Class of 2012,"Brooklyn, NY",Iota Class,Roc-a-Fellas,Hopscotch,Spring,2009,Jason Ma,TRUE,TRUE
+123,Skye Kim,Business Administration,,,,,Class of 2012,"Ashburn, VA",Iota Class,Roc-a-Fellas,Black Canary,Spring,2009,Erica Tang,TRUE,TRUE
+124,Jun Lee,Korean Army,Korea,junthecj@gmail.com,,Mathematical Sciences,Class of 2012,Korea,Iota Class,Reagan Brothers,Ryu,Spring,2009,Jennifer Hwang,TRUE,TRUE
+125,Alvin Poh,,Singapore,poh.alvin@gmail.com,65 90088522 (INTL),Information Systems,Class of 2010,Singapore,Iota Class,Dynasty,,Spring,2009,Scarlett Su,TRUE,TRUE
 126,Stephanie Schneider,IBM,New York City,steph.m.schneider1@gmail.com,(973)464-1505,Business Administration,Class of 2012,"Maplewood, NJ",Iota Class,Incredibles,Sunshine,Spring,2009,Billy Litner,TRUE,TRUE
 127,Gina Seguiti,The Walt Disney Company,Los Angeles,gseguiti@gmail.com,,,Class of 2010,"Pittsburgh, PA",Iota Class,Incredibles,Raggiante,Spring,2009,Bin Yang,TRUE,TRUE
 128,Elsa Wu,Macy-s,New York City,ewu226@gmail.com,,Business Administration,Class of 2012,"Ellicott City, MD",Iota Class,Reagan Brothers,Nike,Spring,2009,Nicole Tseng,TRUE,TRUE
 129,Yinglu Yao,GE Capital,Chicago,yingluy@gmail.com,,Statistics,Class of 2011,"Rockville, MD",Iota Class,Incredibles,Arcee,Spring,2009,Victoria Docherty,TRUE,TRUE
 130,Stephanie Yue,Pricewaterhouse Coopers,New York City,stephanieyue1230@gmail.com,(917)327-4799,Business Administration,Class of 2012,"Bayside, NY",Iota Class,Dynasty,Mulan,Spring,2009,Hugo Zhang,TRUE,TRUE
 131,Michelle Berman,Pricewaterhouse Coopers,New York City,michelleberman09@gmail.com,(646)591-0376,Economics & Statistics,Class of 2012,"Brooklyn, NY",Kappa Class,Kaleidoscope,Atta,Fall,2009,Casey Piper,TRUE,TRUE
-132,Joanna Chen,Capital One,Washington DC,jojohchen@gmail.com,3015128240,Economics & Business Administration,Class of 2013,"Silver Spring, MD",Kappa Class,Roc-a-Fellas,J'adore,Fall,2009,,TRUE,TRUE
-133,Tricia Chiou,IBM Market Development & Insights,New York Ciy,tricia.chiou@gmail.com,(408) 621-8043,Business Administration,Class of 2013,"Saratoga, CA",Kappa Class,Reagan Brothers,Bebe,Fall,2009,,TRUE,TRUE
+132,Joanna Chen,Capital One,Washington DC,jojohchen@gmail.com,3015128240,Economics & Business Administration,Class of 2013,"Silver Spring, MD",Kappa Class,Roc-a-Fellas,J'adore,Fall,2009,Joanna Hartzmark,TRUE,TRUE
+133,Tricia Chiou,IBM Market Development & Insights,New York Ciy,tricia.chiou@gmail.com,(408) 621-8043,Business Administration,Class of 2013,"Saratoga, CA",Kappa Class,Reagan Brothers,Bebe,Fall,2009,Jennifer Hwang,TRUE,TRUE
 134,Brian Groudan,Google,New York Ciy,bgroudan@gmail.com,516 965 2498,Information Systems & Human-Computer Interaction,Class of 2012,"Long Island, NY",Kappa Class,Reagan Brothers,Dug,Fall,2009,Sean Kim,TRUE,TRUE
 135,Deniz Kalaycioglu,Accenture,Pittsburgh,sevendays@gmail.com,(203)550-1162,Business Administration,Class of 2012,"Greenwich, CT",Kappa Class,Family,Dolce,Fall,2009,William Ouyang,TRUE,TRUE
+136,Joy Kang,Samsung,,,,Architecture,Class of 2012,"Seoul, Korea",Kappa Class,Incredibles,Moonracer,Fall,2009,Victoria Docherty,TRUE,TRUE
 137,Eumie Kim,Merck & Company,Summitt - NJ,aekim91@gmail.com,,International Relations & Politics,Class of 2013,"Chicago, IL",Kappa Class,Roc-a-Fellas,Aurora,Fall,2009,Kimberly Chan,TRUE,TRUE
+139,Issac Kwon,Architecture,,,,,Class of 2012,"Seoul, Korea",Kappa Class,Family,Bernini,Fall,2009,Neil Sethi,TRUE,TRUE
 140,Emily Lee,IBM Consulting,New York Ciy,elee4211@gmail.com,2036102104,Business Administration & Statistics,Class of 2013,"Fairfield, CT",Kappa Class,Roc-a-Fellas,Aquila,Fall,2009,Meghan Nahass,TRUE,TRUE
 141,Charles Mbaruguru,The Startup Institute,New York City,Charles.mbar@gmail.com,(832) 922-3122,Chemical Engineering,Class of 2013,"Houston, TX",Kappa Class,Roc-a-Fellas,Odayakana Sora,Fall ,2009,Jason Lei,TRUE,TRUE
-142,Umang Patel,,Pittsburgh,umangp90@gmail.com,6142568887,Information Systems,Class of 2012,"Columbus, OH",Kappa Class,Kaleidoscope,Abu,Fall,2009,Parthesh Karna,TRUE,TRUE
+142,Umang Patel,,San Francisco,umangp90@gmail.com,6142568887,Information Systems,Class of 2012,"Columbus, OH",Kappa Class,Kaleidoscope,Abu,Fall,2009,Parthesh Karna,TRUE,TRUE
+143,Andrea Weigand,,"Pittsburgh, PA",,,Business Administration,Class of 2012,Kappa Class,Kappa Class,Reagan Brothers,Astraea,Fall,2009,Alisa Deychman,TRUE,TRUE
 144,Andrew Yeung,IBM Consulting,Boston,ayeun27@gmail.com,617-939-7267,Business Administration,Class of 2013,"Brookline, MA",Kappa Class,Reagan Brothers,Mizuno,Fall,2009,Nicole Tseng,TRUE,TRUE
 145,Kathryn Davis,Schlumberger,Midland - Texas,kcdavis908@gmail.com,,Civil Engineering,Class of 2013,"Glen Gardner, NJ",Lambda Class,Reagan Brothers,Sea Breeze,Spring,2010,Daria Wong,TRUE,TRUE
-146,Kunal Natu,Fenwich and West,Mountain View,kunal.natu@gmail.com,(650)823-1404,Civil Engineering,Class of 2012,"Los Altos, CA",Lambda Class,Kaleidoscope,The Honorable,Spring,2010,,TRUE,TRUE
+146,Kunal Natu,Fenwich and West,Mountain View,kunal.natu@gmail.com,(650)823-1404,Civil Engineering,Class of 2012,"Los Altos, CA",Lambda Class,Kaleidoscope,The Honorable,Spring,2010,Gabriella Moskowitz,TRUE,TRUE
 147,Amanda Ho-Sang,IBM Consulting,New York Ciy,amanda.hosang@gmail.com,305-794-0633,Decision Science & Psychology,Class of 2013,Singapore,Lambda Class,Reagan Brothers,Panda,Spring,2010,Suraj Baxi,TRUE,TRUE
 148,Ahmad Shamsuddin,Bank of Malaysia,Malaysia,abrar.shamsuddin@gmail.com,412 225 3659,Business Administration and Mathematics,Class of 2013,Malaysia,Lambda Class,Dynasty,Sulton AX,Spring,2010,Hugo Zhang,TRUE,TRUE
-149,Hayden Tang,UBS,New York City,taitan5@gmail.com,,Information Systems,Class of 2012,"Taipei, Taiwan",Lambda Class,Roc-a-Fellas,Felix,Spring,2010,,TRUE,TRUE
+149,Hayden Tang,UBS,New York City,taitan5@gmail.com,,Information Systems,Class of 2012,"Taipei, Taiwan",Lambda Class,Roc-a-Fellas,Felix,Spring,2010,Ji-Soo Hong,TRUE,TRUE
 150,Vince Ye,Aspen Technology,Boston,vinceye.cm@gmail.com,,Chemical Engineering,Class of 2012,"Houston, TX",Lambda Class,Incredibles,Sully,Spring,2010,Andrew Yi,TRUE,TRUE
 151,Lydia Yi,PNC,Pittsburgh,lyds0591@gmail.com,2674551879,Economics & International Relations ,Class of 2013,"Blue Bell, PA",Lambda Class,Kaleidoscope,Thespis,Spring,2010,Song Im,TRUE,TRUE
 152,Stefanie Chan,Deloitte,New York Ciy,stefanieswchan@gmail.com,5163752415,Business Administration,Class of 2013,"Long Island, NY",Mu Class,Reagan Brothers,Aria,Fall,2010,Elsa Wu,TRUE,TRUE
 154,Alvi Hasan,,,alvi.hasan@gmail.com,412 877 3398,Business Administration,Class of 2014,Singapore,Mu Class,Kaleidoscope,MVP,Fall,2010,Kunal Natu,TRUE,TRUE
 155,Arthur Hong,CMU Grad school- HCI,Pittsburgh,arthurrhong@gmail.com,2019839907,Business Administration,Class of 2013,"Closter, NJ",Mu Class,Incredibles,Fire Goby,Fall,2010,Billy Litner,TRUE,TRUE
+153,Phil Chen,,,,,Business Administration,Class of 2014,"Xiamen, China",Mu Class,Incredibles,Bumblebee,Fall,2010,Yinglu Yao,TRUE,TRUE
 157,Megan Kwan,Goldman Sachs,Salt Lake City,megantkwan@gmail.com,7143568366,Business Administration,Class of 2013,"Orange County, CA",Mu Class,Reagan Brothers,Luna,Fall,2010,Jun Lee,TRUE,TRUE
-158,Brenda Lee,Microsoft,Seattle,blee426@gmail.com,8583564295,Computer Science,Class of 2014,"San Diego, CA",Mu Class,Roc-a-fellas,Blossom,Fall,2010,Hayden Tang,TRUE,TRUE
+158,Brenda Lee,Microsoft,Seattle,blee426@gmail.com,8583564295,Computer Science,Class of 2014,"San Diego, CA",Mu Class,Roc-a-Fellas,Blossom,Fall,2010,Hayden Tang,TRUE,TRUE
 159,Elise Lim,,Seoul - Korea,elisel@andrew.cmu.edu,,Business,Class of 2013,"Seoul, Korea",Mu Class,Incredibles,Ember,Fall,2010,Stephanie Schneider,TRUE,TRUE
 160,Vincent Liu,Belvedere,Chicago,liusizhevincent@gmail.com,8185846235,Electrical Computer Engineering,Class of 2012,"Hefei, China",Mu Class,Family,Grande Muraglia,Fall,2009,Christopher Jo,TRUE,TRUE
 162,Sidharth Madan,Deloitte,New York City,sidharthmadan92@gmail.com,347 972 6565,Business Administration,Class of 2014,"New Delhi, India",Mu Class,Kaleidoscope,Timon,Fall,2010,Michelle Berman,TRUE,TRUE
-164,Jisoo Park,Chopper Trading,Pittsburgh,jisoo.park1991@gmail.com,917 270 2344,Economics & Mathematics,Class of 2013,"New York, NY",Mu Class,Kaleidoscope,Hobbes,Fall,2010,Min Kim,TRUE,TRUE
-165,Zachary Rousselle,,,zacharyrousselle@gmail.com,516 972 0184,Electrical & Computer Engineering,Class of 2014,"Farmingdale, NY",Mu Class,Dynasty,Andalusian,Fall,2010,Konstantin Vidensky,FALSE,FALSE
+164,Jisoo Park,JP Morgan,Pittsburgh,jisoo.park1991@gmail.com,917 270 2344,Economics & Mathematics,Class of 2013,"New York, NY",Mu Class,Kaleidoscope,Hobbes,Fall,2010,Min Kim,TRUE,TRUE
+165,Zachary Rousselle,,,zacharyrousselle@gmail.com,516 972 0184,Electrical & Computer Engineering,Class of 2014,"Farmingdale, NY",Mu Class,Dynasty,Andalusian,Fall,2010,Konstantin Vidensky,TRUE,TRUE
+166,Dipika Shrihari,Information Systems and Human-Computer Interaction,,,,,Class of 2013,"Pittsburgh, PA",Mu Class,Reagan Brothers,Athena,Fall,2010,Andrea Weigand,TRUE,TRUE
 167,Dorothy Yu,Deloitte,New York Ciy,dorothy.cmu@gmail.com,3017873923,Business Administration & Decision Science,Class of 2013,"Potomac, MD",Mu Class,Incredibles,Pixie,Fall,2010,Yeonjoo Kim,TRUE,TRUE
 168,Bernard Yuan,,,Byuan1118@live.com,973 420 6855,Economics & Statistics ,Class of 2014,"Livingston, NJ",Mu Class,Family,Ruggiero,Fall,2010,Deniz Kalaycioglu,TRUE,TRUE
 169,David Baboolall,,,mr.baboolall@gmail.com,917 208 2851,Information Systems,Class of 2014,"Jamaica, NY",Nu Class,Reagan Brothers,Fireball,Spring,2011,Daria Wong,TRUE,TRUE
-170,Johnny Bae,,,bae.youngkwon@gmail.com,724 799 4756,Economics and Statistics,Class of 2014,"Pittsburgh, PA",Nu Class,Roc-a-fellas,Lionheart,Spring,2011,Charles Mbaruguru,TRUE,TRUE
+170,Johnny Bae,,,bae.youngkwon@gmail.com,724 799 4756,Economics and Statistics,Class of 2014,"Pittsburgh, PA",Nu Class,Roc-a-Fellas,Lionheart,Spring,2011,Charles Mbaruguru,TRUE,TRUE
+172,Weimeng Chen,Business Administration and Math,,,,,Class of 2014,"Shanghai, China",Nu Class,Reagan Brothers,Nash,Spring,2011,Valerie Jordan,TRUE,TRUE
 173,Kathleen Dolan,Pricewaterhouse Coopers,New York City,kat.m.dolan@gmail.com,509 840 3210,Business Administration,Class of 2014,"Sunnyside, WA",Nu Class,Reagan Brothers,Maia,Spring,2011,Alisa Deychman,TRUE,TRUE
 174,Carol Kim,P&G,Cincinnati,cckim.cmu@gmail.com,3237176171,Chemical Engineering,Class of 2013,"Los Angeles, CA",Nu Class,Kaleidoscope,Milano,Spring,2011,Kunal Natu,TRUE,TRUE
 175,Adhip Sacheti,Galaxay USA,New York Ciy,Adhip2@gmail.com,9173128472,Economics,Class of 2013,"Mumbai, India",Nu Class,Family,Gelato,Spring,2011,Daniel Chen,TRUE,TRUE
 176,Vivek Sainanee,ebay,San Jose,vs1234@gmail.com,6508159258,Information Systems,Class of 2014,"Stanford, CA",Nu Class,Reagan Brothers,Wild Tsunami,Spring,2011,Seungtaek Park,TRUE,TRUE
-178,Matt Wilson,Pricewaterhouse Coopers,Los Angeles,mswilson1992@gmail.com,714 926 1476,Finance,Class of 2014,"Orange, CA",Nu Class,Roc-a-fellas,Bouncy Ball,Spring,2011,Julia Choicer,TRUE,TRUE
-179,Emily Wright,,,emily.wright.cmu@gmail.com,703 955 2307,Business Administration with Additional Major,Class of 2014,"Fairfax, VA",Nu Class,Roc-a-fellas,Akupara,Spring,2011,Emily Wright,TRUE,TRUE
-180,Heidi Yang,,,heidi.sweet.yang@gmail.com,513 886 3511,Business Administration,Class of 2014,"Cincinnati, OH",Nu Class,Reagan Brothers,Firefly,Spring,2011,,TRUE,TRUE
+178,Matt Wilson,Pricewaterhouse Coopers,Los Angeles,mswilson1992@gmail.com,714 926 1476,Finance,Class of 2014,"Orange, CA",Nu Class,Roc-a-Fellas,Bouncy Ball,Spring,2011,Julia Choicer,TRUE,TRUE
+179,Emily Wright,,,emily.wright.cmu@gmail.com,703 955 2307,Business Administration with Additional Major,Class of 2014,"Fairfax, VA",Nu Class,Roc-a-Fellas,Akupara,Spring,2011,Emily Wright,TRUE,TRUE
+180,Heidi Yang,,,heidi.sweet.yang@gmail.com,513 886 3511,Business Administration,Class of 2014,"Cincinnati, OH",Nu Class,Reagan Brothers,Firefly,Spring,2011,William Xia,TRUE,TRUE
+182,Karthik Annaamalai,,,,,Business Administration,Class of 2015,"Saratoga, CA",Xi Class,Roc-a-Fellas,Bugatti,Fall,2011,Joanna Chen,FALSE,TRUE
+183,Miko Bautista,,,,,Information Systems and Computer Science,Class of 2014,"Manila, Philippines",Xi Class,Family,Eliodoro,Fall,2011,Deniz Kalaycioglu,TRUE,TRUE
+184,Nathaniel Eliason,,,,,Philosophy,Class of 2015,"McLean, VA",Xi Class,Dynasty,Enzo,Fall,2011,Zachary Rousselle,FALSE,TRUE
 185,Lincoln He,,,zasheed@gmail.com,412 996 6185,Communication Design,Class of 2014,"Shanghai, China",Xi Class,Reagan Brothers,Prometheus,Fall,2011,Alisa Deychman,TRUE,TRUE
 187,Margo Johnson,,Washington DC,margojjohnson@gmail.com,410 908 5992,"Civil Engineering, Engineering & Public Policy",Class of 2014,"Columbia, MD",Xi Class,Reagan Brothers,Eden,Fall,2011,Kathryn Davis,TRUE,TRUE
 188,Raphael Kim,,,rkrakim3@gmail.com,650 815-6367,Electrical and Computer Engineering & Computer Science,Class of 2014,"Palo Alto, CA",Xi Class,Family,Stella Pollare,Fall,2011,Vincent Liu,TRUE,TRUE
-192,Christine Pak,Deloitte,Pittsburgh,c.pak02@gmail.com,201-655-9821,Psychology and Decision Sciences,Class of 2013,"Demarest, NJ",Xi Class,Incredibles,Mulberry,Fall,2011,Christine Pak,TRUE,TRUE
+189,Dixon Liang,,,,,Business Administration ,Class of 2015,"Issaquah, WA",Xi Class,Dynasty,Joga Bonito,Fall,2011,Ahmad Shamsuddin,FALSE,TRUE
+190,Adil Majid,,,,,International Relations,Class of 2015,"San Jose, CA",Xi Class,Kaleidoscope,Genie,Fall,2011,Umang Patel,FALSE,TRUE
+191,Sanika Natu,,,,,Business Administration,Class of 2015,"Los Altos, CA",Xi Class,Roc-a-Fellas,Supernova,Fall,2011,Eumie Kim,FALSE,TRUE
+192,Christine Pak,Deloitte,Pittsburgh,c.pak02@gmail.com,201-655-9821,Psychology and Decision Sciences,Class of 2013,"Demarest, NJ",Xi Class,Incredibles,Mulberry,Fall,2011,Hyejoo Kim,TRUE,TRUE
 194,Barnik Saha,IBM,,barnik.tx@gmail.com,469 544 0662,Information Systems,Class of 2014,"Plano, TX",Xi Class,Reagan Brothers,Kaizen,Fall,2011,Brian Groudan,TRUE,TRUE
+195,Peter Salim,,,,,Architecture,Class of 2015,"Jakarta, Indonesia",Xi Class,Incredibles,Rodimus,Fall,2011,Joy Kang,FALSE,TRUE
 196,Mia Wang,CMU Masters,Pittsburgh,Mia.y.wang@gmail.com,7329256882,Information Systems,Class of 2013,"East Brunswick, NJ",Xi Class,Incredibles,Mirage,Fall,2011,Vince Ye,TRUE,TRUE
+197,Olga Zubashko,,,,,Economics and Statistics,Class of 2014,"Bardonia, NY",Xi Class,Family,dalle Nuvole,Fall,2011,Issac Kwon,TRUE,TRUE
+198,Andres Anzola,,,,,Economics and Statistics,Class of 2015,"Pittsburgh, PA",Omicron Class,Reagan Brothers,Axel,Spring,2012,Margo Johnson,TRUE,TRUE
+199,Shanna Chan,,,,,Architecture,Class of 2016,"Taipei, Taiwan",Omicron Class,Incredibles,ElitaOne,Spring,2012,Joy Kang,TRUE,TRUE
+200,Shaquille Charles,,,,,Psychology,Class of 2015,"Ardsley, New York",Omicron Class,Reagan Brothers,Atticus,Spring,2012,Amanda Ho-Sang,TRUE,TRUE
 201,Andrew Gumbs,Pricewaterhouse Coopers,New York City,andrewjohngumbs@gmail.com,718 309 9045,Business Administration and Psychology,Class of 2014,"Queens, New York",Omicron Class,Incredibles,Lucius Best,Spring,2012,Mia Wang,TRUE,TRUE
-203,Justin Lechner,Bain,San Francisco,jlech42@gmail.com,215 527 6213,Mathematics ,Class of 2014,"Philadelphia, Pennsylvania",Omicron Class,Reagan Brothers,Apollo,Spring,2012,,TRUE,TRUE
+203,Justin Lechner,Bain,San Francisco,jlech42@gmail.com,215 527 6213,Mathematics ,Class of 2014,"Philadelphia, Pennsylvania",Omicron Class,Reagan Brothers,Apollo,Spring,2012,Andrea Weigand,TRUE,TRUE
+204,Michael Loffredo,IBM,,,,Communication Design and Human-Computer Interaction,Class of 2014,"South Salem, New York",Omicron Class,Incredibles,Phoenix,Spring,2012,Arthur Hong,FALSE,TRUE
+205,Tianyi Lu,,,,,Business Administration,Class of 2015,"Atlanta, Georgia ",Omicron Class,Reagan Brothers,Excalibur,Spring,2012,Stefanie Chan,FALSE,TRUE
+206,Phoebe Ng,,,,,Professional Writing,Class of 2015,"Thousand Oaks, California",Omicron Class,Reagan Brothers,Stella,Spring,2012,Andrew Yeung,FALSE,TRUE
+207,Anish Singh,,,,,Business Administration and Economics,Class of 2015,"Naperville, Illinois ",Omicron Class,Kaleidoscope,Iceman,Spring,2012,Alvi Hasan,FALSE,TRUE
+208,Ajit Bopalkar,,,,,Business Administration,Class of 2016,"Edison, New Jersey",Pi Class,Reagan Brothers,Dynamite,Fall,2012,David Baboolall,FALSE,TRUE
+209,Adrian Botta,,,,,Economics and Statistics,Class of 2015,"Teaneck, New Jersey",Pi Class,Reagan Brothers,Odysseus,Fall,2012,Dipika Shrihari,FALSE,TRUE
+210,Tiffany Chen-Zeyu,,,,,Business Administration,Class of 2016,"Wuhan, China",Pi Class,Family,Donna,Fall,2012,Olga Zubashko,FALSE,TRUE
+211,Chloe Chia,,,,,Design,Class of 2016,"Kuala Lumpur, Malaysia",Pi Class,Roc-a-Fellas,Eevee,Fall,2012,Brenda Lee,FALSE,TRUE
+212,Jay Chopra,,,,,Information Systems,Class of 2015,"Sunnyvale, CA",Pi Class,Reagan Brothers,Bonsai,Fall,2012,Barnik Saha,FALSE,TRUE
+213,Rachel Fowler,,,,,Business Administration,Class of 2016,"Apex, North Carolina",Pi Class,Reagan Brothers,Mirabella Étoile,Fall,2012,Megan Kwan,FALSE,TRUE
+214,Manuel Garber,,,,,Economics,Class of 2014,"San Francisco, California",Pi Class,Incredibles,Cannonball,Fall,2012,Dorothy Yu,FALSE,TRUE
+215,Cynthia Hsia,,,,,Economics,Class of 2016,"Pleasanton, California",Pi Class,Kaleidoscope,Aventador,Fall,2012,Carol Kim,FALSE,TRUE
+216,Willa Lu,,,,,Business Administration,Class of 2016,"Edison, New Jersey",Pi Class,Family,Serafina,Fall,2012,Miko Bautista,FALSE,TRUE
+217,Anita Ramamurthy,,,,,Economics and Statistics,Class of 2016,"New York, New York",Pi Class,Reagan Brothers,Pita,Fall,2012,Vivek Sainanee,FALSE,TRUE
+218,Danning Wang,,,,,Business Administration,Class of 2016,"Tianjin, China",Pi Class,Roc-a-Fellas,Double Dutch,Fall,2012,Matt Wilson,FALSE,TRUE
+219,Lawrence Hu,,,,,Computational Finance,Class of 2015,"Irvine, California",Rho Class,Kaleidoscope,Porkchop,Spring,2013,Jisoo Park,FALSE,TRUE
+220,Eric Jin,,,,,Mechanical Engineering,Class of 2016,"Jinzhou, China",Rho Class,Reagan Brothers,Flux,Spring,2013,Heidi Yang,FALSE,TRUE
+221,Baek Kim,,,,,Electrical and Computer Engineering and Robotics double major,Class of 2016,"Novi, Michigan",Rho Class,Family,Sole,Spring,2013,Raphael Kim,FALSE,TRUE
+222,Nicholas Lam,,,,,Economics and Statistics,Class of 2016,"Hong Kong, China",Rho Class,Reagan Brothers,Hermes,Spring,2013,Kathleen Dolan,FALSE,TRUE
+223,Jonathan Xianqi-Zeng,,,,,Computer Science,Class of 2016,"Shanghai, China",Rho Class,Incredibles,Wolfberry,Spring,2013,Christine Pak,FALSE,TRUE
+224,Renzo Bautista,,,,,Information Systems and Computer Science,Class of 2017,"Manila, Philippines",Sigma Class,Reagan Brothers,Mowgli,Fall,2013,Shaquille Charles,FALSE,TRUE
+225,Yayoi Furuhata,,,,,Business Administration,Class of 2017,"Nara, Japan and Pittsburgh, PA",Sigma Class,Reagan Brothers,Bonsai,Fall,2013,Andres Anzola,FALSE,TRUE
+226,Benjamin Jang,,,,,Economics and Mathematics,Class of 2017,"Edison, NJ",Sigma Class,Reagan Brothers,Poseidon,Fall,2013,Lincoln He,FALSE,TRUE
+227,Raunak Jhaveri,,,,,Business Administration,Class of 2017,Mumbai India,Sigma Class,Reagan Brothers,Motonali,Fall,2013,Weimeng Chen,FALSE,TRUE
+228,Sneha Kannoth,,,,,Biology and Psychology,Class of 2016,"Bridgewater, NJ",Sigma Class,Reagan Brothers,Iona,Fall,2013,Margo Johnson,FALSE,TRUE
+229,Rishi Khanna,,,,,Electrical Computer Engineering,Class of 2017,"Dunn Loring, VA",Sigma Class,Kaleidoscope,Rafiki,Fall,2013,Sidharth Madan,FALSE,TRUE
+230,Donna Lee,,,,,Biology and Psychology,Class of 2016,"Brooklyn, NY",Sigma Class,Kaleidoscope,Jasmine,Fall,2013,Adil Majid,FALSE,TRUE
+231,Alvin Mathew,,,,,Economics,Class of 2016,"West Nyack, NY",Sigma Class,Dynasty,Gorgias,Fall,2013,Nathaniel Eliason,FALSE,TRUE
+232,Sarabeth Perry,,,,,Global Studies,Class of 2016,"Bloomfield Hills, MI",Sigma Class,Reagan Brothers,Demeter,Fall,2013,Justin Lechner,FALSE,TRUE
+233,Christopher Ruland,,,,,Business Administration and Psychology,Class of 2017,"Oldsmar, FL",Sigma Class,Kaleidoscope,Vis Vires,Fall,2013,Alvi Hasan,FALSE,TRUE
+234,Alex Tsai,,,,,Information Systems,Class of 2017,"Taipei, Taiwan",Sigma Class,Family,Giuseppe,Fall,2013,Bernard Yuan,FALSE,TRUE
+235,Ashley Wong,,,,,Information Systems,Class of 2017,"Jakarta, Indonesia",Sigma Class,Incredibles,Jazz,Fall,2013,Peter Salim,FALSE,TRUE
+236,Yvonne Yuan,,,,,Business Administration,Class of 2017,Singapore,Sigma Class,Dynasty,Macaroon,Fall,2013,Dixon Liang,FALSE,TRUE
+237,Hanson Zeng,,,,,Information Systems,Class of 2017,"Vancouver, Canada",Sigma Class,Reagan Brothers,Nemawashi,Fall,2013,Jay Chopra,FALSE,TRUE
+238,Nathaniel Benzaquen-Ouakrat,,,,,Decision Science,Class of 2017,"New York, NY",Tau Class,Dynasty,Hippocampi,Spring,2014,Zachary Rousselle,FALSE,TRUE
+239,Nikita Bokil,,,,,Information Systems,Class of 2017,"Pittsburgh, PA",Tau Class,Roc-a-Fellas,Solar Flare,Spring,2014,Sanika Natu,FALSE,TRUE
+240,Qifang Cai,,,,,Electrical and Computer Engineering,Class of 2017,"Nanning, China",Tau Class,Incredibles,Sideswipe,Spring,2014,Phil Chen,FALSE,TRUE
+241,Molly Chou,,,,,Business Administration,Class of 2017,"San Jose, CA",Tau Class,Reagan Brothers,Antigone,Spring,2014,Adrian Botta,FALSE,TRUE
+242,Cosette Esnes,,,,,Business Administration,Class of 2017,"Great Neck, NY",Tau Class,Incredibles,Shadowcat,Spring,2014,Manuel Garber,FALSE,TRUE
+243,Tiffany Fu,,,,,Material Science and Biomedical Engineering,Class of 2017,"Edison, NJ",Tau Class,Incredibles,Rampage,Spring,2014,Manuel Garber,FALSE,TRUE
+244,Tai Jin,,,,,Business Administration,Class of 2017,"Hangzhou, China",Tau Class,Reagan Brothers,Hades,Spring,2014,Lincoln He,FALSE,TRUE
+245,Shreeyagya Khemka,,,,,Information Systems,Class of 2017,"Kolkata, India",Tau Class,Dynasty,Lucilius,Spring,2014,Nathaniel Eliason,FALSE,TRUE
+246,Lynn Kim,,,,,Business Administration,Class of 2017,"Mexico City, Mexico",Tau Class,Reagan Brothers,Vdara,Spring,2014,Tianyi Lu,FALSE,TRUE
+247,Richard Lee,,,,,Business Administration,Class of 2017,"Williston Park, NY",Tau Class,Family,Pegasus,Spring,2014,Olga Zubashko,FALSE,TRUE
+248,Yoona Seon,,,,,Economics and Statistics,Class of 2016,"Lexington, MA",Tau Class,Roc-a-Fellas,Maserati,Spring,2014,Karthik Annaamalai,FALSE,TRUE
+249,Clare Svirsko,,,,,Civil and Environmental Engineering,Class of 2016,"Johnstown, PA",Tau Class,Roc-a-Fellas,Columba,Spring,2014,Julia Choicer,FALSE,TRUE
+250,Abhishek Yadav,,,,,Electrical and Computer Engineering,Class of 2017,"New Delhi, India",Tau Class,Incredibles,Razorclaw,Spring,2014,Julia Choicer,FALSE,TRUE
+251,Kimi Ampolu,,,,,Business Administration,Class of 2018,"Mt. Laurel, NJ",Upsilon Class,Reagan Brothers,Fondue,Fall,2014,Anita Ramamurthy,FALSE,TRUE
+252,Roma Desai,,,,,Business Administration,Class of 2018,"Parsippany, NJ",Upsilon Class,Kaleidoscope,Scar,Fall,2014,Rishi Khanna,FALSE,TRUE
+253,Amy Fan,,,,,Business Administration,Class of 2018,"Houston, TX",Upsilon Class,Family,Illuminati,Fall,2014,Willa Lu,FALSE,TRUE
+254,Akshay Goradia,,,,,Information Systems,Class of 2018,"Hillsborough, NJ",Upsilon Class,Reagan Brothers,Hesperus,Fall,2014,Nicholas Lam,FALSE,TRUE
+255,Shashank Goyal,,,,,Computer Science,Class of 2017,"New York, NY",Upsilon Class,Incredibles,Starscream,Fall,2014,Manuel Garber,FALSE,TRUE
+256,Apoorva Havanur,,,,,Economics and Statistics,Class of 2018,"Cupertino, CA",Upsilon Class,Reagan Brothers,Keiretsu,Fall,2014,Jay Chopra,FALSE,TRUE
+257,Carlos Hurtado,,,,,Business Administration,Class of 2018,Dominican Republic,Upsilon Class,Reagan Brothers,Marius,Fall,2014,Raunak Jhaveri,FALSE,TRUE
+258,Vanessa Kalu,,,,,Business Administration,Class of 2017,"Baltimore, MD",Upsilon Class,Kaleidoscope,Aequanimus,Fall,2014,Christopher Ruland,FALSE,TRUE
+259,Christine Kwon,,,,,Business Administration,Class of 2018,Washington D.C.,Upsilon Class,Family,Galassia,Fall,2014,Baek Kim,FALSE,TRUE
+260,Shannon Lin,,,,,Business Administration,Class of 2018,"Fremont, CA",Upsilon Class,Incredibles,Kitsune-bi,Fall,2014,Michael Loffredo,FALSE,TRUE
+261,Jobert Sauray,,,,,Business Administration,Class of 2016,"Brooklyn, NY",Upsilon Class,Roc-a-Fellas,Maybach,Fall,2014,Karthik Annaamalai,FALSE,TRUE
+262,Neha Srivastava,,,,,Business Administration,Class of 2018,"Novi, MI",Upsilon Class,Reagan Brothers,Atlantis,Fall,2014,Sneha Kannoth,FALSE,TRUE
+263,Emily Su,,,,,Information Systems,Class of 2018,"San Jose, CA",Upsilon Class,Roc-a-Fellas,Eve,Fall,2014,Chloe Chia,FALSE,TRUE
+264,Tabish Valliani,,,,,Business Administration,Class of 2018,"Dallas, TX",Upsilon Class,Reagan Brothers,The Dagger,Fall,2014,Ajit Bopalkar,FALSE,TRUE
+265,Misha Yu,,,,,Business Administration,Class of 2018,"Miami, FL",Upsilon Class,Kaleidoscope,Susie Derkins,Fall,2014,Lawrence Hu,FALSE,TRUE
+266,Andrew Zheng,,,,,Chemical and Biomedical Engineering,Class of 2017,"Cincinnati, OH",Upsilon Class,Reagan Brothers,Dos,Fall,2014,Phoebe Ng,FALSE,TRUE

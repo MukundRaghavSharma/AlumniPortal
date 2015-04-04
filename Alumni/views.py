@@ -148,8 +148,8 @@ def signin_3(request):
         class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
         if form.is_valid():
             alumni.major = form.cleaned_data['major']
-            alumni.graduation_class = "Class of " + class_choice
-            alumni.pledge_class = form.cleaned_data['pledge_class'] 
+            alumni.graduation_class = "Class of " + class_choice 
+            alumni.pledge_class = form.cleaned_data['pledge_class']
             alumni.hometown = form.cleaned_data['hometown']
             alumni.save()
             return redirect('/signin_4')
@@ -180,9 +180,7 @@ def signin_4(request):
         form = ProfessionalInformationForm(request.POST)
         user = request.user
         alumni = Alumni.objects.get(user = request.user)
-        print ("BEFORE VALID")
         if form.is_valid():
-            print ("IN VALID")
             alumni.employer = form.cleaned_data.get('current_employer')
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
@@ -551,19 +549,32 @@ def family_trees_create(request):
         data.addColumn('string', 'ToolTip');
         data.addRows([\n\t'''
     
-    FINAL_SCRIPT = '''
-    ]);
-
-    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-    chart.draw(data, {allowHtml: true, nodeClass:"node"});
-    }}
-    '''
-
     families = Family.objects.all()
     for family in families:
         cwd = os.getcwd()
+        file_name = family.name
+        div_name = family.name.lower()
+
+        div_name = div_name.replace(' ', '_')
+        div_name = div_name.replace('-', '_')
+
+        if family.name == 'Reagan Brothers':
+            file_name = 'Reagan_Brothers' 
+        file_name = family.name.replace('-', '_')
+        file_name = family.name.replace(' ', '_')
+        if family.name == 'Roc-a-Fellas':
+            file_name = 'Roc_a_Fellas' 
+
+        FINAL_SCRIPT = '''
+        ]);
+
+        var chart = new google.visualization.OrgChart(document.getElementById('''+"\'"+ div_name+'''_tree'));
+        chart.draw(data, {allowHtml:true, nodeClass:"node"});
+        }}
+        '''
+
         family_file = open(cwd + '/Alumni/static/Alumni/js/Families/' + family.name.lower() + '.js', 'w')
-        FUNCTION_HEADER = 'function ' + family.name + '() {'
+        FUNCTION_HEADER = 'function ' + file_name + '() {'
         family_file.write(FUNCTION_HEADER + INITIAL_SCRIPT)
         for alumni in Alumni.objects.filter(family = family):
             big = alumni.big
@@ -571,9 +582,9 @@ def family_trees_create(request):
             big_text = '' + '\'\',\'\'],'
             if big != None:
                 big_name = "'" + big.user.first_name + ' ' + big.user.last_name
-                #big_text = '<img src="' + big.picture.url + '" class="pull-left" width=20> ' + big.user.first_name + ' ' + big.user.last_name + "'', '']," 
+                #big_text = '<a href="/profile/' + big.number + '" class="pull-left" width=20> ' + big_name + "'', '']," 
                 big_text = big_name + '\',' + '\'\'],' 
-            #little_text = "['<img src=\"" + alumni.picture.url + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
+            #little_text = "['<a href=\"/profile/" + alumni.number + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
             little_text = "[" + little_name + ","
             final_text = little_text + big_text + '\n'
             family_file.write(final_text)
@@ -601,9 +612,6 @@ def search(request):
 
     if request.method == 'POST':
         search = str(request.POST['search'])
-
-
-
 
         # Fix the user case #
         # Add hyperlinks #
