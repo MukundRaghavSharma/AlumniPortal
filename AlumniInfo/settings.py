@@ -32,6 +32,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+ALLOWED_HOSTS = ['128.237.170.178']
+
 SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 
