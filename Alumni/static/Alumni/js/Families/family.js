@@ -31,13 +31,13 @@ function Family() {
 ['Miko Bautista','Deniz Kalaycioglu',''],
 ['Raphael Kim','Vincent Liu',''],
 ['Olga Zubashko','Issac Kwon',''],
-['Tiffany Chen-Zeyu','Mia Wang',''],
-['Willa Lu','Mia Wang',''],
-['Baek Kyoum','Mia Wang',''],
-['Alex Tsai','Mia Wang',''],
-['Richard Lee','Mia Wang',''],
-['Amy Fan','Mia Wang',''],
-['Christine Kwon','Mia Wang',''],
+['Tiffany Chen-Zeyu','Olga Zubashko',''],
+['Willa Lu','Miko Bautista',''],
+['Baek Kim','Raphael Kim',''],
+['Alex Tsai','Bernard Yuan',''],
+['Richard Lee','Olga Zubashko',''],
+['Amy Fan','Willa Lu',''],
+['Christine Kwon','Baek Kim',''],
 
         ]);
 

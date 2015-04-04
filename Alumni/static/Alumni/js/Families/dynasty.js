@@ -22,11 +22,10 @@ function Dynasty() {
 ['Zachary Rousselle','Konstantin Vidensky',''],
 ['Nathaniel Eliason','Zachary Rousselle',''],
 ['Dixon Liang','Ahmad Shamsuddin',''],
-['Renzo Bautista','Mia Wang',''],
-['Alvin Mathew','Mia Wang',''],
-['Yvonne Yuan','Mia Wang',''],
-['Nathaniel Benzaquen-Ouakrat','Mia Wang',''],
-['Shreeyagya Khemka','Mia Wang',''],
+['Alvin Mathew','Nathaniel Eliason',''],
+['Yvonne Yuan','Dixon Liang',''],
+['Nathaniel Benzaquen-Ouakrat','Zachary Rousselle',''],
+['Shreeyagya Khemka','Nathaniel Eliason',''],
 
         ]);
 
