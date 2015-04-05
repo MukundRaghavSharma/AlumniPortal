@@ -5,14 +5,14 @@
   {% inplace_toolbar %}
   {% if current_user.user.alumni.number == alumni.number %}
   {% endif %}
-
-
-
-
         <div class="row">
             <div class="col-md-4" id="dp">
                     <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
+                        {% if alumni.picture %}
                             <img src="{{ alumni.picture.url }}">
+                        {% else %}
+                            <img src="{{ STATIC_URL }}Alumni/images/404.jpg">
+                        {% endif %}
                     </div>
                 <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
             </div>
