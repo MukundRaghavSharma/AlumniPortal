@@ -96,11 +96,12 @@ def signin_2(request):
     if request.method == 'GET':
         user = User.objects.get(username = request.user.username)
         alumni = Alumni.objects.get(user = user)
+        print (alumni.facebook_url)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
                    'email' : user.email,
-                   'phone' : alumni.phone,
-                   'facebook': alumni.facebook_url} 
+                   'facebook' : alumni.facebook_url,
+                   'phone' : alumni.phone} 
         form = PersonalInformationForm(initial = initial)
         context['form'] = form
         context['alumni'] = alumni 
@@ -120,6 +121,7 @@ def signin_2(request):
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
             alumni.user.save()
+            alumni.save()
             alumni = Alumni.objects.filter(user = request.user) 
             alumni.update(phone = form.cleaned_data.get('phone'))
             login(request, user)
