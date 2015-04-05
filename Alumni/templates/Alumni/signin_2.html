@@ -1,6 +1,7 @@
 {% extends "Alumni/form_wrapper.html" %}
 
 {% block shit %}
+    {% load static %}
       <div id="loader">
 
         <div class="signup-title">
@@ -11,14 +12,11 @@
          {% if alumni.picture %}
              <img src="{{ alumni.picture.url }}" width="40%"> 
          {% endif %}
-          <div id="yourId"></div>
-         {% load cropping %}
           {% for field in form %}
               {% if field.errors %}
                 <div class="form-group">
                   <div class="col-sm-12">
                       <div class="input-group has-error">
-                        {{ field }}
                         <div class="input-group-addon"><i class="fa fa-exclamation-circle"></i></div>
                       </div>
                     <!--input type="text" class="form-control" id="" placeholder="First Name"-->

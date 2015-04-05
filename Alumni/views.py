@@ -72,7 +72,6 @@ def signin_2(request):
     if request.method == 'GET':
         user = User.objects.get(username = request.user.username)
         alumni = Alumni.objects.get(user = user)
-        print (alumni.facebook_url)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
                    'email' : user.email,
@@ -86,7 +85,6 @@ def signin_2(request):
     if request.method == 'POST':
         form = PersonalInformationForm(request.POST, request.FILES)
         alumni = Alumni.objects.get(user = request.user)
-
         if form.is_valid():
             alumni = Alumni.objects.get(user = request.user)
             user = alumni.user
@@ -94,6 +92,7 @@ def signin_2(request):
             alumni.user.last_name = form.cleaned_data.get('last_name')
             alumni.facebook_url = form.cleaned_data.get('facebook')
             alumni.user.email = form.cleaned_data.get('email')
+            alumni.picture = form.cleaned_data.get('image')
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
             alumni.user.save()
@@ -101,10 +100,15 @@ def signin_2(request):
             alumni = Alumni.objects.filter(user = request.user) 
             alumni.update(phone = form.cleaned_data.get('phone'))
             login(request, user)
-            
             return redirect('/signin_3')
-
-        context['form'] = form
+        user = User.objects.get(username = request.user)
+        initial = {'first_name' : user.first_name,
+                   'last_name' : user.last_name,
+                   'email' : user.email,
+                   'facebook' : alumni.facebook_url,
+                   'phone' : alumni.phone} 
+        context['form'] = PersonalInformationForm(initial = initial)
+        context['alumni'] = alumni
         return render(request, 'Alumni/signin_2.html', context)
 
 # Sign in 3 #
