@@ -1,4 +1,4 @@
-from Alumni.models import Alumni, PledgeClass
+from Alumni.models import Alumni, PledgeClass, Family
 from django import forms
 from ajaximage.widgets import AjaxImageWidget
 from django.contrib.auth.models import User
@@ -203,3 +203,31 @@ class ProfessionalInformationForm(forms.Form):
     #     if 'linkedin_link' not in form_data:
     #       self._errors["linkedin_link"] = ["Please enter your linkedin public url"]
     #     return form_data
+
+class EditForm(forms.Form):
+    first_name = forms.CharField(label = 'First Name', required = False,
+                               widget = forms.TextInput(attrs = { 'id' : 'first_name', 'class' : 'form-control', 'placeholder': 'First Name' }))
+
+    last_name = forms.CharField(label = 'Last Name', required = False,
+              widget = forms.TextInput(attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
+
+    pledge_class = forms.ModelChoiceField(queryset = PledgeClass.objects.all().
+                                          order_by('class_number'),
+                                          widget=forms.Select(attrs={'class':'form-control', 'id' : 'pledge_class'})) 
+    family = forms.ModelChoiceField(queryset = Family.objects.all(),
+                                    widget=forms.Select(attrs={'class':'form-control', 'id' : 'family'})) 
+
+    graduation_class = forms.ChoiceField(choices = CHOICES, widget = forms.Select(attrs={'class':'form-control', 'id' : 'graduation_year'}), required = True)
+
+    major = forms.CharField(label = 'Major', required = False, widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
+
+    hometown = forms.CharField(label = 'Hometown', required = False, widget = forms.TextInput(attrs = { 'id' : 'major',
+        'class' : 'form-control', 'placeholder': 'Hometown' })) 
+    
+    current_employer = forms.CharField(label = 'Current Employer', required = False, widget = forms.TextInput(attrs = { 'id' : 'current_employer', 'class' : 'form-control', 'placeholder': 'Current Employer' })) 
+
+    nickname = forms.CharField(label = 'Nickname', required = False, widget = forms.TextInput(attrs = { 'id' : 'nickname', 'class' : 'form-control', 'placeholder': 'Nickname' })) 
+
+    current_city = forms.CharField(label = 'Current City', required = False, widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))
+
+    short_bio = forms.CharField(label = 'Short Bio', required = False, widget = forms.TextInput(attrs = { 'id' : 'short_bio', 'class' : 'form-control', 'placeholder': 'Short Bio' }))

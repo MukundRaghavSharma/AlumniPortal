@@ -1,0 +1,195 @@
+{% extends "Alumni/navbar.html" %}
+
+{% block file %}
+  {% if current_user.user.alumni.number == alumni.number %}
+  {% endif %}
+        <div class="row">
+            <div class="col-md-4" id="dp">
+                    <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
+                        {% if alumni.picture %}
+                            <img src="{{ alumni.picture.url }}">
+                        {% else %}
+                            <img src="{{ STATIC_URL }}Alumni/images/404.jpg">
+                        {% endif %}
+                    </div>
+                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
+            </div>
+            <div class="col-md-8" id="full_name">
+                <h1 class="name"> {{ alumni.facebook_url }} {{ alumni.user.last_name }} </h1>
+                {% if alumni.nickname %}
+                <h3 class="nickname"> {{ form.nickname }} </h3>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row" id="row_2">
+            <div class="col-md-4">
+                    <ul class="list-group">
+                        {% if alumni and alumni.picture %}
+                            {% if alumni.pledge_class or alumni.family or alumni.graduation_class or alumni.major or alumni.hometown %}
+                                <li class="list-group-item" id="overview-heading">Overview</li>
+                            {% endif %}
+                            {% if alumni.pledge_class or alumni.pledge_class.strip  %}
+                            
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-font fa-fw"></i></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                      <span class="overview-text">Pledged with the {{ form.pledge_class }} </a></span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if alumni.family or alumni.family.strip  %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-users fa-fw"></i></span></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text">Part of <a href="/family_trees/#{{ alumni.family | lower }}">{{ alumni.family }} </a></span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if alumni.graduation_class or alumni.graduation_class.strip %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span class="overview-text"><a href="/gallery#{{ alumni.graduation_class|slugify }}"> {{ alumni.graduation_class }}</a></span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if alumni.major %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                      <span class="overview-text"> {{ form.major }} </span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if alumni.hometown or alumni.hometown.strip %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-home fa-fw"></i></span>
+                                  </div>
+                                  <div class="media-body">
+                                      <span class="overview-text">{{ form.hometown }} </span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            <div class="text-center">
+                                <li class="list-group-item fancy" id="overview-icons">
+                                        <span>
+                                            <a href="{{alumni.facebook_url}}"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+                                            <a href="{{alumni.linkedin_url}}"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+                                            <a href="mailto:{{ alumni.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
+                                            <a href="tel:+1{{ alumni.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
+                                        </span>
+                                        
+                                </li>
+                            </div>
+                        {% endif %}
+                    </ul>
+                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="panel">
+                      <div class="panel-heading">Current Employment</div>
+                      <div class="panel-body">
+                          <h1 class="employer-heading"> {{ form.current_employer }} </h1>
+                        <h4 class="employer-location"><i class="fa fa-map-marker"></i>&nbsp; {{ form.current_city }} </h4>
+
+                        <p class="employer-description" id="editor">
+                        {{ form.short_bio }}
+                        </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel">
+                      <div class="panel-heading">Biography</div>
+                      <div class="panel-body">
+                        <p class="bio-body" id="editor">
+                        {{ form.short_bio }}
+                        </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+
+            $(document).ready(function() {
+                $(".imgLiquidFill").imgLiquid();
+                $("#joyRideTipContent").joyride({
+                  autoStart : true,
+                  modal:true,
+                  expose: true,
+                  cookieMonster: true,
+                  cookieName: 'Profiles',
+                  cookieDomain: false
+                });
+            });
+
+            var mq = window.matchMedia('(max-width: 767px)');
+                    if(mq.matches) {
+
+
+
+                        
+                    } else {
+                      $('#full_name').each(function() {
+                          var o_height = $(this).height();
+                          $(this).css('margin-top', (($('#dp').height()-o_height)/2));
+
+                      });
+                        // the width of browser is less then 700px
+                    }
+            
+
+            $("p").each(function() {
+              $(this).keypress(function() {
+                $('input').each(function() {
+
+                  if ( $(this).prop("name") != "search" && $(this).prop("name") != "csrfmiddlewaretoken" ) {
+                    
+                    $input = $(this);
+                    $textarea = $("<textarea></textarea>").attr({
+                        id: $input.prop('id'),
+                        name: $input.prop('name'),
+                        value: $input.val()
+                    });
+                    $textarea.css({"width":"100%","height":"250px"});
+                    $textarea.val($input.val());
+                    $(".bio-body").append($textarea);
+                    $input.after($textarea).remove();
+                  };
+                });
+              });
+            });
+        </script>
+        <ol id="joyRideTipContent">
+            <li>
+                <h1> Your Profile </h1>
+                <p> This is your profile page, where you can edit your information. Click the toolbar at the top, and then click any highlighted field to modify it. If there is a field you would like to change that is not highlighted, contact the VP Alumni for assistance. </p>
+            </li>
+
+        </ol>
+
+
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, 
-AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
+AKPsiInformationForm, ProfessionalInformationForm, CHOICES, EditForm)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.templatetags.static import static
@@ -441,6 +441,39 @@ def profile(request, brother_number):
         context['current_user'] = Alumni.objects.get(user = request.user)
         return render(request, 'Alumni/profile.html', context)
 
+@login_required
+def edit(request, brother_number):
+    context = {}
+
+    if request.method == 'GET':
+        username = request.user
+        user = User.objects.get(username = username)
+        alumni = Alumni.objects.get(user = user)
+        if int(alumni.number) != int(brother_number):
+            # F U #
+            print (alumni.number)
+            print (brother_number)
+            return redirect('/dashboard/')
+        initial = { 'first_name' : alumni.user.first_name,
+            'last_name' : alumni.user.last_name,
+            'pledge_class' : alumni.pledge_class,
+            'family' : alumni.pledge_class,
+            'graduation_class' : alumni.pledge_class,
+            'major' : alumni.pledge_class,
+            'hometown' : alumni.pledge_class,
+            'current_employer' : alumni.pledge_class,
+            'nickname' : alumni.pledge_class,
+            'current_city' : alumni.pledge_class,
+            'short_bio' : alumni.pledge_class,
+        }
+
+        form = EditForm(initial = initial)
+        context['form'] = form
+        return render(request, 'Alumni/edit.html', context)
+
+    if request.method == 'POST':
+        pass
+
 # Function to get the class view #
 @login_required
 def class_view(request, classname):
@@ -681,13 +714,3 @@ def search(request):
         context['current_user'] = alumni 
         context['results'] = results
         return render(request, 'Alumni/search.html', context)
-
-def upload_image(request):
-    context = {}
-
-    if request.method == 'POST':
-        pass 
-
-# def error404(request):
-#     context = {}
-#     return render(request, 'Alumni/404.html', context)

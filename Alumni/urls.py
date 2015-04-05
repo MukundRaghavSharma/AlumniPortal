@@ -47,6 +47,11 @@ urlpatterns = patterns('',
         view = 'Alumni.views.profile',
         name = 'Profile',),
 
+    # Edit Page #
+    url(regex = r'^edit/(?P<brother_number>\d+)/$',
+        view = 'Alumni.views.edit',
+        name = 'Edit',),
+
     # Update the DB #
     url(regex = r'^update$',
         view = 'Alumni.views.update',
