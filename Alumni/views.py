@@ -90,7 +90,7 @@ def signin_2(request):
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
-            alumni.facebook_url= form.cleaned_data.get('facebook_link')
+            alumni.facebook_url= form.cleaned_data.get('facebook')
             alumni.user.email = form.cleaned_data.get('email')
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
