@@ -35,7 +35,6 @@ def signin(request):
         context['form'] = form
         return render(request, 'Alumni/signin.html', context)
 
-
 # Sign in 1 #
 # Function to signin user #
 def signin_1(request):
@@ -243,7 +242,7 @@ def signup(request):
             alumni = Alumni(user = user, 
                             pledge_class = pledge_class, 
                             family = family, 
-                            graduation_class = 'Class of 666'
+                            graduation_class = 'Class of 666',
                             number = 14444)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
