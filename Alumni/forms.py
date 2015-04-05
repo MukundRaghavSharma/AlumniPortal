@@ -6,6 +6,8 @@ from image_cropping import ImageCropWidget
 import datetime
 import re
 
+MAX_UPLOAD_SIZE = 2500000
+
 CHOICES = [ x for x in range(2004, datetime.date.today().year + 2) ]
 CHOICES[0] = (0, 'Select your graduation year')
 for i in range(1, len(CHOICES)):
@@ -77,8 +79,10 @@ class SignInForm(forms.Form):
 class PersonalInformationForm(forms.Form):
 
     # Picture #
-    #images = forms.URLField(widget = 
-    #        AjaxImageWidget(upload_to='form_uploads'))
+    #images = forms.URLField(widget = AjaxImageWidget(upload_to='form-uploads', attrs = {'id' : 'image'}), required = False)
+
+    # Image #
+    image = forms.FileField(required = False)
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',
@@ -118,11 +122,20 @@ class PersonalInformationForm(forms.Form):
     password2 = forms.CharField(label = 'Re-enter your password', required = True,
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
 
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        if not image:
+            return None
+        if not image.content_type or not image.content_type.startswith('image'):
+            raise forms.ValidationError('File type is not image')
+        if image.size > MAX_UPLOAD_SIZE:
+            raise forms.ValidationError('File too big (max size is {0} bytes)'.format(MAX_UPLOAD_SIZE))
+        return image
+
     def clean(self):
         #phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
         email_regex = re.compile("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$")
         form_data = self.cleaned_data
-        print(form_data)
         #isValidPhone = phone_regex.search(form_data['phone'])
         isValidEmail = email_regex.search(form_data['email'])
 
@@ -172,8 +185,11 @@ class AKPsiInformationForm(forms.Form):
 
     def clean(self):
         form_data = self.cleaned_data
-        if 'pledge_class' == CHOICES[0]:
+        print(form_data)
+        if form_data['pledge_class'] == CHOICES[0]:
           self._errors["pledge_class"] = ["Please select a pledge class."]
+        if int(form_data['graduation_year']) == 0:
+          self._errors["graduation_year"] = ["Please select a graduation year."]
         return form_data
 
 class ProfessionalInformationForm(forms.Form):

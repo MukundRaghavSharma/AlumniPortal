@@ -175,7 +175,6 @@
 						var image = new Image();
 						image.src = e.target.result;
 						image.onload = function(){
-							system.log("fjdksjf");
 							that.imgInitW = that.imgW = image.width;
 							that.imgInitH = that.imgH = image.height;
 
@@ -307,7 +306,6 @@
 		},
 		initCropper: function(){
 			var that = this;
-			system.log("fndjsknfdjk");
 			/*SET UP SOME VARS*/
 			that.img = that.obj.find('img');
 			that.img.wrap('<div class="cropImgWrapper" style="overflow:hidden; z-index:1; position:absolute; width:'+that.objW+'px; height:'+that.objH+'px;"></div>');
