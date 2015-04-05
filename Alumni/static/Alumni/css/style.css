@@ -180,6 +180,31 @@ a:hover {
 	margin-bottom: 20px;
 }
 
+.code-bottom {
+	width: 207px;
+	height: 46px;
+	display: none;
+	margin-bottom: 5px;
+}
+
+.auth-err {
+	font-weight: lighter;
+	  -moz-border-radius: 0;
+	  border: solid #D84F53 2px;
+	  vertical-align: middle;
+	  /* width: 30%; */
+	  text-align: center;
+	  margin-left: auto;
+	  margin-right: auto;
+	  /* background-color: #F77B84; */
+	  color: #D84F53;
+	  margin-top: 40px;
+	  margin-bottom: -20px;
+	  width: 207px;
+	  height: 46px;
+
+}
+
 .user {
 	width: 207px;
 	height: 46px;

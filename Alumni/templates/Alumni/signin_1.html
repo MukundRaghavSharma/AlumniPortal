@@ -12,24 +12,55 @@
                     <div class="row text-center">
                         <div id="register" class="landing register">Register</div>
                         <div class="line"><span>Or</span></div>
-                        <div id="signup" class="landing signup">Sign In</div>
+                        <div id="signin" class="landing signup">Sign In</div>
                         <form class="form-horizontal" action="" method="post">
                             <div class="form-group">
                                 {% csrf_token %}
-                                <input class="code" placeholder="Enter Your Code" type="text" name="confirmation"> 
-                                <button id="submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Submit</button>
+                                {% if reg_error %}
+                                        <div id="registration-error" class="auth-err">{{ reg_error }}</div>
+                                        <script type="text/javascript">
+                                            $( document ).ready(function() {
+                                                $("#register").trigger('click');
+                                            });
+                                        </script>
+                                {% endif %}
+                                <input id="confirmation" class="code" placeholder="Enter Your Code" type="text" name="confirmation"> 
+                                <button id="registration-submit" type="submit" style="display:none" onclick="this.style.visibility='hidden;'" name="button" class="landing signup"> Submit</button>
                             </div>
                         </form>
                         <br>
                         <a id="code-back" class="back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
                         
 
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <input class="user" placeholder="Email" type="text" name="username">
-                            <br>
-                            <input class="pass" placeholder="Password" type="password" name="password"> 
-                            <button id="login" type="submit" style="display:none" name="button" class="landing signup"> Login</button>
+                        <form class="form-horizontal" action="" method="post">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                <div id="email-pass-error">
+                                    {% if form.errors %}
+                                            <div class="auth-err">Your email and password didn't match. Please try again.</div>
+                                            <script type="text/javascript">
+                                                $( document ).ready(function() {
+                                                    $("#signin").trigger('click');
+                                                });
+                                            </script>
+                                    {% endif %}
+                                    {% if error %}
+                                            <div class="auth-err">{{ error }}</div>
+                                            <script type="text/javascript">
+                                                $( document ).ready(function() {
+                                                    $("#signin").trigger('click');
+                                                });
+                                            </script>
+                                    {% endif %}
+                                </div>
+
+                                {% for field in form %}
+                                
+                                    {{ field }}<br>
+                                {% endfor %}
+                            </div>
+
+                            <button id="email-pass-submit" type="submit" style="display:none" name="button" class="landing signup"> Login</button>
                         </form>
                         <br>
                         <a id="login-back" class="back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
@@ -38,40 +69,54 @@
                     </div>
                     <script type="text/javascript">
                         $( ".register" ).click(function() {
-
-                            $("#submit").show();
-                            $(".code").show();
+                            // to show
+                            $("#registration-submit").show();
+                            $("#confirmation").show();
                             $("#code-back").show();
-                            $("#signup").hide();
+                            $("#registration-error").show();
+
+                            // to hide
+                            $("#signin").hide();
                             $("#register").hide();
                             $(".line").hide();
+
+                            
 
                         });
-                        $( "#signup" ).click(function() {
+                        $( "#signin" ).click(function() {
 
-                            $("#submit").hide();
-                            $(".pass").show();
-                            $(".user").show();
-                            $("#login").show();
+                            // to show
+                            $("#email-pass-submit").show();
+                            $("#email").show();
+                            $("#id_password1").show();
                             $("#login-back").show();
-                            $("#signup").hide();
+                            $("#email-pass-error").show();
+
+                            // to hide
+                            $("#signin").hide();
                             $("#register").hide();
                             $(".line").hide();
+                           
 
                         });
 
                         $( ".back" ).click(function() {
 
-                            $(".register").show();
-                            $(".signup").show();
+                            // to show
+                            $("#signin").show();
+                            $("#register").show();
                             $(".line").show();
-                            $(".pass").hide();
-                            $(".user").hide();
-                            $("#login").hide();
-                            $("#submit").hide();
-                            $(".code").hide();
-                            $("#code-back").hide();
+
+                            // to hide
+                            $("#email-pass-submit").hide();
+                            $("#email").hide();
+                            $("#id_password1").hide();
                             $("#login-back").hide();
+                            $("#registration-submit").hide();
+                            $("#confirmation").hide();
+                            $("#code-back").hide();
+                            $("#email-pass-error").hide();
+                            $("#registration-error").hide();
 
                         });
 
