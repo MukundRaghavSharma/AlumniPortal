@@ -177,6 +177,7 @@ def signin_3(request):
             alumni.graduation_class = "Class of " + class_choice 
             alumni.pledge_class = form.cleaned_data['pledge_class']
             alumni.hometown = form.cleaned_data['hometown']
+            alumni.confirmation_code = ''
             alumni.save()
             return redirect('/signin_4')
 
