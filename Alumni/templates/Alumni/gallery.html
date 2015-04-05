@@ -210,7 +210,7 @@
                                                                 modal:true,
                                                                 expose: true,
                                                                 cookieMonster: true,
-                                                                cookieName: 'JoyRide',
+                                                                cookieName: 'Gallery',
                                                                 cookieDomain: false
 
                                                             });
@@ -234,8 +234,8 @@
                                         <h1 class="gallery-name"> {{ alum.user.first_name }} {{ alum.user.last_name }}</h1>
                                         </div>
                                         <span class="icon-center">
-                                            <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
-                                            <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+                                            <a href="{{ alumni.facebook_url}}"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+                                            <a href="{{ alumni.linkedin_url}}"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
                                             <a href="mailto:{{ alum.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
                                             <a href="tel:+1{{ alum.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
                                         </span>
@@ -248,6 +248,17 @@
             {% endfor %}
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        $body = $("body");
+
+        $(document).on({
+            ajaxStart: function() { $body.addClass("loading");    },
+             ajaxStop: function() { $body.removeClass("loading"); }    
+        });
+
+    </script>
 
     <ol id="joyRideTipContent">
         <li>
@@ -267,5 +278,7 @@
             <p> Access the individual's facebook, linkedin, email and phone number </p>
         </li>
     </ol>
+
+    <div class="modal"><!-- Place at bottom of page --></div>
 
 {% endblock %}

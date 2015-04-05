@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ['128.237.170.178']
 
 SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
+ENDLESS_PAGINATION_LOADING = """<img src="/static/images/loading.gif" alt="loading" />"""
+
 
 # Application definition
 
