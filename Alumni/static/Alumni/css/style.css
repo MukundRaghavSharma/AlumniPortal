@@ -1634,6 +1634,20 @@ body.loading .modal {
     display: block;
 }
 
+.img-size {
+	width: 220px;
+	height: 220px;
+}
+
+@media screen and (max-width: 767px) {
+
+	.img-size {
+		width: 90px;
+		height: 90px;
+	}
+
+}	
+
 
 
 /*
