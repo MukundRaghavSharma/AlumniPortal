@@ -7,7 +7,7 @@ function Boss() {
         data.addColumn('string', 'Manager');
         data.addColumn('string', 'ToolTip');
         data.addRows([
-	['<a href="/profile/14444"Mukund Sharma</a>',''',''],
+	[Mukund Sharma,'',''],
 
         ]);
 
