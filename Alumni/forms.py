@@ -107,7 +107,7 @@ class PersonalInformationForm(forms.Form):
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
 
     # Facebook Link #
-    facebook_link = forms.CharField(label = 'Facebook Link', required = False, widget = forms.TextInput(attrs = { 'id' : 'facebook', 'class' : 'form-control', 'placeholder': 'Facebook URL' })) 
+    facebook = forms.CharField(label = 'Facebook Link', required = False, widget = forms.TextInput(attrs = { 'id' : 'facebook', 'class' : 'form-control', 'placeholder': 'Facebook URL' })) 
 
     # Password 1 #
     password1 = forms.CharField(label = 'Password',
