@@ -41,16 +41,23 @@ def signin_1(request):
     context = {}
     
     if request.method == 'GET':
+        form = SignInForm()
+        context['form'] = form
         context['request'] = request
         return render(request, 'Alumni/signin_1.html', context)
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
-        if 'confirmation' in request.POST:
-            confirmation_code = request.POST['confirmation'] 
+        print(request.POST)
+        form = SignInForm()
+        context['form'] = form
 
-            if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1:
-                   context['is_error'] = True
+        if 'confirmation' in request.POST:
+            
+            confirmation_code = request.POST['confirmation'] 
+            print(len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 and len(confirmation_code) == 0)
+            if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 or len(confirmation_code) == 0:
+                   context['reg_error'] = "Your registration code is invalid. Contact the VPA for assistance."
                    return render(request, 'Alumni/signin_1.html', context)
             else: 
                 alumni = Alumni.objects.get(confirmation_code = confirmation_code)
@@ -58,10 +65,27 @@ def signin_1(request):
                 alumni.save()
                 login(request, alumni.user)
                 return redirect('/signin_2')
-        if 'username' in request.POST and 'password' in request.POST:
-            username = request.POST['username']
-            password = request.POST['password']
-            return redirect('/signin_2')
+
+        if 'email' in request.POST and 'password1' in request.POST:
+            email = request.POST['email']
+            password = request.POST['password1']
+            form = SignInForm(request.POST)
+
+            if form.is_valid():
+                if len(User.objects.filter(email = email)) < 1:
+                    context['error'] = "Your email and password don't match!"
+                    context['form'] = form
+                    return render(request, 'Alumni/signin_1.html',context)
+                else:
+                    user = User.objects.all().get(email=email);
+                    u = authenticate(username=user.username, password=password)
+                    if u is not None:
+                        login(request, u)
+                        return redirect("/dashboard/")
+
+                # return redirect('/signin_2')
+            context['form'] = form
+        return render(request, 'Alumni/signin_1.html',context)
 
 # Sign in 2 #
 @login_required

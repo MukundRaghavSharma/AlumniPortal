@@ -15,10 +15,10 @@
 			        	<div class="col-md-9">
 			        		<h1>{{ result.user.first_name }}<br>{{ result.user.last_name }}</h1>
 			        		<span>
-			        		    <a href="https://www.facebook.com"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
-			        		    <a href="https://www.linkedin.com"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
+			        		    <a href="{{ result.facebook_url }}"><i class="fa fa-facebook-square" id="facebook-icon"></i></a>
+			        		    <a href="{{ result.linkedin_url }}"><i class="fa fa-linkedin-square" id="linkedin-icon"></i></a>
 			        		    <a href="mailto:{{ result.user.email }}"><i class="fa fa-envelope-square" id="email-icon"></i></a>
-			        		    <a href="tel:+1{{ result.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
+			        		    <a href="tel:{{ result.phone }}"><i class="fa fa-phone-square" id="phone-icon"></i></a>
 			        		</span>
 			        	</div>
 			        </a>

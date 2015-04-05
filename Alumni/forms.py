@@ -47,31 +47,31 @@ class SignUpForm(forms.Form):
 
 
 class SignInForm(forms.Form):
-    username = forms.CharField(required = True,
+    email = forms.CharField(required = True,
                                max_length = 100,
                                widget = forms.TextInput(
-                                   attrs = { 'id': 'username' , 'class' : 'code', 'placeholder': 'Username' }))
+                                   attrs = { 'id': 'email' , 'class' : 'code', 'placeholder': 'Email' }))
     
-    password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code', 'placeholder': 'Password' }))
+    password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code-bottom', 'placeholder': 'Password' }))
 
-    '''
+ 
     class Meta:
-    model = User
-    fields = ['username', 'password']
+        model = User
+        fields = ['email', 'password1']
 
-    def clean(self):
-    cleaned_data = super(SignInForm, self).clean()
-    if 'password' not in self.cleaned_data:
-    raise forms.ValidationError("Enter the password!")
-    return self.cleaned_data
+    # def clean(self):
+    #     cleaned_data = super(SignInForm, self).clean()
+    #     if 'password1' not in self.cleaned_data:
+    #         raise forms.ValidationError("Enter the password!")
+    #     return self.cleaned_data
 
-    def save(self, commit = True):
-    user = super(SignInForm, self).save(commit = False)
-    user.set_password(self.cleaned_data['password'])
-    if commit:
-    user.save()
-    return user
-    '''
+    # def save(self, commit = True):
+    # user = super(SignInForm, self).save(commit = False)
+    # user.set_password(self.cleaned_data['password'])
+    # if commit:
+    # user.save()
+    # return user
+
 
 # Personal - AKPsi - Professional Information #
 class PersonalInformationForm(forms.Form):
@@ -137,6 +137,8 @@ class PersonalInformationForm(forms.Form):
             del form_data['password2']
         if isValidEmail is None:
             self._errors["email"] = ["A Valid Email Address is Required."] # Will raise a error message
+        if form_data['email'] and User.objects.filter(email=form_data['email']).count() > 1:
+            self._errors["email"] = ["This email address is already taken!"] # Will raise a error message
         #if isValidPhone is None:
         #    print(145)
         #    self._errors["phone"] = ["A Valid Phone Number is Required."] # Will raise a error message
