@@ -172,7 +172,6 @@ class AKPsiInformationForm(forms.Form):
 
     def clean(self):
         form_data = self.cleaned_data
-        print(form_data)
         if 'pledge_class' == CHOICES[0]:
           self._errors["pledge_class"] = ["Please select a pledge class."]
         return form_data

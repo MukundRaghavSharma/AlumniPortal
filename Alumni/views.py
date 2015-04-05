@@ -72,6 +72,7 @@ def signin_2(request):
     if request.method == 'GET':
         user = User.objects.get(username = request.user.username)
         alumni = Alumni.objects.get(user = user)
+        print (alumni.facebook_url)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
                    'email' : user.email,
@@ -96,6 +97,7 @@ def signin_2(request):
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
             alumni.user.save()
+            alumni.save()
             alumni = Alumni.objects.filter(user = request.user) 
             alumni.update(phone = form.cleaned_data.get('phone'))
             login(request, user)
@@ -170,7 +172,8 @@ def signin_4(request):
     if request.method == 'GET':
         initial = {'current_employer' : alumni.employer,
                    'role' : alumni.position,
-                   'current_city' : alumni.current_city }
+                   'current_city' : alumni.current_city,
+                   'linkedin_link': alumni.linkedin_url }
         form = ProfessionalInformationForm(initial = initial)
         context['form'] = form
         return render(request, 'Alumni/signin_4.html', context)
@@ -533,7 +536,8 @@ def gallery_view(request):
         for pledge_class in sorting_classes:
             filtered_class = Alumni.objects.filter(pledge_class = pledge_class, is_alumni = True, is_active = True)
             sorted_by_number = filtered_class.extra(order_by = ['number'])
-            class_based_view.append(sorted_by_number)
+            if len(sorted_by_number) > 0:
+                class_based_view.append(sorted_by_number)
 
         # Year based view #
         year_based_view = []
