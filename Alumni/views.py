@@ -240,7 +240,11 @@ def signup(request):
             family = Family(name = "Boss")
             family.save()
             pledge_class.save()
-            alumni = Alumni(user = user, pledge_class = pledge_class, family = family, number = 14444)
+            alumni = Alumni(user = user, 
+                            pledge_class = pledge_class, 
+                            family = family, 
+                            graduation_class = 'Class of 666'
+                            number = 14444)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
