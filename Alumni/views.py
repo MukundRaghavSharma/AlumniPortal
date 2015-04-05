@@ -35,7 +35,6 @@ def signin(request):
         context['form'] = form
         return render(request, 'Alumni/signin.html', context)
 
-
 # Sign in 1 #
 # Function to signin user #
 def signin_1(request):
@@ -92,7 +91,7 @@ def signin_2(request):
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
-            alumni.facebook_url= form.cleaned_data.get('facebook_link')
+            alumni.facebook_url= form.cleaned_data.get('facebook')
             alumni.user.email = form.cleaned_data.get('email')
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
@@ -242,7 +241,11 @@ def signup(request):
             family = Family(name = "Boss")
             family.save()
             pledge_class.save()
-            alumni = Alumni(user = user, pledge_class = pledge_class, family = family, number = 14444)
+            alumni = Alumni(user = user, 
+                            pledge_class = pledge_class, 
+                            family = family, 
+                            graduation_class = 'Class of 666',
+                            number = 14444)
             alumni.picture.save(destination_url, content_file)
             alumni.save()
             authenticated_user = authenticate(username = request.POST['username'],
