@@ -52,7 +52,7 @@ class SignInForm(forms.Form):
                                widget = forms.TextInput(
                                    attrs = { 'id': 'email' , 'class' : 'code', 'placeholder': 'Email' }))
     
-    password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code-bottom', 'placeholder': 'Password' }))
+    password1 = forms.CharField(widget = forms.PasswordInput(attrs = { 'class' : 'code bottom', 'placeholder': 'Password' }))
 
  
     class Meta:

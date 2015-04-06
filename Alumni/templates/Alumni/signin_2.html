@@ -9,9 +9,13 @@
         <form action='/signin_2' class="form-horizontal" id="signup-form-background" method="post" enctype="multipart/form-data">
          {% csrf_token %}
          {% if alumni.picture %}
-             <img src="{{ alumni.picture.url }}" width="40%"> 
+            <div class="imgLiquidFill imgLiquid img-size center-block padded" id="cropped">
+              <img src="{{ alumni.picture.url }}"> 
+            </div>
+            <script type="text/javascript">
+              $(".imgLiquidFill").imgLiquid();
+            </script>
          {% endif %}
-          <div id="yourId"></div>
          {% load cropping %}
           {% for field in form %}
               {% if field.errors %}

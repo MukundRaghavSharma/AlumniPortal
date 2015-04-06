@@ -178,12 +178,12 @@ a:hover {
 	display: none;
 	margin-top: 40px;
 	margin-bottom: 20px;
+	padding: 8px;
 }
 
-.code-bottom {
-	width: 207px;
-	height: 46px;
+.bottom {
 	display: none;
+	margin-top: 0px;
 	margin-bottom: 5px;
 }
 
@@ -201,7 +201,7 @@ a:hover {
 	  margin-top: 40px;
 	  margin-bottom: -20px;
 	  width: 207px;
-	  height: 46px;
+	  padding: 8px;
 
 }
 
@@ -366,6 +366,7 @@ a:hover {
 	margin-left: 0px;
 	background-color: #fff;
 	margin-bottom: 20px;
+	border-bottom: solid 5px #2a3856;
 
 }
 
@@ -1652,6 +1653,10 @@ body.loading .modal {
 .img-size {
 	width: 220px;
 	height: 220px;
+}
+
+.padded {
+	margin-bottom: 40px;
 }
 
 @media screen and (max-width: 767px) {
