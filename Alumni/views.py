@@ -115,6 +115,7 @@ def signin_2(request):
             alumni = Alumni.objects.get(user = request.user)
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
+            alumni.picture = form.cleaned_data.get('image')
             alumni.user.last_name = form.cleaned_data.get('last_name')
             if 'https://' in form.cleaned_data.get('facebook'):
                 alumni.facebook_url = form.cleaned_data.get('facebook')

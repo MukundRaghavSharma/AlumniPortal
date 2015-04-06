@@ -6,6 +6,8 @@ from image_cropping import ImageCropWidget
 import datetime
 import re
 
+MAX_UPLOAD_SIZE = 2500000
+
 CHOICES = [ x for x in range(2004, datetime.date.today().year + 2) ]
 CHOICES[0] = (0, 'Select your graduation year')
 for i in range(1, len(CHOICES)):
@@ -79,6 +81,7 @@ class PersonalInformationForm(forms.Form):
     # Picture #
     #images = forms.URLField(widget = 
     #        AjaxImageWidget(upload_to='form_uploads'))
+    image = forms.FileField(required = False)
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',
@@ -117,6 +120,16 @@ class PersonalInformationForm(forms.Form):
     # Password 2 #
     password2 = forms.CharField(label = 'Re-enter your password', required = True,
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        if not image:
+            return None
+        if not image.content_type or not image.content_type.startswith('image'):
+            raise forms.ValidationError('File type is not image')
+        if image.size > MAX_UPLOAD_SIZE:
+            raise forms.ValidationError('File too big (max size is {0} bytes)'.format(MAX_UPLOAD_SIZE))
+        return image
 
     def clean(self):
         #phone_regex = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')
