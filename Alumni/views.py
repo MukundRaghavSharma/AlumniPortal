@@ -115,7 +115,10 @@ def signin_2(request):
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
-            alumni.facebook_url = form.cleaned_data.get('facebook')
+            if 'https://' in form.cleaned_data.get('facebook'):
+                alumni.facebook_url = form.cleaned_data.get('facebook')
+            else:
+                alumni.facebook_url = 'https://' + form.cleaned_data.get('facebook')
             alumni.user.email = form.cleaned_data.get('email')
             alumni.user.set_password(form.cleaned_data.get('password2'))
             alumni.user.backend  = 'django.contrib.auth.backends.ModelBackend'
@@ -176,6 +179,7 @@ def signin_3(request):
             alumni.graduation_class = "Class of " + class_choice 
             alumni.pledge_class = form.cleaned_data['pledge_class']
             alumni.hometown = form.cleaned_data['hometown']
+            alumni.confirmation_code = ''
             alumni.save()
             return redirect('/signin_4')
 
@@ -211,6 +215,10 @@ def signin_4(request):
             alumni.position = form.cleaned_data.get('role')
             alumni.current_city = form.cleaned_data.get('current_city')
             alumni.linkedin_url = form.cleaned_data.get('linkedin_link')
+            if 'https://' in form.cleaned_data.get('linkedin_link'):
+                alumni.linkedin_url = form.cleaned_data.get('linkedin_link')
+            else:
+                alumni.linkedin_url = 'https://' + form.cleaned_data.get('linkedin_link')
             alumni.save()
             return redirect('/dashboard/')
 

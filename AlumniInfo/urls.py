@@ -9,8 +9,7 @@ urlpatterns = patterns('',
     url(r'^', include('Alumni.urls')),
     url(r'^ajaximage/', include('ajaximage.urls')),
     url(r'^inplaceeditform/', include('inplaceeditform.urls')),
-    (r'^inplaceeditform/', include('inplaceeditform.urls')),
-    
+    url(r'^inplaceeditform/', include('inplaceeditform.urls')),
 )
 
 
