@@ -55,7 +55,6 @@ def signin_1(request):
         if 'confirmation' in request.POST:
             
             confirmation_code = request.POST['confirmation'] 
-            print(len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 and len(confirmation_code) == 0)
             if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 or len(confirmation_code) == 0:
                    context['reg_error'] = "Your registration code is invalid. Contact the VPA for assistance."
                    return render(request, 'Alumni/signin_1.html', context)
