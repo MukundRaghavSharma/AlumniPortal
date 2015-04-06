@@ -81,7 +81,7 @@ class PersonalInformationForm(forms.Form):
     # Picture #
     #images = forms.URLField(widget = 
     #        AjaxImageWidget(upload_to='form_uploads'))
-    image = forms.FileField(required = False)
+    image = forms.FileField(required = False, widget = forms.FileInput(attrs={ 'id' : 'imgInp', 'class' : 'form-control'}))
 
     # First Name #
     first_name = forms.CharField(label = 'First Name',

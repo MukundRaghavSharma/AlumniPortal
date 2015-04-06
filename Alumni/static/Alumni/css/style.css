@@ -639,8 +639,25 @@ a:hover {
 	border-style: solid;
 }
 
+.cropped {
+	border-radius: 50%;
+	border-color: #2a3856;
+	border-color: #2a3856;
+	border-width: 2px;
+	border-style: solid;
+}
+
 @media screen and (max-width: 767px) {
 	#cropped {
+		border-radius: 50%;
+		border-color: #2a3856;
+		border-color: #2a3856;
+		border-width: 2px;
+		border-style: solid;
+		margin: 0 auto;
+	}
+
+	.cropped {
 		border-radius: 50%;
 		border-color: #2a3856;
 		border-color: #2a3856;
