@@ -100,6 +100,11 @@ urlpatterns = patterns('',
     url(regex = r'^create_family_trees/$',
         view = 'Alumni.views.family_trees_create',
         name = 'search',),
+
+    # Profile Edit #
+    url(regex = r'^edit/(?P<brother_number>\d+)/$', 
+        view = 'Alumni.views.edit_profile',
+        name = 'edit_page',),
 )
 
 urlpatterns += staticfiles_urlpatterns()

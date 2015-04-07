@@ -3,30 +3,36 @@
 {% block file %}
   {% load inplace_edit %}
   {% inplace_toolbar %}
-  {% if current_user.user.alumni.number == alumni.number %}
-  {% endif %}
 
 
 
 
         <div class="row">
+          <div class="col-md-12">
+            {% if current_user.user.alumni.number == alumni.number %}
+              <a href="#" class="btn btn-primary btn-lg btn-block padded edit-btn visible-xs" role="button">Click to Edit your Profile</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
             <div class="col-md-4" id="dp">
                     <div class="imgLiquidFill imgLiquid" id="cropped" style="width:225px; height:225px;">
-                            <img src="{{ alumni.picture.url }}">
+                            {% if alumni.picture %}
+                              <img src="{{ alumni.picture.url }}">
+                            {% endif %}
                     </div>
-                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
             </div>
             <div class="col-md-8" id="full_name">
                 <h1 class="name"> {{ alumni.user.first_name }} {{ alumni.user.last_name }} </h1>
                 {% if alumni.nickname %}
-                    <h3 class="nickname"> {% inplace_edit "alumni.nickname" auto_height=1, auto_width=1 %} </h3>
+                    <h3 class="nickname"> {{ alumni.nickname }} </h3>
                 {% endif %}
             </div>
         </div>
         <div class="row" id="row_2">
             <div class="col-md-4">
                     <ul class="list-group">
-                        {% if alumni and alumni.picture %}
+                        {% if alumni %}
                             {% if alumni.pledge_class or alumni.family or alumni.graduation_class or alumni.major or alumni.hometown %}
                                 <li class="list-group-item" id="overview-heading">Overview</li>
                             {% endif %}
@@ -74,7 +80,7 @@
                                       <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">Majored in {% inplace_edit "alumni.major" auto_height=1, auto_width=1 %}</span>
+                                    <span class="overview-text">Majored in {{ alumni.major}}</span>
                                   </div>
                                 </div>
                             </li>
@@ -86,7 +92,7 @@
                                       <span class="overview-icon"><i class="fa fa-home fa-fw"></i></span>
                                   </div>
                                   <div class="media-body">
-                                    <span class="overview-text">From {% inplace_edit "alumni.hometown" auto_height=1, auto_width=1, %}</span>
+                                    <span class="overview-text">From {{ alumni.hometown }}</span>
                                   </div>
                                 </div>
                             </li>
@@ -104,6 +110,10 @@
                             </div>
                         {% endif %}
                     </ul>
+                  {% if current_user.user.alumni.number == alumni.number %}
+                    <a href="/edit/{{alumni.number}}" class="btn btn-primary btn-lg btn-block padded edit-btn hidden-xs" role="button">Click to Edit your Profile</a>
+                  {% endif %}  
+                  
                 <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
             </div>
             <div class="col-md-8">
@@ -111,11 +121,11 @@
                     <div class="panel">
                       <div class="panel-heading">Current Employment</div>
                       <div class="panel-body">
-                        <h1 class="employer-heading"> {% inplace_edit "alumni.employer" auto_height=1, auto_width=1, edit_empty_value="Click to add your current employer." %} </h1>
-                        <h3 class="employer-role"> {% inplace_edit "alumni.position" auto_height=1, auto_width=1, edit_empty_value="Click to add your current role." %} </h3>
-                        <h4 class="employer-location"><i class="fa fa-map-marker"></i>&nbsp; {% inplace_edit "alumni.current_city" edit_empty_value="Click to add your current city", auto_height=1, auto_width=1 %}</h4>
+                        <h1 class="employer-heading"> {{alumni.employer }} </h1>
+                        <h3 class="employer-role"> {{ alumni.position }} </h3>
+                        <h4 class="employer-location"><i class="fa fa-map-marker"></i>&nbsp; {{ alumni.current_city }}</h4>
                         <p class="employer-description" id="editor">
-                          {% inplace_edit "alumni.position_description" auto_height=1, auto_width=1, class_inplace="full_size", edit_empty_value="Click to add a short description of your current role." %}
+                          {{ alumni.position_description }}
                         </p>
                       </div>
                     </div>
@@ -125,7 +135,7 @@
                       <div class="panel-heading">Biography</div>
                       <div class="panel-body">
                         <p class="bio-body" id="editor">
-                          {% inplace_edit "alumni.bio" auto_height=1, auto_width=1, edit_empty_value="Click to add a short biography about yourself.", adaptor="textarea"  %}
+                          {{ alumni.bio }}
                           
 
                           

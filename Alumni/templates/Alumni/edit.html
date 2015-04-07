@@ -1,0 +1,352 @@
+{% extends "Alumni/navbar.html" %}
+
+{% block file %}
+
+		
+
+		
+
+
+		<form action="." method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+        <div class="row">
+            <div class="col-md-4" id="dp">
+                    <div class="center-block padded" id="replace">
+                    	{% if alumni.picture %}
+                      		<img src="{{alumni.picture.url}}" id="blah" class="img-size cropped center-block">
+                      	{% else %}
+                      		<img src="#" id="blah" class="img-size cropped center-block">
+                      	{% endif %}
+                      {{ form.image }} 
+                      {% for error in form.image.errors %}
+                        <div class="form-group" id="error-text">
+                                    {{ error }}
+                            <!--input type="text" class="form-control" id="" placeholder="First Name"-->
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <script type="text/javascript">
+                      
+
+                      function readURL(input) {
+
+                          if (input.files && input.files[0]) {
+                              var reader = new FileReader();
+
+                              reader.onload = function (e) {
+
+
+
+                                  $('#blah').attr('src', e.target.result);
+                              }
+
+                              reader.readAsDataURL(input.files[0]);
+                          }
+                      }
+
+                      $(document).ready(function() {
+
+                        $("#imgInp").change(function(){
+                            $("#blah").remove();
+                            $('#replace').prepend('<img id="blah" src="#" />')
+                            $("#blah").addClass("img-size");
+                          $("#blah").addClass("cropped");
+                          $("#blah").addClass("center-block");
+                            readURL(this);
+                        });
+
+
+
+                      });
+
+                      
+
+                    </script>
+            </div>
+            <div class="col-md-8" id="full_name">
+                <h1 class="name"> {{ form.first_name }} </h1>
+                {% for error in form.first_name.errors %}
+                  <div class="form-group" id="error-text">
+                        {{ error }}
+                  </div>
+                {% endfor %}
+                <h1 class="nickname"> {{ form.last_name }} </h1>
+                {% for error in form.last_name.errors %}
+                  <div class="form-group" id="error-text">
+                        {{ error }}
+                  </div>
+                {% endfor %}
+                <h3 class="nickname"> {{ form.nickname }} </h3>
+                {% for error in form.nickname.errors %}
+                  <div class="form-group" id="error-text">
+                        {{ error }}
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" id="row_2">
+            <div class="col-md-4">
+                    <ul class="list-group">
+                                <li class="list-group-item" id="overview-heading">Overview</li>
+                            
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-font fa-fw"></i></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span>{{ form.pledge_class }}</span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% for error in form.pledge_class.errors %}
+                              <div class="form-group" id="error-text">
+                                    {{ error }}
+                              </div>
+                            {% endfor %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-users fa-fw"></i></span></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span>{{ form.family }}</span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% for error in form.family.errors %}
+                              <div class="form-group" id="error-text">
+                                    {{ error }}
+                              </div>
+                            {% endfor %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-graduation-cap fa-fw"></i></span></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span>{{ form.graduation_year }}</span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% for error in form.graduation_year.errors %}
+                              <div class="form-group" id="error-text">
+                                    {{ error }}
+                              </div>
+                            {% endfor %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-book fa-fw"></i></span></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span>{{ form.major }} </span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% for error in form.major.errors %}
+                              <div class="form-group" id="error-text">
+                                    {{ error }}
+                              </div>
+                            {% endfor %}
+                            <li class="list-group-item">
+                                <div class="media">
+                                  <div class="media-left media-middle">
+                                      <span class="overview-icon"><i class="fa fa-home fa-fw"></i></span>
+                                  </div>
+                                  <div class="media-body">
+                                    <span>{{form.hometown}}</span>
+                                  </div>
+                                </div>
+                            </li>
+                            {% for error in form.hometown.errors %}
+                              <div class="form-group" id="error-text">
+                                    {{ error }}
+                              </div>
+                            {% endfor %}
+                    </ul>
+                    <ul class="list-group">
+                    	<li class="list-group-item" id="overview-heading">Contact Info</li>
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span><i class="fa fa-facebook-square" id="facebook-icon"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span >{{form.facebook_url}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.facebook_url.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span><i class="fa fa-linkedin-square" id="linkedin-icon"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span>{{form.linkedin_url}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.linkedin_url.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span><i class="fa fa-envelope-square" id="email-icon"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span>{{form.email}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.email.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span><i class="fa fa-phone-square" id="phone-icon"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span>{{form.phone}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.phone.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+
+                    </ul>
+                    <ul class="list-group">
+                    	<li class="list-group-item" id="overview-heading">Password</li>
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span class="overview-icon"><i class="fa fa-unlock-alt fa-fw"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span >{{form.password1}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.password1.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+                    	<li class="list-group-item">
+                    	    <div class="media">
+                    	      <div class="media-left media-middle">
+                    	          <span class="overview-icon"><i class="fa fa-unlock-alt fa-fw"></i></span>
+                    	      </div>
+                    	      <div class="media-body">
+                    	        <span>{{form.password2}}</span>
+                    	      </div>
+                    	    </div>
+                    	</li>
+                    	{% for error in form.password2.errors %}
+                    	  <div class="form-group" id="error-text">
+                    	        {{ error }}
+                    	  </div>
+                    	{% endfor %}
+
+                    </ul>
+                <!-- <img  class="thumb1" style="background: url({{ STATIC_URL }}/Alumni/images/{{ file_name }}) 50% 50% no-repeat;"> -->
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="panel">
+                      <div class="panel-heading">Current Employment</div>
+                      <div class="panel-body">
+                        <h1 class="employer-heading">{{ form.current_employer }}</h1>
+                        {% for error in form.current_employer.errors %}
+                          <div class="form-group" id="error-text">
+                                {{ error }}
+                          </div>
+                        {% endfor %}
+                        <h3 class="employer-role"> {{ form.role }} </h3>
+                        {% for error in form.role.errors %}
+                          <div class="form-group" id="error-text">
+                                {{ error }}
+                          </div>
+                        {% endfor %}
+                        <h4 class="employer-location"> {{ form.current_city }} </h4>
+                        {% for error in form.current_city.errors %}
+                          <div class="form-group" id="error-text">
+                                {{ error }}
+                          </div>
+                        {% endfor %}
+                        <p class="employer-description">
+                        	{{ form.position_description }}
+                        </p>
+                        {% for error in form.position_description.errors %}
+                          <div class="form-group" id="error-text">
+                                {{ error }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel">
+                      <div class="panel-heading">Biography</div>
+                      <div class="panel-body">
+                        <p class="bio-body" id="editor">
+                        	{{ form.bio }}
+                          
+
+                          
+                        </p>
+                        {% for error in form.bio.errors %}
+                          <div class="form-group" id="error-text">
+                                {{ error }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+        	<button type="submit" class="btn btn-primary pull-right submit-btn padded">Update Profile</button>
+    	</div>
+    </form>
+
+        
+        <script type="text/javascript">
+
+
+
+            var mq = window.matchMedia('(max-width: 767px)');
+                    if(mq.matches) {
+
+
+
+                        
+                    } else {
+                      $('#full_name').each(function() {
+                          var o_height = $(this).height();
+                          $(this).css('margin-top', (($('#dp').height()-o_height)/2));
+
+                      });
+                        // the width of browser is less then 700px
+                    }
+            
+        </script>
+
+
+
+{% endblock %}

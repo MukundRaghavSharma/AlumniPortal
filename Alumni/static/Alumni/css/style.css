@@ -1672,6 +1672,26 @@ body.loading .modal {
 	height: 220px;
 }
 
+.edit-btn {
+	font-size: 12px;
+	padding: 5px;
+	background-color: #516182;
+}
+
+.edit-btn:hover {
+	background-color: #2a3856;
+}
+
+.submit-btn {
+	background-color: #516182;
+}
+
+.submit-btn:hover {
+	background-color: #2a3856;
+}
+
+
+
 .padded {
 	margin-bottom: 40px;
 }
