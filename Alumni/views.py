@@ -1,5 +1,5 @@
 from Alumni.forms import (SignInForm, SignUpForm, PersonalInformationForm, 
-AKPsiInformationForm, ProfessionalInformationForm, CHOICES)
+AKPsiInformationForm, ProfessionalInformationForm, CHOICES, EditingForm)
 from Alumni.models import Alumni, PledgeClass, Family
 from Alumni.util.class_dictionary import pledge_class_dictionary
 from django.templatetags.static import static
@@ -55,7 +55,6 @@ def signin_1(request):
         if 'confirmation' in request.POST:
             
             confirmation_code = request.POST['confirmation'] 
-            print(len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 and len(confirmation_code) == 0)
             if len(Alumni.objects.filter(confirmation_code = confirmation_code)) < 1 or len(confirmation_code) == 0:
                    context['reg_error'] = "Your registration code is invalid. Contact the VPA for assistance."
                    return render(request, 'Alumni/signin_1.html', context)
@@ -661,6 +660,108 @@ def donations(request):
         context['current_user'] = alumni 
         return render(request, 'Alumni/donations.html', context)
 
+@login_required
+def edit_profile(request, brother_number):
+    context = {}
+    alumni = Alumni.objects.get(user = request.user)
+
+
+
+    if request.method == 'GET':
+
+
+        if len(alumni.graduation_class) < 2:
+            alumni.graduation_class = ''
+        else:
+            alumni.graduation_class = alumni.graduation_class.split(' ')[2]
+
+        for choice in CHOICES:
+            if choice == alumni.graduation_class:
+                class_choice = choice 
+
+        if alumni.graduation_class == '':
+            class_choice = CHOICES[[0]][1]
+        else:
+            class_choice = CHOICES[2][1]
+
+            print(class_choice)
+
+
+
+        initial = {'first_name' : request.user.first_name,
+                   'last_name' : request.user.last_name,
+                   'nickname' : alumni.nickname,
+                   'email' : request.user.email,
+                   'phone' : alumni.phone,
+                   'hometown' : alumni.hometown,
+                   'major' : alumni.major,
+                   'current_employer' : alumni.employer,
+                   'role' : alumni.position,
+                   'current_city' : alumni.current_city,
+                   'password1' : request.user.password,
+                   'password2' : request.user.password,
+                   'pledge_class' : alumni.pledge_class,
+                   'graduation_year' : class_choice,
+                   'facebook_url' : alumni.facebook_url,
+                   'linkedin_url' : alumni.linkedin_url,
+                   'bio' : alumni.bio,
+                   'position_description' : alumni.position_description,
+                   'role' : alumni.position,
+                   'family' : alumni.family
+        }
+        context['alumni'] = alumni
+        context['form'] = EditingForm(initial = initial) 
+        context['current_user'] = alumni
+        return render(request, 'Alumni/edit.html', context)
+
+    if request.method == 'POST':
+        form = EditingForm(request.POST, request.FILES)
+        class_choice = str(CHOICES[int(request.POST['graduation_year'])][1])
+
+        # User Info Change #
+        # if (alumni_data['password1'] != alumni_data['password2'] and alumni_data['password1'] != '' and
+        #     alumni_data['password2'] != ''):
+        #     raise ValidationError("PASSWORDS SHOULD MATCH!")
+        # else:
+        #     alumni.user.set_password(alumni_data['password1'])
+
+
+        print(form.errors)
+
+        # Alumni Info Change #
+        if form.is_valid():
+            print(request.POST)
+            alumni.user.first_name = form.cleaned_data.get('first_name')
+            alumni.user.last_name = form.cleaned_data.get('last_name')
+            alumni.nickname = form.cleaned_data.get('nickname')
+            alumni.email = form.cleaned_data.get('email')
+            alumni.phone = form.cleaned_data.get('phone')
+            alumni.hometown = form.cleaned_data.get('hometown')
+            alumni.major = form.cleaned_data.get('major')
+            alumni.employer = form.cleaned_data.get('current_employer')
+            alumni.position = form.cleaned_data.get('role')
+            alumni.current_city = form.cleaned_data.get('current_city')
+            alumni.user.set_password(form.cleaned_data.get('password2'))
+            alumni.graduation_class = "Class of " + class_choice 
+            alumni.pledge_class = form.cleaned_data.get('pledge_class')
+            if 'https://' in form.cleaned_data.get('facebook_url'):
+                alumni.facebook_url = form.cleaned_data.get('facebook_url')
+            else:
+                alumni.facebook_url = 'https://' + form.cleaned_data.get('facebook_link')
+            if 'https://' in form.cleaned_data.get('linkedin_url'):
+                alumni.linkedin_url = form.cleaned_data.get('linkedin_url')
+            else:
+                alumni.linkedin_url = 'https://' + form.cleaned_data.get('linkedin_url')
+            alumni.bio = form.cleaned_data.get('bio')
+            alumni.position_description = form.cleaned_data.get('position_description')
+            alumni.position = form.cleaned_data.get('role')
+            alumni.family = form.cleaned_data.get('family')
+            alumni.picture = form.cleaned_data.get('image')
+            alumni.save()
+            return redirect('/profile/' + brother_number)
+        context['form'] = form
+        context['current_user'] = alumni
+        return render(request, 'Alumni/edit.html', context)
 @login_required
 def search(request):
     context = {}

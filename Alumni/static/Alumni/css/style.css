@@ -178,12 +178,12 @@ a:hover {
 	display: none;
 	margin-top: 40px;
 	margin-bottom: 20px;
+	padding: 8px;
 }
 
-.code-bottom {
-	width: 207px;
-	height: 46px;
+.bottom {
 	display: none;
+	margin-top: 0px;
 	margin-bottom: 5px;
 }
 
@@ -201,7 +201,7 @@ a:hover {
 	  margin-top: 40px;
 	  margin-bottom: -20px;
 	  width: 207px;
-	  height: 46px;
+	  padding: 8px;
 
 }
 
@@ -317,9 +317,10 @@ a:hover {
 	background-repeat: no-repeat;
 	background-image: url(../images/drinking_landing.jpg);
 	background-attachment: fixed;
-	background-position:50% 50%;  /* Sets reference point to scale from */
-	background-size:cover;
+	background-position: 0 0;
+	background-size: cover;
 	z-index: -1;
+	overflow-x: hidden;
 }
 
 #signup-position {
@@ -358,12 +359,27 @@ a:hover {
 
 }
 
-#position-row {
+.position-row {
 	padding-top: 20px;
+	padding-bottom: 10px;
 	margin-right: 0px;
 	margin-left: 0px;
 	background-color: #fff;
+	margin-bottom: 20px;
+	border-bottom: solid 5px #2a3856;
 
+}
+
+.baubles {
+	display: table;
+	table-layout: fixed;
+}
+
+.bauble {
+	display: table-cell;
+	text-align: center;
+	color: #2a3856;
+	font-size: 15px;
 }
 
 #first-position-row {
@@ -439,7 +455,7 @@ a:hover {
 
 }
 
-#position-one {
+.position-one {
 	background-color: #2a3856;
 	color: #fff;
 	text-align: center;
@@ -452,7 +468,7 @@ a:hover {
     height: 30px;
 }
 
-#position-two {
+.position-two {
 	background-color: #888888;
 	color: #fff;
 	text-align: center;
@@ -465,7 +481,7 @@ a:hover {
     height: 30px;
 }
 
-#position-three {
+.position-three {
 	background-color: #888888;
 	color: #fff;
 	text-align: center;
@@ -475,7 +491,7 @@ a:hover {
     height: 30px;
 }
 
-#position-done {
+.position-done {
 	background-color: #2a3856;
 	color: #fff;
 	text-align: center;
@@ -623,8 +639,25 @@ a:hover {
 	border-style: solid;
 }
 
+.cropped {
+	border-radius: 50%;
+	border-color: #2a3856;
+	border-color: #2a3856;
+	border-width: 2px;
+	border-style: solid;
+}
+
 @media screen and (max-width: 767px) {
 	#cropped {
+		border-radius: 50%;
+		border-color: #2a3856;
+		border-color: #2a3856;
+		border-width: 2px;
+		border-style: solid;
+		margin: 0 auto;
+	}
+
+	.cropped {
 		border-radius: 50%;
 		border-color: #2a3856;
 		border-color: #2a3856;
@@ -1637,6 +1670,30 @@ body.loading .modal {
 .img-size {
 	width: 220px;
 	height: 220px;
+}
+
+.edit-btn {
+	font-size: 12px;
+	padding: 5px;
+	background-color: #516182;
+}
+
+.edit-btn:hover {
+	background-color: #2a3856;
+}
+
+.submit-btn {
+	background-color: #516182;
+}
+
+.submit-btn:hover {
+	background-color: #2a3856;
+}
+
+
+
+.padded {
+	margin-bottom: 40px;
 }
 
 @media screen and (max-width: 767px) {
