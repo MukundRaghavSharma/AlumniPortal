@@ -718,9 +718,6 @@ def edit_profile(request, brother_number):
         # else:
         #     alumni.user.set_password(alumni_data['password1'])
 
-
-        print(form.errors)
-
         # Alumni Info Change #
         if form.is_valid():
             print(request.POST)
@@ -756,6 +753,7 @@ def edit_profile(request, brother_number):
         context['form'] = form
         context['current_user'] = alumni
         return render(request, 'Alumni/edit.html', context)
+
 @login_required
 def search(request):
     context = {}
