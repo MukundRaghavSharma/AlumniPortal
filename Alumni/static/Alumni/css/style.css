@@ -1696,6 +1696,10 @@ body.loading .modal {
 	margin-bottom: 40px;
 }
 
+.overlay-color:hover {
+	background-color: #63214C;
+}
+
 @media screen and (max-width: 767px) {
 
 	.img-size {
