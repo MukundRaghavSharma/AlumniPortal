@@ -114,7 +114,8 @@ def signin_2(request):
             alumni = Alumni.objects.get(user = request.user)
             user = alumni.user
             alumni.user.first_name = form.cleaned_data.get('first_name')
-            alumni.picture = form.cleaned_data.get('image')
+            if form.cleaned_data.get('image') != None:
+                alumni.picture = form.cleaned_data.get('image')
             alumni.user.last_name = form.cleaned_data.get('last_name')
             if 'https://' in form.cleaned_data.get('facebook'):
                 alumni.facebook_url = form.cleaned_data.get('facebook')
@@ -665,11 +666,7 @@ def edit_profile(request, brother_number):
     context = {}
     alumni = Alumni.objects.get(user = request.user)
 
-
-
     if request.method == 'GET':
-
-
         if len(alumni.graduation_class) < 2:
             alumni.graduation_class = ''
         else:
@@ -683,10 +680,6 @@ def edit_profile(request, brother_number):
             class_choice = CHOICES[[0]][1]
         else:
             class_choice = CHOICES[2][1]
-
-            print(class_choice)
-
-
 
         initial = {'first_name' : request.user.first_name,
                    'last_name' : request.user.last_name,
@@ -756,7 +749,8 @@ def edit_profile(request, brother_number):
             alumni.position_description = form.cleaned_data.get('position_description')
             alumni.position = form.cleaned_data.get('role')
             alumni.family = form.cleaned_data.get('family')
-            alumni.picture = form.cleaned_data.get('image')
+            if form.cleaned_data.get('image') != None:
+                alumni.picture = form.cleaned_data.get('image')
             alumni.save()
             return redirect('/profile/' + brother_number)
         context['form'] = form
