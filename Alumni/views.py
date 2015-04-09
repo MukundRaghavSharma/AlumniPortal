@@ -633,13 +633,13 @@ def family_trees_create(request):
         for alumni in Alumni.objects.filter(family = family):
             big = alumni.big
             little_name = "'" + alumni.user.first_name + ' ' + alumni.user.last_name + "'"
-            big_text = '' + '\'\',\'\'],'
+            big_text = '' + '\',\'\'],'
             if big != None:
-                big_name = "'" + big.user.first_name + ' ' + big.user.last_name
-                #big_text = '<a href="/profile/' + big.number + '" class="pull-left" width=20> ' + big_name + "'', '']," 
-                big_text = big_name + '\',' + '\'\'],' 
-            #little_text = "['<a href=\"/profile/" + alumni.number + '" class=pull-left width=20> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
-            little_text = "[" + little_name + ","
+                big_name = big.user.first_name + ' ' + big.user.last_name
+                big_text = '<a href="/profile/' + str(big.number) + '"> ' + big_name + "','']," 
+                # big_text = big_name + '\',' + '\'\'],' 
+            little_text = "['<a href=\"/profile/" + str(alumni.number) + '"> ' + alumni.user.first_name + ' ' + alumni.user.last_name + "','" 
+            # little_text = "[" + little_name + ","
             final_text = little_text + big_text + '\n'
             family_file.write(final_text)
         family_file.write(FINAL_SCRIPT)
