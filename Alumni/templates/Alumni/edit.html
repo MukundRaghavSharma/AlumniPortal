@@ -1,12 +1,6 @@
 {% extends "Alumni/navbar.html" %}
 
 {% block file %}
-
-		
-
-		
-
-
 		<form action="." method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
         <div class="row">
@@ -27,16 +21,10 @@
                     </div>
                     <script type="text/javascript">
                       
-
                       function readURL(input) {
-
                           if (input.files && input.files[0]) {
                               var reader = new FileReader();
-
                               reader.onload = function (e) {
-
-
-
                                   $('#blah').attr('src', e.target.result);
                               }
 
@@ -54,13 +42,7 @@
                           $("#blah").addClass("center-block");
                             readURL(this);
                         });
-
-
-
                       });
-
-                      
-
                     </script>
             </div>
             <div class="col-md-8" id="full_name">
