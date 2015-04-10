@@ -7,43 +7,6 @@ from django.shortcuts import render, redirect
 import uuid
 #from ajaximage.fields import AjaxImageField
 
-class Family(models.Model):
-    name = models.CharField(max_length = 20, blank = True)
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-    def __str__(self):
-        return str(self.name)
-
-    def save(self, *args, **kwargs):
-            try:
-                existing = Family.objects.get(name = self.name)
-                self.id = existing.id
-            except Family.DoesNotExist:
-                pass
-            models.Model.save(self, *args, **kwargs)
-
-class PledgeClass(models.Model):
-    season = models.CharField(max_length = 10, blank = True)
-    year = models.CharField(max_length = 10, blank = True)
-    name = models.CharField(max_length = 40, blank = True)
-    class_number = models.PositiveIntegerField()
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-    def __str__(self):
-        return str(self.name)
-    
-    def save(self, *args, **kwargs):
-            try:
-                existing = PledgeClass.objects.get(name = self.name)
-                self.id = existing.id
-            except PledgeClass.DoesNotExist:
-                pass
-            models.Model.save(self, *args, **kwargs)
-
 class Alumni(models.Model):
     user = models.OneToOneField(User)
     employer = models.CharField(blank = True, max_length = 100)
@@ -89,3 +52,41 @@ def create_profile(sender, instance, created, **kwargs):
         profile, created = Alumni.objects.get_or_create(user = instance)
 
 post_save.connect(create_profile, sender = User)
+
+class Family(models.Model):
+    name = models.CharField(max_length = 20, blank = True)
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    def __str__(self):
+        return str(self.name)
+
+    def save(self, *args, **kwargs):
+            try:
+                existing = Family.objects.get(name = self.name)
+                self.id = existing.id
+            except Family.DoesNotExist:
+                pass
+            models.Model.save(self, *args, **kwargs)
+
+class PledgeClass(models.Model):
+    season = models.CharField(max_length = 10, blank = True)
+    year = models.CharField(max_length = 10, blank = True)
+    name = models.CharField(max_length = 40, blank = True)
+    class_number = models.PositiveIntegerField()
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    def __str__(self):
+        return str(self.name)
+    
+    def save(self, *args, **kwargs):
+            try:
+                existing = PledgeClass.objects.get(name = self.name)
+                self.id = existing.id
+            except PledgeClass.DoesNotExist:
+                pass
+            models.Model.save(self, *args, **kwargs)
+
