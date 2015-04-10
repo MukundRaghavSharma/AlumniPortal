@@ -50,13 +50,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'Alumni',
     'endless_pagination',
-    'ajaximage',
     #'social.apps.django_app.default',
     # 'django_wysiwyg',
-    'easy_thumbnails',
-    'image_cropping',
-    'inplaceeditform',
-    'inplaceeditform_extra_fields',
+    'gunicorn',
 )
 
 AJAXIMAGE_AUTH_TEST = lambda u: True
