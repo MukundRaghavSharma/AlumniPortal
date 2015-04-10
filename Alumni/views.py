@@ -719,7 +719,7 @@ def edit_profile(request, brother_number):
         #     alumni.user.set_password(alumni_data['password1'])
 
 
-        print(form.errors)
+        print(request.POST)
 
         # Alumni Info Change #
         if form.is_valid():
