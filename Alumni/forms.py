@@ -1,8 +1,8 @@
 from Alumni.models import Alumni, PledgeClass, Family
 from django import forms
-from ajaximage.widgets import AjaxImageWidget
+#from ajaximage.widgets import AjaxImageWidget
 from django.contrib.auth.models import User
-from image_cropping import ImageCropWidget
+#from image_cropping import ImageCropWidget
 import datetime
 import re
 
