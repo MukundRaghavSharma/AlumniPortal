@@ -48,7 +48,6 @@ def signin_1(request):
     
     # Post redirects to signin_2 #
     if request.method == 'POST':
-        print(request.POST)
         form = SignInForm()
         context['form'] = form
 
@@ -95,7 +94,6 @@ def signin_2(request):
     if request.method == 'GET':
         user = User.objects.get(username = request.user.username)
         alumni = Alumni.objects.get(user = user)
-        print (alumni.facebook_url)
         initial = {'first_name' : user.first_name,
                    'last_name' : user.last_name,
                    'email' : user.email,
@@ -676,10 +674,16 @@ def edit_profile(request, brother_number):
             if choice == alumni.graduation_class:
                 class_choice = choice 
 
+        pledge_class = alumni.pledge_class
         if alumni.graduation_class == '':
             class_choice = CHOICES[[0]][1]
         else:
             class_choice = CHOICES[2][1]
+
+        class_choice = 0 
+        for choice in CHOICES:
+            if str(choice[1]) == str(alumni.graduation_class):
+                class_choice = choice[0] 
 
         initial = {'first_name' : request.user.first_name,
                    'last_name' : request.user.last_name,
@@ -718,12 +722,8 @@ def edit_profile(request, brother_number):
         # else:
         #     alumni.user.set_password(alumni_data['password1'])
 
-
-        print(request.POST)
-
         # Alumni Info Change #
         if form.is_valid():
-            print(request.POST)
             alumni.user.first_name = form.cleaned_data.get('first_name')
             alumni.user.last_name = form.cleaned_data.get('last_name')
             alumni.nickname = form.cleaned_data.get('nickname')
@@ -753,9 +753,8 @@ def edit_profile(request, brother_number):
                 alumni.picture = form.cleaned_data.get('image')
             alumni.save()
             return redirect('/profile/' + brother_number)
-        context['form'] = form
-        context['current_user'] = alumni
         return render(request, 'Alumni/edit.html', context)
+
 @login_required
 def search(request):
     context = {}

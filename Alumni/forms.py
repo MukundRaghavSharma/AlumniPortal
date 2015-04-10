@@ -230,12 +230,14 @@ class EditingForm(forms.Form):
     # First Name #
     first_name = forms.CharField(label = 'First Name',
                             max_length = 100,
+                            required = False,
                             widget = forms.TextInput(
                                 attrs = { 'id' : 'first_name', 'class' : 'form-control', 'placeholder': 'First Name' }))
 
     # Last name #
     last_name = forms.CharField(label = 'Last Name',
                                 max_length = 100,
+                                required = False,
                                 widget = forms.TextInput(
                                     attrs = { 'id' : 'last_name', 'class' : 'form-control', 'placeholder': 'Last Name' }))
 
@@ -247,41 +249,39 @@ class EditingForm(forms.Form):
     password2 = forms.CharField(label = 'Re-enter your password',
                                widget = forms.PasswordInput(attrs = { 'id' : 'password_confirmation', 'class' : 'form-control', 'placeholder': 'Re-type Password' })) 
     
-   
-
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
-                            required = True,
+                            required = False,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
 
     # Hometown #
     hometown = forms.CharField(label = 'Hometown',
-                               required = True,
+                               required = False,
                                max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'hometown', 'class' : 'form-control', 'placeholder': 'Hometown' }))
 
     # Major # 
     major = forms.CharField(label = 'Major',
-                            required = True,
+                            required = False,
                             max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'major', 'class' : 'form-control', 'placeholder': 'Major' }))
 
     # Current Employer #
     current_employer = forms.CharField(label = 'Current Employer',
-                            required = True,
+                            required = False,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'current_employer', 'class' : 'form-control', 'placeholder': 'Current Employer' }))
 
     # Current Role in the Company #
     role = forms.CharField(label = 'Role',
-                           required = True,
+                           required = False,
                            max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'role', 'class' : 'form-control', 'placeholder': 'Role' }))
 
     # Current City #
     current_city = forms.CharField(label = 'Current City',    
-                                   required = True,
+                                   required = False,
                                    max_length = 100,widget = forms.TextInput(attrs = { 'id' : 'current_city', 'class' : 'form-control', 'placeholder': 'Current City' }))
 
-    position_description = forms.CharField(max_length = 500, widget=forms.Textarea(attrs = { 'id' : 'position_description', 'class' : 'form-control', 'placeholder' : 'Tell us a little about your job...'}))
+    position_description = forms.CharField(required = False, max_length = 500, widget=forms.Textarea(attrs = { 'id' : 'position_description', 'class' : 'form-control', 'placeholder' : 'Tell us a little about your job...'}))
 
-    bio = forms.CharField(max_length = 500, widget=forms.Textarea(attrs = { 'id' : 'bio', 'class' : 'form-control', 'placeholder' : 'Write a little about yourself...'}))
+    bio = forms.CharField(required = False, max_length = 500, widget=forms.Textarea(attrs = { 'id' : 'bio', 'class' : 'form-control', 'placeholder' : 'Write a little about yourself...'}))
 
     linkedin_url = forms.CharField(label = 'LinkedIn Link', required = False,
                                widget = forms.TextInput(attrs = { 'id' : 'linkedin', 'class' : 'form-control', 'placeholder': 'LinkedIn URL' }))
@@ -291,13 +291,13 @@ class EditingForm(forms.Form):
     # Email #
     email = forms.EmailField(label = 'Email',
                              max_length = 100,
-                             required = True,
+                             required = False,
                              widget = forms.TextInput(
                                 attrs = { 'id' : 'email', 'class' : 'form-control', 'placeholder': 'Email' }))
 
     # Phone Number #
     phone = forms.CharField(label = 'Phone',
-                            required = True,
+                            required = False,
                             max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'phone', 'class' : 'form-control', 'placeholder': 'Phone Number' }))
 
     # Pledge Class #
@@ -322,13 +322,12 @@ class EditingForm(forms.Form):
     graduation_year = forms.ChoiceField(choices = CHOICES, widget =
             forms.Select(attrs={'class':'form-control', 'id' : 'graduation_year'}), required = True)
 
-    
-
+    # Image Field #
     image = forms.FileField(required = False, widget = forms.FileInput(attrs={ 'id' : 'imgInp'}))
 
     # Nickname #
     nickname = forms.CharField(label = 'Nickname',
-                               required = True,
+                               required = False,
                                max_length = 100, widget = forms.TextInput(attrs = { 'id' : 'nickname', 'class' : 'form-control', 'placeholder': 'Nickname' }))
 
     def clean_image(self):
@@ -340,10 +339,3 @@ class EditingForm(forms.Form):
         if image.size > MAX_UPLOAD_SIZE:
             raise forms.ValidationError('File too big (max size is {0} bytes)'.format(MAX_UPLOAD_SIZE))
         return image
-
-    # def clean(self):
-    #     if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
-    #         if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-    #             raise forms.ValidationError(_(u'no no no'))
-
-    #     return self.cleaned_data
