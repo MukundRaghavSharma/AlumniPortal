@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.shortcuts import render, redirect
-from image_cropping import ImageCropField, ImageRatioField
+#from image_cropping import ImageCropField, ImageRatioField
 import uuid
-from ajaximage.fields import AjaxImageField
+#from ajaximage.fields import AjaxImageField
 
 class Family(models.Model):
     name = models.CharField(max_length = 20, blank = True)

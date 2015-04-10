@@ -184,10 +184,10 @@ EMAIL_USE_SSL = True
 
 STATIC_URL = '/static/'
 
-from easy_thumbnails.conf import Settings as thumbnail_settings
-THUMBNAIL_PROCESSORS = (
-    'image_cropping.thumbnail_processors.crop_corners',
-) + thumbnail_settings.THUMBNAIL_PROCESSORS
+#from easy_thumbnails.conf import Settings as thumbnail_settings
+#THUMBNAIL_PROCESSORS = (
+#    'image_cropping.thumbnail_processors.crop_corners',
+#) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 # Stuff for Heroku #
 # Parse database configuration from $DATABASE_URL
